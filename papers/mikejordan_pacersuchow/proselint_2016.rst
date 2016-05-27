@@ -40,8 +40,26 @@ A Numerical Perspective to Terraforming a Desert
 
    terraforming, desert, numerical perspective
 
-Introduction
-------------
+The problem 
+-----------
+
+our general approach
+--------------------
+
+existing tools
+--------------
+
+the principles we've identified
+-------------------------------
+
+how our tool address or uses each of those principles
+-----------------------------------------------------
+
+sourcing of advice and what kinds we found
+------------------------------------------
+
+example of some rules
+---------------------
 
 Twelve hundred years ago  |---| in a galaxy just across the hill...
 
