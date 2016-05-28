@@ -1,27 +1,15 @@
-:author: Gaius Caesar
-:email: jj@rome.it
-:institution: Senate House, S.P.Q.R.
-:institution: Egyptian Embassy, S.P.Q.R.
+:author: Michael D. Pacer
+:email: mpacer@berkeley.edu
+:institution: University of California, Berkeley
 
-:author: Mark Anthony
-:email: mark37@rome.it
-:institution: Egyptian Embassy, S.P.Q.R.
-
-:author: Jarrod Millman
-:email: millman@rome.it
-:institution: Egyptian Embassy, S.P.Q.R.
-:institution: Yet another place, S.P.Q.R.
-
-:author: Brutus
-:email: brutus@rome.it
-:institution: Unaffiliated
-:bibliography: mybib
-
+:author: Jordan W. Suchow
+:email: suchow@berkeley.edu
+:institution: University of California, Berkeley
 
 :video: http://www.youtube.com/watch?v=dhRUe-gz690
 
 ------------------------------------------------
-A Numerical Perspective to Terraforming a Desert
+Proselint
 ------------------------------------------------
 
 .. class:: abstract
