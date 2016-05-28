@@ -14,15 +14,11 @@ Proselint
 
 .. class:: abstract
 
-   A short version of the long version that is way too long to be written as a
-   short version anyway.  Still, when considering the facts from first
-   principles, we find that the outcomes of this introspective approach is
-   compatible with the guidelines previously established.
+   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
 
-   In such an experiment it is then clear that the potential for further
-   development not only depends on previous relationships found but also on
-   connections made during exploitation of this novel new experimental
-   protocol.
+   We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats (e.g., JSON). Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules addressing: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension. 
+
+   Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it includes modules that promote clear and consistent prose in science writing. On the other, it measures language usage and explores the factors relevant to creating a useful linter.
 
 .. class:: keywords
 
