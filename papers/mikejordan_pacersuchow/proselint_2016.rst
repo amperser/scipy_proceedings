@@ -22,7 +22,7 @@ Proselint
 
 .. class:: keywords
 
-   terraforming, desert, numerical perspective
+   linters, writing tools, copyediting
 
 Introduction
 ------------
