@@ -41,6 +41,21 @@ We will discuss where Proselint is and where it is heading. We will show its ins
 
 Proselint is fertile ground for growing an open-source community. It has trivial subproblems and lofty goals, an immediate impact and a long future.
 
+Approach
+--------
+
+Check usage, not grammar
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+proselint does not focus on grammar, which is at once too easy and too hard — too easy because, for most native speakers, it comes naturally; too hard because, in its most general form, detecting grammatical errors is AI-complete, requiring human-level intelligence to get things right. Instead, we consider usage: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
+
+Be precise
+^^^^^^^^^^
+proselint is precise. Existing tools for improving prose raise so many false alarms that their advice can not be trusted. Instead, the writer must carefully consider whether to accept or reject each change. We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
+
+Source advice from experts
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
 
 Bibliographies, citations and block quotes
 ------------------------------------------
