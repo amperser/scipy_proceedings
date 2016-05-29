@@ -37,9 +37,20 @@ Proselint identifies violations of expert style and usage guidelines.
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
 
+Consequences of designing a *linter* as opposed to just any writing aid:
+========================================================================``
+
+* responses needs to be in real time, limits processing that can occur
+* responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
+* it needs to be able to be installed and modified by the end-user
+* 
 
 our general approach
 --------------------
+
+
+
+Divide up problem types into levels of difficulty. 
 
 Incorporate broader community. 
 Open source license allows the community of users to become a community of builders. 
