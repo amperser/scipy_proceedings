@@ -26,95 +26,155 @@ Proselint
 
 The problem 
 -----------
-Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But poring over Strunk & White hardly makes one a better writer — it turns you into neither Strunk nor White. And nobody has the willpower, time, or memory to  manually apply all the advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write. 
-The knowledge is trapped, waiting to be extracted and transformed.
+Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. 
+But poring over Strunk & White hardly makes one a better writer — it turns you into neither Strunk nor White. 
 
-We built Proselint, a Python-based linter for prose. 
-A linter is a computer program that, like a spell checker, scans through a document and analyzes it. 
-Proselint identifies violations of expert style and usage guidelines. 
+Even if you were able to magically able to absorb every rule 
+And nobody has the willpower, time, or memory to individually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write.
+
+
+The knowledge of how to write with style and panache would help both writers.  is trapped, waiting to be extracted and transformed into a more useful form.
+
+
+To solve this, we built Proselint, a Python-based linter for prose. 
+A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
+Proselint identifies violations of expert style and usage guidelines.
+It is both a command line tool and has been adapted as a plugin for a variety of text editors including SublimeText, vim, &c.
+
 
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
 
-Consequences of designing a *linter* as opposed to just any writing aid:
-========================================================================``
+*linter* desiderata:
+====================
 
-* responses needs to be in real time, limits processing that can occur
+* scales to many rules
+* responses needs to be in real time, which limits how much processing can occur per rule
 * responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
-* it needs to be able to be installed and modified by the end-user
+* it needs to be able to be installed easily by the end-user
+* it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
+* it needs to explain why it raising the flags it raises
+
+Two view of proselint
+---------------------
+
+Proselint can be seen as both a language tool for scientists and a tool for language science. 
+On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and explore the factors relevant to creating a useful linter.
+
+
+As a language tool for scientists:
+==================================
+
+* Improve scientific communication
+* ESL?
+
+
+
+As a tool for language science
+==============================
+
+Normative content is unnecessary, we could use this merely to detect whether people use various words.
+
+Most extensive usage-sensitive stylometric feature extractor we know of. 
+
+
+* Stylometrics.
+* Author identification.
+* Encoding messages (with multiple acceptable options)
 * 
 
+
+
+    
 our general approach
 --------------------
 
+We want
 
 
-Divide up problem types into levels of difficulty. 
+Various ways to divide up the kinds of problems
+#. Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
+    #. Replacement rule
+    #. Regex
+    #. NLP
+    #. NLP, beyond state-of-the-art
+    #. AI-complete
+#. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
+#. Divide up by content  (What sorts of rules say similar things to this one?)
 
-Incorporate broader community. 
+
+Large scale problems require scalable resources
+===============================================
+
 Open source license allows the community of users to become a community of builders. 
-Given that many of the rules' implementations are particularly well-suited to novice coding projects.
+Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
+
+
+
+
 
 existing tools
 --------------
 
-1Checker (http://www.1checker.com/)
-AbiWord's grammar checker (http://www.abisource.com/)
-After the Deadline (https://openatd.wordpress.com/)
-Alex (http://alexjs.com/)
-Autocrit (https://www.autocrit.com/editor/)
-ClearEdits (http://www.clearwriter.com/clearedits.html)
-CorrectEnglish (http://www.correctenglish.com/)
-CKEditor (http://www.webspellchecker.net/)
-Editor (http://www.serenity-software.com/)
-The Editorium (http://www.editorium.com/ETKPlus2014.htm)
-EditorSoftware (http://www.editorsoftware.com/)
-Edminton (http://editminion.com/)
-Expresso (http://expresso-app.org/)
-Ghotit (http://www.ghotit.com/)
-Ginger (http://www.gingersoftware.com/)
-GNU Diction (https://www.gnu.org/software/diction/)
-GNU Style (http://archive09.linux.com/feature/56833)
-Grac (http://grac.sourceforge.net/)
-GrammarBase (http://www.grammarbase.com/)
-GrammarCheck (http://www.grammarcheck.net/)
-Grammar Check Anywhere (https://www.spellcheckanywhere.com/grammar_check/)
-Grammar Expert Plus (http://www.wintertree-software.com/app/gramxp/)
-GrammarianPro (http://linguisoft.com/gramerrorfeatures.html)
-Grammark (https://github.com/markfullmer/grammark)
-Grammarly (https://www.grammarly.com/)
-Grammar Slammer (http://englishplus.com/grammar/)
-Grammatica (http://grammatica-english.soft32.com/)
-Grammatik (https://en.wikipedia.org/wiki/Grammatik)
-Graviax (http://graviax-grammar-checker.soft112.com/)
-Hemmingway (http://www.hemingwayapp.com/desktop.html)
-ivanistheone's scripts (https://github.com/ivanistheone/writing_scripts)
-Language Tool (https://www.languagetool.org/)
-Matt Might's shell scripts (http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/)
-Microsoft Word's grammar check (https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1)
-OnlineCorrection.com (http://www.onlinecorrection.com/)
-PaperRater (https://www.paperrater.com/)
-PerfectIt (http://www.intelligentediting.com/)
-ProWritingAid (https://prowritingaid.com/)
-Reverso (http://www.reverso.net/)
-RightWriter (http://www.right-writer.com/)
-Rousseau (https://github.com/GitbookIO/rousseau)
-SpellCheckPlus (http://spellcheckplus.com/)
-Stilus (http://www.mystilus.com/Main)
-Textanz (http://www.textanz.com/)
-Virtual Writing Tutor (http://virtualwritingtutor.com/)
-Wave (https://en.wikipedia.org/wiki/Apache_Wave)
-WhiteSmoke (http://www.whitesmoke.com/)
-WordPerfect (http://www.wordperfect.com/us/)
-WinProof (http://www.franklinhu.com/winproof.htm)
-WordRake (http://www.wordrake.com/)
-write-good (https://github.com/btford/write-good)
-Writer's Workbench (http://www.emo.com/)
+* 1Checker (http://www.1checker.com/)
+* AbiWord's grammar checker (http://www.abisource.com/)
+* After the Deadline (https://openatd.wordpress.com/)
+* Alex (http://alexjs.com/)
+* Autocrit (https://www.autocrit.com/editor/)
+* ClearEdits (http://www.clearwriter.com/clearedits.html)
+* CorrectEnglish (http://www.correctenglish.com/)
+* CKEditor (http://www.webspellchecker.net/)
+* Editor (http://www.serenity-software.com/)
+* The Editorium (http://www.editorium.com/ETKPlus2014.htm)
+* EditorSoftware (http://www.editorsoftware.com/)
+* Edminton (http://editminion.com/)
+* Expresso (http://expresso-app.org/)
+* Ghotit (http://www.ghotit.com/)
+* Ginger (http://www.gingersoftware.com/)
+* GNU Diction (https://www.gnu.org/software/diction/)
+* GNU Style (http://archive09.linux.com/feature/56833)
+* Grac (http://grac.sourceforge.net/)
+* GrammarBase (http://www.grammarbase.com/)
+* GrammarCheck (http://www.grammarcheck.net/)
+* Grammar Check Anywhere (https://www.spellcheckanywhere.com/grammar_check/)
+* Grammar Expert Plus (http://www.wintertree-software.com/app/gramxp/)
+* GrammarianPro (http://linguisoft.com/gramerrorfeatures.html)
+* Grammark (https://github.com/markfullmer/grammark)
+* Grammarly (https://www.grammarly.com/)
+* Grammar Slammer (http://englishplus.com/grammar/)
+* Grammatica (http://grammatica-english.soft32.com/)
+* Grammatik (https://en.wikipedia.org/wiki/Grammatik)
+* Graviax (http://graviax-grammar-checker.soft112.com/)
+* Hemmingway (http://www.hemingwayapp.com/desktop.html)
+* ivanistheone's scripts (https://github.com/ivanistheone/writing_scripts)
+* Language Tool (https://www.languagetool.org/)
+* Matt Might's shell scripts (http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/)
+* Microsoft Word's grammar check (https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1)
+* OnlineCorrection.com (http://www.onlinecorrection.com/)
+* PaperRater (https://www.paperrater.com/)
+* PerfectIt (http://www.intelligentediting.com/)
+* ProWritingAid (https://prowritingaid.com/)
+* Reverso (http://www.reverso.net/)
+* RightWriter (http://www.right-writer.com/)
+* Rousseau (https://github.com/GitbookIO/rousseau)
+* SpellCheckPlus (http://spellcheckplus.com/)
+* Stilus (http://www.mystilus.com/Main)
+* Textanz (http://www.textanz.com/)
+* Virtual Writing Tutor (http://virtualwritingtutor.com/)
+* Wave (https://en.wikipedia.org/wiki/Apache_Wave)
+* WhiteSmoke (http://www.whitesmoke.com/)
+* WordPerfect (http://www.wordperfect.com/us/)
+* WinProof (http://www.franklinhu.com/winproof.htm)
+* WordRake (http://www.wordrake.com/)
+* write-good (https://github.com/btford/write-good)
+* Writer's Workbench (http://www.emo.com/)
 
 
 the principles we've identified
 -------------------------------
+
+Low false positive rates
 
 how our tool address or uses each of those principles
 -----------------------------------------------------
@@ -130,9 +190,6 @@ example of some rules
 
 
 
-
-Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and explore the factors relevant to creating a useful linter.
-
 Proselint is unlike other language linters. First, Proselint does not focus on grammar, which is AI-complete, requiring human-level intelligence to get right. Instead, we consider usage and style. Second, existing tools for improving prose raise so many false alarms that their advice is distrusted and ignored. Proselint's motto is 'Better to be silent than wrong', aiming for a precision that makes it possible to adopt its recommendations unquestioningly. We optimize a "lintscore" metric that penalizes false positives.
 
 Proselint is a massive undertaking, one that will require the ethos of an open source community to complete. Garner’s book alone has 11,000 entries. Half are easy, assignable as a homework problem (e.g., that “very unique” compares an uncomparable adjective, or that people from Michigan prefer to be called “Michiganders”, not “Michiganians”). Thirty percent are moderately challenging, requiring custom tooling. Fifteen percent are hard — projects that require advances in AI and NLP. Everything else, around five percent (the best five percent), is AI-complete.
@@ -147,15 +204,60 @@ Approach
 Check usage, not grammar
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-proselint does not focus on grammar, which is at once too easy and too hard — too easy because, for most native speakers, it comes naturally; too hard because, in its most general form, detecting grammatical errors is AI-complete, requiring human-level intelligence to get things right. Instead, we consider usage: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
+Proselint does not focus on grammar, which is at once too easy and too hard. 
+Grammar is "too easy" because, for most native speakers, grammatical errors are easily identified (if not easily fixed).
+More subtle errors like long range plurality noun-verb agreement requires[#]_ greater attention and can evade even native speakers.
+But it is precisely *because* some errors can pass by unnoticed by native speakers that they are less crucial to identify.
+Grammar is too hard because, in its most general form, detecting grammatical errors is AI-complete, requiring human-level intelligence to get things right. Instead, we consider usage: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-Be precise
-^^^^^^^^^^
-proselint is precise. Existing tools for improving prose raise so many false alarms that their advice can not be trusted. Instead, the writer must carefully consider whether to accept or reject each change. We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
+.. [#] Note that this was a purposefully placed noun-verb plurarily agreement error. While potentially detectable, it is not as obviously problematic 
+
+Wield a rapier not a cudgel
+---------------------------
+
+We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. Existing tools for improving prose raise so many false alarms that their advice can not be trusted. 
+
+
+proselint is precise. 
+Instead, the writer must carefully consider whether to accept or reject each change.  Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
 
 Source advice from experts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
+
+Contribution structure
+----------------------
+
+Issues are on github repo. 
+
+Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+
+Final decision of whether to include it in the default set of rules is up to us.
+
+We have not included rule modules that are by default left off but can be turned on. 
+Though we are not opposed to this in principle, it is difficult to see why we should do so. 
+If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
+We want to make that process simple. 
+If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
+Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
+
+
+Internal structure
+------------------
+
+Rule modules
+============
+
+Problem: turning off individual rules inside a module.
+
+Rule templates
+==============
+
+Memoisation
+===========
+
+
+
 
 Bibliographies, citations and block quotes
 ------------------------------------------
