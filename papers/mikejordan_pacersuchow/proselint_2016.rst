@@ -220,7 +220,7 @@ This score does not take into account false negatives or true negatives, and the
 False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that they are not in other signal detection problems.
 
 *Problem 1*: Magnitude of "potential activations"
-"""""""""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
 
@@ -228,7 +228,7 @@ That means that without further specification, the number will grow extremely ra
 
 
 *Problem 2*: Arbitrariness of "potential activations"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommeasurable [#]_.
 
@@ -236,7 +236,7 @@ If on the other hand you were to come up with a criterion that limits the number
 .. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
 
 *Problem 3*: Infinitude/nonuniqueness of "potential activations"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
 
