@@ -292,8 +292,10 @@ Problem: turning off individual rules inside a module.
 Rule templates
 ^^^^^^^^^^^^^^
 
-Memoisation
+Memoization
 ^^^^^^^^^^^
+
+One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 Future
 ------
