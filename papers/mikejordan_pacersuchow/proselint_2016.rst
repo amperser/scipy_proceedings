@@ -476,21 +476,6 @@ Existing modules
    |`weasel_words.very`            | Avoiding the word "very"                    |
    +-------------------------------+---------------------------------------------+
 
-
-.. table:: This is the caption for the materials table. :label:`mtable`
-
-   +------------+----------------+
-   | Material   | Units          |
-   +============+================+
-   | Stone      | 3              |
-   +------------+----------------+
-   | Water      | 12             |
-   +------------+----------------+
-   | Cement     | :math:`\alpha` |
-   +------------+----------------+
-
-
-
 Here is a list of what <tt>proselint</tt> checks.
 
 
