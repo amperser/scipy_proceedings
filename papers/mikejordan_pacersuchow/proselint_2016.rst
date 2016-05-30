@@ -72,7 +72,6 @@ As a language tool for scientists:
 * ESL?
 
 
-
 As a tool for language science
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -88,31 +87,24 @@ Most extensive usage-sensitive stylometric feature extractor we know of.
 
 
 
-    
 our general approach
 --------------------
 
-We want
-
-
 Various ways to divide up the kinds of problems
 #. Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
-    #. Replacement rule
-    #. Regex
-    #. NLP
-    #. NLP, beyond state-of-the-art
-    #. AI-complete
+#. Replacement rule
+#. Regex
+#. NLP
+#. NLP, beyond state-of-the-art
+#. AI-complete
 #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 #. Divide up by content  (What sorts of rules say similar things to this one?)
-
 
 Large scale problems require scalable resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open source license allows the community of users to become a community of builders. 
 Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
-
-
 
 
 
@@ -274,7 +266,6 @@ Feedsback to improve proselint
 
 One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
-
 Concerns around normativity in prose styling
 --------------------------------------------
 
@@ -288,6 +279,87 @@ The first few apply in general, the latter apply in the case of scientific and t
 
 
 solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+
+Existing modules
+----------------
+.. table:: This is the caption for the materials table. :label:`mtable`
+
+   +------------+----------------+
+   | Material   | Units          |
+   +============+================+
+   | Stone      | 3              |
+   +------------+----------------+
+   | Water      | 12             |
+   +------------+----------------+
+   | Cement     | :math:`\alpha` |
+   +------------+----------------+
+
+Here is a list of what <tt>proselint</tt> checks.
+
+
+Command-line utility
+--------------------
+
+At its core, proselint is a command-line utility.
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion will have the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: wallace.uncomparables Comparison of an uncomparable: 'unique' can not be compared.
+
+The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
+
+.. code-block:: json
+
+  {
+      // Type of check that output this suggestion.
+      check: "wallace.uncomparables",
+
+      // Message to describe the suggestion.
+      message: "Comparison of an uncomparable: 'unique' can not be compared.",
+
+      // The person or organization giving the suggestion.
+      source: "David Foster Wallace"
+
+      // URL pointing to the source material.
+      source_url: "http://www.telegraph.co.uk/a/9715551"
+
+      // Line where the error starts.
+      line: 0,
+
+      // Column where the error starts.
+      column: 10,
+
+      // Index in the text where the error starts.
+      start: 10,
+
+      // Index in the text where the error ends.
+      end: 21,
+
+      // start - end
+      extent: 11,
+
+      // How important is this? Can be "suggestion", "warning", or "error".
+      severity: "warning",
+
+      // Possible replacements.
+      replacements: [
+          {
+              value: "unique"
+          }
+      ]
+  }
 
 
 Bibliographies, citations and block quotes
