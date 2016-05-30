@@ -29,18 +29,20 @@ The problem
 Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. 
 But poring over Strunk & White hardly makes one a better writer — it turns you into neither Strunk nor White. 
 
-Even if you were able to magically able to absorb every rule 
-And nobody has the willpower, time, or memory to individually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write.
+Even if you were able to magically able to absorb every rule in those books, that does not mean that you will follow these rules flawlessly every time you sit to write. 
+Errors will appear, mistakes will be made.
+And nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write.
+And few people have the resources to hire someone else(or a team of "someone else"s) to do that for every piece they write.
 
+linter advantage: Instant feedback? e.g.,
+And if you wait until after you've written it you have lost the opportunity to learn at the time when you made the error. 
 
-The knowledge of how to write with style and panache would help both writers.  is trapped, waiting to be extracted and transformed into a more useful form.
-
+The knowledge of the correct words to be used and how to write with style and panache would help both writers and their readers. This knowledge is trapped, waiting to be extracted and transformed into a more useful form.
 
 To solve this, we built Proselint, a Python-based linter for prose. 
 A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
 Proselint identifies violations of expert style and usage guidelines.
 It is both a command line tool and has been adapted as a plugin for a variety of text editors including SublimeText, vim, &c.
-
 
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
