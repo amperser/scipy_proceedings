@@ -14,9 +14,9 @@ Proselint
 
 .. class:: abstract
 
-   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
+   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
 
-   We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats (e.g., JSON). Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules addressing: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension. 
+   We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and is compatible with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats (e.g., JSON). Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules addressing redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension. 
 
    Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it includes modules that promote clear and consistent prose in science writing. On the other, it measures language usage and explores the factors relevant to creating a useful linter.
 
@@ -26,13 +26,9 @@ Proselint
 
 The problem 
 -----------
-Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. 
-But poring over Strunk & White hardly makes one a better writer — it turns you into neither Strunk nor White. 
+Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors.
 
-Even if you were able to magically able to absorb every rule in those books, that does not mean that you will follow these rules flawlessly every time you sit to write. 
-Errors will appear, mistakes will be made.
-And nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write.
-And few people have the resources to hire someone else(or a team of "someone else"s) to do that for every piece they write.
+Even if one could absorb all the knowledge contained in these sources, that does not mean that you will follow these rules flawlessly every time you sit to write. Errors will appear, mistakes will be made. Nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write. And few people have the resources to hire others to do that for every piece they write.
 
 linter advantage: Instant feedback? e.g.,
 And if you wait until after you've written it you have lost the opportunity to learn at the time when you made the error. 
@@ -43,7 +39,6 @@ To solve this, we built Proselint, a Python-based linter for prose.
 A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
 Proselint identifies violations of expert style and usage guidelines.
 It is both a command line tool and has been adapted as a plugin for a variety of text editors including SublimeText, vim, &c.
-
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
@@ -181,9 +176,6 @@ sourcing of advice and what kinds we found
 example of some rules
 ---------------------
 
-
-
-
 Proselint is unlike other language linters. First, Proselint does not focus on grammar, which is AI-complete, requiring human-level intelligence to get right. Instead, we consider usage and style. Second, existing tools for improving prose raise so many false alarms that their advice is distrusted and ignored. Proselint's motto is 'Better to be silent than wrong', aiming for a precision that makes it possible to adopt its recommendations unquestioningly. We optimize a "lintscore" metric that penalizes false positives.
 
 Proselint is a massive undertaking, one that will require the ethos of an open source community to complete. Garner’s book alone has 11,000 entries. Half are easy, assignable as a homework problem (e.g., that “very unique” compares an uncomparable adjective, or that people from Michigan prefer to be called “Michiganders”, not “Michiganians”). Thirty percent are moderately challenging, requiring custom tooling. Fifteen percent are hard — projects that require advances in AI and NLP. Everything else, around five percent (the best five percent), is AI-complete.
@@ -260,7 +252,7 @@ Future
 
 Prosewash
 ^^^^^^^^^
-nExt steps: more intense processing with riskier rules
+Next steps: more intense processing with riskier rules
 False positive checking with crowd sourcing
 Feedsback to improve proselint
 
