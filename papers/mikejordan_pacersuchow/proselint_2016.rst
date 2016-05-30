@@ -49,7 +49,7 @@ Proselint is open-source software released under the BSD license and works with 
 
 
 *linter* desiderata:
-====================
+^^^^^^^^^^^^^^^^^^^^
 
 * scales to many rules
 * responses needs to be in real time, which limits how much processing can occur per rule
@@ -66,7 +66,7 @@ On the one hand, it can be used to improve writing, and it includes modules that
 
 
 As a language tool for scientists:
-==================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Improve scientific communication
 * ESL?
@@ -74,7 +74,7 @@ As a language tool for scientists:
 
 
 As a tool for language science
-==============================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Normative content is unnecessary, we could use this merely to detect whether people use various words.
 
@@ -107,7 +107,7 @@ Various ways to divide up the kinds of problems
 
 
 Large scale problems require scalable resources
-===============================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open source license allows the community of users to become a community of builders. 
 Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
@@ -217,11 +217,16 @@ Grammar is too hard because, in its most general form, detecting grammatical err
 Wield a rapier not a cudgel
 ---------------------------
 
-We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. Existing tools for improving prose raise so many false alarms that their advice can not be trusted. 
+Existing tools for improving prose raise so many false alarms that their advice can not be trusted. The writer must carefully consider whether to accept or reject each change.
 
+We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
 
-proselint is precise. 
-Instead, the writer must carefully consider whether to accept or reject each change.  Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
+Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
+
+.. proselint is precise. 
+
+False positive rates are hard to assess. No way of knowing without direct feedback.
+
 
 Source advice from experts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -248,15 +253,27 @@ Internal structure
 ------------------
 
 Rule modules
-============
+^^^^^^^^^^^^
 
 Problem: turning off individual rules inside a module.
 
 Rule templates
-==============
+^^^^^^^^^^^^^^
 
 Memoisation
-===========
+^^^^^^^^^^^
+
+Future
+------
+
+Prosewash
+^^^^^^^^^
+nExt steps: more intense processing with riskier rules
+False positive checking with crowd sourcing
+Feedsback to improve proselint
+
+One reason to have rules off by default but included might be because of their effect on the false positive rate.
+
 
 
 
