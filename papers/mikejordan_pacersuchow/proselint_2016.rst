@@ -275,7 +275,19 @@ Feedsback to improve proselint
 One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
 
+Concerns around normativity in prose styling
+--------------------------------------------
 
+One of the most common critiques of proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
+These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a homogenising effect on prose.
+There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
+
+To this critique there are several possible responses.
+The first few apply in general, the latter apply in the case of scientific and technical writing. 
+
+
+
+solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
 
 Bibliographies, citations and block quotes
