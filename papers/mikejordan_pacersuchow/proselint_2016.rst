@@ -326,6 +326,8 @@ Existing modules
 ----------------
 .. table:: What Proselint checks. :label:`checks`
 
+Here is a list of what <tt>proselint</tt> checks.
+
    +-------------------------------+---------------------------------------------+
    | ID                            | Description                                 |
    +===============================+=============================================+
@@ -475,9 +477,6 @@ Existing modules
    +-------------------------------+---------------------------------------------+
    |`weasel_words.very`            | Avoiding the word "very"                    |
    +-------------------------------+---------------------------------------------+
-
-Here is a list of what <tt>proselint</tt> checks.
-
 
 Command-line utility
 --------------------
