@@ -212,12 +212,60 @@ Wield a rapier not a cudgel
 Existing tools for improving prose raise so many false alarms that their advice can not be trusted. The writer must carefully consider whether to accept or reject each change.
 
 We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
+Better to be quiet and authoritative than loud and unreliable. 
 
-Better to be quiet and authoritative than loud and unreliable. We measure the performance of proselint by tracking its lintscore.
+To do this we limit the number of false positives, by measuring the performance performance of proselint by tracking its lintscore.
+
+The lintscore is defined as 
+
+.. math::
+    \frac{T^{k+1}}{(T+F)^k}
+
+where k is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
+
+This score does not take into account false negatives or true negatives, and the reason it does not is worth mentioning as it illustrates one of the core problems with prose linting.
+
+False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that they are not in other signal detection problems.
+
+*Problem 1*: Magnitude of "potential activations"
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
+
+That means that without further specification, the number will grow extremely rapidly. If this occurs and the rule set is sparsely activated(it has specifically tailored rules in the manner of proselint), this means that the true negative score will be near 1, because there were so many opportunities for rules to be applied and they were not. If this occurs and the rule set is densely activated, the recommendations in aggregate will be incomprehensible as they will be so densely packed as to be unable to represent a coherent claim about the totality of the text.
+
+
+*Problem 2*: Arbitrariness of "potential activations"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommeasurable [#]_.
+
+
+.. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
+
+*Problem 3*: Infinitude/nonuniqueness of "potential activations"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
+
+If we consider the set of all possible rule sets for evaluating prose, there will always be an infinite number of potential interpretations for identifying any particular . 
 
 .. proselint is precise. 
 
-False positive rates are hard to assess. No way of knowing without direct feedback.
+Assessing false positive rates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unfortunately despite their cruciality, false positive rates pose quite a challenge as an assessment criterion.
+
+Notably, a false positive is difficult (if not impossible) to identify without some kind of human intervention. 
+Any automated system for determining whether some string of text is or is not an error is itself a normative theory of prose style as embodied in those determinations.
+While it may not be a *linter* per se – for example, because of the speed or manner with which it is providing the statements – it is nonetheless equivalent to the normative role proselint plays.
+Thus, while we would be able to provide comparisons between the recommendations offered for the same text by different normative language theories, that would not give us a good measure of false positives as it matters in terms of establishing trust with users.
+
+To build the kind of trust, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
+This is one part of the motivation for using only expert language guides.
+
+You No way of knowing without direct feedback.
 
 
 Source advice from experts
@@ -274,7 +322,7 @@ These arguments suggest that authors will find themselves limited in the set of 
 There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
 
 To this critique there are several possible responses.
-The first few apply in general, the latter apply in the case of scientific and technical writing. 
+The first few apply in general, the latter apply in the case of scientific and technical writing.
 
 
 
@@ -293,6 +341,8 @@ Existing modules
    +------------+----------------+
    | Cement     | :math:`\alpha` |
    +------------+----------------+
+
+
 
 Here is a list of what <tt>proselint</tt> checks.
 
