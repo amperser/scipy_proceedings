@@ -326,9 +326,10 @@ solution-recommendations are more likely to produce a homogenizing effect becaus
 
 Existing modules
 ----------------
-.. table:: What Proselint checks. :label:`checks`
 
 Here is a list of what <tt>proselint</tt> checks.
+
+.. table:: What Proselint checks. :label:`checks`
 
    +-------------------------------+---------------------------------------------+
    | ID                            | Description                                 |
