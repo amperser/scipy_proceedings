@@ -179,36 +179,36 @@ The command line utility can also print the list of suggestions in JSON using th
       "check": "wallace.uncomparables",
 
       // Message to describe the suggestion.
-      message: "Comparison of an uncomparable: 'unique' can not be compared.",
+      "message": "Comparison of an uncomparable: 'unique' can not be compared.",
 
       // The person or organization giving the suggestion.
-      source: "David Foster Wallace"
+      "source": "David Foster Wallace"
 
       // URL pointing to the source material.
-      source_url: "http://www.telegraph.co.uk/a/9715551"
+      "source_url": "http://www.telegraph.co.uk/a/9715551"
 
       // Line where the error starts.
-      line: 0,
+      "line": 0,
 
       // Column where the error starts.
-      column: 10,
+      "column": 10,
 
       // Index in the text where the error starts.
-      start: 10,
+      "start": 10,
 
       // Index in the text where the error ends.
-      end: 21,
+      "end": 21,
 
       // start - end
-      extent: 11,
+      "extent": 11,
 
       // How important is this? Can be "suggestion", "warning", or "error".
-      severity: "warning",
+      "severity": "warning",
 
       // Possible replacements.
-      replacements: [
+      "replacements": [
           {
-              value: "unique"
+              "value": "unique"
           }
       ]
   }
