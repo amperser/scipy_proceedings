@@ -31,11 +31,14 @@ The problem
 Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors.
 
 Even if one could absorb all the knowledge contained in these sources, that does not mean that you will follow these rules flawlessly every time you sit to write. Errors will appear, mistakes will be made. Nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write. And few people have the resources to hire others to do that for every piece they write.
+.. linter advantage: Instant feedback? e.g.,
 
-linter advantage: Instant feedback? e.g.,
-And if you wait until after you've written it you have lost the opportunity to learn at the time when you made the error. 
+Supposing you were to get that advice, it would be better to be able to incorporate it in the future without needing to turn to your team of makeshift editors. But, by the time you receive their notes, you have already missed out on the best opportunity to strengthen your craft. A correction that arrived shortly after you made the error will be far more effective at training you to not make that error at all.
 
 The knowledge of the correct words to be used and how to write with style and panache would help both writers and their readers. This knowledge is trapped, waiting to be extracted and transformed into a more useful form.
+
+The solution
+============
 
 To solve this, we built Proselint, a Python-based linter for prose. 
 A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
@@ -44,7 +47,7 @@ It is both a command line tool and has been adapted as a plugin for a variety of
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
-Two views of proselint
+Two views on proselint
 ======================
 
 Proselint can be seen as both a language tool for scientists and a tool for language science. 
@@ -54,21 +57,31 @@ On the one hand, it can be used to improve writing, and it includes modules that
 As a language tool for scientists:
 ----------------------------------
 
-* Improve scientific communication
-* ESL?
+Science and writing are fast friends; science as we know it would not be possible without the written word. But cutting-edge scientific research is – by necessity – difficult to understand by all but those who are most acquainted with the idea. Even expressing those ideas challenges the greatest of minds, leaving little time for eradicating opacity from prose. Nonetheless, opacity is the enemy of the proliferation of any idea.
 
+Proselint can aid specifically improve scientists' writings across a number of dimensions:
+
+* consistent terminology
+* cleaner prose
+* less redundancy
+* typographic niceties
+* 
+
+Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be incredibly useful as demonstrated by the following graph of the errors identified by proselint in this year's scipy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to scipy 2016].
 
 As a tool for language science
 ------------------------------
 
-Normative content is unnecessary, we could use this merely to detect whether people use various words.
+In the course of developing the tool, we have identified features implicit to the problem of error-detection and correction in general, as well as language linting specifically. 
 
-Most extensive usage-sensitive stylometric feature extractor we know of. 
 
+Additionally, the normative content inherent in proselint right now is unnecessary. We could use this merely to detect whether people use various words. By doing that proselint  acts as a stylometric feature extractor unlike any other. This opens the door to a variety of possibilities for future applications and generalisations of this kind of a platform.
+
+E.g.,
 
 * Stylometrics.
 * Author identification.
-* Encoding messages (with multiple acceptable options)
+* Encoding messages (in the case of multiple acceptable options)
 * 
 
 
@@ -78,7 +91,7 @@ Our general approach
 Various ways to divide up the kinds of problems
 #.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
 
-    #. Replacement rule
+    #. Replacement rules
     #. Regex
     #. Basic syntax processing
     #. NLP, state-of-the-art
@@ -116,61 +129,7 @@ Many of the rules' implementations are particularly well-suited to small-scale c
 
 
 
-existing tools
-==============
 
-* 1Checker (http://www.1checker.com/)
-* AbiWord's grammar checker (http://www.abisource.com/)
-* After the Deadline (https://openatd.wordpress.com/)
-* Alex (http://alexjs.com/)
-* Autocrit (https://www.autocrit.com/editor/)
-* ClearEdits (http://www.clearwriter.com/clearedits.html)
-* CorrectEnglish (http://www.correctenglish.com/)
-* CKEditor (http://www.webspellchecker.net/)
-* Editor (http://www.serenity-software.com/)
-* The Editorium (http://www.editorium.com/ETKPlus2014.htm)
-* EditorSoftware (http://www.editorsoftware.com/)
-* Edminton (http://editminion.com/)
-* Expresso (http://expresso-app.org/)
-* Ghotit (http://www.ghotit.com/)
-* Ginger (http://www.gingersoftware.com/)
-* GNU Diction (https://www.gnu.org/software/diction/)
-* GNU Style (http://archive09.linux.com/feature/56833)
-* Grac (http://grac.sourceforge.net/)
-* GrammarBase (http://www.grammarbase.com/)
-* GrammarCheck (http://www.grammarcheck.net/)
-* Grammar Check Anywhere (https://www.spellcheckanywhere.com/grammar_check/)
-* Grammar Expert Plus (http://www.wintertree-software.com/app/gramxp/)
-* GrammarianPro (http://linguisoft.com/gramerrorfeatures.html)
-* Grammark (https://github.com/markfullmer/grammark)
-* Grammarly (https://www.grammarly.com/)
-* Grammar Slammer (http://englishplus.com/grammar/)
-* Grammatica (http://grammatica-english.soft32.com/)
-* Grammatik (https://en.wikipedia.org/wiki/Grammatik)
-* Graviax (http://graviax-grammar-checker.soft112.com/)
-* Hemmingway (http://www.hemingwayapp.com/desktop.html)
-* ivanistheone's scripts (https://github.com/ivanistheone/writing_scripts)
-* Language Tool (https://www.languagetool.org/)
-* Matt Might's shell scripts (http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/)
-* Microsoft Word's grammar check (https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1)
-* OnlineCorrection.com (http://www.onlinecorrection.com/)
-* PaperRater (https://www.paperrater.com/)
-* PerfectIt (http://www.intelligentediting.com/)
-* ProWritingAid (https://prowritingaid.com/)
-* Reverso (http://www.reverso.net/)
-* RightWriter (http://www.right-writer.com/)
-* Rousseau (https://github.com/GitbookIO/rousseau)
-* SpellCheckPlus (http://spellcheckplus.com/)
-* Stilus (http://www.mystilus.com/Main)
-* Textanz (http://www.textanz.com/)
-* Virtual Writing Tutor (http://virtualwritingtutor.com/)
-* Wave (https://en.wikipedia.org/wiki/Apache_Wave)
-* WhiteSmoke (http://www.whitesmoke.com/)
-* WordPerfect (http://www.wordperfect.com/us/)
-* WinProof (http://www.franklinhu.com/winproof.htm)
-* WordRake (http://www.wordrake.com/)
-* write-good (https://github.com/btford/write-good)
-* Writer's Workbench (http://www.emo.com/)
 
 
 .. the principles we've identified
@@ -180,7 +139,7 @@ existing tools
 
 .. how our tool address or uses each of those principles
 .. -----------------------------------------------------
-
+Installing proselint
 
 
 Using proselint
@@ -205,15 +164,16 @@ For example,
 
 .. code-block:: bash
 
-  text.md:0:10: wallace.uncomparables Comparison of an uncomparable: 'unique' can not be compared.
+  text.md:0:10: wallace.uncomparables Comparison of an 
+  uncomparable: 'unique' can not be compared.
 
 The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
 
-.. code-block:: json
+.. code-block:: javascript
 
   {
       // Type of check that output this suggestion.
-      check: "wallace.uncomparables",
+      "check": "wallace.uncomparables",
 
       // Message to describe the suggestion.
       message: "Comparison of an uncomparable: 'unique' can not be compared.",
@@ -462,6 +422,20 @@ Instead, we consider errors of usage and style: redundancy, jargon, illogic, cli
 
 .. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
 
+Levels of difficulty
+--------------------
+
+In a loose analogy to the Chomskian hierarchy of formal grammars, we have identified levels of difficulty in problems faced by any language linter.
+
+#. Replacement rules
+#. Regex
+#. Basic syntax processing
+#. NLP, state-of-the-art
+#. NLP, beyond state-of-the-art
+#. AI-complete
+
+One of the biggest differences between these levels of difficulty is how hard it is to successfully identify problems without introducing many false positives into the mix. 
+
 Wield a rapier not a cudgel
 ---------------------------
 
@@ -483,6 +457,7 @@ This score does not take into account false negatives or true negatives, and the
 
 False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that may not in other signal detection problems. Thus a full recall-precision curve analysis seems inappropriate in this domain.
 
+
 Problem 0: Building off of a default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -497,8 +472,9 @@ Thus, we can expect that any appropriate rule-set can expect to be invoked spari
 
 Sparse use of the ruleset means that the positive statements are distinguished from the background of the null rule-set.
 Because positives are what distinguish a writing aid, focusing on the false positive and true positive ratio
-Negative statements are the remnants of the null rule-set, meaning they are less indicative of the quality of the linter .
+Negative statements are the remnants of the null rule-set, meaning they are less indicative of the quality of the linter.
 
+In short, all linters and all language tools will be missing most errors by virtue of the problem they are trying to solve. Given this, avoiding the pitfalls of a high false-positive rate will be the comparison that matters most for determining their value.
 
 Problem 1: Magnitude of "potential activations"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -550,7 +526,7 @@ Any automated system for determining whether some string of text is or is not an
 While it may not be a *linter* per se – for example, because of the speed or manner with which it is providing the statements – it is nonetheless equivalent to the normative role proselint plays.
 Thus, while we would be able to provide comparisons between the recommendations offered for the same text by different normative language theories, that would not give us a good measure of false positives as it matters in terms of establishing trust with users.
 
-To build the kind of trust, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
+To build the kind of trust we are aiming at, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
 There is no way of knowing that a linting rule activation was successful or unsuccessful without direct feedback.
 This is why we have developed a corpus of writings from well-established publications and manually coded them to identify false and true positives. 
 It is this corpus that we use to measure proselint's lintscore. 
@@ -558,14 +534,70 @@ It is this corpus that we use to measure proselint's lintscore.
 One of the biggest hindrances for adding new rules (at all) and more complicated and nuanced rules (in particular) stems from the difficulty of efficiently measuring how they affect our lintscore.
 A key feature in growing proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
 
-Source advice from experts
---------------------------
+
+Published expertise as primary source
+-------------------------------------
+
 This is one part of the motivation for using only expert language guides — they are human prose crafters who have honed their skills at identifying well and poorly styled prose.
-Nonetheless, because even those experts would allow 
 
 proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
 
 
+existing tools
+==============
+
+* 1Checker (http://www.1checker.com/)
+* AbiWord's grammar checker (http://www.abisource.com/)
+* After the Deadline (https://openatd.wordpress.com/)
+* Alex (http://alexjs.com/)
+* Autocrit (https://www.autocrit.com/editor/)
+* ClearEdits (http://www.clearwriter.com/clearedits.html)
+* CorrectEnglish (http://www.correctenglish.com/)
+* CKEditor (http://www.webspellchecker.net/)
+* Editor (http://www.serenity-software.com/)
+* The Editorium (http://www.editorium.com/ETKPlus2014.htm)
+* EditorSoftware (http://www.editorsoftware.com/)
+* Edminton (http://editminion.com/)
+* Expresso (http://expresso-app.org/)
+* Ghotit (http://www.ghotit.com/)
+* Ginger (http://www.gingersoftware.com/)
+* GNU Diction (https://www.gnu.org/software/diction/)
+* GNU Style (http://archive09.linux.com/feature/56833)
+* Grac (http://grac.sourceforge.net/)
+* GrammarBase (http://www.grammarbase.com/)
+* GrammarCheck (http://www.grammarcheck.net/)
+* Grammar Check Anywhere (https://www.spellcheckanywhere.com/grammar_check/)
+* Grammar Expert Plus (http://www.wintertree-software.com/app/gramxp/)
+* GrammarianPro (http://linguisoft.com/gramerrorfeatures.html)
+* Grammark (https://github.com/markfullmer/grammark)
+* Grammarly (https://www.grammarly.com/)
+* Grammar Slammer (http://englishplus.com/grammar/)
+* Grammatica (http://grammatica-english.soft32.com/)
+* Grammatik (https://en.wikipedia.org/wiki/Grammatik)
+* Graviax (http://graviax-grammar-checker.soft112.com/)
+* Hemmingway (http://www.hemingwayapp.com/desktop.html)
+* ivanistheone's scripts (https://github.com/ivanistheone/writing_scripts)
+* Language Tool (https://www.languagetool.org/)
+* Matt Might's shell scripts (http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/)
+* Microsoft Word's grammar check (https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1)
+* OnlineCorrection.com (http://www.onlinecorrection.com/)
+* PaperRater (https://www.paperrater.com/)
+* PerfectIt (http://www.intelligentediting.com/)
+* ProWritingAid (https://prowritingaid.com/)
+* Reverso (http://www.reverso.net/)
+* RightWriter (http://www.right-writer.com/)
+* Rousseau (https://github.com/GitbookIO/rousseau)
+* SpellCheckPlus (http://spellcheckplus.com/)
+* Stilus (http://www.mystilus.com/Main)
+* Textanz (http://www.textanz.com/)
+* Virtual Writing Tutor (http://virtualwritingtutor.com/)
+* Wave (https://en.wikipedia.org/wiki/Apache_Wave)
+* WhiteSmoke (http://www.whitesmoke.com/)
+* WordPerfect (http://www.wordperfect.com/us/)
+* WinProof (http://www.franklinhu.com/winproof.htm)
+* WordRake (http://www.wordrake.com/)
+* write-good (https://github.com/btford/write-good)
+* Writer's Workbench (http://www.emo.com/)
 
 Infrastructural details
 =======================
@@ -609,17 +641,22 @@ Concerns around normativity in prose styling
 ============================================
 
 One of the most common critiques of proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
-These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a homogenising effect on prose.
+These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenising effect on prose.
 There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
 
 To this critique there are several possible responses.
 The first few apply in general, the latter apply in the case of scientific and technical writing.
 
-First, much of the advice is that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). The reason most relevant to your concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+A good deal of the advice in proselint points out that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
-The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter. Novelty will continue to introduce new usages, and some of them will be poor. Authors identified as trustworthy may point these out, but this will only be in retrospect. If you do not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide. You can see some of the module names and a high-level description here: http://proselint.com/checks/.
+The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter.
+Novelty will continue to introduce new usages, and some of them will be poor. 
+Authors identified as trustworthy may point these out, but this will only be in retrospect. 
+If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
 
-We can do little better than to give a modified quote from the Foreword[#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
+Scientific writing is characterised by consistent 
+
+And, as a final point, we can do little better than to give a modified quote from the Foreword[#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
     
     [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
 
@@ -632,7 +669,7 @@ We can do little better than to give a modified quote from the Foreword[#]_ in R
 
 Future
 ======
-
+stuff will occur
 .. Prosewash
 .. ---------
 .. Next steps: more intense processing with riskier rules
