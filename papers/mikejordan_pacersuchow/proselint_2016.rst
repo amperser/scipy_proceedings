@@ -14,9 +14,9 @@ Proselint
 
 .. class:: abstract
 
-   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
+   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
 
-   We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats (e.g., JSON). Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules addressing: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension. 
+   We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and is compatible with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats (e.g., JSON). Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules addressing redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension. 
 
    Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it includes modules that promote clear and consistent prose in science writing. On the other, it measures language usage and explores the factors relevant to creating a useful linter.
 
@@ -26,13 +26,9 @@ Proselint
 
 The problem 
 -----------
-Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. 
-But poring over Strunk & White hardly makes one a better writer — it turns you into neither Strunk nor White. 
+Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors.
 
-Even if you were able to magically able to absorb every rule in those books, that does not mean that you will follow these rules flawlessly every time you sit to write. 
-Errors will appear, mistakes will be made.
-And nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write.
-And few people have the resources to hire someone else(or a team of "someone else"s) to do that for every piece they write.
+Even if one could absorb all the knowledge contained in these sources, that does not mean that you will follow these rules flawlessly every time you sit to write. Errors will appear, mistakes will be made. Nobody has the willpower, time, or memory to manually apply each piece of advice from Garner’s Modern English Usage (a 1,120-page usage guide) to everything they write. And few people have the resources to hire others to do that for every piece they write.
 
 linter advantage: Instant feedback? e.g.,
 And if you wait until after you've written it you have lost the opportunity to learn at the time when you made the error. 
@@ -43,7 +39,6 @@ To solve this, we built Proselint, a Python-based linter for prose.
 A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
 Proselint identifies violations of expert style and usage guidelines.
 It is both a command line tool and has been adapted as a plugin for a variety of text editors including SublimeText, vim, &c.
-
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
@@ -181,9 +176,6 @@ sourcing of advice and what kinds we found
 example of some rules
 ---------------------
 
-
-
-
 Proselint is unlike other language linters. First, Proselint does not focus on grammar, which is AI-complete, requiring human-level intelligence to get right. Instead, we consider usage and style. Second, existing tools for improving prose raise so many false alarms that their advice is distrusted and ignored. Proselint's motto is 'Better to be silent than wrong', aiming for a precision that makes it possible to adopt its recommendations unquestioningly. We optimize a "lintscore" metric that penalizes false positives.
 
 Proselint is a massive undertaking, one that will require the ethos of an open source community to complete. Garner’s book alone has 11,000 entries. Half are easy, assignable as a homework problem (e.g., that “very unique” compares an uncomparable adjective, or that people from Michigan prefer to be called “Michiganders”, not “Michiganians”). Thirty percent are moderately challenging, requiring custom tooling. Fifteen percent are hard — projects that require advances in AI and NLP. Everything else, around five percent (the best five percent), is AI-complete.
@@ -300,15 +292,17 @@ Problem: turning off individual rules inside a module.
 Rule templates
 ^^^^^^^^^^^^^^
 
-Memoisation
+Memoization
 ^^^^^^^^^^^
+
+One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 Future
 ------
 
 Prosewash
 ^^^^^^^^^
-nExt steps: more intense processing with riskier rules
+Next steps: more intense processing with riskier rules
 False positive checking with crowd sourcing
 Feedsback to improve proselint
 
@@ -329,6 +323,239 @@ The first few apply in general, the latter apply in the case of scientific and t
 
 solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
+Existing modules
+----------------
+.. table:: What Proselint checks. :label:`checks`
+
+   +-------------------------------+---------------------------------------------+
+   | ID                            | Description                                 |
+   +===============================+=============================================+
+   |`airlinese.misc`               | Avoiding jargon of the airline industry     |
+   +-------------------------------+---------------------------------------------+
+   |`annotations.misc`             | Catching annotations left in the text       |
+   +-------------------------------+---------------------------------------------+
+   |`archaism.misc`                | Avoiding archaic forms                      |
+   +-------------------------------+---------------------------------------------+
+   |`cliches.hell`                 | Avoiding a common cliché                    |
+   +-------------------------------+---------------------------------------------+
+   |`cliches.misc`                 | Avoiding clichés                            |
+   +-------------------------------+---------------------------------------------+
+   |`consistency.spacing`          | Consistent sentence spacing                 |
+   +-------------------------------+---------------------------------------------+
+   |`consistency.spelling`         | Consistent spelling                         |
+   +-------------------------------+---------------------------------------------+
+   |`corporate_speak.misc`         | Avoiding corporate buzzwords`               |
+   +-------------------------------+---------------------------------------------+
+   |`cursing.filth`                | Words to avoid                              |
+   +-------------------------------+---------------------------------------------+
+   |`cursing.nfl`                  | Avoiding words banned by the NFL            |
+   +-------------------------------+---------------------------------------------+
+   |`dates_times.am_pm`            | Using the right form for the time of day    |
+   +-------------------------------+---------------------------------------------+
+   |`dates_times.dates`            | Stylish formatting of dates                 |
+   +-------------------------------+---------------------------------------------+
+   |`hedging.misc`                 | Not hedging                                 |
+   +-------------------------------+---------------------------------------------+
+   |`hyperbole.misc`               | Not being hyperbolic                        |
+   +-------------------------------+---------------------------------------------+
+   |`jargon.misc`                  | Avoiding miscellaneous jargon               |
+   +-------------------------------+---------------------------------------------+
+   |`lexical_illusions.misc`       | Avoiding lexical illusions                  |
+   +-------------------------------+---------------------------------------------+
+   |`links.broken`                 | Linking only to existing sites              |
+   +-------------------------------+---------------------------------------------+
+   |`malapropisms.misc`            | Avoiding common malapropisms                |
+   +-------------------------------+---------------------------------------------+
+   |`misc.apologizing`             | Being confident                             |
+   +-------------------------------+---------------------------------------------+
+   |`misc.back_formations`         | Avoiding needless backformations            |
+   +-------------------------------+---------------------------------------------+
+   |`misc.bureaucratese`           | Avoiding bureaucratese                      |
+   +-------------------------------+---------------------------------------------+
+   |`misc.but`                     | Avoid starting a paragraph with "But..."    |
+   +-------------------------------+---------------------------------------------+
+   |`misc.capitalization`          | Capitalizing correctly                      |
+   +-------------------------------+---------------------------------------------+
+   |`misc.chatspeak`               | Avoiding lolling and other chatspeak        |
+   +-------------------------------+---------------------------------------------+
+   |`misc.commercialese`           | Avoiding jargon of the commercial world     |
+   +-------------------------------+---------------------------------------------+
+   |`misc.currency`                | Avoiding redundant currency symbols         |
+   +-------------------------------+---------------------------------------------+
+   |`misc.debased`                 | Avoiding debased language                   |
+   +-------------------------------+---------------------------------------------+
+   |`misc.false_plurals`           | Avoiding false plurals                      |
+   +-------------------------------+---------------------------------------------+
+   |`misc.illogic`                 | Avoiding illogical forms                    |
+   +-------------------------------+---------------------------------------------+
+   |`misc.inferior_superior`       | Superior to, not than                       |
+   +-------------------------------+---------------------------------------------+
+   |`misc.latin`                   | Avoiding overuse of Latin phrases           |
+   +-------------------------------+---------------------------------------------+
+   |`misc.many_a`                  | Many a singular                             |
+   +-------------------------------+---------------------------------------------+
+   |`misc.metaconcepts`            | Avoiding overuse of metaconcepts            |
+   +-------------------------------+---------------------------------------------+
+   |`misc.narcisissm`              | Talking about the subject, not its study    |
+   +-------------------------------+---------------------------------------------+
+   |`misc.phrasal_adjectives`      | Hyphenating phrasal adjectives              |
+   +-------------------------------+---------------------------------------------+
+   |`misc.preferred_forms`         | Miscellaneous preferred forms               |
+   +-------------------------------+---------------------------------------------+
+   |`misc.pretension`              | Avoiding being pretentious                  |
+   +-------------------------------+---------------------------------------------+
+   |`misc.professions`             | Calling jobs by the right name              |
+   +-------------------------------+---------------------------------------------+
+   |`misc.punctuation`             | Using punctuation assiduously               |
+   +-------------------------------+---------------------------------------------+
+   |`misc.scare_quotes`            | Using scare quotes only when needed         |
+   +-------------------------------+---------------------------------------------+
+   |`misc.suddenly`                | Avoiding the word suddenly                  |
+   +-------------------------------+---------------------------------------------+
+   |`misc.tense_present`           | Advice from Tense Present                   |
+   +-------------------------------+---------------------------------------------+
+   |`misc.waxed`                   | Waxing poetic                               |
+   +-------------------------------+---------------------------------------------+
+   |`misc.whence`                  | Using "whence"                              |
+   +-------------------------------+---------------------------------------------+
+   |`mixed_metaphors.misc`         | Not mixing metaphors                        |
+   +-------------------------------+---------------------------------------------+
+   |`mondegreens.misc`             | Avoiding mondegreen                         |
+   +-------------------------------+---------------------------------------------+
+   |`needless_variants.misc`       | Using the preferred form                    |
+   +-------------------------------+---------------------------------------------+
+   |`nonwords.misc`                | Avoid using nonwords                        |
+   +-------------------------------+---------------------------------------------+
+   |`oxymorons.misc`               | Avoiding oxymorons                          |
+   +-------------------------------+---------------------------------------------+
+   |`psychology.misc`              | Avoiding misused psychological terms        |
+   +-------------------------------+---------------------------------------------+
+   |`redundancy.misc`              | Avoiding redundancy and saying things twice |
+   +-------------------------------+---------------------------------------------+
+   |`redundancy.ras_syndrome`      | Avoiding RAS syndrome                       |
+   +-------------------------------+---------------------------------------------+
+   |`skunked_terms.misc`           | Avoid using skunked terms                   |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.able_atable`         | -able vs. -atable                           |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.able_ible`           | -able vs. -ible                             |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.athletes`            | Spelling of athlete names                   |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.em_im_en_in`         | -em vs. -im and -en vs. -in                 |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.er_or`               | -er vs. -or                                 |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.in_un`               | in- vs. un-                                 |
+   +-------------------------------+---------------------------------------------+
+   |`spelling.misc`                | Spelling words corectly                     |
+   +-------------------------------+---------------------------------------------+
+   |`security.credit_card`         | Keeping credit card numbers secret          |
+   +-------------------------------+---------------------------------------------+
+   |`security.password`            | Keeping passwords secret                    |
+   +-------------------------------+---------------------------------------------+
+   |`sexism.misc`                  | Avoiding sexist language                    |
+   +-------------------------------+---------------------------------------------+
+   |`terms.animal_adjectives`      | Animal adjectives                           |
+   +-------------------------------+---------------------------------------------+
+   |`terms.denizen_labels`         | Calling denizens by the right name          |
+   +-------------------------------+---------------------------------------------+
+   |`terms.eponymous_adjectives`   | Calling people by the right name            |
+   +-------------------------------+---------------------------------------------+
+   |`terms.venery`                 | Call groups of animals by the right name    |
+   +-------------------------------+---------------------------------------------+
+   |`typography.diacritical_marks` | Using dïacríticâl marks                     |
+   +-------------------------------+---------------------------------------------+
+   |`typography.exclamation`       | Avoiding overuse of exclamation             |
+   +-------------------------------+---------------------------------------------+
+   |`typography.symbols`           | Using the right symbols                     |
+   +-------------------------------+---------------------------------------------+
+   |`uncomparables.misc`           | Not comparing uncomparables                 |
+   +-------------------------------+---------------------------------------------+
+   |`weasel_words.misc`            | Avoiding weasel words                       |
+   +-------------------------------+---------------------------------------------+
+   |`weasel_words.very`            | Avoiding the word "very"                    |
+   +-------------------------------+---------------------------------------------+
+
+
+.. table:: This is the caption for the materials table. :label:`mtable`
+
+   +------------+----------------+
+   | Material   | Units          |
+   +============+================+
+   | Stone      | 3              |
+   +------------+----------------+
+   | Water      | 12             |
+   +------------+----------------+
+   | Cement     | :math:`\alpha` |
+   +------------+----------------+
+
+Here is a list of what <tt>proselint</tt> checks.
+
+
+Command-line utility
+--------------------
+
+At its core, proselint is a command-line utility.
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion will have the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: wallace.uncomparables Comparison of an uncomparable: 'unique' can not be compared.
+
+The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
+
+.. code-block:: json
+
+  {
+      // Type of check that output this suggestion.
+      check: "wallace.uncomparables",
+
+      // Message to describe the suggestion.
+      message: "Comparison of an uncomparable: 'unique' can not be compared.",
+
+      // The person or organization giving the suggestion.
+      source: "David Foster Wallace"
+
+      // URL pointing to the source material.
+      source_url: "http://www.telegraph.co.uk/a/9715551"
+
+      // Line where the error starts.
+      line: 0,
+
+      // Column where the error starts.
+      column: 10,
+
+      // Index in the text where the error starts.
+      start: 10,
+
+      // Index in the text where the error ends.
+      end: 21,
+
+      // start - end
+      extent: 11,
+
+      // How important is this? Can be "suggestion", "warning", or "error".
+      severity: "warning",
+
+      // Possible replacements.
+      replacements: [
+          {
+              value: "unique"
+          }
+      ]
+  }
 
 
 Bibliographies, citations and block quotes
