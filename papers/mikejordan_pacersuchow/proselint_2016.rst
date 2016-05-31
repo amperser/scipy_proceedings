@@ -43,22 +43,51 @@ It is both a command line tool and has been adapted as a plugin for a variety of
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
+Two views of proselint
+======================
 
+Proselint can be seen as both a language tool for scientists and a tool for language science. 
+On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and explore the factors relevant to creating a useful linter.
+
+
+As a language tool for scientists:
+----------------------------------
+
+* Improve scientific communication
+* ESL?
+
+
+As a tool for language science
+------------------------------
+
+Normative content is unnecessary, we could use this merely to detect whether people use various words.
+
+Most extensive usage-sensitive stylometric feature extractor we know of. 
+
+
+* Stylometrics.
+* Author identification.
+* Encoding messages (with multiple acceptable options)
+* 
 
 
 Our general approach
 ====================
 
 Various ways to divide up the kinds of problems
-#. Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
+#.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
+
     #. Replacement rule
     #. Regex
     #. Basic syntax processing
     #. NLP, state-of-the-art
     #. NLP, beyond state-of-the-art
     #. AI-complete
-#. Divide up by content (What sorts of rules say similar things to this one?)
+
+#.  Divide up by content (What sorts of rules say similar things to this one?)
+
     #. This is the basis for our module structure.
+
 #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 
 Desiderata for a linter
@@ -67,13 +96,15 @@ Desiderata for a linter
 Desiderata are a set of criteria that are looked 
 
 Ideal linters need to 
-* scale to many rules
-* respond needs to be in real time
+*   scale to many rules
+*   respond needs to be in real time
+
     * This limits how much processing can occur per rule.
-* responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
-* it needs to be able to be installed easily by the end-user
-* it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
-* it needs to explain why it raising the flags it raises
+
+*   responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
+*   it needs to be able to be installed easily by the end-user
+*   it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
+*   it needs to explain why it raising the flags it raises
 
 
 Large scale problems require scalable resources
@@ -149,46 +180,94 @@ existing tools
 .. how our tool address or uses each of those principles
 .. -----------------------------------------------------
 
-Two view of proselint
----------------------
-
-Proselint can be seen as both a language tool for scientists and a tool for language science. 
-On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and explore the factors relevant to creating a useful linter.
 
 
-As a language tool for scientists:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using proselint
+===============
 
-* Improve scientific communication
-* ESL?
+Command-line utility
+--------------------
+
+At its core, proselint is a command-line utility.
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion will have the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: wallace.uncomparables Comparison of an uncomparable: 'unique' can not be compared.
+
+The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
+
+.. code-block:: json
+
+  {
+      // Type of check that output this suggestion.
+      check: "wallace.uncomparables",
+
+      // Message to describe the suggestion.
+      message: "Comparison of an uncomparable: 'unique' can not be compared.",
+
+      // The person or organization giving the suggestion.
+      source: "David Foster Wallace"
+
+      // URL pointing to the source material.
+      source_url: "http://www.telegraph.co.uk/a/9715551"
+
+      // Line where the error starts.
+      line: 0,
+
+      // Column where the error starts.
+      column: 10,
+
+      // Index in the text where the error starts.
+      start: 10,
+
+      // Index in the text where the error ends.
+      end: 21,
+
+      // start - end
+      extent: 11,
+
+      // How important is this? Can be "suggestion", "warning", or "error".
+      severity: "warning",
+
+      // Possible replacements.
+      replacements: [
+          {
+              value: "unique"
+          }
+      ]
+  }
+
+Text editor plugins
+-------------------
+
+Web-editor
+----------
 
 
-As a tool for language science
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Normative content is unnecessary, we could use this merely to detect whether people use various words.
-
-Most extensive usage-sensitive stylometric feature extractor we know of. 
 
 
-* Stylometrics.
-* Author identification.
-* Encoding messages (with multiple acceptable options)
-* 
-
-
-
-
-sourcing of advice and what kinds we found
-------------------------------------------
+Advice: sources and examples
+============================
 
 Proselint is built around advice[#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose.
 
 .. [#] Proselint has not been officially endorsed by any of these individuals. We have merely taken their words and implemented them in code. 
 
 
-example of some rules
----------------------
+examples of some rules
+----------------------
 
 Proselint is unlike other language linters. First, Proselint does not focus on grammar, which is AI-complete, requiring human-level intelligence to get right. Instead, we consider usage and style. Second, existing tools for improving prose raise so many false alarms that their advice is distrusted and ignored. Proselint's motto is 'Better to be silent than wrong', aiming for a precision that makes it possible to adopt its recommendations unquestioningly. We optimize a "lintscore" metric that penalizes false positives.
 
@@ -197,189 +276,6 @@ Proselint is a massive undertaking, one that will require the ethos of an open s
 We will discuss where Proselint is and where it is heading. We will show its installation and application, demonstrating its use on the repository of papers submitted to SciPy2016.
 
 Proselint is fertile ground for growing an open-source community. It has trivial subproblems and lofty goals, an immediate impact and a long future.
-
-Approach
---------
-
-Check usage, not grammar
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Proselint does not focus on grammar, which is at once too easy and too hard. 
-Grammar is "too easy" because, for most native speakers, grammatical errors are easily identified (if not easily fixed).
-The errors that would leave the greatest negative impression will often appear to be glaring from the perspective of native speakers. 
-That would reduce a linter's job to catching mistakes in execution rather than in intent, obviating any chance of helping a writer improve in the course of her writing. 
-On the other hand, more subtle errors like long range plurality noun-verb agreement requires[#]_  can evade even native speakers.
-But it is precisely *because* these errors can pass by unnoticed that they can be safely ignored.
-
-More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-complete.
-That is, it requires human-level intelligence and native speaker expertise to get things right(and even then it might not be enough). Furthermore, even if we did have the tools to identify grammatical rules, using those tools (by )
-
-Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
-
-.. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
-
-Wield a rapier not a cudgel
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Existing tools for improving prose raise so many false alarms that their advice can not be trusted. The writer must carefully consider whether to accept or reject each change.
-
-We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
-Better to be quiet and authoritative than loud and unreliable. 
-
-To do this we limit the number of false positives, by measuring the performance performance of proselint by tracking its lintscore.
-
-The lintscore is defined as 
-
-.. math::
-    \frac{T^{k+1}}{(T+F)^k}
-
-where k is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
-
-This score does not take into account false negatives or true negatives, and the reason it does not is worth mentioning as it illustrates one of the core problems with prose linting.
-
-False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that may not in other signal detection problems. Thus a full recall-precision curve analysis seems inappropriate in this domain.
-
-*Problem 0*: Building off of a default
-""""""""""""""""""""""""""""""""""""""
-
-In a tautological sense, every editor has a version of proselint (and any other automated writing aid) already installed, it is merely installed with the null rule-set.
-That is, the set of rules that claim no substrings anywhere have any faults whatsoever; literally, anything goes.
-Any time one will attempt to convince someone to adopt a tool, that tool needs to demonstrate itself as better than this default.
-
-If people's prose was littered with errors to an egregious degree this default would not suffice.
-But people are competent writers.
-Proselint and other writing aids aim to polish what is already fairly good prose.
-Thus, we can expect that any appropriate rule-set can expect to be invoked sparingly. 
-
-Sparse use of the ruleset means that the positive statements are distinguished from the background of the null rule-set.
-Because positives are what distinguish a writing aid, focusing on the false positive and true positive ratio
-Negative statements are the remnants of the null rule-set, meaning they are less indicative of the quality of the linter .
-
-
-*Problem 1*: Magnitude of "potential activations"
-"""""""""""""""""""""""""""""""""""""""""""""""""
-
-It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
-
-That means that without further specification, the number will grow extremely rapidly. If this occurs and the rule set is sparsely activated(it has specifically tailored rules in the manner of proselint), this means that the true negative score will be near 1, because there were so many opportunities for rules to be applied and they were not. If this occurs and the rule set is densely activated, the recommendations in aggregate will be incomprehensible as they will be so densely packed as to be unable to represent a coherent claim about the totality of the text.
-
-
-*Problem 2*: Arbitrariness of "potential activations"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommeasurable [#]_.
-
-
-.. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
-
-*Problem 3*: Infinitude/nonuniqueness of "potential activations"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
-
-There are an infinite number of possible rule sets (in general), in the same way that there are an infinite number of possible strings.
-So, if we consider all possible rule sets for evaluating any finite bit of prose, there will always be an infinite number of potential interpretations. Because those interpretations could conflict with one another while agreeing in a set theoretic sense on which substrings are to be flagged, you cannot count on any agreement that is characterised only in terms of the strings to be uniquely identifiable and associated with any particular set of potential activations.
-
-*Problem 4*: False negatives are undefined without a positive model
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-Finally, false negatives lack meaning without some particular positive model to be contrasted against the model under consideration.
-A false negative states that a violation occurred that was not identified.
-But one cannot say that a violation occurred without specifying what violation was that occurred, meaning that a positive model for identifying which violations were possible in the first place is neeeded.
-
-Our implicit comparison is to the null model.
-And the defining feature of the null-model is that it makes no positive statements at all.
-Given that, there are no potential positive statements that proselint could miss. 
-All negative statements are true negatives by fiat. 
-For the least interesting reason possible, proselint has a perfect false-negative rate. 
-
-
-.. proselint is precise. 
-
-Assessing false positive rates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Unfortunately despite their cruciality, false positive rates pose quite a challenge as an assessment criterion.
-
-Notably, a false positive is difficult (if not impossible) to identify without some kind of human intervention. 
-Any automated system for determining whether some string of text is or is not an error is itself a normative theory of prose style as embodied in those determinations.
-While it may not be a *linter* per se – for example, because of the speed or manner with which it is providing the statements – it is nonetheless equivalent to the normative role proselint plays.
-Thus, while we would be able to provide comparisons between the recommendations offered for the same text by different normative language theories, that would not give us a good measure of false positives as it matters in terms of establishing trust with users.
-
-To build the kind of trust, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
-There is no way of knowing that a linting rule activation was successful or unsuccessful without direct feedback.
-This is why we have developed a corpus of writings from well-established publications and manually coded them to identify false and true positives. 
-It is this corpus that we use to measure proselint's lintscore. 
-
-One of the biggest hindrances for adding new rules (at all) and more complicated and nuanced rules (in particular) stems from the difficulty of efficiently measuring how they affect our lintscore.
-A key feature in growing proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
-
-Source advice from experts
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is one part of the motivation for using only expert language guides — they are human prose crafters who have honed their skills at identifying well and poorly styled prose.
-Nonetheless, because even those experts would allow 
-
-proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
-
-Contribution structure
-----------------------
-
-Issues are on github repo. 
-
-Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
-
-Final decision of whether to include it in the default set of rules is up to us.
-
-We have not included rule modules that are by default left off but can be turned on. 
-Though we are not opposed to this in principle, it is difficult to see why we should do so. 
-If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
-We want to make that process simple. 
-If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
-Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
-
-
-Internal structure
-------------------
-
-Rule modules
-^^^^^^^^^^^^
-
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module `terms` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, `terms.venery`,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, `terms.denizen_labels`, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
-
-Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
-
-Rule templates
-^^^^^^^^^^^^^^
-
-Memoization
-^^^^^^^^^^^
-
-One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
-
-Future
-------
-
-Prosewash
-^^^^^^^^^
-Next steps: more intense processing with riskier rules
-False positive checking with crowd sourcing
-Feedsback to improve proselint
-
-One reason to have rules off by default but included might be because of their effect on the false positive rate.
-
-Concerns around normativity in prose styling
---------------------------------------------
-
-One of the most common critiques of proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
-These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a homogenising effect on prose.
-There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
-
-To this critique there are several possible responses.
-The first few apply in general, the latter apply in the case of scientific and technical writing.
-
-
-
-solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
 Existing modules
 ----------------
@@ -491,7 +387,7 @@ Here is a list of what <tt>proselint</tt> checks.
    +-------------------------------+---------------------------------------------+
    |`psychology.misc`              | Avoiding misused psychological terms        |
    +-------------------------------+---------------------------------------------+
-   |`redundancy.misc`              | Avoiding redundancy and saying things twice |
+   |`redundancy.misc`              | Avoid redundancy & saying things twice      |
    +-------------------------------+---------------------------------------------+
    |`redundancy.ras_syndrome`      | Avoiding RAS syndrome                       |
    +-------------------------------+---------------------------------------------+
@@ -538,69 +434,198 @@ Here is a list of what <tt>proselint</tt> checks.
    |`weasel_words.very`            | Avoiding the word "very"                    |
    +-------------------------------+---------------------------------------------+
 
-Command-line utility
---------------------
 
-At its core, proselint is a command-line utility.
+Theoretical background to our approach
+======================================
 
-.. code-block:: bash
+Check usage, not grammar
+------------------------
 
-   proselint text.md
+Proselint does not focus on grammar, which is at once too easy and too hard. 
+Grammar is "too easy" because, for most native speakers, grammatical errors are easily identified (if not easily fixed).
+The errors that would leave the greatest negative impression will often appear to be glaring from the perspective of native speakers. 
+That would reduce a linter's job to catching mistakes in execution rather than in intent, obviating any chance of helping a writer improve in the course of her writing. 
+On the other hand, more subtle errors like long range plurality noun-verb agreement requires[#]_  can evade even native speakers.
+But it is precisely *because* these errors can pass by unnoticed that they can be safely ignored.
 
-Running this command prints a list of suggestions to stdout, one per line. Each suggestion will have the form:
+More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-complete.
+That is, it requires human-level intelligence and native speaker expertise to get things right(and even then it might not be enough). Furthermore, even if we did have the tools to identify grammatical rules, using those tools (by )
 
-.. code-block:: bash
+Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-   text.md:<line>:<column>: <check_name> <message>
+.. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
 
-For example,
+Wield a rapier not a cudgel
+---------------------------
 
-.. code-block:: bash
+Existing tools for improving prose raise so many false alarms that their advice can not be trusted. The writer must carefully consider whether to accept or reject each change.
 
-  text.md:0:10: wallace.uncomparables Comparison of an uncomparable: 'unique' can not be compared.
+We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
+Better to be quiet and authoritative than loud and unreliable. 
 
-The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
+To do this we limit the number of false positives, by measuring the performance performance of proselint by tracking its lintscore.
 
-.. code-block:: json
+The lintscore is defined as 
 
-  {
-      // Type of check that output this suggestion.
-      check: "wallace.uncomparables",
+.. math::
+    \frac{T^{k+1}}{(T+F)^k}
 
-      // Message to describe the suggestion.
-      message: "Comparison of an uncomparable: 'unique' can not be compared.",
+where k is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
 
-      // The person or organization giving the suggestion.
-      source: "David Foster Wallace"
+This score does not take into account false negatives or true negatives, and the reason it does not is worth mentioning as it illustrates one of the core problems with prose linting.
 
-      // URL pointing to the source material.
-      source_url: "http://www.telegraph.co.uk/a/9715551"
+False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that may not in other signal detection problems. Thus a full recall-precision curve analysis seems inappropriate in this domain.
 
-      // Line where the error starts.
-      line: 0,
+Problem 0: Building off of a default
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      // Column where the error starts.
-      column: 10,
+In a tautological sense, every editor has a version of proselint (and any other automated writing aid) already installed, it is merely installed with the null rule-set.
+That is, the set of rules that claim no substrings anywhere have any faults whatsoever; literally, anything goes.
+Any time one will attempt to convince someone to adopt a tool, that tool needs to demonstrate itself as better than this default.
 
-      // Index in the text where the error starts.
-      start: 10,
+If people's prose was littered with errors to an egregious degree this default would not suffice.
+But people are competent writers.
+Proselint and other writing aids aim to polish what is already fairly good prose.
+Thus, we can expect that any appropriate rule-set can expect to be invoked sparingly. 
 
-      // Index in the text where the error ends.
-      end: 21,
+Sparse use of the ruleset means that the positive statements are distinguished from the background of the null rule-set.
+Because positives are what distinguish a writing aid, focusing on the false positive and true positive ratio
+Negative statements are the remnants of the null rule-set, meaning they are less indicative of the quality of the linter .
 
-      // start - end
-      extent: 11,
 
-      // How important is this? Can be "suggestion", "warning", or "error".
-      severity: "warning",
+Problem 1: Magnitude of "potential activations"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      // Possible replacements.
-      replacements: [
-          {
-              value: "unique"
-          }
-      ]
-  }
+It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
+
+That means that without further specification, the number will grow extremely rapidly. If this occurs and the rule set is sparsely activated(it has specifically tailored rules in the manner of proselint), this means that the true negative score will be near 1, because there were so many opportunities for rules to be applied and they were not. If this occurs and the rule set is densely activated, the recommendations in aggregate will be incomprehensible as they will be so densely packed as to be unable to represent a coherent claim about the totality of the text.
+
+
+Problem 2: Arbitrariness of "potential activations"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommeasurable [#]_.
+
+
+.. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
+
+*Problem 3*: Infinitude/nonuniqueness of "potential activations"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
+
+There are an infinite number of possible rule sets (in general), in the same way that there are an infinite number of possible strings.
+So, if we consider all possible rule sets for evaluating any finite bit of prose, there will always be an infinite number of potential interpretations. Because those interpretations could conflict with one another while agreeing in a set theoretic sense on which substrings are to be flagged, you cannot count on any agreement that is characterised only in terms of the strings to be uniquely identifiable and associated with any particular set of potential activations.
+
+*Problem 4*: False negatives are undefined without a positive model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finally, false negatives lack meaning without some particular positive model to be contrasted against the model under consideration.
+A false negative states that a violation occurred that was not identified.
+But one cannot say that a violation occurred without specifying what violation was that occurred, meaning that a positive model for identifying which violations were possible in the first place is neeeded.
+
+Our implicit comparison is to the null model.
+And the defining feature of the null-model is that it makes no positive statements at all.
+Given that, there are no potential positive statements that proselint could miss. 
+All negative statements are true negatives by fiat. 
+For the least interesting reason possible, proselint has a perfect false-negative rate. 
+
+
+.. proselint is precise. 
+
+Assessing false positive rates
+------------------------------
+
+Unfortunately despite their cruciality, false positive rates pose quite a challenge as an assessment criterion.
+
+Notably, a false positive is difficult (if not impossible) to identify without some kind of human intervention. 
+Any automated system for determining whether some string of text is or is not an error is itself a normative theory of prose style as embodied in those determinations.
+While it may not be a *linter* per se – for example, because of the speed or manner with which it is providing the statements – it is nonetheless equivalent to the normative role proselint plays.
+Thus, while we would be able to provide comparisons between the recommendations offered for the same text by different normative language theories, that would not give us a good measure of false positives as it matters in terms of establishing trust with users.
+
+To build the kind of trust, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
+There is no way of knowing that a linting rule activation was successful or unsuccessful without direct feedback.
+This is why we have developed a corpus of writings from well-established publications and manually coded them to identify false and true positives. 
+It is this corpus that we use to measure proselint's lintscore. 
+
+One of the biggest hindrances for adding new rules (at all) and more complicated and nuanced rules (in particular) stems from the difficulty of efficiently measuring how they affect our lintscore.
+A key feature in growing proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
+
+Source advice from experts
+--------------------------
+This is one part of the motivation for using only expert language guides — they are human prose crafters who have honed their skills at identifying well and poorly styled prose.
+Nonetheless, because even those experts would allow 
+
+proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
+
+
+
+Infrastructural details
+=======================
+
+Contribution infrastructure
+---------------------------
+
+Issues are on github repo. 
+
+Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+
+Final decision of whether to include it in the default set of rules is up to us.
+
+We have not included rule modules that are by default left off but can be turned on. 
+Though we are not opposed to this in principle, it is difficult to see why we should do so. 
+If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
+We want to make that process simple. 
+If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
+Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
+
+
+Code infrastructure
+-------------------
+
+Rule modules
+^^^^^^^^^^^^
+
+Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module `terms` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, `terms.venery`,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, `terms.denizen_labels`, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+
+Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
+
+Rule templates
+^^^^^^^^^^^^^^
+
+Memoization
+^^^^^^^^^^^
+
+One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
+
+Concerns around normativity in prose styling
+============================================
+
+One of the most common critiques of proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
+These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a homogenising effect on prose.
+There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
+
+To this critique there are several possible responses.
+The first few apply in general, the latter apply in the case of scientific and technical writing.
+
+
+
+solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+
+
+Future
+======
+
+Prosewash
+---------
+Next steps: more intense processing with riskier rules
+False positive checking with crowd sourcing
+Feedsback to improve proselint
+
+One reason to have rules off by default but included might be because of their effect on the false positive rate.
+
+
+
 
 
 Bibliographies, citations and block quotes
