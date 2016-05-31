@@ -89,6 +89,7 @@ Our general approach
 ====================
 
 Various ways to divide up the kinds of problems
+
 #.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
 
     #. Replacement rules
@@ -110,6 +111,7 @@ Desiderata for a linter
 Desiderata are a set of criteria that are looked 
 
 Ideal linters need to 
+
 *   scale to many rules
 *   respond needs to be in real time
 
@@ -139,6 +141,7 @@ Many of the rules' implementations are particularly well-suited to small-scale c
 
 .. how our tool address or uses each of those principles
 .. -----------------------------------------------------
+
 Installing proselint
 
 
