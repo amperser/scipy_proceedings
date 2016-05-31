@@ -285,161 +285,161 @@ Here is a list of what `proselint` checks.
 
 .. table:: What Proselint checks. :label:`checks`
 
-   +-------------------------------+---------------------------------------------+
-   | ID                            | Description                                 |
-   +===============================+=============================================+
-   |`airlinese.misc`               | Avoiding jargon of the airline industry     |
-   +-------------------------------+---------------------------------------------+
-   |`annotations.misc`             | Catching annotations left in the text       |
-   +-------------------------------+---------------------------------------------+
-   |`archaism.misc`                | Avoiding archaic forms                      |
-   +-------------------------------+---------------------------------------------+
-   |`cliches.hell`                 | Avoiding a common cliché                    |
-   +-------------------------------+---------------------------------------------+
-   |`cliches.misc`                 | Avoiding clichés                            |
-   +-------------------------------+---------------------------------------------+
-   |`consistency.spacing`          | Consistent sentence spacing                 |
-   +-------------------------------+---------------------------------------------+
-   |`consistency.spelling`         | Consistent spelling                         |
-   +-------------------------------+---------------------------------------------+
-   |`corporate_speak.misc`         | Avoiding corporate buzzwords`               |
-   +-------------------------------+---------------------------------------------+
-   |`cursing.filth`                | Words to avoid                              |
-   +-------------------------------+---------------------------------------------+
-   |`cursing.nfl`                  | Avoiding words banned by the NFL            |
-   +-------------------------------+---------------------------------------------+
-   |`dates_times.am_pm`            | Using the right form for the time of day    |
-   +-------------------------------+---------------------------------------------+
-   |`dates_times.dates`            | Stylish formatting of dates                 |
-   +-------------------------------+---------------------------------------------+
-   |`hedging.misc`                 | Not hedging                                 |
-   +-------------------------------+---------------------------------------------+
-   |`hyperbole.misc`               | Not being hyperbolic                        |
-   +-------------------------------+---------------------------------------------+
-   |`jargon.misc`                  | Avoiding miscellaneous jargon               |
-   +-------------------------------+---------------------------------------------+
-   |`lexical_illusions.misc`       | Avoiding lexical illusions                  |
-   +-------------------------------+---------------------------------------------+
-   |`links.broken`                 | Linking only to existing sites              |
-   +-------------------------------+---------------------------------------------+
-   |`malapropisms.misc`            | Avoiding common malapropisms                |
-   +-------------------------------+---------------------------------------------+
-   |`misc.apologizing`             | Being confident                             |
-   +-------------------------------+---------------------------------------------+
-   |`misc.back_formations`         | Avoiding needless backformations            |
-   +-------------------------------+---------------------------------------------+
-   |`misc.bureaucratese`           | Avoiding bureaucratese                      |
-   +-------------------------------+---------------------------------------------+
-   |`misc.but`                     | Avoid starting a paragraph with "But..."    |
-   +-------------------------------+---------------------------------------------+
-   |`misc.capitalization`          | Capitalizing correctly                      |
-   +-------------------------------+---------------------------------------------+
-   |`misc.chatspeak`               | Avoiding lolling and other chatspeak        |
-   +-------------------------------+---------------------------------------------+
-   |`misc.commercialese`           | Avoiding jargon of the commercial world     |
-   +-------------------------------+---------------------------------------------+
-   |`misc.currency`                | Avoiding redundant currency symbols         |
-   +-------------------------------+---------------------------------------------+
-   |`misc.debased`                 | Avoiding debased language                   |
-   +-------------------------------+---------------------------------------------+
-   |`misc.false_plurals`           | Avoiding false plurals                      |
-   +-------------------------------+---------------------------------------------+
-   |`misc.illogic`                 | Avoiding illogical forms                    |
-   +-------------------------------+---------------------------------------------+
-   |`misc.inferior_superior`       | Superior to, not than                       |
-   +-------------------------------+---------------------------------------------+
-   |`misc.latin`                   | Avoiding overuse of Latin phrases           |
-   +-------------------------------+---------------------------------------------+
-   |`misc.many_a`                  | Many a singular                             |
-   +-------------------------------+---------------------------------------------+
-   |`misc.metaconcepts`            | Avoiding overuse of metaconcepts            |
-   +-------------------------------+---------------------------------------------+
-   |`misc.narcisissm`              | Talking about the subject, not its study    |
-   +-------------------------------+---------------------------------------------+
-   |`misc.phrasal_adjectives`      | Hyphenating phrasal adjectives              |
-   +-------------------------------+---------------------------------------------+
-   |`misc.preferred_forms`         | Miscellaneous preferred forms               |
-   +-------------------------------+---------------------------------------------+
-   |`misc.pretension`              | Avoiding being pretentious                  |
-   +-------------------------------+---------------------------------------------+
-   |`misc.professions`             | Calling jobs by the right name              |
-   +-------------------------------+---------------------------------------------+
-   |`misc.punctuation`             | Using punctuation assiduously               |
-   +-------------------------------+---------------------------------------------+
-   |`misc.scare_quotes`            | Using scare quotes only when needed         |
-   +-------------------------------+---------------------------------------------+
-   |`misc.suddenly`                | Avoiding the word suddenly                  |
-   +-------------------------------+---------------------------------------------+
-   |`misc.tense_present`           | Advice from Tense Present                   |
-   +-------------------------------+---------------------------------------------+
-   |`misc.waxed`                   | Waxing poetic                               |
-   +-------------------------------+---------------------------------------------+
-   |`misc.whence`                  | Using "whence"                              |
-   +-------------------------------+---------------------------------------------+
-   
+   +---------------------------------+---------------------------------------------+
+   | ID                              | Description                                 |
+   +=================================+=============================================+
+   |``airlinese.misc``               | Avoiding jargon of the airline industry     |
+   +---------------------------------+---------------------------------------------+
+   |``annotations.misc``             | Catching annotations left in the text       |
+   +---------------------------------+---------------------------------------------+
+   |``archaism.misc``                | Avoiding archaic forms                      |
+   +---------------------------------+---------------------------------------------+
+   |``cliches.hell``                 | Avoiding a common cliché                    |
+   +---------------------------------+---------------------------------------------+
+   |``cliches.misc``                 | Avoiding clichés                            |
+   +---------------------------------+---------------------------------------------+
+   |``consistency.spacing``          | Consistent sentence spacing                 |
+   +---------------------------------+---------------------------------------------+
+   |``consistency.spelling``         | Consistent spelling                         |
+   +---------------------------------+---------------------------------------------+
+   |``corporate_speak.misc``         | Avoiding corporate buzzwords`               |
+   +---------------------------------+---------------------------------------------+
+   |``cursing.filth``                | Words to avoid                              |
+   +---------------------------------+---------------------------------------------+
+   |``cursing.nfl``                  | Avoiding words banned by the NFL            |
+   +---------------------------------+---------------------------------------------+
+   |``dates_times.am_pm``            | Using the right form for the time of day    |
+   +---------------------------------+---------------------------------------------+
+   |``dates_times.dates``            | Stylish formatting of dates                 |
+   +---------------------------------+---------------------------------------------+
+   |``hedging.misc``                 | Not hedging                                 |
+   +---------------------------------+---------------------------------------------+
+   |``hyperbole.misc``               | Not being hyperbolic                        |
+   +---------------------------------+---------------------------------------------+
+   |``jargon.misc``                  | Avoiding miscellaneous jargon               |
+   +---------------------------------+---------------------------------------------+
+   |``lexical_illusions.misc``       | Avoiding lexical illusions                  |
+   +---------------------------------+---------------------------------------------+
+   |``links.broken``                 | Linking only to existing sites              |
+   +---------------------------------+---------------------------------------------+
+   |``malapropisms.misc``            | Avoiding common malapropisms                |
+   +---------------------------------+---------------------------------------------+
+   |``misc.apologizing``             | Being confident                             |
+   +---------------------------------+---------------------------------------------+
+   |``misc.back_formations``         | Avoiding needless backformations            |
+   +---------------------------------+---------------------------------------------+
+   |``misc.bureaucratese``           | Avoiding bureaucratese                      |
+   +---------------------------------+---------------------------------------------+
+   |``misc.but``                     | Avoid starting a paragraph with "But..."    |
+   +---------------------------------+---------------------------------------------+
+   |``misc.capitalization``          | Capitalizing correctly                      |
+   +---------------------------------+---------------------------------------------+
+   |``misc.chatspeak``               | Avoiding lolling and other chatspeak        |
+   +---------------------------------+---------------------------------------------+
+   |``misc.commercialese``           | Avoiding jargon of the commercial world     |
+   +---------------------------------+---------------------------------------------+
+   |``misc.currency``                | Avoiding redundant currency symbols         |
+   +---------------------------------+---------------------------------------------+
+   |``misc.debased``                 | Avoiding debased language                   |
+   +---------------------------------+---------------------------------------------+
+   |``misc.false_plurals``           | Avoiding false plurals                      |
+   +---------------------------------+---------------------------------------------+
+   |``misc.illogic``                 | Avoiding illogical forms                    |
+   +---------------------------------+---------------------------------------------+
+   |``misc.inferior_superior``       | Superior to, not than                       |
+   +---------------------------------+---------------------------------------------+
+   |``misc.latin``                   | Avoiding overuse of Latin phrases           |
+   +---------------------------------+---------------------------------------------+
+   |``misc.many_a``                  | Many a singular                             |
+   +---------------------------------+---------------------------------------------+
+   |``misc.metaconcepts``            | Avoiding overuse of metaconcepts            |
+   +---------------------------------+---------------------------------------------+
+   |``misc.narcisissm``              | Talking about the subject, not its study    |
+   +---------------------------------+---------------------------------------------+
+   |``misc.phrasal_adjectives``      | Hyphenating phrasal adjectives              |
+   +---------------------------------+---------------------------------------------+
+   |``misc.preferred_forms``         | Miscellaneous preferred forms               |
+   +---------------------------------+---------------------------------------------+
+   |``misc.pretension``              | Avoiding being pretentious                  |
+   +---------------------------------+---------------------------------------------+
+   |``misc.professions``             | Calling jobs by the right name              |
+   +---------------------------------+---------------------------------------------+
+   |``misc.punctuation``             | Using punctuation assiduously               |
+   +---------------------------------+---------------------------------------------+
+   |``misc.scare_quotes``            | Using scare quotes only when needed         |
+   +---------------------------------+---------------------------------------------+
+   |``misc.suddenly``                | Avoiding the word suddenly                  |
+   +---------------------------------+---------------------------------------------+
+   |``misc.tense_present``           | Advice from Tense Present                   |
+   +---------------------------------+---------------------------------------------+
+   |``misc.waxed``                   | Waxing poetic                               |
+   +---------------------------------+---------------------------------------------+
+   |``misc.whence``                  | Using "whence"                              |
+   +---------------------------------+---------------------------------------------+
+
 .. table:: What Proselint checks(cont.). :label:`checkscont`
 
-   +-------------------------------+---------------------------------------------+
-   | ID                            | Description                                 |
-   +===============================+=============================================+
-   |`mixed_metaphors.misc`         | Not mixing metaphors                        |
-   +-------------------------------+---------------------------------------------+
-   |`mondegreens.misc`             | Avoiding mondegreen                         |
-   +-------------------------------+---------------------------------------------+
-   |`needless_variants.misc`       | Using the preferred form                    |
-   +-------------------------------+---------------------------------------------+
-   |`nonwords.misc`                | Avoid using nonwords                        |
-   +-------------------------------+---------------------------------------------+
-   |`oxymorons.misc`               | Avoiding oxymorons                          |
-   +-------------------------------+---------------------------------------------+
-   |`psychology.misc`              | Avoiding misused psychological terms        |
-   +-------------------------------+---------------------------------------------+
-   |`redundancy.misc`              | Avoid redundancy & saying things twice      |
-   +-------------------------------+---------------------------------------------+
-   |`redundancy.ras_syndrome`      | Avoiding RAS syndrome                       |
-   +-------------------------------+---------------------------------------------+
-   |`skunked_terms.misc`           | Avoid using skunked terms                   |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.able_atable`         | -able vs. -atable                           |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.able_ible`           | -able vs. -ible                             |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.athletes`            | Spelling of athlete names                   |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.em_im_en_in`         | -em vs. -im and -en vs. -in                 |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.er_or`               | -er vs. -or                                 |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.in_un`               | in- vs. un-                                 |
-   +-------------------------------+---------------------------------------------+
-   |`spelling.misc`                | Spelling words corectly                     |
-   +-------------------------------+---------------------------------------------+
-   |`security.credit_card`         | Keeping credit card numbers secret          |
-   +-------------------------------+---------------------------------------------+
-   |`security.password`            | Keeping passwords secret                    |
-   +-------------------------------+---------------------------------------------+
-   |`sexism.misc`                  | Avoiding sexist language                    |
-   +-------------------------------+---------------------------------------------+
-   |`terms.animal_adjectives`      | Animal adjectives                           |
-   +-------------------------------+---------------------------------------------+
-   |`terms.denizen_labels`         | Calling denizens by the right name          |
-   +-------------------------------+---------------------------------------------+
-   |`terms.eponymous_adjectives`   | Calling people by the right name            |
-   +-------------------------------+---------------------------------------------+
-   |`terms.venery`                 | Call groups of animals by the right name    |
-   +-------------------------------+---------------------------------------------+
-   |`typography.diacritical_marks` | Using dïacríticâl marks                     |
-   +-------------------------------+---------------------------------------------+
-   |`typography.exclamation`       | Avoiding overuse of exclamation             |
-   +-------------------------------+---------------------------------------------+
-   |`typography.symbols`           | Using the right symbols                     |
-   +-------------------------------+---------------------------------------------+
-   |`uncomparables.misc`           | Not comparing uncomparables                 |
-   +-------------------------------+---------------------------------------------+
-   |`weasel_words.misc`            | Avoiding weasel words                       |
-   +-------------------------------+---------------------------------------------+
-   |`weasel_words.very`            | Avoiding the word "very"                    |
-   +-------------------------------+---------------------------------------------+
+   +---------------------------------+---------------------------------------------+
+   | ID                              | Description                                 |
+   +=================================+=============================================+
+   |``mixed_metaphors.misc``         | Not mixing metaphors                        |
+   +---------------------------------+---------------------------------------------+
+   |``mondegreens.misc``             | Avoiding mondegreen                         |
+   +---------------------------------+---------------------------------------------+
+   |``needless_variants.misc``       | Using the preferred form                    |
+   +---------------------------------+---------------------------------------------+
+   |``nonwords.misc``                | Avoid using nonwords                        |
+   +---------------------------------+---------------------------------------------+
+   |``oxymorons.misc``               | Avoiding oxymorons                          |
+   +---------------------------------+---------------------------------------------+
+   |``psychology.misc``              | Avoiding misused psychological terms        |
+   +---------------------------------+---------------------------------------------+
+   |``redundancy.misc``              | Avoid redundancy & saying things twice      |
+   +---------------------------------+---------------------------------------------+
+   |``redundancy.ras_syndrome``      | Avoiding RAS syndrome                       |
+   +---------------------------------+---------------------------------------------+
+   |``skunked_terms.misc``           | Avoid using skunked terms                   |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.able_atable``         | -able vs. -atable                           |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.able_ible``           | -able vs. -ible                             |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.athletes``            | Spelling of athlete names                   |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.em_im_en_in``         | -em vs. -im and -en vs. -in                 |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.er_or``               | -er vs. -or                                 |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.in_un``               | in- vs. un-                                 |
+   +---------------------------------+---------------------------------------------+
+   |``spelling.misc``                | Spelling words corectly                     |
+   +---------------------------------+---------------------------------------------+
+   |``security.credit_card``         | Keeping credit card numbers secret          |
+   +---------------------------------+---------------------------------------------+
+   |``security.password``            | Keeping passwords secret                    |
+   +---------------------------------+---------------------------------------------+
+   |``sexism.misc``                  | Avoiding sexist language                    |
+   +---------------------------------+---------------------------------------------+
+   |``terms.animal_adjectives``      | Animal adjectives                           |
+   +---------------------------------+---------------------------------------------+
+   |``terms.denizen_labels``         | Calling denizens by the right name          |
+   +---------------------------------+---------------------------------------------+
+   |``terms.eponymous_adjectives``   | Calling people by the right name            |
+   +---------------------------------+---------------------------------------------+
+   |``terms.venery``                 | Call groups of animals by the right name    |
+   +---------------------------------+---------------------------------------------+
+   |``typography.diacritical_marks`` | Using dïacríticâl marks                     |
+   +---------------------------------+---------------------------------------------+
+   |``typography.exclamation``       | Avoiding overuse of exclamation             |
+   +---------------------------------+---------------------------------------------+
+   |``typography.symbols``           | Using the right symbols                     |
+   +---------------------------------+---------------------------------------------+
+   |``uncomparables.misc``           | Not comparing uncomparables                 |
+   +---------------------------------+---------------------------------------------+
+   |``weasel_words.misc``            | Avoiding weasel words                       |
+   +---------------------------------+---------------------------------------------+
+   |``weasel_words.very``            | Avoiding the word "very"                    |
+   +---------------------------------+---------------------------------------------+
 
 
 Theoretical background to our approach
@@ -593,7 +593,7 @@ Code infrastructure
 Rule modules
 ^^^^^^^^^^^^
 
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module `terms` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, `terms.venery`,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, `terms.denizen_labels`, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
 Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
 
@@ -633,17 +633,21 @@ We can do little better than to give a modified quote from the Foreword[#]_ in R
 Future
 ======
 
-Prosewash
----------
-Next steps: more intense processing with riskier rules
-False positive checking with crowd sourcing
-Feeds back to improve proselint
+.. Prosewash
+.. ---------
+.. Next steps: more intense processing with riskier rules
+.. False positive checking with crowd sourcing
+.. Feeds back to improve proselint
 
-Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
+.. Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
+Acknowledgements
+================
+Work on proselint was supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically as regards applying proselint to the problem of improving governmental communications as required the by `Federal Plain Language Guidelines`__.
 
+.. __: https://ctsp.berkeley.edu/
 
-
+.. __: http://www.plainlanguage.gov/howto/guidelines/FederalPLGuidelines
 
 .. Bibliographies, citations and block quotes
 .. ------------------------------------------
