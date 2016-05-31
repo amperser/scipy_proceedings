@@ -7,6 +7,7 @@
 :institution: University of California, Berkeley
 
 :video: http://www.youtube.com/watch?v=dhRUe-gz690
+:bibliography: mybib
 
 ------------------------------------------------
 Proselint
@@ -280,7 +281,7 @@ Proselint is fertile ground for growing an open-source community. It has trivial
 Existing modules
 ----------------
 
-Here is a list of what <tt>proselint</tt> checks.
+Here is a list of what `proselint` checks.
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -375,6 +376,12 @@ Here is a list of what <tt>proselint</tt> checks.
    +-------------------------------+---------------------------------------------+
    |`misc.whence`                  | Using "whence"                              |
    +-------------------------------+---------------------------------------------+
+   
+.. table:: What Proselint checks(cont.). :label:`checkscont`
+
+   +-------------------------------+---------------------------------------------+
+   | ID                            | Description                                 |
+   +===============================+=============================================+
    |`mixed_metaphors.misc`         | Not mixing metaphors                        |
    +-------------------------------+---------------------------------------------+
    |`mondegreens.misc`             | Avoiding mondegreen                         |
@@ -608,9 +615,19 @@ There are many nuances around how exactly this is stated, but that general gist 
 To this critique there are several possible responses.
 The first few apply in general, the latter apply in the case of scientific and technical writing.
 
+First, much of the advice is that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). The reason most relevant to your concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+
+The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter. Novelty will continue to introduce new usages, and some of them will be poor. Authors identified as trustworthy may point these out, but this will only be in retrospect. If you do not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide. You can see some of the module names and a high-level description here: http://proselint.com/checks/.
+
+We can do little better than to give a modified quote from the Foreword[#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
+    
+    [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
+
+    -- Robert Bringhurst :cite:`bringhurst2004elements`
+
+.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labeled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
 
-solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
 
 Future
@@ -620,223 +637,223 @@ Prosewash
 ---------
 Next steps: more intense processing with riskier rules
 False positive checking with crowd sourcing
-Feedsback to improve proselint
+Feeds back to improve proselint
 
-One reason to have rules off by default but included might be because of their effect on the false positive rate.
-
-
+Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
 
 
-Bibliographies, citations and block quotes
-------------------------------------------
-
-If you want to include a ``.bib`` file, do so above by placing  :code:`:bibliography: yourFilenameWithoutExtension` as above (replacing ``mybib``) for a file named :code:`yourFilenameWithoutExtension.bib` after removing the ``.bib`` extension. 
-
-**Do not include any special characters that need to be escaped or any spaces in the bib-file's name**. Doing so makes bibTeX cranky, & the rst to LaTeX+bibTeX transform won't work. 
-
-To reference citations contained in that bibliography use the :code:`:cite:`citation-key`` role, as in :cite:`hume48` (which literally is :code:`:cite:`hume48`` in accordance with the ``hume48`` cite-key in the associated ``mybib.bib`` file).
-
-However, if you use a bibtex file, this will overwrite any manually written references. 
-
-So what would previously have registered as a in text reference ``[Atr03]_`` for 
-
-:: 
-
-     [Atr03] P. Atreides. *How to catch a sandworm*,
-           Transactions on Terraforming, 21(3):261-300, August 2003.
-
-what you actually see will be an empty reference rendered as **[?]**.
-
-E.g., [Atr03]_.
 
 
-If you wish to have a block quote, you can just indent the text, as in 
+.. Bibliographies, citations and block quotes
+.. ------------------------------------------
 
-    When it is asked, What is the nature of all our reasonings concerning matter of fact? the proper answer seems to be, that they are founded on the relation of cause and effect. When again it is asked, What is the foundation of all our reasonings and conclusions concerning that relation? it may be replied in one word, experience. But if we still carry on our sifting humor, and ask, What is the foundation of all conclusions from experience? this implies a new question, which may be of more difficult solution and explication. :cite:`hume48`
+.. If you want to include a ``.bib`` file, do so above by placing  :code:`:bibliography: yourFilenameWithoutExtension` as above (replacing ``mybib``) for a file named :code:`yourFilenameWithoutExtension.bib` after removing the ``.bib`` extension. 
+
+.. **Do not include any special characters that need to be escaped or any spaces in the bib-file's name**. Doing so makes bibTeX cranky, & the rst to LaTeX+bibTeX transform won't work. 
+
+.. To reference citations contained in that bibliography use the :code:`:cite:`citation-key`` role, as in :cite:`hume48` (which literally is :code:`:cite:`hume48`` in accordance with the ``hume48`` cite-key in the associated ``mybib.bib`` file).
+
+.. However, if you use a bibtex file, this will overwrite any manually written references. 
+
+.. So what would previously have registered as a in text reference ``[Atr03]_`` for 
+
+.. .. :: 
+
+.. ..      [Atr03] P. Atreides. *How to catch a sandworm*,
+..            Transactions on Terraforming, 21(3):261-300, August 2003.
+
+.. what you actually see will be an empty reference rendered as **[?]**.
+
+.. E.g., [Atr03]_.
 
 
-Source code examples
---------------------
+.. If you wish to have a block quote, you can just indent the text, as in 
 
-Of course, no paper would be complete without some source code.  Without
-highlighting, it would look like this::
+..     When it is asked, What is the nature of all our reasonings concerning matter of fact? the proper answer seems to be, that they are founded on the relation of cause and effect. When again it is asked, What is the foundation of all our reasonings and conclusions concerning that relation? it may be replied in one word, experience. But if we still carry on our sifting humor, and ask, What is the foundation of all conclusions from experience? this implies a new question, which may be of more difficult solution and explication. :cite:`hume48`
 
-   def sum(a, b):
-       """Sum two numbers."""
 
-       return a + b
+.. Source code examples
+.. --------------------
 
-With code-highlighting:
+.. Of course, no paper would be complete without some source code.  Without
+.. highlighting, it would look like this::
 
-.. code-block:: python
+..    def sum(a, b):
+..        """Sum two numbers."""
 
-   def sum(a, b):
-       """Sum two numbers."""
+..        return a + b
 
-       return a + b
+.. With code-highlighting:
 
-Maybe also in another language, and with line numbers:
+.. .. code-block:: python
 
-.. code-block:: c
-   :linenos:
+..    def sum(a, b):
+..        """Sum two numbers."""
 
-   int main() {
-       for (int i = 0; i < 10; i++) {
-           /* do something */
-       }
-       return 0;
-   }
+..        return a + b
 
-Or a snippet from the above code, starting at the correct line number:
+.. Maybe also in another language, and with line numbers:
 
-.. code-block:: c
-   :linenos:
-   :linenostart: 2
+.. .. code-block:: c
+..    :linenos:
 
-   for (int i = 0; i < 10; i++) {
-       /* do something */
-   }
+..    int main() {
+..        for (int i = 0; i < 10; i++) {
+..            /* do something */
+..        }
+..        return 0;
+..    }
+
+.. Or a snippet from the above code, starting at the correct line number:
+
+.. .. code-block:: c
+..    :linenos:
+..    :linenostart: 2
+
+..    for (int i = 0; i < 10; i++) {
+..        /* do something */
+..    }
  
-Important Part
---------------
+.. Important Part
+.. --------------
 
-It is well known [Atr03]_ that Spice grows on the planet Dune.  Test
-some maths, for example :math:`e^{\pi i} + 3 \delta`.  Or maybe an
-equation on a separate line:
+.. It is well known [Atr03]_ that Spice grows on the planet Dune.  Test
+.. some maths, for example :math:`e^{\pi i} + 3 \delta`.  Or maybe an
+.. equation on a separate line:
 
-.. math::
+.. .. math::
 
-   g(x) = \int_0^\infty f(x) dx
+..    g(x) = \int_0^\infty f(x) dx
 
-or on multiple, aligned lines:
+.. or on multiple, aligned lines:
 
-.. math::
-   :type: eqnarray
+.. .. math::
+..    :type: eqnarray
 
-   g(x) &=& \int_0^\infty f(x) dx \\
-        &=& \ldots
+..    g(x) &=& \int_0^\infty f(x) dx \\
+..         &=& \ldots
 
-The area of a circle and volume of a sphere are given as
+.. The area of a circle and volume of a sphere are given as
 
-.. math::
-   :label: circarea
+.. .. math::
+..    :label: circarea
 
-   A(r) = \pi r^2.
+..    A(r) = \pi r^2.
 
-.. math::
-   :label: spherevol
+.. .. math::
+..    :label: spherevol
 
-   V(r) = \frac{4}{3} \pi r^3
+..    V(r) = \frac{4}{3} \pi r^3
 
-We can then refer back to Equation (:ref:`circarea`) or
-(:ref:`spherevol`) later.
+.. We can then refer back to Equation (:ref:`circarea`) or
+.. (:ref:`spherevol`) later.
 
-Mauris purus enim, volutpat non dapibus et, gravida sit amet sapien. In at
-consectetur lacus. Praesent orci nulla, blandit eu egestas nec, facilisis vel
-lacus. Fusce non ante vitae justo faucibus facilisis. Nam venenatis lacinia
-turpis. Donec eu ultrices mauris. Ut pulvinar viverra rhoncus. Vivamus
-adipiscing faucibus ligula, in porta orci vehicula in. Suspendisse quis augue
-arcu, sit amet accumsan diam. Vestibulum lacinia luctus dui. Aliquam odio arcu,
-faucibus non laoreet ac, condimentum eu quam. Quisque et nunc non diam
-consequat iaculis ut quis leo. Integer suscipit accumsan ligula. Sed nec eros a
-orci aliquam dictum sed ac felis. Suspendisse sit amet dui ut ligula iaculis
-sollicitudin vel id velit. Pellentesque hendrerit sapien ac ante facilisis
-lacinia. Nunc sit amet sem sem. In tellus metus, elementum vitae tincidunt ac,
-volutpat sit amet mauris. Maecenas [#]_ diam turpis, placerat [#]_ at adipiscing ac,
-pulvinar id metus.
+.. Mauris purus enim, volutpat non dapibus et, gravida sit amet sapien. In at
+.. consectetur lacus. Praesent orci nulla, blandit eu egestas nec, facilisis vel
+.. lacus. Fusce non ante vitae justo faucibus facilisis. Nam venenatis lacinia
+.. turpis. Donec eu ultrices mauris. Ut pulvinar viverra rhoncus. Vivamus
+.. adipiscing faucibus ligula, in porta orci vehicula in. Suspendisse quis augue
+.. arcu, sit amet accumsan diam. Vestibulum lacinia luctus dui. Aliquam odio arcu,
+.. faucibus non laoreet ac, condimentum eu quam. Quisque et nunc non diam
+.. consequat iaculis ut quis leo. Integer suscipit accumsan ligula. Sed nec eros a
+.. orci aliquam dictum sed ac felis. Suspendisse sit amet dui ut ligula iaculis
+.. sollicitudin vel id velit. Pellentesque hendrerit sapien ac ante facilisis
+.. lacinia. Nunc sit amet sem sem. In tellus metus, elementum vitae tincidunt ac,
+.. volutpat sit amet mauris. Maecenas [#]_ diam turpis, placerat [#]_ at adipiscing ac,
+.. pulvinar id metus.
 
-.. [#] On the one hand, a footnote.
-.. [#] On the other hand, another footnote.
+.. .. [#] On the one hand, a footnote.
+.. .. [#] On the other hand, another footnote.
 
-.. figure:: figure1.png
+.. .. figure:: figure1.png
 
-   This is the caption. :label:`egfig`
+..    This is the caption. :label:`egfig`
 
-.. figure:: figure1.png
-   :align: center
-   :figclass: w
+.. .. figure:: figure1.png
+..    :align: center
+..    :figclass: w
 
-   This is a wide figure, specified by adding "w" to the figclass.  It is also
-   center aligned, by setting the align keyword (can be left, right or center).
+..    This is a wide figure, specified by adding "w" to the figclass.  It is also
+..    center aligned, by setting the align keyword (can be left, right or center).
 
-.. figure:: figure1.png
-   :scale: 20%
-   :figclass: bht
+.. .. figure:: figure1.png
+..    :scale: 20%
+..    :figclass: bht
 
-   This is the caption on a smaller figure that will be placed by default at the
-   bottom of the page, and failing that it will be placed inline or at the top.
-   Note that for now, scale is relative to a completely arbitrary original
-   reference size which might be the original size of your image - you probably
-   have to play with it. :label:`egfig2`
+..    This is the caption on a smaller figure that will be placed by default at the
+..    bottom of the page, and failing that it will be placed inline or at the top.
+..    Note that for now, scale is relative to a completely arbitrary original
+..    reference size which might be the original size of your image - you probably
+..    have to play with it. :label:`egfig2`
 
-As you can see in Figures :ref:`egfig` and :ref:`egfig2`, this is how you reference auto-numbered
-figures.
+.. As you can see in Figures :ref:`egfig` and :ref:`egfig2`, this is how you reference auto-numbered
+.. figures.
 
-.. table:: This is the caption for the materials table. :label:`mtable`
+.. .. table:: This is the caption for the materials table. :label:`mtable`
 
-   +------------+----------------+
-   | Material   | Units          |
-   +============+================+
-   | Stone      | 3              |
-   +------------+----------------+
-   | Water      | 12             |
-   +------------+----------------+
-   | Cement     | :math:`\alpha` |
-   +------------+----------------+
-
-
-We show the different quantities of materials required in Table
-:ref:`mtable`.
+..    +------------+----------------+
+..    | Material   | Units          |
+..    +============+================+
+..    | Stone      | 3              |
+..    +------------+----------------+
+..    | Water      | 12             |
+..    +------------+----------------+
+..    | Cement     | :math:`\alpha` |
+..    +------------+----------------+
 
 
-.. The statement below shows how to adjust the width of a table.
-
-.. raw:: latex
-
-   \setlength{\tablewidth}{0.8\linewidth}
+.. We show the different quantities of materials required in Table
+.. :ref:`mtable`.
 
 
-.. table:: This is the caption for the wide table.
-   :class: w
+.. .. The statement below shows how to adjust the width of a table.
 
-   +--------+----+------+------+------+------+--------+
-   | This   | is |  a   | very | very | wide | table  |
-   +--------+----+------+------+------+------+--------+
+.. .. raw:: latex
 
-Unfortunately, restructuredtext can be picky about tables, so if it simply
-won't work try raw LaTeX:
+..    \setlength{\tablewidth}{0.8\linewidth}
 
 
-.. raw:: latex
+.. .. table:: This is the caption for the wide table.
+..    :class: w
 
-   \begin{table*}
+..    +--------+----+------+------+------+------+--------+
+..    | This   | is |  a   | very | very | wide | table  |
+..    +--------+----+------+------+------+------+--------+
 
-     \begin{longtable*}{|l|r|r|r|}
-     \hline
-     \multirow{2}{*}{Projection} & \multicolumn{3}{c|}{Area in square miles}\tabularnewline
-     \cline{2-4}
-      & Large Horizontal Area & Large Vertical Area & Smaller Square Area\tabularnewline
-     \hline
-     Albers Equal Area  & 7,498.7 & 10,847.3 & 35.8\tabularnewline
-     \hline
-     Web Mercator & 13,410.0 & 18,271.4 & 63.0\tabularnewline
-     \hline
-     Difference & 5,911.3 & 7,424.1 & 27.2\tabularnewline
-     \hline
-     Percent Difference & 44\% & 41\% & 43\%\tabularnewline
-     \hline
-     \end{longtable*}
+.. Unfortunately, restructuredtext can be picky about tables, so if it simply
+.. won't work try raw LaTeX:
 
-     \caption{Area Comparisons \DUrole{label}{quanitities-table}}
 
-   \end{table*}
+.. .. raw:: latex
 
-Perhaps we want to end off with a quote by Lao Tse [#]_:
+..    \begin{table*}
 
-  *Muddy water, let stand, becomes clear.*
+..      \begin{longtable*}{|l|r|r|r|}
+..      \hline
+..      \multirow{2}{*}{Projection} & \multicolumn{3}{c|}{Area in square miles}\tabularnewline
+..      \cline{2-4}
+..       & Large Horizontal Area & Large Vertical Area & Smaller Square Area\tabularnewline
+..      \hline
+..      Albers Equal Area  & 7,498.7 & 10,847.3 & 35.8\tabularnewline
+..      \hline
+..      Web Mercator & 13,410.0 & 18,271.4 & 63.0\tabularnewline
+..      \hline
+..      Difference & 5,911.3 & 7,424.1 & 27.2\tabularnewline
+..      \hline
+..      Percent Difference & 44\% & 41\% & 43\%\tabularnewline
+..      \hline
+..      \end{longtable*}
 
-.. [#] :math:`\mathrm{e^{-i\pi}}`
+..      \caption{Area Comparisons \DUrole{label}{quanitities-table}}
+
+..    \end{table*}
+
+.. Perhaps we want to end off with a quote by Lao Tse [#]_:
+
+..   *Muddy water, let stand, becomes clear.*
+
+.. .. [#] :math:`\mathrm{e^{-i\pi}}`
 
 .. Customised LaTeX packages
 .. -------------------------
