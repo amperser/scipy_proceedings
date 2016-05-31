@@ -72,7 +72,6 @@ As a language tool for scientists:
 * ESL?
 
 
-
 As a tool for language science
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -88,31 +87,24 @@ Most extensive usage-sensitive stylometric feature extractor we know of.
 
 
 
-    
 our general approach
 --------------------
 
-We want
-
-
 Various ways to divide up the kinds of problems
 #. Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
-    #. Replacement rule
-    #. Regex
-    #. NLP
-    #. NLP, beyond state-of-the-art
-    #. AI-complete
+#. Replacement rule
+#. Regex
+#. NLP
+#. NLP, beyond state-of-the-art
+#. AI-complete
 #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 #. Divide up by content  (What sorts of rules say similar things to this one?)
-
 
 Large scale problems require scalable resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open source license allows the community of users to become a community of builders. 
 Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
-
-
 
 
 
@@ -288,6 +280,7 @@ The first few apply in general, the latter apply in the case of scientific and t
 
 
 solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+
 
 
 Bibliographies, citations and block quotes
