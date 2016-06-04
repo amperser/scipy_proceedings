@@ -45,24 +45,20 @@ Our collective knowledge about best practices in writing is trapped, waiting to 
 The solution
 ============
 
-To solve this, we built Proselint, a Python-based linter for prose. 
-A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. 
-Proselint identifies violations of expert style and usage guidelines.
-It is both a command line tool and has been adapted as a plugin for a variety of text editors including SublimeText, vim, &c.
+To solve this, we built Proselint, a Python-based linter for prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. Proselint thus identifies violations of expert style and usage guidelines.
 
-Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
+Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, vim, &c. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
 Two views on proselint
 ======================
 
-Proselint can be seen as both a language tool for scientists and a tool for language science. 
-On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and explore the factors relevant to creating a useful linter.
+Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and help to explore the factors relevant to creating a useful linter.
 
 
-As a language tool for scientists:
+As a language tool for scientists
 ----------------------------------
 
-Science and writing are fast friends; science as we know it would not be possible without the written word. But cutting-edge scientific research is – by necessity – difficult to understand by all but those who are most acquainted with the idea. Even expressing those ideas challenges the greatest of minds, leaving little time for eradicating opacity from prose. Nonetheless, opacity is the enemy of the proliferation of any idea.
+Science and writing are fast friends; science as we know it would not be possible without the written word. But cutting-edge scientific research is, by necessity,  difficult to understand by all but those most acquainted with it. Even expressing those ideas challenges the greatest of minds, leaving little time for eradicating opacity from prose. Nonetheless, opacity is the enemy of the proliferation of any idea.
 
 Proselint can aid specifically improve scientists' writings across a number of dimensions:
 
@@ -72,13 +68,12 @@ Proselint can aid specifically improve scientists' writings across a number of d
 * typographic niceties
 * 
 
-Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be incredibly useful as demonstrated by the following graph of the errors identified by proselint in this year's scipy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to scipy 2016].
+Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be useful, as demonstrated by the following graph of the errors identified by proselint in this year's scipy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to scipy 2016].
 
 As a tool for language science
 ------------------------------
 
-In the course of developing the tool, we have identified features implicit to the problem of error-detection and correction in general, as well as language linting specifically. 
-
+In the course of developing the tool, we have identified several features implicit to the problem of error-detection and correction in general, as well as language linting specifically.
 
 Additionally, the normative content inherent in proselint right now is unnecessary. We could use this merely to detect whether people use various words. By doing that proselint  acts as a stylometric feature extractor unlike any other. This opens the door to a variety of possibilities for future applications and generalisations of this kind of a platform.
 
