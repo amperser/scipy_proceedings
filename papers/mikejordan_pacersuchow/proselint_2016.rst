@@ -28,7 +28,7 @@ Proselint
 The problem
 ===========
 
-Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. Consider for example *Garner's Modern English Usage*, an authoritative usage guide with 11,000 entries covering a broad range of topics that, when followed, help writers produce clean and idiomatic prose. Or consider the *Federal Plain Language Guidelines*, a 2011 guide created by employees of the U.S. federal government to promote writing that is clear, consise, and well-organized. Professional conferences, such as the annual meeting of the American Copy Editors Society, are dedicated to sharing knowledge about editing prose. And within the academy, organizations such as the American Psychological Association publish manuals whose guidance on style has been adopted as a standard. Advice on writing abounds.
+Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. Consider for example *Garner's Modern English Usage*, an authoritative usage guide with 11,000 entries covering a broad range of topics that, when followed, help writers produce clean and idiomatic prose. Or consider the *Federal Plain Language Guidelines*, a 2011 guide created by employees of the U.S. federal government to promote writing that is clear, concise, and well-organized. Professional conferences, such as the annual meeting of the American Copy Editors Society, are dedicated to sharing knowledge about editing prose. And within the academy, organizations such as the American Psychological Association publish manuals whose guidance on style has been adopted as a standard. Advice on writing abounds.
 
 Advice on writing touches upon everything from superficial conventions to the deepest reflections of our society and its attitudes. Take for example advice concerning the preferred forms of words such as "connote" (vs. "connotate"), which may help to prune needless variants in spelling, but are unlikely to effect the reader's understanding of the text and its author. Compare this to advice concerning needlessly gendered language ("woman scientist", "policeman"), which by being commonplace in language may perpetuate social inequality.
 
@@ -36,7 +36,7 @@ Having amassed a pile of useful advice is not enough to make writing better. Adv
 
 .. linter advantage: Instant feedback? e.g.,
 
-Today, an author wishing to improve a piece of writing by applying the collective wisdom of experts must use indirect means. The most common approach, used extensively in publishing, is a division of labor whereby dedicated staff with deep knowledge of best practices in writing copyedit a piece to their satisfaction. This is the approach used, for example, by *The New Yorker*, whose editing team includes fact checkers, editors, grammarians, and more. A second approach, used extensively in desktop publishing, is a reliance on software-based tools such as spellcheckers and grammar checkers that mark unrecognized words and purported violations of grammatical rules.
+Today, an author wishing to improve a piece of writing by applying the collective wisdom of experts must use indirect means. The most common approach, used extensively in publishing, is a division of labour whereby dedicated staff with deep knowledge of best practices in writing copyedit a piece to their satisfaction. This is the approach used, for example, by *The New Yorker*, whose editing team includes fact checkers, editors, grammarians, and more. A second approach, used extensively in desktop publishing, is a reliance on software-based tools such as spell and grammar checkers that mark unrecognised words and purported violations of grammatical rules.
 
 Neither of these approaches — expert staff and extant software-based tools — fully solve the problem. Few people have the resources to outsource editing of everything they write to expert staff, and getting the advice inevitably takes time because copyeditors do not look over one's shoulder and whisper advice during the act of writing —  by the time you receive their notes, you have already missed out on the best opportunity to strengthen your craft. And software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible.
 
@@ -45,7 +45,7 @@ Our collective knowledge about best practices in writing is trapped, waiting to 
 The solution
 ============
 
-To solve this, we built Proselint, a Python-based linter for prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it and identified where it violates. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. Proselint thus identifies violations of expert style and usage guidelines.
+To solve this, we built Proselint, a Python-based linter for prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it and identified where it violates. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. Proselint thus identifies violations of expert style and usage guidelines.
 
 Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, vim, &c. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
@@ -68,7 +68,7 @@ Proselint can aid specifically improve scientists' writings across a number of d
 * typographic niceties
 * 
 
-Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be useful, as demonstrated by the following graph of the errors identified by proselint in this year's scipy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to scipy 2016].
+Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be useful, as demonstrated by the following graph of the errors identified by proselint in this year's SciPy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to SciPy 2016].
 
 As a tool for language science
 ------------------------------
@@ -92,8 +92,8 @@ Various ways to divide up the kinds of problems
 
 #.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
 
-    #. Replacement rules
-    #. Regex
+    #. One-to-one replacement rules
+    #. Regular expressions
     #. Basic syntax processing
     #. NLP, state-of-the-art
     #. NLP, beyond state-of-the-art
@@ -296,7 +296,7 @@ Proselint is fertile ground for growing an open-source community. It has trivial
 Existing modules
 ----------------
 
-Here is a list of what `proselint` checks.
+Above we provide a table of some of the rules that ``proselint`` currently checks.
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -483,7 +483,7 @@ Levels of difficulty
 In a loose analogy to the Chomskian hierarchy of formal grammars, we have identified levels of difficulty in problems faced by any language linter.
 
 #. Replacement rules
-#. Regex
+#. Regular expressions
 #. Basic syntax processing
 #. NLP, state-of-the-art
 #. NLP, beyond state-of-the-art
@@ -499,7 +499,7 @@ Every new tool faces the central challenge of adoption: demonstrating that cost 
 In contrast, tools that improve existing capabilities are at a comparative disadvantage. They need to demonstrate that their use provides a substantial improvement on the status quo. This is the case for proselint and all other language tools. When the use of the tool requires modifying existing workflows -- as was the case for many earlier language tools -- greater utility needed to be demonstrated to offset the additional cost.
 
 Because of the need to demonstrate utility, earlier tools attempted attempted to offer as much help as was possible. 
-In a sense, they weilded a cudgel, impacting the writing to which they were applied with maximal force.
+In a sense, they wielded a cudgel, impacting the writing to which they were applied with maximal force.
 Consequently, that force was felt. 
 The writers who used those tools would see many genuine errors, even errors that Proselint would not detect. 
 Overall, though, this emphasis on demonstrating their power was to their detriment. 
@@ -524,7 +524,7 @@ The lintscore is defined as
 .. math::
     \frac{T^{k+1}}{(T+F)^k}
 
-where :math:`k` is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
+where :math:`k` is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature parameter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
 
 This score does not take into account false negatives or true negatives, and the reason it does not is worth mentioning as it illustrates one of the core problems with prose linting.
 
@@ -560,7 +560,7 @@ That means that without further specification, the number will grow extremely ra
 Problem 2: Arbitrariness of "potential activations"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommeasurable [#]_.
+If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommensurable [#]_.
 
 
 .. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
@@ -578,7 +578,7 @@ So, if we consider all possible rule sets for evaluating any finite bit of prose
 
 Finally, false negatives lack meaning without some particular positive model to be contrasted against the model under consideration.
 A false negative states that a violation occurred that was not identified.
-But one cannot say that a violation occurred without specifying what violation was that occurred, meaning that a positive model for identifying which violations were possible in the first place is neeeded.
+But one cannot say that a violation occurred without specifying what violation was that occurred, meaning that a positive model for identifying which violations were possible in the first place is needed.
 
 Our implicit comparison is to the null model.
 And the defining feature of the null-model is that it makes no positive statements at all.
@@ -602,10 +602,10 @@ Thus, while we would be able to provide comparisons between the recommendations 
 To build the kind of trust we are aiming at, we need to be precisely attuned to the linguistic intuitions of human writers themselves. 
 There is no way of knowing that a linting rule activation was successful or unsuccessful without direct feedback.
 This is why we have developed a corpus of writings from well-established publications and manually coded them to identify false and true positives. 
-It is this corpus that we use to measure proselint's lintscore. 
+It is this corpus that we use to measure Proselint's lintscore. 
 
 One of the biggest hindrances for adding new rules (at all) and more complicated and nuanced rules (in particular) stems from the difficulty of efficiently measuring how they affect our lintscore.
-A key feature in growing proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
+A key feature in growing Proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
 
 
 Published expertise as primary source
@@ -678,11 +678,13 @@ Infrastructural details
 Contribution infrastructure
 ---------------------------
 
-Issues are on github repo. 
+There are many ways to contribute to Proselint. 
 
-Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+One primary avenue is to use issues on our GitHub repository. 
 
-Final decision of whether to include it in the default set of rules is up to us.
+New rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+
+The final decision of whether to include it in the default set of rules is up to us.
 
 We have not included rule modules that are by default left off but can be turned on. 
 Though we are not opposed to this in principle, it is difficult to see why we should do so. 
@@ -708,7 +710,7 @@ Rule templates
 Memoization
 ^^^^^^^^^^^
 
-One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
+One of our goals is for Proselint to be efficient, able to run over a document in real time as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizeable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 Concerns around normativity in prose styling
 ============================================
@@ -735,7 +737,7 @@ And, as a final point, we can do little better than to give a modified quote fro
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
-.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labeled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
+.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
 
 
