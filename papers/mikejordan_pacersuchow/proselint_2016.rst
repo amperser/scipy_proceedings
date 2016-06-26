@@ -494,19 +494,37 @@ One of the biggest differences between these levels of difficulty is how hard it
 Wield a rapier not a cudgel
 ---------------------------
 
-Existing tools for improving prose raise so many false alarms that their advice can not be trusted. The writer must carefully consider whether to accept or reject each change.
+Every new tool faces the central challenge of adoption: demonstrating that cost of learning how to use it is outweighed by the utility it provides. This holds for language tools as well as any other. Pen and ink, paper, and the computer have shown their ability to facilitate language production. These tools allow for entirely new modes of communication; tools that introduce new capabilities need only to demonstrate that the capability is useful. 
 
-We aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
+In contrast, tools that improve existing capabilities are at a comparative disadvantage. They need to demonstrate that their use provides a substantial improvement on the status quo. This is the case for proselint and all other language tools. When the use of the tool requires modifying existing workflows -- as was the case for many earlier language tools -- greater utility needed to be demonstrated to offset the additional cost.
+
+Because of the need to demonstrate utility, earlier tools attempted attempted to offer as much help as was possible. 
+In a sense, they weilded a cudgel, impacting the writing to which they were applied with maximal force.
+Consequently, that force was felt. 
+The writers who used those tools would see many genuine errors, even errors that Proselint would not detect. 
+Overall, though, this emphasis on demonstrating their power was to their detriment. 
+
+Each flag a language tool produces might be an error, but it also could be a false alarm. 
+Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (making :math:`T+F` the total number of flags raised by the tool).
+
+The cudgel approach attempts to maximise :math:`T`, finding as many errors as possible.
+:math:`F` is not a quantity under consideration.
+Consequently these tools raise so many false alarms that their advice can not be trusted. 
+The writer must carefully consider whether to accept or reject each change. 
+
+Proselint aims to be a rapier, rather than a cudgel.
+Whereas a cudgel indiscriminately injures large areas of flesh, the rapier pinpoints weak spots and exclusively strikes where it will make the most impact. 
+With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead — with stronger, tighter prose. 
 Better to be quiet and authoritative than loud and unreliable. 
 
-To do this we limit the number of false positives, by measuring the performance performance of proselint by tracking its lintscore.
+To do this we limit the number of false positives :math:`F`, by measuring the performance of proselint by tracking its lintscore.
 
 The lintscore is defined as 
 
 .. math::
     \frac{T^{k+1}}{(T+F)^k}
 
-where k is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
+where :math:`k` is a free parameter that allows you to determine the degree to which the false positive rate is sensitive to the absolute number of true corrections versus the proportion of errors identified that are true positives. If instead we used the raw, scaled false positive rate :math:`\frac{T^{k}}{(T+F)^k}`, *k* becomes a temperature paramter that merely adjusts the implicit scale penalising false negatives in terms of how far it makes the value from 1.0 (or 100%).
 
 This score does not take into account false negatives or true negatives, and the reason it does not is worth mentioning as it illustrates one of the core problems with prose linting.
 
@@ -963,10 +981,5 @@ Work on proselint was supported in part by the `Berkeley Center for Technology, 
 ..      :usepackage: somepackage
 
 ..      Some custom LaTeX source here.
-
-References
-----------
-.. [Atr03] P. Atreides. *How to catch a sandworm*,
-           Transactions on Terraforming, 21(3):261-300, August 2003.
 
 
