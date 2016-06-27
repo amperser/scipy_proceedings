@@ -265,16 +265,6 @@ Memoization
 
 One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
-Future
-------
-
-Prosewash
-^^^^^^^^^
-Next steps: more intense processing with riskier rules
-False positive checking with crowd sourcing
-Feedsback to improve proselint
-
-One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
 
 Concerns around normativity in prose styling
@@ -724,7 +714,8 @@ The first few apply in general, the latter apply in the case of scientific and t
 
 A good deal of the advice in proselint points out that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
-The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter.
+The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. 
+Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter.
 Novelty will continue to introduce new usages, and some of them will be poor. 
 Authors identified as trustworthy may point these out, but this will only be in retrospect. 
 If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
@@ -744,14 +735,95 @@ And, as a final point, we can do little better than to give a modified quote fro
 
 Future
 ======
-stuff will occur
+We see a number of directions for future development. 
+
+Improving in-practice false positive rates
+------------------------------------------
+
+The most important change as we see it is improving the false positive rate of proselint output.
+Currently this requires an author manually evaluating the output of each linting rule.
+A mechanism for dividing this task into independent isolable chunks and a process for evaluating those chunks will make checking for false positives much easier.  
+It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation of of the author.
+
+
+Context sensitive rule application
+----------------------------------
+
+Many rules may apply better to some kinds of documents than others. For example, in most cases "extendible" will be conventionally preferable to "extensible"; in software development the opposite is likely to be the case. Applying these rules without consideration of the document context will introduce false positives in a systematic fashion. We have often avoided those rules, as they guarantee an increase in the number of false positives. 
+
+If we detect the context in which a rule is to be applied (such as document topic, format or genre), we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced.
+
+Generalising this ability will be crucial to safely growing Proselint error coverage.
+
+
+Improved self-evaluation procedure
+----------------------------------
+
+We currently calculate our lintscore manually on a static corpus of professionally edited documents. This process can be improved in a number of ways that will lead to different kinds of improvement in Proselint.  
+
+Multiple corpora with different features
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We currently only have a single corpus for analysing proselint's performance. 
+It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. 
+This efficiently alerts us to false-alarms that are introduced by the inclusion of new rules. 
+However, it does a poor job of estimating performance on a variety of other metrics.
+
+A corpus of relatively green documents are more likely to have true positives and (consequently) will improve our estimates of proselint's positive utility. 
+
+Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields. 
+Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.
+
+Different document formats (e.g,``.rst``, ``.tex``, ``.md``,``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
+
+Automating the evaluation process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently the analysis procedure requires a particular individual evaluating the proposed errors and determining whether they are true or false positives.
+Using some kind of load distribution mechanism (e.g., crowd sourcing) would make this easier. 
+
+Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities.
+There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalysing the entirety of a document every time it changes.
+While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
+
+Authorship attribution, ghost-writing, and anonymisation
+--------------------------------------------------------
+
+Stylometrics has extensively studied the problem of identifying the true authors of documents. 
+Many of these studies focus on the relative frequencies with which individual words are used (especially function words).
+For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*.
+Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
+
+One application improved authorship identification is the ability to detect ghost-written documents (assuming you have a ground corpus to identify stylometric patterns in the author's writing). This could have applications to identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). 
+
+On the other hand, someone who applies proselint to their text may be able to escape identification even by a group who has access to that a ground corpus by the author. In cases where anonymity is desired, proselint can act as a tool to erase the author of a text.
+
+Subdocument analysis
+--------------------
+
+Currently rule scope needs to be done at a word, sentence, paragraph or document level. 
+Some rules may be better applied over different subdocument sections. 
+For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic.
+Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
+
+The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling. 
+If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents. 
+The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers.
+On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
+
+
+.. Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
+
 .. Prosewash
 .. ---------
 .. Next steps: more intense processing with riskier rules
 .. False positive checking with crowd sourcing
 .. Feeds back to improve proselint
+.. 
 
-.. Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
+.. Isolable 
+
+
 
 Acknowledgements
 ================
