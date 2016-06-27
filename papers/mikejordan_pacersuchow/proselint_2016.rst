@@ -13,13 +13,11 @@
 
     \newcommand{\DUrolesc}{\textsc}
     \newcommand{\DUrolesf}{\textsf}
-    \newcommand{\DUrolenoindent}{\noindent}
-
+    
 .. role:: sc
 
 .. role:: sf
 
-.. role:: noindent
 
 
 
@@ -330,7 +328,7 @@ Above we provide a table of some of the rules that ``proselint`` currently check
    +---------------------------------+---------------------------------------------+
    |``cursing.nfl``                  | Avoiding words banned by the NFL            |
    +---------------------------------+---------------------------------------------+
-   |``dates_times.am_pm``            | Using the right form for the time of day    |
+   |``dates_times.am_pm``            | Using the right form for  time              |
    +---------------------------------+---------------------------------------------+
    |``dates_times.dates``            | Stylish formatting of dates                 |
    +---------------------------------+---------------------------------------------+
@@ -358,7 +356,7 @@ Above we provide a table of some of the rules that ``proselint`` currently check
    +---------------------------------+---------------------------------------------+
    |``misc.chatspeak``               | Avoiding lolling and other chatspeak        |
    +---------------------------------+---------------------------------------------+
-   |``misc.commercialese``           | Avoiding jargon of the commercial world     |
+   |``misc.commercialese``           | Avoiding commerical jargon                  |
    +---------------------------------+---------------------------------------------+
    |``misc.currency``                | Avoiding redundant currency symbols         |
    +---------------------------------+---------------------------------------------+
@@ -477,12 +475,13 @@ That would reduce a linter's job to catching mistakes in execution rather than i
 On the other hand, more subtle errors like long range plurality noun-verb agreement requires[#]_  can evade even native speakers.
 But it is precisely *because* these errors can pass by unnoticed that they can be safely ignored.
 
+.. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
+
 More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-complete.
 That is, it requires human-level intelligence and native speaker expertise to get things right(and even then it might not be enough). Furthermore, even if we did have the tools to identify grammatical rules, using those tools (by )
 
 Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-.. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
 
 Levels of difficulty
 --------------------
@@ -535,18 +534,17 @@ where :math:`k` is a free parameter that changes the strictness of the penalty i
 
 We could use :math`(1-\alpha)^k` or the raw scaled *true*-positive rate :math:`\frac{T^{k}}{(T+F)^k}`, in which case *k* can be seen to be the number of times we apply the penalty. The full lintscore takes into account the degree to which proselint was able to say anything at all while also scalably penalising against large false-positive rates.
 
-Motivating a generalised lintscore
+:sc:`Motivating a generalised lintscore`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One intuition behind this rule can be found if you consider separately estimating the false positive rate of a rule-set and the success of a particular application of the rule-set to a document. The calculated false-positive rate as applied to a corpus can be thought of as the maximum likelihood estimate of the probability that given a randomly selected instance of a flag in the corpus is a false positive. This perspective means that we can treat the corpus as an estimate of a generative model for linting quality in new documents without a manual analysis. This allows generalising a score for new documents without needing to calculate the false positive rate for the individual document.
 
-Suppose that each flag in a new document are false positives with a Bernoulli distribution with probability equal to the estimated false positive rate from the corpus (:math:`\hat{\alpha=\frac{\hat{F}}{\hat{T}+\hat{F}}`). If the new document generates :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If this is multiplied by the number of true positives under this perfect case (i.e., :math:`T\equiv N`) we have
-
+Suppose that each flag in a new document are false positives with a Bernoulli distribution with probability equal to the estimated false positive rate from the corpus (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). If the new document generates :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If this is multiplied by the number of true positives under this perfect case (i.e., :math:`T\equiv N`) we have
 
 .. math::
     N(1-\hat{\alpha})^N
 
-:noindent: which is a generalised lintscore, with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the total number of events which are presumed to be successes(:math:`k\equiv N`).
+which is a generalised lintscore, with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the total number of events which are presumed to be successes(:math:`k\equiv N`).
 
 
 Lintscores and false-negatives
@@ -557,8 +555,8 @@ This score does not take into account false negatives or true negatives, and the
 False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that may not in other signal detection problems. Thus a full recall-precision curve analysis seems inappropriate in this domain.
 
 
-Problem 0: Building off of a default
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 0: Building off of a default`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In a tautological sense, every editor has a version of proselint (and any other automated writing aid) already installed, it is merely installed with the null rule-set.
 That is, the set of rules that claim no substrings anywhere have any faults whatsoever; literally, anything goes.
@@ -575,32 +573,32 @@ Negative statements are the remnants of the null rule-set, meaning they are less
 
 In short, all linters and all language tools will be missing most errors by virtue of the problem they are trying to solve. Given this, avoiding the pitfalls of a high false-positive rate will be the comparison that matters most for determining their value.
 
-Problem 1: Magnitude of "potential activations"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 1: Magnitude of "potential activations"`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
 
 That means that without further specification, the number will grow extremely rapidly. If this occurs and the rule set is sparsely activated(it has specifically tailored rules in the manner of proselint), this means that the true negative score will be near 1, because there were so many opportunities for rules to be applied and they were not. If this occurs and the rule set is densely activated, the recommendations in aggregate will be incomprehensible as they will be so densely packed as to be unable to represent a coherent claim about the totality of the text.
 
 
-Problem 2: Arbitrariness of "potential activations"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 2: Arbitrariness of "potential activations"`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommensurable [#]_.
 
 
 .. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
 
-*Problem 3*: Infinitude/nonuniqueness of "potential activations"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 3: Infinitude/nonuniqueness of "potential activations"`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
 
 There are an infinite number of possible rule sets (in general), in the same way that there are an infinite number of possible strings.
 So, if we consider all possible rule sets for evaluating any finite bit of prose, there will always be an infinite number of potential interpretations. Because those interpretations could conflict with one another while agreeing in a set theoretic sense on which substrings are to be flagged, you cannot count on any agreement that is characterised only in terms of the strings to be uniquely identifiable and associated with any particular set of potential activations.
 
-*Problem 4*: False negatives are undefined without a positive model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`*Problem 4*: False negatives are undefined without a positive model`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Finally, false negatives lack meaning without some particular positive model to be contrasted against the model under consideration.
 A false negative states that a violation occurred that was not identified.
@@ -730,8 +728,8 @@ Proselint rules are organized into modules that reflect the structure on languag
 
 Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
 
-Rule templates
-^^^^^^^^^^^^^^
+:sc:`Rule templates`
+^^^^^^^^^^^^^^^^^^^^
 
 In general a rule needs to simply take in a string of text of some sort, and then apply some sort of logic identifying whether a rule has been violated, and return a value in the correct format.
 
@@ -857,12 +855,14 @@ If one does not trust a guide's point of view, our strongest recommendation woul
 Scientific writing is characterised by consistent 
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword[#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
-    
+
+.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
+
+
     [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
-.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
 
 
@@ -871,14 +871,57 @@ Future
 ======
 We see a number of directions for future development. 
 
-Improving in-practice false positive rates
+Scalable, dynamic false-positive detection
 ------------------------------------------
 
-The most important change as we see it is improving the false positive rate of proselint output.
-Currently this requires an author manually evaluating the output of each linting rule.
-A mechanism for dividing this task into independent isolable chunks and a process for evaluating those chunks will make checking for false positives much easier.  
-It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation of of the author.
+The key feature to proselint's success are its low false positive rates. 
+However, to identify the rate, we first must identify whether a flag is a false or true positive.
+Currently, detecting false positives requires an author manually evaluating the output of each linting flag.
+This does not scale to even small documents sets.
+The problem is made worse when you consider that each time the linter is run this process would need to be repeated. 
 
+To address dynamic documents, it would be useful to have the ability to detect when an error that has already been flagged.
+Until this is addressed a false positive analysis will only be efficient when done over static corpora of documents. 
+Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
+
+We are investigating mechanisms for allowing for scalable dynamic false positive detection.
+One mechanism is to divide this task into independent isolable chunks. 
+This combined with a process for rapidly evaluating those chunks will make checking for false positives much easier even on an individual level.
+It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation off of the author.
+
+This would require solving some decision theoretic problems in order to efficiently sample the false positive rate as it applies particular linting flags or even entire rules.
+If this can be accomplished and automated, we could easily estimate the false positives found in a paper or a corpus.  
+More generally, we could build even richer versions of the generalised lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
+
+Prosewash: False positive elimination as a service
+--------------------------------------------------
+
+Any sort of load distribution mechanism will likely require some amount of human-time being devoted to the task of identifying whether particular flagged text is a false positive.
+Expecting people to donate their time will only create a backlog in this mechanism if it experiences even moderate demand.
+Thus, we may need to pay people to evaluate flags as false or true positives. 
+That, then, requires paying for the cost of crowdsourcing, which opens the door for a sustainable business model for supporting Proselint, without abandoning any of our open source principles.
+That is, we can successfully support our open source development efforts through a separate premium service model.
+
+
+We will provide individuals the ability to reduce false positive rates by connecting them to other individuals who will evaluate their prose.
+To pay for the costs of development, maintenance, and the crowd's time this will necessarily be a paid service, especially so for any solution that is intended to scale up to larger cases.
+A traditional clothing "linter" relies on the static properties of the linter to extract lint making the clothes cleaner.
+In analogy to this active evaluation process in contrast to the static linting process, we call the service Prosewash.
+
+One advantage of this kind of business model is that it avoids some of the pitfalls that can face an open source project's attempt to support itself.
+One pitfall is to take open source software and close off future development in order to extract rent from those advances.
+This approach respects the extant contributors to the project and the Proselint community by keeping the tool and its source open.
+Another pitfall is to develop features in software that could be given to everyone for free (in terms of the actual cost of distributing the feature), but are withheld from users who do not pay.
+Our approach respects the users and contributors by not building a premium programme and then hiding its capabilities from users.
+This would be a service not a feature; every time we recruit a crowd to solve a problem it will cost money.
+There is no way to provide that service without incurring costs, so we are not withholding any capabilities from users of Proselint.
+
+This also offers the advantage that in the course of running the service, we are collecting more and more data about Proselint in the wild.
+We can learn the base-rates at which different rules are invoked as well as their specific false positive rates.
+As we introduce more contextual information (and thus riskier rules), this data will be invaluable to effectively tune our rule-set.
+So while this financially supporting further development on Proselint, that is not the only way Prosewash improve Proselint. 
+The data gathered through the process of washing people's prose more actively, can then be fed back to improve Proselint and tune its rulesets and defaults. 
+Thus participation in the premium service will provide direct improvements to the Proselint community irrespective of assigned development time.
 
 Context sensitive rule application
 ----------------------------------
@@ -887,7 +930,13 @@ Many rules may apply better to some kinds of documents than others. For example,
 
 If we detect the context in which a rule is to be applied (such as document topic, format or genre), we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced.
 
-Generalising this ability will be crucial to safely growing Proselint error coverage.
+Generalising this ability will be crucial to safely growing Proselint error coverage. 
+In the sense that a riskier rule is one with a higher false-positive rate, context sensitive rules are necessarily riskier than non-context sensitive rules.
+To see why, consider that if a rule introduced many false positives across all contexts it would not be included in Proselint.
+For rules that do not produce many false positives across contexts, there is no reason to make them context specific.
+The only reason to include context specific rule applications is if there are some contexts in which a rule produces higher false-positive rates than in other contexts.
+If those false-positive rates were low enough to not be excluded by the context insensitive version, their net false positive rate would only be lower, meaning it would certainly be included in the basic Proselint rule set (excluding it from candidacy as a context sensitive rule).
+Accordingly, introducing a rule that *should* be context sensitive, but without the appropriate context sensitivity, will guarantee an increased false positive rate.
 
 
 Improved self-evaluation procedure
@@ -895,8 +944,8 @@ Improved self-evaluation procedure
 
 We currently calculate our lintscore manually on a static corpus of professionally edited documents. This process can be improved in a number of ways that will lead to different kinds of improvement in Proselint.  
 
-Multiple corpora with different features
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Multiple corpora with different features`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We currently only have a single corpus for analysing proselint's performance. 
 It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. 
@@ -910,8 +959,8 @@ Given that certain rules could systematically be relevant to different fields or
 
 Different document formats (e.g,``.rst``, ``.tex``, ``.md``,``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
 
-Automating the evaluation process
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Automating the evaluation process`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Currently the analysis procedure requires a particular individual evaluating the proposed errors and determining whether they are true or false positives.
 Using some kind of load distribution mechanism (e.g., crowd sourcing) would make this easier. 
