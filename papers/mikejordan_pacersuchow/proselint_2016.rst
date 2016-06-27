@@ -9,6 +9,18 @@
 :video: http://www.youtube.com/
 :bibliography: mybib
 
+.. raw:: latex
+
+    \newcommand{\DUrolesc}{\textsc}
+    \newcommand{\DUrolesf}{\textsf}
+    \newcommand{\DUrolenoindent}{\noindent}
+
+.. role:: sc
+
+.. role:: sf
+
+.. role:: noindent
+
 
 
 ------------------------------------------------
