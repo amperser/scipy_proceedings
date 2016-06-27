@@ -9,6 +9,8 @@
 :video: http://www.youtube.com/
 :bibliography: mybib
 
+
+
 ------------------------------------------------
 Proselint
 ------------------------------------------------
@@ -250,23 +252,23 @@ If someone wants to include rules that are properly attributed it is unclear why
 Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
 
 
-Internal structure
-------------------
+.. Internal structure
+.. ------------------
 
-Rule modules
-^^^^^^^^^^^^
+.. Rule modules
+.. ^^^^^^^^^^^^
 
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module `terms` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, `terms.venery`,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, `terms.denizen_labels`, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+.. Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module `terms` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, `terms.venery`,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, `terms.denizen_labels`, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
-Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
+.. Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
 
-Rule templates
-^^^^^^^^^^^^^^
+.. Rule templates
+.. ^^^^^^^^^^^^^^
 
-Memoization
-^^^^^^^^^^^
+.. Memoization
+.. ^^^^^^^^^^^
 
-One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
+.. One of our goals is for Proselint to be efficient, able to run over a document in realtime as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 
 
@@ -695,12 +697,32 @@ Code infrastructure
 Rule modules
 ^^^^^^^^^^^^
 
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals --- e.g., a "pride" of lions, or a "murmuration" of starlings. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- e.g., *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals: for example, a "pride" of lions or a "murmuration" of starlings. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place: for example, *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
 Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
 
 Rule templates
 ^^^^^^^^^^^^^^
+
+In general a rule needs to simply take in a string of text of some sort, and then apply some sort of logic identifying whether a rule has been violated, and return a value in the correct format.
+
+In order to ease the production of such rules we have developed some rule templates for commonly used kinds of rules, including checking checking for whether a word exists (``existence_check()``), cross-document consistency in usage (``consistency_check()``), and suggesting preferred forms of usage (``preferred_forms_check()``). 
+
+Here is an example of a rule as implemented by the ``existence check`` rule template. 
+
+.. code-block:: python
+
+    @memoize
+    def check_midnight_noon(text):
+        """Check the text."""
+        err = "dates_times.am_pm.midnight_noon"
+        msg = (u"12 a.m. and 12 p.m. are wrong and confusing."
+               " Use 'midnight' or 'noon'.")
+        regex = "12 ?[ap]\.?m\.?"
+        return existence_check(text, [regex], err, msg)
+
+This checks whether someone has used either 12 
+
 
 Memoization
 ^^^^^^^^^^^
