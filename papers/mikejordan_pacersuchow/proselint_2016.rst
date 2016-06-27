@@ -192,16 +192,16 @@ The command line utility can also print the list of suggestions in JSON using th
 .. code-block:: javascript
 
   {
-      // Type of check that output this suggestion.
+      // The check originating this suggestion.
       "check": "wallace.uncomparables",
 
-      // Message to describe the suggestion.
+      // Message describing the suggestion.
       "message": "Comparison of an uncomparable: 'unique' can not be compared.",
 
-      // The person or organization giving the suggestion.
+      // The source of the suggestion.
       "source": "David Foster Wallace"
 
-      // URL pointing to the source material.
+      // URL pointing to source material.
       "source_url": "http://www.telegraph.co.uk/a/9715551"
 
       // Line where the error starts.
@@ -219,7 +219,7 @@ The command line utility can also print the list of suggestions in JSON using th
       // start - end
       "extent": 11,
 
-      // How important is this? Can be "suggestion", "warning", or "error".
+      // How important is this("suggestion", "warning", or "error")?
       "severity": "warning",
 
       // Possible replacements.
@@ -739,8 +739,8 @@ This checks whether someone has used either 12am or 12pm (or many variants, e.g.
 
 A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
 
-    .. code-block::
-        
+.. code-block::python
+    
     def consistency_check(text, word_pairs, err, msg, offset=0):
         """Build a consistency checker."""
         errors = []
@@ -762,13 +762,12 @@ A simplified version of ``existence_check()`` ``consistency_check()`` and ``pref
         return errors
 
 
-    def preferred_forms_check(text, list, err, msg, ignore_case=True, offset=0,
+    def preferred_forms_check(text, list, err, msg,
+                              ignore_case=True, offset=0,
                               max_errors=float("inf")):
         """Build a checker that suggests the preferred form."""
-        if ignore_case:
-            flags = re.IGNORECASE
-        else:
-            flags = 0
+        if ignore_case: flags = re.IGNORECASE
+        else: flags = 0
         msg = " ".join(msg.split())
         errors = []
         regex = u"[\W^]{}[\W$]"
@@ -793,16 +792,11 @@ A simplified version of ``existence_check()`` ``consistency_check()`` and ``pref
         """Build a checker that blacklists certain words."""
         flags = 0
         msg = " ".join(msg.split())
-        if ignore_case:
-            flags = flags | re.IGNORECASE
-        if str:
-            flags = flags | re.UNICODE
-        if dotall:
-            flags = flags | re.DOTALL
-        if require_padding:
-            regex = u"(?:^|\W){}[\W$]"
-        else:
-            regex = u"{}"
+        if ignore_case: flags = flags | re.IGNORECASE
+        if str: flags = flags | re.UNICODE
+        if dotall: flags = flags | re.DOTALL
+        if require_padding: regex = u"(?:^|\W){}[\W$]"
+        else: regex = u"{}"
         errors = []
         if excluded_topics:
             tps = topics(text)
