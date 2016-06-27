@@ -718,7 +718,7 @@ Rule templates
 
 In general a rule needs to simply take in a string of text of some sort, and then apply some sort of logic identifying whether a rule has been violated, and return a value in the correct format.
 
-In order to ease the production of such rules we have developed some rule templates for commonly used kinds of rules, including checking checking for whether a word exists (``existence_check()``), cross-document consistency in usage (``consistency_check()``), and suggesting preferred forms of usage (``preferred_forms_check()``). 
+In order to ease the production of new rules, we have written functions that help in following the protocol for commonly used kinds of rules. These include checking checking for whether a word exists (``existence_check()``), cross-document consistency in usage (``consistency_check()``), and suggesting preferred forms of usage (``preferred_forms_check()``). 
 
 Here is an example of a rule as implemented by the ``existence check`` rule template. 
 
@@ -733,7 +733,13 @@ Here is an example of a rule as implemented by the ``existence check`` rule temp
         regex = "12 ?[ap]\.?m\.?"
         return existence_check(text, [regex], err, msg)
 
-This checks whether someone has used either 12 
+This checks whether someone has used either 12am or 12pm (or many variants, e.g., 12AM, 12 P.M, 12aM.) and suggests the author use noon or midnight as is appropriate[#]_. 
+
+.. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
+
+A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
+
+ 
 
 
 Memoization
