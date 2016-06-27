@@ -240,7 +240,7 @@ Web-editor
 Advice: sources and examples
 ============================
 
-Proselint is built around advice[#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose.
+Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose.
 
 .. [#] Proselint has not been officially endorsed by any of these individuals. We have merely taken their words and implemented them in code. 
 
@@ -472,7 +472,7 @@ Proselint does not focus on grammar, which is at once too easy and too hard.
 Grammar is "too easy" because, for most native speakers, grammatical errors are easily identified (if not easily fixed).
 The errors that would leave the greatest negative impression will often appear to be glaring from the perspective of native speakers. 
 That would reduce a linter's job to catching mistakes in execution rather than in intent, obviating any chance of helping a writer improve in the course of her writing. 
-On the other hand, more subtle errors like long range plurality noun-verb agreement requires[#]_  can evade even native speakers.
+On the other hand, more subtle errors like long range plurality noun-verb agreement requires [#]_  can evade even native speakers.
 But it is precisely *because* these errors can pass by unnoticed that they can be safely ignored.
 
 .. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
@@ -535,7 +535,7 @@ where :math:`k` is a free parameter that changes the strictness of the penalty i
 We could use :math`(1-\alpha)^k` or the raw scaled *true*-positive rate :math:`\frac{T^{k}}{(T+F)^k}`, in which case *k* can be seen to be the number of times we apply the penalty. The full lintscore takes into account the degree to which proselint was able to say anything at all while also scalably penalising against large false-positive rates.
 
 :sc:`Motivating a generalised lintscore`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One intuition behind this rule can be found if you consider separately estimating the false positive rate of a rule-set and the success of a particular application of the rule-set to a document. The calculated false-positive rate as applied to a corpus can be thought of as the maximum likelihood estimate of the probability that given a randomly selected instance of a flag in the corpus is a false positive. This perspective means that we can treat the corpus as an estimate of a generative model for linting quality in new documents without a manual analysis. This allows generalising a score for new documents without needing to calculate the false positive rate for the individual document.
 
@@ -555,7 +555,7 @@ This score does not take into account false negatives or true negatives, and the
 False negatives can be understood in terms of cases where a rule should have activated and flagged the text, but failed to do so. True negatives can be understood as those opportunities where a rule was applied and successfully did not raise an error. Both of these ideas are problematic when analysing prose in a way that may not in other signal detection problems. Thus a full recall-precision curve analysis seems inappropriate in this domain.
 
 
-:sc:`Problem 0: Building off of a default`
+:sc:`Problem 0`: Building off of a default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In a tautological sense, every editor has a version of proselint (and any other automated writing aid) already installed, it is merely installed with the null rule-set.
@@ -573,7 +573,7 @@ Negative statements are the remnants of the null rule-set, meaning they are less
 
 In short, all linters and all language tools will be missing most errors by virtue of the problem they are trying to solve. Given this, avoiding the pitfalls of a high false-positive rate will be the comparison that matters most for determining their value.
 
-:sc:`Problem 1: Magnitude of "potential activations"`
+:sc:`Problem 1`: Magnitude of "potential activations"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is not clear how many chances there are for a rule to be activated when one considers analysing prose. It could be at the sentence level or it could be at the word level, or it could be at the pairs of words level. If we are maximally generous, any subset of words could comprise a potential activation instance for a rule, meaning that the number of rule opportunities in the most liberal terms is the Bell number of the number of words in any document being analysed.
@@ -581,23 +581,23 @@ It is not clear how many chances there are for a rule to be activated when one c
 That means that without further specification, the number will grow extremely rapidly. If this occurs and the rule set is sparsely activated(it has specifically tailored rules in the manner of proselint), this means that the true negative score will be near 1, because there were so many opportunities for rules to be applied and they were not. If this occurs and the rule set is densely activated, the recommendations in aggregate will be incomprehensible as they will be so densely packed as to be unable to represent a coherent claim about the totality of the text.
 
 
-:sc:`Problem 2: Arbitrariness of "potential activations"`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 2`: Arbitrariness of "potential activations"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If on the other hand you were to come up with a criterion that limits the number of potential activations, you now have an arbitrary criterion (likely defined by your language theory itself) that determines what counts as a potential activation. If different language theories postulate a set of potential activations that is neither a subset nor a superset of your rules, those language theories would then be incommensurable [#]_.
 
 
 .. [#] Note that this is not a problem for false positives because any rule that is not present in another theory can be treated as either a null result or a false positive by the theory lacking the rule. This stems from the fact that by default, all documents are already being analysed by the "null language theory" which states that there are no errors in any text. This gives a ground from which errors can be built up (since defining them in terms of the set of potential activations is so difficult) rather than winnowed down.
 
-:sc:`Problem 3: Infinitude/nonuniqueness of "potential activations"`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Problem 3`: Infinitude/nonuniqueness of "potential activations"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The same string (a sentence, for instance) can be analysed as being an error by two different theories for entirely different reasons. It is unclear whether two rules that identify the same text as problematic but differ in their justifications are in agreement or disagreement.
 
 There are an infinite number of possible rule sets (in general), in the same way that there are an infinite number of possible strings.
 So, if we consider all possible rule sets for evaluating any finite bit of prose, there will always be an infinite number of potential interpretations. Because those interpretations could conflict with one another while agreeing in a set theoretic sense on which substrings are to be flagged, you cannot count on any agreement that is characterised only in terms of the strings to be uniquely identifiable and associated with any particular set of potential activations.
 
-:sc:`*Problem 4*: False negatives are undefined without a positive model`
+:sc:`Problem 4`: False negatives are undefined without a positive model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Finally, false negatives lack meaning without some particular positive model to be contrasted against the model under consideration.
@@ -748,7 +748,7 @@ Here is an example of a rule as implemented by the ``existence check`` rule temp
         regex = "12 ?[ap]\.?m\.?"
         return existence_check(text, [regex], err, msg)
 
-This checks whether someone has used either 12am or 12pm (or many variants, e.g., 12AM, 12 P.M, 12aM.) and suggests the author use noon or midnight as is appropriate[#]_. 
+This checks whether someone has used either 12am or 12pm (or many variants, e.g., 12AM, 12 P.M, 12aM.) and suggests the author use noon or midnight as is appropriate [#]_. 
 
 .. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
 
@@ -854,7 +854,7 @@ If one does not trust a guide's point of view, our strongest recommendation woul
 
 Scientific writing is characterised by consistent 
 
-And, as a final point, we can do little better than to give a modified quote from the Foreword[#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
+And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
 .. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
@@ -957,7 +957,7 @@ A corpus of relatively green documents are more likely to have true positives an
 Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields. 
 Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.
 
-Different document formats (e.g,``.rst``, ``.tex``, ``.md``,``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
+Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
 
 :sc:`Automating the evaluation process`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
