@@ -44,7 +44,7 @@ Writing is notoriously hard, even for the best writers, and it's not for lack of
 
 Advice on writing touches upon everything from superficial conventions to the deepest reflections of our society and its attitudes. Take for example advice concerning the preferred forms of words such as "connote" (vs. "connotate"), which may help to prune needless variants in spelling, but are unlikely to effect the reader's understanding of the text and its author. Compare this to advice concerning needlessly gendered language ("woman scientist", "policeman"), which by being commonplace in language may perpetuate social inequality.
 
-Having amassed a pile of useful advice is not enough to make writing better. Advice, though it may be principled, thoughtful, and worth following, is hard to apply in new settings once it has been learned. Thus, even if one could absorb all the knowledge contained in these sources, there would still be the problem of recalling and systematically applying it. And even when its applicability is recognized, developing a new habit is still slow, costly, and difficult. Errors will appear and mistakes will be made.
+Having amassed a pile of useful advice is not enough to make writing better. This is becasue advice, though it may be principled, thoughtful, and worth following, is hard to apply in new settings once it has been learned :cite:`Argote2000`. Thus, even if one could absorb all the knowledge contained in these sources, there would still be the problem of recalling and systematically applying it. And even when its applicability is recognized, developing a new habit is still slow, costly, and difficult :cite:`Fogg2010`. Errors will appear and mistakes will be made.
 
 .. linter advantage: Instant feedback? e.g.,
 
