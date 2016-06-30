@@ -100,14 +100,13 @@ This opens the door to a variety of possibilities for future applications and ge
 For example, we have emphasised cases where there are accepted unique best practices in word usage, but the proselint infrastructure could also be applied to identify cases where there is more than one acceptable usage choice. 
 One could take a document and identify those cases where multiple words could be conveyed. 
 Then, assuming that both parties have the source document, a modified version that encodes messages based on word choice would be able pass those messages without demonstrating itself to have been an encoded message at all.
-So with moderate modifications, proselint could be a system for designing content aware steganographic systems, conveying hidden messages in their choice of words and styles.
+So with moderate modifications, proselint could be a system for designing content aware steganographic systems, conveying hidden messages in their choice of words and styles:cite:`bergmair2006content`.
 
-E.g.,
+.. E.g.,
 
-* Stylometrics.
-* Author identification.
-* Encoding messages (in the case of multiple acceptable options)
-* 
+.. * Stylometrics.
+.. * Author identification.
+.. * Encoding messages (in the case of multiple acceptable options) 
 
 Results
 =======
