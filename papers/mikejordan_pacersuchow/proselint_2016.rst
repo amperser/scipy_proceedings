@@ -57,7 +57,7 @@ Our collective knowledge about best practices in writing is thus essentially tra
 The solution
 ============
 
-To solve this problem, we built Proselint, a linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it, identifying problems with its syntax or style. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to authors in the form of a linter for prose. Proselint thus identifies violations of the style and usage guidelines that have been endorsed by experts.
+To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it, identifying problems with its syntax or style. Though many linters are used only after the fact, writing advice is best dispensed as you write. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to authors in the form of a linter for prose. Proselint thus identifies violations of the style and usage guidelines that have been endorsed by experts.
 
 Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats (e.g., JSON), allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
@@ -92,8 +92,8 @@ Results
 =======
 As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnotcied by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we acheived a lintscore of 98.8, reflecting detection of XX errors with XX false alarms (k = 2).
 
-Our general approach
-====================
+.. Our general approach
+.. ====================
 
 .. Dividing up the problem space
 .. -----------------------------
@@ -127,46 +127,46 @@ Our general approach
 .. #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 
 
-Desiderata for a linter
------------------------
+.. Desiderata for a linter
+.. -----------------------
 
-Desiderata are a set of desired criteria; these exist for almost all artefact classes, and usually stem from the aim for which the artefact is created. Like other designed systems, linters' ideal features stem from both the nature of the problem that they solve and the manner in which they attempt to solve the problem. 
+.. Desiderata are a set of desired criteria; these exist for almost all artefact classes, and usually stem from the aim for which the artefact is created. Like other designed systems, linters' ideal features stem from both the nature of the problem that they solve and the manner in which they attempt to solve the problem. 
 
-Linters (in a programming context) identify instances of code that either explicitly violates a set of stylistic rules (as in PEP8_) or is otherwise suspicious (as in cases where a variable is used before it has a value).
+.. Linters (in a programming context) identify instances of code that either explicitly violates a set of stylistic rules (as in PEP8_) or is otherwise suspicious (as in cases where a variable is used before it has a value).
 
-.. _PEP8: https://www.python.org/dev/peps/pep-0008/
+.. .. _PEP8: https://www.python.org/dev/peps/pep-0008/
 
-Thus to fulfill their aim, linters should  
+.. Thus to fulfill their aim, linters should  
 
-*   scale to arbitrarily many rules,
-*   flag exactly those instances of code that are suspicious,
-*   and flag no nonsuspicious code spuriously.
+.. *   scale to arbitrarily many rules,
+.. *   flag exactly those instances of code that are suspicious,
+.. *   and flag no nonsuspicious code spuriously.
 
-In most software linters, the perfect false positive rate and negative rate will be established by fiat; style rules that cannot be so implemented are simply not implemented. 
-In a linter for natural language one cannot count on the linter to be so accurate. 
-Additionally, we see some features as desirable in a prose linter that are not strictly necessary for software linters. 
+.. In most software linters, the perfect false positive rate and negative rate will be established by fiat; style rules that cannot be so implemented are simply not implemented. 
+.. In a linter for natural language one cannot count on the linter to be so accurate. 
+.. Additionally, we see some features as desirable in a prose linter that are not strictly necessary for software linters. 
 
-We want our linter to respond in 
+.. We want our linter to respond in 
 
-*   respond needs to be in real time
-
-
-
-    * This limits how much processing can occur per rule.
-
-*   responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
-*   it needs to be able to be installed easily by the end-user
-*   it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
-*   it needs to explain why it raising the flags it raises
-
-We have identified several features implicit to the problem of error detection and correction in general, and of language linting specifically.
+.. *   respond needs to be in real time
 
 
-Large-scale problems require scalable resources
------------------------------------------------
 
-Open source license allows the community of users to become a community of builders. 
-Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
+..     * This limits how much processing can occur per rule.
+
+.. *   responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
+.. *   it needs to be able to be installed easily by the end-user
+.. *   it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
+.. *   it needs to explain why it raising the flags it raises
+
+.. We have identified several features implicit to the problem of error detection and correction in general, and of language linting specifically.
+
+
+.. Large-scale problems require scalable resources
+.. -----------------------------------------------
+
+.. Open source license allows the community of users to become a community of builders. 
+.. Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
 
 
 .. the principles we've identified
