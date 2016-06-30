@@ -289,22 +289,6 @@ We want to make that process simple.
 If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
 Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
 
-Concerns around normativity in prose styling
---------------------------------------------
-
-One of the most common critiques of proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
-These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a homogenising effect on prose.
-There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
-
-To this critique there are several possible responses.
-The first few apply in general, the latter apply in the case of scientific and technical writing.
-
-Proselint is a massive undertaking, one that will require the ethos of an open source community to complete. Garner’s book alone has 11,000 entries. Half are easy, assignable as a homework problem (e.g., that “very unique” compares an uncomparable adjective, or that people from Michigan prefer to be called “Michiganders”, not “Michiganians”). Thirty percent are moderately challenging, requiring custom tooling. Fifteen percent are hard — projects that require advances in AI and NLP. Everything else, around five percent (the best five percent), is AI-complete.
-
-We will discuss where Proselint is and where it is heading. We will show its installation and application, demonstrating its use on the repository of papers submitted to SciPy2016.
-
-Proselint is fertile ground for growing an open-source community. It has trivial subproblems and lofty goals, an immediate impact and a long future.
-
 Existing modules
 ----------------
 
