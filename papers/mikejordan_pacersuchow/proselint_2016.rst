@@ -134,7 +134,7 @@ Ideal linters need to
 We have identified several features implicit to the problem of error detection and correction in general, and of language linting specifically.
 
 
-Large scale problems require scalable resources
+Large-scale problems require scalable resources
 -----------------------------------------------
 
 Open source license allows the community of users to become a community of builders. 
