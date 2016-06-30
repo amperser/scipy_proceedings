@@ -18,11 +18,14 @@
 
 .. role:: sf
 
+.. |br| raw:: html
+
+   <br />
 
 
 
 ------------------------------------------------
-Proselint
+Proselint: |br| science linting
 ------------------------------------------------
 
 .. class:: abstract
