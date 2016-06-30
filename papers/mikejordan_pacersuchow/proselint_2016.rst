@@ -72,7 +72,7 @@ As a language tool for scientists
 
 Science and writing are fast friends --- science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science.
 
-Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology and typography; concision; and redundancy. For example, Proselint includes 
+Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology and typography; concision; and redundancy. For example, Proselint checks for use of the multiplication symbol × when giving screen dimensions (e.g. 1440 × 900), mispecifications of *p* values commonly caused by software package's truncation of small numbers (*p* = 0.00), and colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
 
 As a tool for language science
 ------------------------------
