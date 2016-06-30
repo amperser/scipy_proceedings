@@ -83,7 +83,7 @@ One application of Proselint as a tool for language science is in tracking histo
 
 Another application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse. 
 
-This second application enables further extensions and generalizations, including for example the obfuscation of identity or coding of messages by selective introduction or removal of usage choices. Though we have emphasized cases where the goal is to recommend best practices in usage, the Proselint infrastructure can alternatively be used to identify cases where there is more than one acceptable choice. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted. One could then create a modified version of the document that uses these usage choices to encode a message, without the document demonstrating itself to contain an encoded message. With moderate modifications, then, Proselint could be a system for designing content-aware steganographic systems, conveying hidden messages in their choice of words and styles:cite:`bergmair2006content`.
+This second application enables further extensions and generalizations, including for example the obfuscation of identity or coding of messages by selective introduction or removal of usage choices. Though we have emphasized cases where the goal is to recommend best practices in usage, the Proselint infrastructure can alternatively be used to identify cases where there is more than one acceptable choice. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted. One could then create a modified version of the document that uses these usage choices to encode a message, without the document demonstrating itself to contain an encoded message. With moderate modifications, then, Proselint could be a system for designing content-aware steganographic systems, conveying hidden messages in their choice of words and styles :cite:`bergmair2006content`.
 
 In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that can provide stylistic false-positive rates. The theoretical work analyzing lintscores and the problem of error detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. The Proselint testing framework is an excellent opportunity to develop such a corpus.
 
@@ -631,61 +631,11 @@ This is one part of the motivation for using only expert language guides — the
 proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
 
 
-existing tools
+Existing tools
 ==============
 
-* 1Checker (http://www.1checker.com/)
-* AbiWord's grammar checker (http://www.abisource.com/)
-* After the Deadline (https://openatd.wordpress.com/)
-* Alex (http://alexjs.com/)
-* Autocrit (https://www.autocrit.com/editor/)
-* ClearEdits (http://www.clearwriter.com/clearedits.html)
-* CorrectEnglish (http://www.correctenglish.com/)
-* CKEditor (http://www.webspellchecker.net/)
-* Editor (http://www.serenity-software.com/)
-* The Editorium (http://www.editorium.com/ETKPlus2014.htm)
-* EditorSoftware (http://www.editorsoftware.com/)
-* Edminton (http://editminion.com/)
-* Expresso (http://expresso-app.org/)
-* Ghotit (http://www.ghotit.com/)
-* Ginger (http://www.gingersoftware.com/)
-* GNU Diction (https://www.gnu.org/software/diction/)
-* GNU Style (http://archive09.linux.com/feature/56833)
-* Grac (http://grac.sourceforge.net/)
-* GrammarBase (http://www.grammarbase.com/)
-* GrammarCheck (http://www.grammarcheck.net/)
-* Grammar Check Anywhere (https://www.spellcheckanywhere.com/grammar_check/)
-* Grammar Expert Plus (http://www.wintertree-software.com/app/gramxp/)
-* GrammarianPro (http://linguisoft.com/gramerrorfeatures.html)
-* Grammark (https://github.com/markfullmer/grammark)
-* Grammarly (https://www.grammarly.com/)
-* Grammar Slammer (http://englishplus.com/grammar/)
-* Grammatica (http://grammatica-english.soft32.com/)
-* Grammatik (https://en.wikipedia.org/wiki/Grammatik)
-* Graviax (http://graviax-grammar-checker.soft112.com/)
-* Hemmingway (http://www.hemingwayapp.com/desktop.html)
-* ivanistheone's scripts (https://github.com/ivanistheone/writing_scripts)
-* Language Tool (https://www.languagetool.org/)
-* Matt Might's shell scripts (http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/)
-* Microsoft Word's grammar check (https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1)
-* OnlineCorrection.com (http://www.onlinecorrection.com/)
-* PaperRater (https://www.paperrater.com/)
-* PerfectIt (http://www.intelligentediting.com/)
-* ProWritingAid (https://prowritingaid.com/)
-* Reverso (http://www.reverso.net/)
-* RightWriter (http://www.right-writer.com/)
-* Rousseau (https://github.com/GitbookIO/rousseau)
-* SpellCheckPlus (http://spellcheckplus.com/)
-* Stilus (http://www.mystilus.com/Main)
-* Textanz (http://www.textanz.com/)
-* Virtual Writing Tutor (http://virtualwritingtutor.com/)
-* Wave (https://en.wikipedia.org/wiki/Apache_Wave)
-* WhiteSmoke (http://www.whitesmoke.com/)
-* WordPerfect (http://www.wordperfect.com/us/)
-* WinProof (http://www.franklinhu.com/winproof.htm)
-* WordRake (http://www.wordrake.com/)
-* write-good (https://github.com/btford/write-good)
-* Writer's Workbench (http://www.emo.com/)
+Here are some of the existing tools for automated language checkers:
+`1Checker <http://www.1checker.com/>`_, `AbiWord's grammar checker <http://www.abisource.com/>`_, `After the Deadline <https://openatd.wordpress.com/>`_, `Alex <http://alexjs.com/>`_, `Autocrit <https://www.autocrit.com/editor/>`_, `ClearEdits <http://www.clearwriter.com/clearedits.html>`_, `CorrectEnglish <http://www.correctenglish.com/>`_, `CKEditor <http://www.webspellchecker.net/>`_, `Editor <http://www.serenity-software.com/>`_, `The Editorium <http://www.editorium.com/ETKPlus2014.htm>`_, `EditorSoftware <http://www.editorsoftware.com/>`_, `Edminton <http://editminion.com/>`_, `Expresso <http://expresso-app.org/>`_, `Ghotit <http://www.ghotit.com/>`_, `Ginger <http://www.gingersoftware.com/>`_, `GNU Diction <https://www.gnu.org/software/diction/>`_, `GNU Style <http://archive09.linux.com/feature/56833>`_, `Grac <http://grac.sourceforge.net/>`_, `GrammarBase <http://www.grammarbase.com/>`_, `GrammarCheck <http://www.grammarcheck.net/>`_, `Grammar Check Anywhere <https://www.spellcheckanywhere.com/grammar_check/>`_, `Grammar Expert Plus <http://www.wintertree-software.com/app/gramxp/>`_, `GrammarianPro <http://linguisoft.com/gramerrorfeatures.html>`_, `Grammark <https://github.com/markfullmer/grammark>`_, `Grammarly <https://www.grammarly.com/>`_, `Grammar Slammer <http://englishplus.com/grammar/>`_, `Grammatica <http://grammatica-english.soft32.com/>`_, `Grammatik <https://en.wikipedia.org/wiki/Grammatik>`_, `Graviax <http://graviax-grammar-checker.soft112.com/>`_, `Hemmingway <http://www.hemingwayapp.com/desktop.html>`_, `ivanistheone's scripts <https://github.com/ivanistheone/writing_scripts>`_, `Language Tool <https://www.languagetool.org/>`_, `Matt Might's shell scripts <http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/>`_, `Microsoft Word's grammar check <https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1>`_, `OnlineCorrection.com <http://www.onlinecorrection.com/>`_, `PaperRater <https://www.paperrater.com/>`_, `PerfectIt <http://www.intelligentediting.com/>`_, `ProWritingAid <https://prowritingaid.com/>`_, `Reverso <http://www.reverso.net/>`_, `RightWriter <http://www.right-writer.com/>`_, `Rousseau <https://github.com/GitbookIO/rousseau>`_, `SpellCheckPlus <http://spellcheckplus.com/>`_, `Stilus <http://www.mystilus.com/Main>`_, `Textanz <http://www.textanz.com/>`_, `Virtual Writing Tutor <http://virtualwritingtutor.com/>`_, `Wave <https://en.wikipedia.org/wiki/Apache_Wave>`_, `WhiteSmoke <http://www.whitesmoke.com/>`_, `WordPerfect <http://www.wordperfect.com/us/>`_, `WinProof <http://www.franklinhu.com/winproof.htm>`_, `WordRake <http://www.wordrake.com/>`_, `write-good <https://github.com/btford/write-good>`_, and `Writer's Workbench <http://www.emo.com/>`_.
 
 Infrastructural details
 =======================
@@ -847,13 +797,14 @@ Scientific writing is characterised by consistent
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
-.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
-
- 
     [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
+
+.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
+
+    
 
 
 
