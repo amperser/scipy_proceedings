@@ -160,7 +160,7 @@ Proselint is available on the Python Package Index and can be installed using pi
 
    pip install proselint
 
-Alternatively, those wishing to develop Proselint can retrive the Git reposity from https://github.com/amperser/proselint and then install Proselint using setuptools: 
+Alternatively, those wishing to develop Proselint can retrive the Git reposity from https://github.com/amperser/proselint and then install the software using setuptools: 
 
 .. code-block:: bash
 
@@ -170,13 +170,13 @@ Alternatively, those wishing to develop Proselint can retrive the Git reposity f
 Command-line utility
 --------------------
 
-At its core, proselint is a command-line utility.
+At its core, proselint is a command-line utility that reads in a text file:
 
 .. code-block:: bash
 
    proselint text.md
 
-Running this command prints a list of suggestions to stdout, one per line. Each suggestion will have the form:
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
 
 .. code-block:: bash
 
@@ -186,16 +186,16 @@ For example,
 
 .. code-block:: bash
 
-  text.md:0:10: wallace.uncomparables Comparison of an 
-  uncomparable: 'unique' can not be compared.
+  text.md:0:10: uncomparables.misc Comparison of ... 
+  an uncomparable: 'unique' can not be compared.
 
-The command line utility can also print the list of suggestions in JSON using the <tt>&#45;&#45;json</tt> flag. In this case, the output is considerably richer and matches the output of the <a href="/api">web API</a>.
+suggests that, at column 10 of line 0, the check ``uncomporables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
 
 .. code-block:: javascript
 
   {
       // The check originating this suggestion.
-      "check": "wallace.uncomparables",
+      "check": "uncomparables.misc",
 
       // Message describing the suggestion.
       "message": "Comparison of an uncomparable: 'unique' can not be compared.",
@@ -221,7 +221,7 @@ The command line utility can also print the list of suggestions in JSON using th
       // start - end
       "extent": 11,
 
-      // How important is this("suggestion", "warning", or "error")?
+      // Importance ("suggestion", "warning", or "error")?
       "severity": "warning",
 
       // Possible replacements.
@@ -242,7 +242,7 @@ Advice: sources and examples
 
 Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose.
 
-.. [#] Proselint has not been officially endorsed by any of these individuals. We have merely taken their words and implemented them in code. 
+.. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
 
 
 examples of some rules
