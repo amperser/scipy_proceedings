@@ -153,8 +153,22 @@ Many of the rules' implementations are particularly well-suited to small-scale c
 .. how our tool address or uses each of those principles
 .. -----------------------------------------------------
 
-Installing proselint
+Using Proselint
+===============
 
+Installation
+------------
+Proselint is available on the Python Package Index and can be installed using pip:
+
+.. code-block:: bash
+
+   pip install proselint
+
+Alternatively, those wishing to develop Proselint can retrive the Git reposity from https://github.com/amperser/proselint and then install Proselint using setuptools: 
+
+.. code-block:: bash
+
+   python setup.py develop
 
 Using proselint
 ===============
