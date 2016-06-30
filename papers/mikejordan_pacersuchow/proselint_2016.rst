@@ -13,20 +13,17 @@
 
     \newcommand{\DUrolesc}{\textsc}
     \newcommand{\DUrolesf}{\textsf}
+    \newcommand{\DUroleprotect[1]}{\protect{#1}}
     
 .. role:: sc
 
 .. role:: sf
 
-.. |br| raw:: html
+.. role:: protect
 
-   <br />
-
-
-
-------------------------------------------------
-Proselint: |br| science linting
-------------------------------------------------
+========================================================================
+Proselint: the linting of science prose and the science of linting prose
+========================================================================
 
 .. class:: abstract
 
