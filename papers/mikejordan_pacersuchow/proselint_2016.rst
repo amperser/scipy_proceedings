@@ -77,28 +77,16 @@ Proselint improves writing across a number of dimensions relevant to the communi
 As a tool for language science
 ------------------------------
 
-In the course of developing the tool, we have identified several features implicit to the problem of error-detection and correction in general, as well as language linting specifically. 
+.. Linguistics has focused largely on the problem of how people successfully learn language and how people's errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' speech does not fit the descriptivist approach common to linguists. 
 
-Linguistics has largely focused on the problem of how people successfully learn language, or how people's errors(especially children's errors) indicate the underlying structure of the language learning mechanism (such as overregularisation observed in young English speakers :cite:`marcus1992overregularization`). Focus on identifying the stylistic errors in peoples' speech does not fit the descriptivist approach common to linguists. 
+One application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevelance of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking of momentarily") and its alignment with the rise of that industry.
 
-There are no annotated corpora capable of providing stylistic false-positive rates. The theoretical work analysing lintscores and the problem of error-detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. 
+Another application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse. 
 
-Additionally, the we can view proselint from a descriptivist perspective, where we silence the suggestions and merely identify cases where rules are violated. 
-We could use this merely to detect style violations as stylometric features, in contrast to standard stylometric measures that look at the absolute usage of language (not in contrast to a stylistic standard).
-In a sense, this would allow us not to identify authors based on their language use, but on their language misuse.
-.. By doing that proselint acts as a stylometric feature extractor unlike any other. 
-This opens the door to a variety of possibilities for future applications and generalisations of this kind of a platform.
+This second application enables further extensions and generalizations, including for example the obfuscation of identity or coding of messages by selective introduction or removal of usage choices. Though we have emphasized cases where the goal is to recommend best practices in usage, the Proselint infrastructure can alternatively be used to identify cases where there is more than one acceptable choice. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted. One could then create a modified version of the document that uses these usage choices to encode a message, without the document demonstrating itself to contain an encoded message. With moderate modifications, then, Proselint could be a system for designing content-aware steganographic systems, conveying hidden messages in their choice of words and styles:cite:`bergmair2006content`.
 
-For example, we have emphasised cases where there are accepted unique best practices in word usage, but the proselint infrastructure could also be applied to identify cases where there is more than one acceptable usage choice. 
-One could take a document and identify those cases where multiple words could be conveyed. 
-Then, assuming that both parties have the source document, a modified version that encodes messages based on word choice would be able pass those messages without demonstrating itself to have been an encoded message at all.
-So with moderate modifications, proselint could be a system for designing content aware steganographic systems, conveying hidden messages in their choice of words and styles:cite:`bergmair2006content`.
+In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that can provide stylistic false-positive rates. The theoretical work analyzing lintscores and the problem of error detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. The Proselint testing framework is an excellent opportunity to develop such a corpus.
 
-.. E.g.,
-
-.. * Stylometrics.
-.. * Author identification.
-.. * Encoding messages (in the case of multiple acceptable options) 
 
 Results
 =======
@@ -117,6 +105,8 @@ Various ways to divide up the kinds of problems
     #. NLP, state-of-the-art
     #. NLP, beyond state-of-the-art
     #. AI-complete
+
+
 
 #.  Divide up by content (What sorts of rules say similar things to this one?)
 
@@ -140,6 +130,8 @@ Ideal linters need to
 *   it needs to be able to be installed easily by the end-user
 *   it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
 *   it needs to explain why it raising the flags it raises
+
+We have identified several features implicit to the problem of error detection and correction in general, and of language linting specifically.
 
 
 Large scale problems require scalable resources
