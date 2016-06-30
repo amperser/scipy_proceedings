@@ -126,15 +126,31 @@ Our general approach
 
 .. #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 
+
 Desiderata for a linter
 -----------------------
 
-Desiderata are a set of criteria that are looked 
+Desiderata are a set of desired criteria; these exist for almost all artefact classes, and usually stem from the aim for which the artefact is created. Like other designed systems, linters' ideal features stem from both the nature of the problem that they solve and the manner in which they attempt to solve the problem. 
 
-Ideal linters need to 
+Linters (in a programming context) identify instances of code that either explicitly violates a set of stylistic rules (as in PEP8_) or is otherwise suspicious (as in cases where a variable is used before it has a value).
 
-*   scale to many rules
+.. _PEP8: https://www.python.org/dev/peps/pep-0008/
+
+Thus to fulfill their aim, linters should  
+
+*   scale to arbitrarily many rules,
+*   flag exactly those instances of code that are suspicious,
+*   and flag no nonsuspicious code spuriously.
+
+In most software linters, the perfect false positive rate and negative rate will be established by fiat; style rules that cannot be so implemented are simply not implemented. 
+In a linter for natural language one cannot count on the linter to be so accurate. 
+Additionally, we see some features as desirable in a prose linter that are not strictly necessary for software linters. 
+
+We want our linter to respond in 
+
 *   respond needs to be in real time
+
+
 
     * This limits how much processing can occur per rule.
 
