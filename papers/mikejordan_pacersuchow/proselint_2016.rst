@@ -90,29 +90,41 @@ In our testing of Proselint, we assembled a corpus of text from well-edited maga
 
 Results
 =======
-As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnotcied by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we acheived a lintscore of 98.8, reflecting detection of XX errors with XX false alarms.
+As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnotcied by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we acheived a lintscore of 98.8, reflecting detection of XX errors with XX false alarms (k = 2).
 
 Our general approach
 ====================
 
-Various ways to divide up the kinds of problems
+.. Dividing up the problem space
+.. -----------------------------
 
-#.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
-
-    #. One-to-one replacement rules
-    #. Regular expressions
-    #. Basic syntax processing
-    #. NLP, state-of-the-art
-    #. NLP, beyond state-of-the-art
-    #. AI-complete
+.. There are many ways to divide up the kinds of problems that plague any language error correction system.
 
 
+.. Difficulty in defining rules and detecting violations
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#.  Divide up by content (What sorts of rules say similar things to this one?)
+.. A linter makes a decision at every line whether or it violates any particular rule.
+.. There is no way around that problem, as the key is to provide immediate feedback to writers as they write.
+.. We have discovered rough difficulty classes in detecting whether a rule should be fired for any particular string. 
+.. That difficulty 
 
-    #. This is the basis for our module structure.
+.. #.  Divide up problem types into levels of difficulty. (how hard is it to identify that a rule should be fired)
 
-#. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
+..     #. One-to-one replacement rules
+..     #. Regular expressions
+..     #. Basic syntax processing
+..     #. NLP, state-of-the-art
+..     #. NLP, beyond state-of-the-art
+..     #. AI-complete
+
+
+
+.. #.  Divide up by content (What sorts of rules say similar things to this one?)
+
+..     #. This is the basis for our module structure.
+
+.. #. Divide up by response type (recommendation vs. prohibition)(what should you do when this rule fires)
 
 Desiderata for a linter
 -----------------------
