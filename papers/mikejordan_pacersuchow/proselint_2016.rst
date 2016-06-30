@@ -64,7 +64,7 @@ Proselint is open-source software released under the BSD license and compatible 
 Two views on proselint
 ======================
 
-Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can measure language usage and help to explore the factors relevant to creating a useful linter.
+Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
 
 
 As a language tool for scientists
