@@ -57,9 +57,9 @@ Our collective knowledge about best practices in writing is thus essentially tra
 The solution
 ============
 
-To solve this, we built Proselint, a Python-based linter for prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it and identified where it violates. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. Proselint thus identifies violations of expert style and usage guidelines.
+To solve this problem, we built Proselint, a linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it, identifying problems with its syntax or style. Our goal with Proselint is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to authors in the form of a linter for prose. Proselint thus identifies violations of the style and usage guidelines that have been endorsed by experts.
 
-Proselint is open-source software released under the BSD license and works with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, vim, &c. It outputs advice in standard formats (e.g., JSON), integrating with Sublime Text, Atom, Vim, Emacs, and other editors and services. Though in its infancy – perhaps 2% of what it could be – Proselint already includes modules on a variety of usage problems: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
+Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats (e.g., JSON), allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
 Two views on proselint
 ======================
