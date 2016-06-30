@@ -70,17 +70,9 @@ Proselint can be seen as both a language tool for scientists and a tool for lang
 As a language tool for scientists
 ----------------------------------
 
-Science and writing are fast friends; science as we know it would not be possible without the written word. But cutting-edge scientific research is, by necessity,  difficult to understand by all but those most acquainted with it. Even expressing those ideas challenges the greatest of minds, leaving little time for eradicating opacity from prose. Nonetheless, opacity is the enemy of the proliferation of any idea.
+Science and writing are fast friends --- science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science.
 
-Proselint improves written communication across a number of dimensions:
-
-* consistent terminology
-* cleaner prose
-* less redundancy
-* typographic niceties
-* 
-
-Even greater improvement can be found along each of these dimensions (especially consistent terminology) if the scientist in question were to build custom extensions to proselint for their field/subfield/topic/&c.. However, even out-of-the-box proselint can be useful, as demonstrated by the following graph of the errors identified by proselint in this year's SciPy submissions from initial to final submission dates [insert graph of the number of errors identified by proselint over time across all of the papers submitted to SciPy 2016].
+Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology and typography; concision; and redundancy. For example, Proselint includes 
 
 As a tool for language science
 ------------------------------
