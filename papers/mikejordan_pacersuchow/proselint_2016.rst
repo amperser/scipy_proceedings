@@ -234,11 +234,7 @@ The command line utility can also print the list of suggestions in JSON using th
 
 Text editor plugins
 -------------------
-
-Web-editor
-----------
-
-
+An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
 
 
 Advice: sources and examples
