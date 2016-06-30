@@ -273,21 +273,26 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 .. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
 
 
-examples of some rules
+Examples of some rules
 ----------------------
 
-Issues are on github repo. 
+In response to someone using the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
 
-Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+In response to text like the following: "In recent years, an increasing number of [a-zA-Z]{3,}sts have", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
 
-Final decision of whether to include it in the default set of rules is up to us.
 
-We have not included rule modules that are by default left off but can be turned on. 
-Though we are not opposed to this in principle, it is difficult to see why we should do so. 
-If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
-We want to make that process simple. 
-If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
-Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
+.. One Issues are on github repo. 
+
+.. Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+
+.. Final decision of whether to include it in the default set of rules is up to us.
+
+.. We have not included rule modules that are by default left off but can be turned on. 
+.. Though we are not opposed to this in principle, it is difficult to see why we should do so. 
+.. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
+.. We want to make that process simple. 
+.. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
+.. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
 
 Existing modules
 ----------------
