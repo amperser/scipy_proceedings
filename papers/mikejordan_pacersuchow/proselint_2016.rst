@@ -72,7 +72,7 @@ As a language tool for scientists
 
 Science and writing are fast friends; science as we know it would not be possible without the written word. But cutting-edge scientific research is, by necessity,  difficult to understand by all but those most acquainted with it. Even expressing those ideas challenges the greatest of minds, leaving little time for eradicating opacity from prose. Nonetheless, opacity is the enemy of the proliferation of any idea.
 
-Proselint can aid specifically improve scientists' writings across a number of dimensions:
+Proselint improves written communication across a number of dimensions:
 
 * consistent terminology
 * cleaner prose
@@ -85,9 +85,22 @@ Even greater improvement can be found along each of these dimensions (especially
 As a tool for language science
 ------------------------------
 
-In the course of developing the tool, we have identified several features implicit to the problem of error-detection and correction in general, as well as language linting specifically.
+In the course of developing the tool, we have identified several features implicit to the problem of error-detection and correction in general, as well as language linting specifically. 
 
-Additionally, the normative content inherent in proselint right now is unnecessary. We could use this merely to detect whether people use various words. By doing that proselint  acts as a stylometric feature extractor unlike any other. This opens the door to a variety of possibilities for future applications and generalisations of this kind of a platform.
+Linguistics has largely focused on the problem of how people successfully learn language, or how people's errors(especially children's errors) indicate the underlying structure of the language learning mechanism (such as overregularisation observed in young English speakers :cite:`marcus1992overregularization`). Focus on identifying the stylistic errors in peoples' speech does not fit the descriptivist approach common to linguists. 
+
+There are no annotated corpora capable of providing stylistic false-positive rates. The theoretical work analysing lintscores and the problem of error-detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. 
+
+Additionally, the we can view proselint from a descriptivist perspective, where we silence the suggestions and merely identify cases where rules are violated. 
+We could use this merely to detect style violations as stylometric features, in contrast to standard stylometric measures that look at the absolute usage of language (not in contrast to a stylistic standard).
+In a sense, this would allow us not to identify authors based on their language use, but on their language misuse.
+.. By doing that proselint acts as a stylometric feature extractor unlike any other. 
+This opens the door to a variety of possibilities for future applications and generalisations of this kind of a platform.
+
+For example, we have emphasised cases where there are accepted unique best practices in word usage, but the proselint infrastructure could also be applied to identify cases where there is more than one acceptable usage choice. 
+One could take a document and identify those cases where multiple words could be conveyed. 
+Then, assuming that both parties have the source document, a modified version that encodes messages based on word choice would be able pass those messages without demonstrating itself to have been an encoded message at all.
+So with moderate modifications, proselint could be a system for designing content aware steganographic systems, conveying hidden messages in their choice of words and styles.
 
 E.g.,
 
@@ -837,7 +850,7 @@ And, as a final point, we can do little better than to give a modified quote fro
 
 .. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
-
+ 
     [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
