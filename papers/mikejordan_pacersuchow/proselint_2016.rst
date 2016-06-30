@@ -141,10 +141,6 @@ Open source license allows the community of users to become a community of build
 Many of the rules' implementations are particularly well-suited to small-scale coding projects or assignments.
 
 
-
-
-
-
 .. the principles we've identified
 .. -------------------------------
 
@@ -170,8 +166,6 @@ Alternatively, those wishing to develop Proselint can retrive the Git reposity f
 
    python setup.py develop
 
-Using proselint
-===============
 
 Command-line utility
 --------------------
