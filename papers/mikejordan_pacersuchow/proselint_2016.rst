@@ -461,7 +461,7 @@ The following are examples of rules meant to give a taste of the range of advice
    +---------------------------------+---------------------------------------------+
 
 
-Theoretical background to our approach
+Proselint's approach
 ======================================
 
 Check usage, not grammar
@@ -490,7 +490,7 @@ In a loose analogy to the Chomskian hierarchy of formal grammars, we have identi
 #. Regular expressions
 #. One-to-one replacement rules. 
 
-At one extreme are usage errors that can be detected and corrected through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other are usage errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case. Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). These usage errors, which are at the hierarchy's highest levels, are harder to successfully identify without introducing many false positives into the mix.
+At one extreme are usage errors that can be detected and corrected through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other are usage errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case. Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). These usage errors, which are at the hierarchy's highest levels, are harder to successfully identify without introducing many false positives into the mix. Our development of Proselint begins at the lowest levels of the hierarchy, building upwards.
 
 Wield a rapier not a cudgel
 ---------------------------
