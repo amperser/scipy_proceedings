@@ -300,7 +300,7 @@ The following are examples of rules meant to give a taste of the range of advice
 .. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
 .. We want to make that process simple. 
 .. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
-.. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
+.. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customization to adapt to your personal "style".
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -540,9 +540,9 @@ Code
 :sc:`Rule modules`
 ^^^^^^^^^^^^^^^^^^
 
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals: for example, a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place: for example, *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+Proselint rules are organized into modules that reflect the structure of language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of particular animals --- a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
-Organizing rules into modules is useful for a couple of reasons. It allows for a logical separation of similar rules, which often require similar computational machinery to implement. It also allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. But people may wish to customise their linting rules at a level more finely grained than the submodule. It is unclear how to allow this without making that format for customisation painful to navigate, modify or comprehend.
+Organizing rules into modules is useful for two reasons. First, it allows for a logical separation of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to customize which linting rules are applied at a level more finely grained than the submodule, and it is an open challenge how best to allow this without making the format for customization painful to navigate, modify, and comprehend.
 
 :sc:`Rule templates`
 ^^^^^^^^^^^^^^^^^^^^
