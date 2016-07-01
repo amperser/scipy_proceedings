@@ -495,7 +495,7 @@ At one extreme are usage errors that can be detected and corrected through one-t
 Rapiers, cudgels, and the lintscore
 -----------------------------------
 
-Any new tool (for language, or otherwise) faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the marginal utility it provides. Pen & ink, paper, and the computer each facilitated language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that improve existing capabilities are at a comparative disadvantage: they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
+Any new tool (for language, or otherwise) faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the marginal utility it provides. Pen & ink, paper, and the computer each facilitated language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage: they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
 
 Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately injures large areas of flesh. Each time a language tool flags an issue, it might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, finding as many errors as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, even errors that Proselint would not detect. However, their emphasis on maxizing :math:`T` is to their detriment because these tools raise so many false alarms that their advice cannot be trusted. The writer must carefully consider whether to accept or reject each change. 
 
@@ -519,13 +519,15 @@ Proselint defers to the world’s greatest writers and editors. We didn’t make
 Existing tools
 ==============
 
-Here are some of the existing tools for automated language checkers:
+We have collected a list of existing tools for automated language checkers. They include:
 `1Checker <http://www.1checker.com/>`_, `AbiWord's grammar checker <http://www.abisource.com/>`_, `After the Deadline <https://openatd.wordpress.com/>`_, `Alex <http://alexjs.com/>`_, `Autocrit <https://www.autocrit.com/editor/>`_, `ClearEdits <http://www.clearwriter.com/clearedits.html>`_, `CorrectEnglish <http://www.correctenglish.com/>`_, `CKEditor <http://www.webspellchecker.net/>`_, `Editor <http://www.serenity-software.com/>`_, `The Editorium <http://www.editorium.com/ETKPlus2014.htm>`_, `EditorSoftware <http://www.editorsoftware.com/>`_, `Edminton <http://editminion.com/>`_, `Expresso <http://expresso-app.org/>`_, `Ghotit <http://www.ghotit.com/>`_, `Ginger <http://www.gingersoftware.com/>`_, `GNU Diction <https://www.gnu.org/software/diction/>`_, `GNU Style <http://archive09.linux.com/feature/56833>`_, `Grac <http://grac.sourceforge.net/>`_, `GrammarBase <http://www.grammarbase.com/>`_, `GrammarCheck <http://www.grammarcheck.net/>`_, `Grammar Check Anywhere <https://www.spellcheckanywhere.com/grammar_check/>`_, `Grammar Expert Plus <http://www.wintertree-software.com/app/gramxp/>`_, `GrammarianPro <http://linguisoft.com/gramerrorfeatures.html>`_, `Grammark <https://github.com/markfullmer/grammark>`_, `Grammarly <https://www.grammarly.com/>`_, `Grammar Slammer <http://englishplus.com/grammar/>`_, `Grammatica <http://grammatica-english.soft32.com/>`_, `Grammatik <https://en.wikipedia.org/wiki/Grammatik>`_, `Graviax <http://graviax-grammar-checker.soft112.com/>`_, `Hemmingway <http://www.hemingwayapp.com/desktop.html>`_, `ivanistheone's scripts <https://github.com/ivanistheone/writing_scripts>`_, `Language Tool <https://www.languagetool.org/>`_, `Matt Might's shell scripts <http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/>`_, `Microsoft Word's grammar check <https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1>`_, `OnlineCorrection.com <http://www.onlinecorrection.com/>`_, `PaperRater <https://www.paperrater.com/>`_, `PerfectIt <http://www.intelligentediting.com/>`_, `ProWritingAid <https://prowritingaid.com/>`_, `Reverso <http://www.reverso.net/>`_, `RightWriter <http://www.right-writer.com/>`_, `Rousseau <https://github.com/GitbookIO/rousseau>`_, `SpellCheckPlus <http://spellcheckplus.com/>`_, `Stilus <http://www.mystilus.com/Main>`_, `Textanz <http://www.textanz.com/>`_, `Virtual Writing Tutor <http://virtualwritingtutor.com/>`_, `Wave <https://en.wikipedia.org/wiki/Apache_Wave>`_, `WhiteSmoke <http://www.whitesmoke.com/>`_, `WordPerfect <http://www.wordperfect.com/us/>`_, `WinProof <http://www.franklinhu.com/winproof.htm>`_, `WordRake <http://www.wordrake.com/>`_, `write-good <https://github.com/btford/write-good>`_, and `Writer's Workbench <http://www.emo.com/>`_.
+
+The tools are varied in their approaches and coverage.
 
 Infrastructural details
 =======================
 
-Contribution infrastructure
+Contributing
 ---------------------------
 
 There are many ways to contribute to Proselint. 
@@ -544,7 +546,7 @@ If someone wants to include rules that are properly attributed it is unclear why
 Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
 
 
-Code infrastructure
+Code
 -------------------
 
 :sc:`Rule modules`
@@ -751,7 +753,7 @@ So while this financially supporting further development on Proselint, that is n
 The data gathered through the process of washing people's prose more actively, can then be fed back to improve Proselint and tune its rulesets and defaults. 
 Thus participation in the premium service will provide direct improvements to the Proselint community irrespective of assigned development time.
 
-Context sensitive rule application
+Context-sensitive rule application
 ----------------------------------
 
 Many rules may apply better to some kinds of documents than others. For example, in most cases "extendible" will be conventionally preferable to "extensible"; in software development the opposite is likely to be the case. Applying these rules without consideration of the document context will introduce false positives in a systematic fashion. We have often avoided those rules, as they guarantee an increase in the number of false positives. 
@@ -838,7 +840,7 @@ On the other hand inferring the structure of a document based on its content if 
 
 Acknowledgements
 ================
-Work on Proselint was supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically as regards applying Proselint to the problem of improving governmental communications as required the by `Federal Plain Language Guidelines`__.
+Work on Proselint was supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically as regards applying Proselint to the problem of improving governmental communications as laid out in the `Federal Plain Language Guidelines`__.
 
 .. __: https://ctsp.berkeley.edu/
 
