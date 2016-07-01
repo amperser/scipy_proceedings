@@ -475,7 +475,8 @@ But it is precisely *because* these errors can pass by unnoticed that they can b
 .. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
 
 More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-hard.
-That is, it requires human-level intelligence and native speaker expertise to get things right(and even then it might not be enough). Furthermore, even if we did have the tools to identify grammatical rules, using those tools (by )
+That is, it requires human-level intelligence and native speaker expertise to get things right (and even then it might not be enough). 
+Furthermore, even if we did have the tools to identify grammatical rules, using those tools would likely eliminate the ability for Proselint to run and provide advice in real time.
 
 Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
@@ -802,16 +803,12 @@ If one does not trust a guide's point of view, our strongest recommendation woul
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
-    [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject [of proselint] is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
+    [Language usage] thrives as a shared concern — and there are no paths at all where there are no shared desires and directions. A [language user] determined to forge new routes must move, like other solitary travellers, through uninhabited country and against the grain of the land, crossing common thoroughfares in the silence before dawn. The subject… is not [stylistic] solitude, but the old, well-travelled roads at the core of the tradition: paths that each of us is free to follow or not, and to enter and leave when we choose — if only we know the paths are there and have a sense of where the lead. That freedom is denied us if the tradition is concealed or left for dead. Originality is everywhere, but much originality is blocked if the way back to earlier discoveries is cut or overgrown.
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
 
 .. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
-
-    
-
-
 
 
 Future
