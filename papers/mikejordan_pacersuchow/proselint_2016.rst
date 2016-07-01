@@ -270,7 +270,7 @@ An effective way to promote adoption of best practices in writing through linter
 Advice: sources and examples
 ============================
 
-Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose.
+Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. Tables 1 and 2 list many of the rules that Proselint currently implements.
 
 .. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
 
@@ -278,9 +278,13 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 Examples of some rules
 ----------------------
 
-In response to someone using the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
+The following are examples of rules meant to give a taste of the range of advice that Proselint can give:
 
-In response to text like the following: "In recent years, an increasing number of [a-zA-Z]{3,}sts have", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
+#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
+
+#. In response to "In recent years, an increasing number of psychologists have", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
+
+#. In response to "A group of starlings", Proselint notes "The venery terms is 'murmuration'"". :cite:`garner2016garner`
 
 
 .. One Issues are on github repo. 
@@ -295,11 +299,6 @@ In response to text like the following: "In recent years, an increasing number o
 .. We want to make that process simple. 
 .. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
 .. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
-
-Existing modules
-----------------
-
-Tables 1 and 2 list many of the rules that Proselint currently implements.
 
 .. table:: What Proselint checks. :label:`checks`
 
