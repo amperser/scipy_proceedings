@@ -299,7 +299,7 @@ In response to text like the following: "In recent years, an increasing number o
 Existing modules
 ----------------
 
-Above we provide a table of some of the rules that ``proselint`` currently checks.
+Tables 1 and 2 list many of the rules that Proselint currently implements.
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -395,7 +395,7 @@ Above we provide a table of some of the rules that ``proselint`` currently check
    |``misc.whence``                  | Using "whence"                              |
    +---------------------------------+---------------------------------------------+
 
-.. table:: What Proselint checks(cont.). :label:`checkscont`
+.. table:: What Proselint checks (cont.). :label:`checkscont`
 
    +---------------------------------+---------------------------------------------+
    | ID                              | Description                                 |
