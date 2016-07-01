@@ -77,7 +77,7 @@ Proselint improves writing across a number of dimensions relevant to the communi
 As a tool for language science
 ------------------------------
 
-.. Linguistics has focused largely on the problem of how people successfully learn language and how people's errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' speech does not fit the descriptivist approach common to linguists. 
+Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
 One application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevelance of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking of momentarily") and its alignment with the rise of that industry.
 
