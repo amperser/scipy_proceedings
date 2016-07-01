@@ -789,9 +789,12 @@ These arguments suggest that authors will find themselves limited in the set of 
 There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
 
 To this critique there are several possible responses.
-The first few apply in general, the latter apply in the case of scientific and technical writing.
+The first few responses apply in general, the latter apply in the case of technical and scientific writing.
 
-A good deal of the advice in proselint points out that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+A good deal of the advice in proselint points out that certain word sequences are problematic without suggesting any particular replacement text. 
+There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). 
+The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. 
+Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
 The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. 
 Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter.
@@ -799,7 +802,9 @@ Novelty will continue to introduce new usages, and some of them will be poor.
 Authors identified as trustworthy may point these out, but this will only be in retrospect. 
 If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
 
-.. Scientific writing is characterised by consistent 
+Technical writing of all kinds is often characterised by consistent language use and precise terminology. Even if one views all writing as a inextricably creative endeavor, that creativity – in some cases – needs to be directed toward particular aims. Software documentation, technical manuals, legal and pedagogical writing all feature this need. The needs of each of these cases will not be well addressed by the same set of guidelines, but each will have a guideline it is intended to follow.
+
+Science demands consistency in order to ensure that replication and clarity is possible. At the same time, scientists are in the business of expressing ideas that challenge even the greatest of minds. Their success depends upon their ability to accessibly and captivatingly convey worthwhile ideas that people wish to use in their own work. In cases where the ideas themselves are difficult to grasp, eradicating opacity from prose is tantamount; opacity is the enemy of the proliferation of any idea.
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
