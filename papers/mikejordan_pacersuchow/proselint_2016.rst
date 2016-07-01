@@ -528,9 +528,11 @@ Infrastructural details
 =======================
 
 Contributing
----------------------------
+------------
 
-There are many ways to contribute to Proselint. One primary avenue is to use issues on our GitHub repository. New rules need to be accompanied by an expert source meriting the inclusion of the rule. The final decision of whether to include it in the default set of rules is up to us. We have not included rule modules that are by default left off but can be turned on. Though we are not opposed to this in principle, it is difficult to see why we should do so. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. We want to make that process simple. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
+The primary avenue for contributing to Proselint is by contributing code to our GitHub repository, which we use to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert that endorses the rule. This is not because language experts are the only holder of useful knowledge about language, but because our goal is explicitly to aggregate best practices as put forth by the experts.
+
+A second avenue for contributing to Proselint is through discovery of false alarms. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
 
 Code
 -------------------
