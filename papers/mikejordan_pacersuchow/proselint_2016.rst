@@ -116,7 +116,7 @@ As a proof of concept, we used Proselint to make contributions to several docume
 ..     #. Basic syntax processing
 ..     #. NLP, state-of-the-art
 ..     #. NLP, beyond state-of-the-art
-..     #. AI-complete
+..     #. AI-hard
 
 
 
@@ -473,7 +473,7 @@ But it is precisely *because* these errors can pass by unnoticed that they can b
 
 .. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
 
-More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-complete.
+More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-hard.
 That is, it requires human-level intelligence and native speaker expertise to get things right(and even then it might not be enough). Furthermore, even if we did have the tools to identify grammatical rules, using those tools (by )
 
 Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
@@ -489,7 +489,7 @@ In a loose analogy to the Chomskian hierarchy of formal grammars, we have identi
 #. Basic syntax processing
 #. NLP, state-of-the-art
 #. NLP, beyond state-of-the-art
-#. AI-complete
+#. AI-hard
 
 One of the biggest differences between these levels of difficulty is how hard it is to successfully identify problems without introducing many false positives into the mix. 
 
