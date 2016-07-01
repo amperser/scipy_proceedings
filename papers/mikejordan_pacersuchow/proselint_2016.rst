@@ -40,6 +40,8 @@ Proselint: the linting of science prose and the science of linting prose
 The problem
 ===========
 
+.. add a tikz amperser
+
 Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. Consider, for example, *Garner's Modern English Usage*, an authoritative usage guide with 11,000 entries covering a broad range of advice that, when followed, helps writers produce clean and idiomatic prose. Or consider the *Federal Plain Language Guidelines*, a 2011 guide created by employees of the U.S. federal government to promote writing that is clear, concise, and well-organized. Professional conferences such as the annual meeting of the American Copy Editors Society are dedicated to sharing knowledge about editing prose. And within the academy, organizations such as the American Psychological Association publish manuals whose guidance on style has been adopted as a standard. Advice on writing abounds.
 
 Advice on writing touches upon everything from superficial conventions to the deepest reflections of our society and its attitudes. Take for example advice concerning the preferred forms of words such as "connote" (vs. "connotate"), which may help to prune needless variants in spelling, but are unlikely to effect the reader's understanding of the text and its author. Compare this to advice concerning needlessly gendered language ("woman scientist", "policeman"), which by being commonplace in language may perpetuate social inequality.
@@ -477,6 +479,8 @@ Instead of focussing on grammar, we consider errors of usage and style: redundan
 Levels of difficulty
 --------------------
 
+.. possibly replace with image?
+
 In a loose analogy to the Chomskian hierarchy of formal grammars, we have identified levels of difficulty in problems faced by any language linter.
 
 #. Replacement rules
@@ -666,7 +670,7 @@ Code infrastructure
 
 Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals: for example, a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place: for example, *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
-Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
+Organizing rules into modules is useful for a couple of reasons. It allows for a logical separation of similar rules, which often require similar computational machinery to implement. It also allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. But people may wish to customise their linting rules at a level more finely grained than the submodule. It is unclear how to allow this without making that format for customisation painful to navigate, modify or comprehend.
 
 :sc:`Rule templates`
 ^^^^^^^^^^^^^^^^^^^^
