@@ -465,20 +465,13 @@ Theoretical background to our approach
 Check usage, not grammar
 ------------------------
 
-Proselint does not focus on grammar, which is at once too easy and too hard. 
-Grammar is "too easy" because, for most native speakers, grammatical errors are easily identified (if not easily fixed).
-The errors that would leave the greatest negative impression will often appear to be glaring from the perspective of native speakers. 
-That would reduce a linter's job to catching mistakes in execution rather than in intent, obviating any chance of helping a writer improve in the course of her writing. 
-On the other hand, more subtle errors like long range plurality noun-verb agreement requires [#]_  can evade even native speakers.
-But it is precisely *because* these errors can pass by unnoticed that they can be safely ignored.
+Proselint does not focus on grammar, which is at once too easy and too hard:
 
-.. [#] Note that this was a purposefully placed noun-verb plurality agreement error. While potentially detectable, it is not as obviously problematic to the average speaker, meaning that rules like this are less crucial. 
+Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors such as disagreement in number across long ranges can go undetected even by native speakers [sic].
 
-More pressingly, grammar is "too hard" because, in its most general form, detecting grammatical errors is AI-hard.
-That is, it requires human-level intelligence and native speaker expertise to get things right (and even then it might not be enough). 
-Furthermore, even if we did have the tools to identify grammatical rules, using those tools would likely eliminate the ability for Proselint to run and provide advice in real time.
+In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring human-level intelligence and the expertise of a native speaker to get things right. Even then, it might not be enough.
 
-Instead, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
+Instead of focussing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
 
 Levels of difficulty
