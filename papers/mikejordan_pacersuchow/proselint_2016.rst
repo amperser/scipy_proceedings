@@ -226,13 +226,15 @@ suggests that, at column 10 of line 0, the check ``uncomporables.misc`` detected
       "check": "uncomparables.misc",
 
       // Message describing the suggestion.
-      "message": "Comparison of an uncomparable: 'unique' can not be compared.",
+      "message": "Comparison of an uncomparable: ...
+      'unique' can not be compared.",
 
       // The source of the suggestion.
       "source": "David Foster Wallace"
 
       // URL pointing to source material.
-      "source_url": "http://www.telegraph.co.uk/a/9715551"
+      "source_url": "http://www.telegraph.co.uk ...
+      /a/9715551"
 
       // Line where the error starts.
       "line": 0,
@@ -249,7 +251,7 @@ suggests that, at column 10 of line 0, the check ``uncomporables.misc`` detected
       // start - end
       "extent": 11,
 
-      // Importance ("suggestion", "warning", or "error")?
+      // Importance ("suggestion", "warning", "error")
       "severity": "warning",
 
       // Possible replacements.
