@@ -664,7 +664,7 @@ Code infrastructure
 :sc:`Rule modules`
 ^^^^^^^^^^^^^^^^^^
 
-Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic usage of vocabulary. It has as submodules specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals: for example, a "pride" of lions or a "murmuration" of starlings. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place: for example, *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+Proselint rules are organized into modules that reflect the structure on language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic usage of vocabulary, with submodules that include specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``,pertains to *venery terms*, which arose from hunting tradition and are used to describe groups of particular animals: for example, a "pride" of lions or a "murmuration" of starlings. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place: for example, *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
 Organizing rules into modules is useful both because it allows for a logical separation of similar rules, which often require similar computational machinery to implement, and also because it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase. One open challenge is how to allow customization at a level more finely grained than a submodule.
 
@@ -692,82 +692,82 @@ This checks whether someone has used either 12am or 12pm (or many variants, e.g.
 
 .. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
 
-A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
+.. A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
 
-.. code-block::python
+.. .. code-block::python
     
-    def consistency_check(text, word_pairs, err, msg, offset=0):
-        """Build a consistency checker."""
-        errors = []
-        msg = " ".join(msg.split())
-        for w in word_pairs:
-            matches = [
-                [m for m in re.finditer(w[0], text)],
-                [m for m in re.finditer(w[1], text)]
-            ]
-            if len(matches[0]) > 0 and len(matches[1]) > 0:
-                idx_minority = len(matches[0]) > len(matches[1])
-                for m in matches[idx_minority]:
-                    errors.append((
-                        m.start() + offset,
-                        m.end() + offset,
-                        err,
-                        msg.format(w[~idx_minority], m.group(0)),
-                        w[~idx_minority]))
-        return errors
+..     def consistency_check(text, word_pairs, err, msg, offset=0):
+..         """Build a consistency checker."""
+..         errors = []
+..         msg = " ".join(msg.split())
+..         for w in word_pairs:
+..             matches = [
+..                 [m for m in re.finditer(w[0], text)],
+..                 [m for m in re.finditer(w[1], text)]
+..             ]
+..             if len(matches[0]) > 0 and len(matches[1]) > 0:
+..                 idx_minority = len(matches[0]) > len(matches[1])
+..                 for m in matches[idx_minority]:
+..                     errors.append((
+..                         m.start() + offset,
+..                         m.end() + offset,
+..                         err,
+..                         msg.format(w[~idx_minority], m.group(0)),
+..                         w[~idx_minority]))
+..         return errors
 
 
-    def preferred_forms_check(text, list, err, msg,
-                              ignore_case=True, offset=0,
-                              max_errors=float("inf")):
-        """Build a checker that suggests the preferred form."""
-        if ignore_case: flags = re.IGNORECASE
-        else: flags = 0
-        msg = " ".join(msg.split())
-        errors = []
-        regex = u"[\W^]{}[\W$]"
-        for p in list:
-            for r in p[1]:
-                for m in re.finditer(regex.format(r), text, flags=flags):
-                    txt = m.group(0).strip()
-                    errors.append((
-                        m.start() + 1 + offset,
-                        m.end() + offset,
-                        err,
-                        msg.format(p[0], txt),
-                        p[0]))
-        errors = truncate_to_max(errors, max_errors)
-        return errors
+..     def preferred_forms_check(text, list, err, msg,
+..                               ignore_case=True, offset=0,
+..                               max_errors=float("inf")):
+..         """Build a checker that suggests the preferred form."""
+..         if ignore_case: flags = re.IGNORECASE
+..         else: flags = 0
+..         msg = " ".join(msg.split())
+..         errors = []
+..         regex = u"[\W^]{}[\W$]"
+..         for p in list:
+..             for r in p[1]:
+..                 for m in re.finditer(regex.format(r), text, flags=flags):
+..                     txt = m.group(0).strip()
+..                     errors.append((
+..                         m.start() + 1 + offset,
+..                         m.end() + offset,
+..                         err,
+..                         msg.format(p[0], txt),
+..                         p[0]))
+..         errors = truncate_to_max(errors, max_errors)
+..         return errors
 
 
-    def existence_check(text, list, err, msg, ignore_case=True,
-                        str=False, max_errors=float("inf"), offset=0,
-                        require_padding=True, dotall=False,
-                        excluded_topics=None, join=False):
-        """Build a checker that blacklists certain words."""
-        flags = 0
-        msg = " ".join(msg.split())
-        if ignore_case: flags = flags | re.IGNORECASE
-        if str: flags = flags | re.UNICODE
-        if dotall: flags = flags | re.DOTALL
-        if require_padding: regex = u"(?:^|\W){}[\W$]"
-        else: regex = u"{}"
-        errors = []
-        if excluded_topics:
-            tps = topics(text)
-            if any([t in excluded_topics for t in tps]):
-                return errors
-        rx = "|".join(regex.format(w) for w in list)
-        for m in re.finditer(rx, text, flags=flags):
-            txt = m.group(0).strip()
-            errors.append((
-                m.start() + 1 + offset,
-                m.end() + offset,
-                err,
-                msg.format(txt),
-                None))
-        errors = truncate_to_max(errors, max_errors)
-        return errors
+..     def existence_check(text, list, err, msg, ignore_case=True,
+..                         str=False, max_errors=float("inf"), offset=0,
+..                         require_padding=True, dotall=False,
+..                         excluded_topics=None, join=False):
+..         """Build a checker that blacklists certain words."""
+..         flags = 0
+..         msg = " ".join(msg.split())
+..         if ignore_case: flags = flags | re.IGNORECASE
+..         if str: flags = flags | re.UNICODE
+..         if dotall: flags = flags | re.DOTALL
+..         if require_padding: regex = u"(?:^|\W){}[\W$]"
+..         else: regex = u"{}"
+..         errors = []
+..         if excluded_topics:
+..             tps = topics(text)
+..             if any([t in excluded_topics for t in tps]):
+..                 return errors
+..         rx = "|".join(regex.format(w) for w in list)
+..         for m in re.finditer(rx, text, flags=flags):
+..             txt = m.group(0).strip()
+..             errors.append((
+..                 m.start() + 1 + offset,
+..                 m.end() + offset,
+..                 err,
+..                 msg.format(txt),
+..                 None))
+..         errors = truncate_to_max(errors, max_errors)
+..         return errors
 
 :sc:`Memoization`
 ^^^^^^^^^^^^^^^^^
