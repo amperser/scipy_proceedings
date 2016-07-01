@@ -798,7 +798,7 @@ Novelty will continue to introduce new usages, and some of them will be poor.
 Authors identified as trustworthy may point these out, but this will only be in retrospect. 
 If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
 
-Scientific writing is characterised by consistent 
+.. Scientific writing is characterised by consistent 
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
