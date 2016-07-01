@@ -530,21 +530,7 @@ Infrastructural details
 Contributing
 ---------------------------
 
-There are many ways to contribute to Proselint. 
-
-One primary avenue is to use issues on our GitHub repository. 
-
-New rules need to be accompanied by an expert source meriting the inclusion of the rule. 
-
-The final decision of whether to include it in the default set of rules is up to us.
-
-We have not included rule modules that are by default left off but can be turned on. 
-Though we are not opposed to this in principle, it is difficult to see why we should do so. 
-If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
-We want to make that process simple. 
-If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
-Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
-
+There are many ways to contribute to Proselint. One primary avenue is to use issues on our GitHub repository. New rules need to be accompanied by an expert source meriting the inclusion of the rule. The final decision of whether to include it in the default set of rules is up to us. We have not included rule modules that are by default left off but can be turned on. Though we are not opposed to this in principle, it is difficult to see why we should do so. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. We want to make that process simple. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customisation to adapt to your personal "style".
 
 Code
 -------------------
@@ -726,31 +712,15 @@ More generally, we could build even richer versions of the generalised lintscore
 Prosewash: False positive elimination as a service
 --------------------------------------------------
 
-Any sort of load distribution mechanism will likely require some amount of human-time being devoted to the task of identifying whether particular flagged text is a false positive.
-Expecting people to donate their time will only create a backlog in this mechanism if it experiences even moderate demand.
-Thus, we may need to pay people to evaluate flags as false or true positives. 
-That, then, requires paying for the cost of crowdsourcing, which opens the door for a sustainable business model for supporting Proselint, without abandoning any of our open source principles.
-That is, we can successfully support our open source development efforts through a separate premium service model.
+Any sort of load distribution mechanism will likely require some amount of human-time being devoted to the task of identifying whether particular flagged text is a false positive. Expecting people to donate their time will only create a backlog in this mechanism if it experiences even moderate demand. Thus, we may need to pay people to evaluate flags as false or true positives.  That, then, requires paying for the cost of crowdsourcing, which opens the door for a sustainable business model for supporting Proselint, without abandoning any of our open source principles. That is, we can successfully support our open source development efforts through a separate premium service model.
 
+We will provide individuals the ability to reduce false positive rates by connecting them to other individuals who will evaluate their prose. To pay for the costs of development, maintenance, and the crowd's time this will necessarily be a paid service, especially so for any solution that is intended to scale up to larger cases. A traditional clothing "linter" relies on the static properties of the linter to extract lint making the clothes cleaner. In analogy to this active evaluation process in contrast to the static linting process, we call the service Prosewash.
 
-We will provide individuals the ability to reduce false positive rates by connecting them to other individuals who will evaluate their prose.
-To pay for the costs of development, maintenance, and the crowd's time this will necessarily be a paid service, especially so for any solution that is intended to scale up to larger cases.
-A traditional clothing "linter" relies on the static properties of the linter to extract lint making the clothes cleaner.
-In analogy to this active evaluation process in contrast to the static linting process, we call the service Prosewash.
-
-One advantage of this kind of business model is that it avoids some of the pitfalls that can face an open source project's attempt to support itself.
-One pitfall is to take open source software and close off future development in order to extract rent from those advances.
-This approach respects the extant contributors to the project and the Proselint community by keeping the tool and its source open.
-Another pitfall is to develop features in software that could be given to everyone for free (in terms of the actual cost of distributing the feature), but are withheld from users who do not pay.
-Our approach respects the users and contributors by not building a premium programme and then hiding its capabilities from users.
-This would be a service not a feature; every time we recruit a crowd to solve a problem it will cost money.
+One advantage of this kind of business model is that it avoids some of the pitfalls that can face an open source project's attempt to support itself. One pitfall is to take open source software and close off future development in order to extract rent from those advances. This approach respects the extant contributors to the project and the Proselint community by keeping the tool and its source open. Another pitfall is to develop features in software that could be given to everyone for free (in terms of the actual cost of distributing the feature), but are withheld from users who do not pay. Our approach respects the users and contributors by not building a premium programme and then hiding its capabilities from users. This would be a service not a feature; every time we recruit a crowd to solve a problem it will cost money.
 There is no way to provide that service without incurring costs, so we are not withholding any capabilities from users of Proselint.
 
-This also offers the advantage that in the course of running the service, we are collecting more and more data about Proselint in the wild.
-We can learn the base-rates at which different rules are invoked as well as their specific false positive rates.
-As we introduce more contextual information (and thus riskier rules), this data will be invaluable to effectively tune our rule-set.
-So while this financially supporting further development on Proselint, that is not the only way Prosewash improve Proselint. 
-The data gathered through the process of washing people's prose more actively, can then be fed back to improve Proselint and tune its rulesets and defaults. 
+This also offers the advantage that in the course of running the service, we are collecting more and more data about Proselint in the wild. We can learn the base-rates at which different rules are invoked as well as their specific false positive rates. As we introduce more contextual information (and thus riskier rules), this data will be invaluable to effectively tune our rule-set.
+So while this financially supporting further development on Proselint, that is not the only way Prosewash improve Proselint. The data gathered through the process of washing people's prose more actively, can then be fed back to improve Proselint and tune its rulesets and defaults. 
 Thus participation in the premium service will provide direct improvements to the Proselint community irrespective of assigned development time.
 
 Context-sensitive rule application
@@ -760,14 +730,7 @@ Many rules may apply better to some kinds of documents than others. For example,
 
 If we detect the context in which a rule is to be applied (such as document topic, format or genre), we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced.
 
-Generalizing this ability will be crucial to safely growing Proselint error coverage. 
-In the sense that a riskier rule is one with a higher false-positive rate, context sensitive rules are necessarily riskier than non-context sensitive rules.
-To see why, consider that if a rule introduced many false positives across all contexts it would not be included in Proselint.
-For rules that do not produce many false positives across contexts, there is no reason to make them context specific.
-The only reason to include context specific rule applications is if there are some contexts in which a rule produces higher false-positive rates than in other contexts.
-If those false-positive rates were low enough to not be excluded by the context insensitive version, their net false positive rate would only be lower, meaning it would certainly be included in the basic Proselint rule set (excluding it from candidacy as a context sensitive rule).
-Accordingly, introducing a rule that *should* be context sensitive, but without the appropriate context sensitivity, will guarantee an increased false positive rate.
-
+Generalizing this ability will be crucial to safely growing Proselint error coverage. In the sense that a riskier rule is one with a higher false-positive rate, context sensitive rules are necessarily riskier than non-context sensitive rules. To see why, consider that if a rule introduced many false positives across all contexts it would not be included in Proselint. For rules that do not produce many false positives across contexts, there is no reason to make them context specific. The only reason to include context specific rule applications is if there are some contexts in which a rule produces higher false-positive rates than in other contexts. If those false-positive rates were low enough to not be excluded by the context insensitive version, their net false positive rate would only be lower, meaning it would certainly be included in the basic Proselint rule set (excluding it from candidacy as a context sensitive rule). Accordingly, introducing a rule that *should* be context sensitive, but without the appropriate context sensitivity, will guarantee an increased false positive rate.
 
 Improved self-evaluation procedure
 ----------------------------------
@@ -777,15 +740,11 @@ We currently calculate our lintscore manually on a static corpus of professional
 :sc:`Multiple corpora with different features`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We currently only have a single corpus for analyzing Proselint's performance. 
-It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. 
-This efficiently alerts us to false-alarms that are introduced by the inclusion of new rules. 
-However, it does a poor job of estimating performance on a variety of other metrics.
+We currently only have a single corpus for analyzing Proselint's performance. It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. This efficiently alerts us to false-alarms that are introduced by the inclusion of new rules. However, it does a poor job of estimating performance on a variety of other metrics.
 
 A corpus of relatively green documents are more likely to have true positives and (consequently) will improve our estimates of Proselint's positive utility. 
 
-Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields. 
-Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.
+Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields.  Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.
 
 Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
 
@@ -795,17 +754,12 @@ Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) of
 Currently the analysis procedure requires a particular individual evaluating the proposed errors and determining whether they are true or false positives.
 Using some kind of load distribution mechanism (e.g., crowd sourcing) would make this easier. 
 
-Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities.
-There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalyzing the entirety of a document every time it changes.
-While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
+Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities. There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalyzing the entirety of a document every time it changes. While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
 
 Authorship attribution, ghost-writing, and anonymisation
 --------------------------------------------------------
 
-Stylometrics has extensively studied the problem of identifying the true authors of documents. 
-Many of these studies focus on the relative frequencies with which individual words are used (especially function words).
-For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*.
-Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
+Stylometrics has extensively studied the problem of identifying the true authors of documents. Many of these studies focus on the relative frequencies with which individual words are used (especially function words). For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*. Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
 
 One application improved authorship identification is the ability to detect ghost-written documents (assuming you have a ground corpus to identify stylometric patterns in the author's writing). This could have applications to identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). 
 
@@ -814,16 +768,9 @@ On the other hand, someone who applies Proselint to their text may be able to es
 Subdocument analysis
 --------------------
 
-Currently rule scope needs to be done at a word, sentence, paragraph or document level. 
-Some rules may be better applied over different subdocument sections. 
-For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic.
-Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
+Currently rule scope needs to be done at a word, sentence, paragraph or document level.  Some rules may be better applied over different subdocument sections.  For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic. Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
 
-The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling. 
-If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents. 
-The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers.
-On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
-
+The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
 
 .. Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
@@ -835,8 +782,6 @@ On the other hand inferring the structure of a document based on its content if 
 .. 
 
 .. Isolable 
-
-
 
 Acknowledgements
 ================
