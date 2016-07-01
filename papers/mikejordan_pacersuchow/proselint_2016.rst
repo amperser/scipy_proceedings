@@ -542,8 +542,7 @@ Suppose that each flag in a new document are false positives with a Bernoulli di
 .. math::
     N(1-\hat{\alpha})^N
 
-which is a generalised lintscore, with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the total number of events which are presumed to be successes(:math:`k\equiv N`).
-
+which is a generalised lintscore, with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the total number of events which are presumed to be successes(:math:`k\equiv N`). This is equivalent to the expected score when you assign full credit in the case where all lints are true positives and 0 otherwise.
 
 Lintscores and false-negatives
 ------------------------------
