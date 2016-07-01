@@ -534,37 +534,33 @@ The primary avenue for contributing to Proselint is by contributing code to our 
 
 A second avenue for contributing to Proselint is through discovery of false alarms. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
 
-Code
+Code: rule modules
 -------------------
-
-:sc:`Rule modules`
-^^^^^^^^^^^^^^^^^^
 
 Proselint rules are organized into modules that reflect the structure of language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of particular animals --- a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
 Organizing rules into modules is useful for two reasons. First, it allows for a logical separation of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to customize which linting rules are applied at a level more finely grained than the submodule, and it is an open challenge how best to allow this without making the format for customization painful to navigate, modify, and comprehend.
 
-:sc:`Rule templates`
-^^^^^^^^^^^^^^^^^^^^
+Code: rule templates
+--------------------
 
-In general a rule needs to simply take in a string of text of some sort, and then apply some sort of logic identifying whether a rule has been violated, and return a value in the correct format.
+In general, a rule needs simply to take in a string of text, apply logic identifying whether a rule has been violated, and then return a value in the correct format.
 
-In order to ease the production of new rules, we have written functions that help in following the protocol for commonly used kinds of rules. These include checking checking for whether a word exists (``existence_check()``), cross-document consistency in usage (``consistency_check()``), and suggesting preferred forms of usage (``preferred_forms_check()``). 
+To ease the implementation of new rules, we have written functions that help to follow the protocol. These include checking whether a given word, phrase, or pattern exists (``existence_check()``), for cross-document consistency in usage (``consistency_check()``), and for preferred forms of usage (``preferred_forms_check()``). 
 
 Here is an example of a rule as implemented by the ``existence check`` rule template. 
 
 .. code-block:: python
 
-    @memoize
     def check_midnight_noon(text):
         """Check the text."""
         err = "dates_times.am_pm.midnight_noon"
-        msg = (u"12 a.m. and 12 p.m. are wrong and confusing."
-               " Use 'midnight' or 'noon'.")
+        msg = (u"12 a.m. and 12 p.m. are wrong and "
+        "confusing. Use 'midnight' or 'noon'.")
         regex = "12 ?[ap]\.?m\.?"
         return existence_check(text, [regex], err, msg)
 
-This checks whether someone has used either 12am or 12pm (or many variants, e.g., 12AM, 12 P.M, 12aM.) and suggests the author use noon or midnight as is appropriate [#]_. 
+This checks whether someone has used either 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place [#]_. 
 
 .. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
 
@@ -645,35 +641,25 @@ This checks whether someone has used either 12am or 12pm (or many variants, e.g.
 ..         errors = truncate_to_max(errors, max_errors)
 ..         return errors
 
-:sc:`Memoization`
-^^^^^^^^^^^^^^^^^
+Code: memoization
+-----------------
 
-One of our goals is for Proselint to be efficient, able to run over a document in real time as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizeable document is being edited --- at the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
+One of our goals is for Proselint to be efficient, able to run over a document in real time as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizeable document is being edited. At the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 Concerns around normativity in prose styling
 ============================================
 
-One of the most common `critiques <https://news.ycombinator.com/item?id=11232882>`_ of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively.
-These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenising effect on prose.
-There are many nuances around how exactly this is stated, but that general gist covers the core of the critique. 
+One of the most common `critiques <https://news.ycombinator.com/item?id=11232882>`_ of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose. (There are nuances around how exactly the critique is stated, but this is its gist.)
 
-To this critique there are several possible responses.
-The first few responses apply in general, the latter apply in the case of technical and scientific writing.
+To this critique, there are several possible responses. The first few of these apply in general, while the latter apply in the case of technical and scientific writing:
 
-A good deal of the advice in Proselint points out that certain word sequences are problematic without suggesting any particular replacement text. 
-There are a few reasons for this (including the computational natures of error-detection vs. solution-recommendation problems). 
-The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. 
-Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
+A good deal of the advice in Proselint points out that certain word sequences are problematic without suggesting any particular replacement text. There are a few reasons for this, including the computational natures of error-detection vs. solution-recommendation problems. The reason most relevant to this concern is that solution-recommendations are more likely to produce a homogenizing effect because they have a driving effect, wherein using a particular set of words is deemed superior to another set of words. Much in the way that the diversity of life-forms has arisen because of selective pressures, by eliminating the least fit combinations of words, the native variation in writing can flourish all the more readily.
 
-The goal is not to homogenize text for the sake of uniformity, but rather to identify those cases that have been identified by respected authors and usage guides as being specifically problematic. 
-Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter.
-Novelty will continue to introduce new usages, and some of them will be poor. 
-Authors identified as trustworthy may point these out, but this will only be in retrospect. 
-If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
+Our goal is not to homogenize text for the sake of uniformity, though perhaps there is value there, too, but rather to detect instances that have been specifically identified by respected authors and usage guides as being problematic. Any text that is sufficiently artful and compelling to have not been specifically addressed by these sources should not be able to be caught by the linter. Novelty will continue to introduce new usages, and some of them will be poor. Authors identified as trustworthy may point these out, but this will only be in retrospect. If one does not trust a guide's point of view, our strongest recommendation would be to turn off the modules associated with that guide.
 
-Technical writing of all kinds is often characterised by consistent language use and precise terminology. Even if one views all writing as a inextricably creative endeavor, that creativity – in some cases – needs to be directed toward particular aims. Software documentation, technical manuals, legal and pedagogical writing all feature this need. The needs of each of these cases will not be well addressed by the same set of guidelines, but each will have a guideline it is intended to follow.
+Technical writing of all kinds is often characterized by consistent language use and precise terminology. Even if one views all writing as an inextricably creative endeavor, that creativity –- in some cases –- needs to be directed toward particular aims. Software documentation, technical manuals, legal, and pedagogical writing all feature this need. The needs of each of these cases will not be well addressed by the same set of guidelines, but each will have a set of guidelines that it can benefit from following.
 
-Science demands consistency in order to ensure that replication and clarity is possible. At the same time, scientists are in the business of expressing ideas that challenge even the greatest of minds. Their success depends upon their ability to accessibly and captivatingly convey worthwhile ideas that people wish to use in their own work. In cases where the ideas themselves are difficult to grasp, eradicating opacity from prose is tantamount; opacity is the enemy of the proliferation of any idea.
+Science demands consistency to ensure that replication and clarity is possible. At the same time, scientists are in the business of expressing ideas that challenge even the greatest of minds. Their success depends upon their ability to accessibly and captivatingly convey worthwhile ideas that people wish to use in their own work. In cases where the ideas themselves are difficult to grasp, eradicating opacity from prose is tantamount. Opacity is the enemy of the proliferation of any idea.
 
 And, as a final point, we can do little better than to give a modified quote from the Foreword [#]_ in Robert Bringhurst's The Elements of Typographic Style (version 3.2, 2004)
 
@@ -681,9 +667,7 @@ And, as a final point, we can do little better than to give a modified quote fro
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
-
 .. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
-
 
 Future
 ======
@@ -692,29 +676,18 @@ We see a number of directions for future development.
 Scalable, dynamic false-positive detection
 ------------------------------------------
 
-The key feature to Proselint's success are its low false positive rates. 
-However, to identify the rate, we first must identify whether a flag is a false or true positive.
-Currently, detecting false positives requires an author manually evaluating the output of each linting flag.
-This does not scale to even small documents sets.
-The problem is made worse when you consider that each time the linter is run this process would need to be repeated. 
+To identify the false-positive rate, we first must identify whether a flag is a false or true positive. Currently, detecting false positives requires a person to manually evaluating the output of each linting flag. This does not scale to even small documents sets. The problem is made worse when you consider that, each time the linter is run, this process would need to be repeated. 
 
-To address dynamic documents, it would be useful to have the ability to detect when an error that has already been flagged.
-Until this is addressed a false positive analysis will only be efficient when done over static corpora of documents. 
-Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
+To address dynamic documents, it would be useful to have the ability to detect when an error that has already been flagged. Until this is addressed, a false positive analysis will only be efficient when done over static corpora of documents. Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
 
-We are investigating mechanisms for allowing for scalable dynamic false positive detection.
-One mechanism is to divide this task into independent isolable chunks. 
-This combined with a process for rapidly evaluating those chunks will make checking for false positives much easier even on an individual level.
-It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation off of the author.
+We are investigating mechanisms for allowing for scalable dynamic false positive detection. One mechanism is to divide this task into independent isolable chunks. This combined with a process for rapidly evaluating those chunks will make checking for false positives much easier even on an individual level. It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation off of the author.
 
-This would require solving some decision theoretic problems in order to efficiently sample the false positive rate as it applies particular linting flags or even entire rules.
-If this can be accomplished and automated, we could easily estimate the false positives found in a paper or a corpus.  
-More generally, we could build even richer versions of the generalised lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
+This would require solving some decision theoretic problems in order to efficiently sample the false positive rate as it applies particular linting flags or even entire rules. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or a corpus. More generally, we could build even richer versions of the generalised lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
 
 Prosewash: False positive elimination as a service
 --------------------------------------------------
 
-Any sort of load distribution mechanism will likely require some amount of human-time being devoted to the task of identifying whether particular flagged text is a false positive. Expecting people to donate their time will only create a backlog in this mechanism if it experiences even moderate demand. Thus, we may need to pay people to evaluate flags as false or true positives.  That, then, requires paying for the cost of crowdsourcing, which opens the door for a sustainable business model for supporting Proselint, without abandoning any of our open source principles. That is, we can successfully support our open source development efforts through a separate premium service model.
+Any sort of load-distribution mechanism will likely require some amount of human time being devoted to the task of identifying whether particular flagged text is a false positive. Expecting people to donate their time will only create a backlog in this mechanism if it experiences even moderate demand. Thus, we may need to pay people to evaluate flags as false or true positives.  That, then, requires paying for the cost of crowdsourcing, which opens the door for a sustainable business model for supporting Proselint, without abandoning any of our open source principles. That is, we can successfully support our open source development efforts through a separate premium service model.
 
 We will provide individuals the ability to reduce false positive rates by connecting them to other individuals who will evaluate their prose. To pay for the costs of development, maintenance, and the crowd's time this will necessarily be a paid service, especially so for any solution that is intended to scale up to larger cases. A traditional clothing "linter" relies on the static properties of the linter to extract lint making the clothes cleaner. In analogy to this active evaluation process in contrast to the static linting process, we call the service Prosewash.
 
