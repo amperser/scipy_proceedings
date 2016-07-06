@@ -649,7 +649,7 @@ One of our goals is for Proselint to be efficient, able to run over a document i
 Concerns around normativity in prose styling
 ============================================
 
-One of the most common `critiques <https://news.ycombinator.com/item?id=11232882>`_ of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose. (There are nuances around how exactly the critique is stated, but this is its gist.)
+One of the most common critiques:cite:`hackernews2016` of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose. (There are nuances around how exactly the critique is stated, but this is its gist.)
 
 To this critique, there are several possible responses. The first few of these apply in general, while the latter apply in the case of technical and scientific writing:
 
