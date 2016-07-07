@@ -67,6 +67,126 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 
 Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats, including JSON, allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
+Contributing to Proselint
+-------------------------
+
+The primary avenue for contributing to Proselint is by contributing code to our GitHub repository, which we use to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert that endorses the rule. This is not because language experts are the only holder of useful knowledge about language, but because our goal is explicitly to aggregate best practices as put forth by the experts.
+
+A second avenue for contributing to Proselint is through discovery of false alarms. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
+
+Code Structure: rule modules
+----------------------------
+
+Proselint rules are organized into modules that reflect the structure of language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of particular animals --- a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+
+Organizing rules into modules is useful for two reasons. First, it allows for a logical separation of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to customize which linting rules are applied at a level more finely grained than the submodule, and it is an open challenge how best to allow this without making the format for customization painful to navigate, modify, and comprehend.
+
+Code Structure: rule templates
+------------------------------
+
+In general, a rule needs simply to take in a string of text, apply logic identifying whether a rule has been violated, and then return a value in the correct format.
+
+To ease the implementation of new rules, we have written functions that help to follow the protocol. These include checking whether a given word, phrase, or pattern exists (``existence_check()``), for cross-document consistency in usage (``consistency_check()``), and for preferred forms of usage (``preferred_forms_check()``). 
+
+Here is an example of a rule as implemented by the ``existence check`` rule template. 
+
+.. code-block:: python
+
+    def check_midnight_noon(text):
+        """Check the text."""
+        err = "dates_times.am_pm.midnight_noon"
+        msg = (u"12 a.m. and 12 p.m. are wrong and "
+        "confusing. Use 'midnight' or 'noon'.")
+        regex = "12 ?[ap]\.?m\.?"
+        return existence_check(text, [regex], err, msg)
+
+This checks whether someone has used either 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place [#]_. 
+
+.. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
+
+.. A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
+
+.. .. code-block::python
+    
+..     def consistency_check(text, word_pairs, err, msg, offset=0):
+..         """Build a consistency checker."""
+..         errors = []
+..         msg = " ".join(msg.split())
+..         for w in word_pairs:
+..             matches = [
+..                 [m for m in re.finditer(w[0], text)],
+..                 [m for m in re.finditer(w[1], text)]
+..             ]
+..             if len(matches[0]) > 0 and len(matches[1]) > 0:
+..                 idx_minority = len(matches[0]) > len(matches[1])
+..                 for m in matches[idx_minority]:
+..                     errors.append((
+..                         m.start() + offset,
+..                         m.end() + offset,
+..                         err,
+..                         msg.format(w[~idx_minority], m.group(0)),
+..                         w[~idx_minority]))
+..         return errors
+
+
+..     def preferred_forms_check(text, list, err, msg,
+..                               ignore_case=True, offset=0,
+..                               max_errors=float("inf")):
+..         """Build a checker that suggests the preferred form."""
+..         if ignore_case: flags = re.IGNORECASE
+..         else: flags = 0
+..         msg = " ".join(msg.split())
+..         errors = []
+..         regex = u"[\W^]{}[\W$]"
+..         for p in list:
+..             for r in p[1]:
+..                 for m in re.finditer(regex.format(r), text, flags=flags):
+..                     txt = m.group(0).strip()
+..                     errors.append((
+..                         m.start() + 1 + offset,
+..                         m.end() + offset,
+..                         err,
+..                         msg.format(p[0], txt),
+..                         p[0]))
+..         errors = truncate_to_max(errors, max_errors)
+..         return errors
+
+
+..     def existence_check(text, list, err, msg, ignore_case=True,
+..                         str=False, max_errors=float("inf"), offset=0,
+..                         require_padding=True, dotall=False,
+..                         excluded_topics=None, join=False):
+..         """Build a checker that blacklists certain words."""
+..         flags = 0
+..         msg = " ".join(msg.split())
+..         if ignore_case: flags = flags | re.IGNORECASE
+..         if str: flags = flags | re.UNICODE
+..         if dotall: flags = flags | re.DOTALL
+..         if require_padding: regex = u"(?:^|\W){}[\W$]"
+..         else: regex = u"{}"
+..         errors = []
+..         if excluded_topics:
+..             tps = topics(text)
+..             if any([t in excluded_topics for t in tps]):
+..                 return errors
+..         rx = "|".join(regex.format(w) for w in list)
+..         for m in re.finditer(rx, text, flags=flags):
+..             txt = m.group(0).strip()
+..             errors.append((
+..                 m.start() + 1 + offset,
+..                 m.end() + offset,
+..                 err,
+..                 msg.format(txt),
+..                 None))
+..         errors = truncate_to_max(errors, max_errors)
+..         return errors
+
+Code Structure: memoization
+---------------------------
+
+One of our goals is for Proselint to be efficient, able to run over a document in real time as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizeable document is being edited. At the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
+
+
 Two views on Proselint
 ======================
 
@@ -528,127 +648,6 @@ We have collected a list of existing tools for automated language checkers. They
 
 The tools are varied in their approaches and coverage.
 
-Infrastructural details
-=======================
-
-Contributing
-------------
-
-The primary avenue for contributing to Proselint is by contributing code to our GitHub repository, which we use to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert that endorses the rule. This is not because language experts are the only holder of useful knowledge about language, but because our goal is explicitly to aggregate best practices as put forth by the experts.
-
-A second avenue for contributing to Proselint is through discovery of false alarms. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
-
-Code: rule modules
--------------------
-
-Proselint rules are organized into modules that reflect the structure of language advice found in usage guides. For example, Proselint includes a module ``terms`` that encourages idiomatic vocabulary. It has submodules with specific kinds of terms that can be found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of particular animals --- a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place --- *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
-
-Organizing rules into modules is useful for two reasons. First, it allows for a logical separation of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to customize which linting rules are applied at a level more finely grained than the submodule, and it is an open challenge how best to allow this without making the format for customization painful to navigate, modify, and comprehend.
-
-Code: rule templates
---------------------
-
-In general, a rule needs simply to take in a string of text, apply logic identifying whether a rule has been violated, and then return a value in the correct format.
-
-To ease the implementation of new rules, we have written functions that help to follow the protocol. These include checking whether a given word, phrase, or pattern exists (``existence_check()``), for cross-document consistency in usage (``consistency_check()``), and for preferred forms of usage (``preferred_forms_check()``). 
-
-Here is an example of a rule as implemented by the ``existence check`` rule template. 
-
-.. code-block:: python
-
-    def check_midnight_noon(text):
-        """Check the text."""
-        err = "dates_times.am_pm.midnight_noon"
-        msg = (u"12 a.m. and 12 p.m. are wrong and "
-        "confusing. Use 'midnight' or 'noon'.")
-        regex = "12 ?[ap]\.?m\.?"
-        return existence_check(text, [regex], err, msg)
-
-This checks whether someone has used either 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place [#]_. 
-
-.. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
-
-.. A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
-
-.. .. code-block::python
-    
-..     def consistency_check(text, word_pairs, err, msg, offset=0):
-..         """Build a consistency checker."""
-..         errors = []
-..         msg = " ".join(msg.split())
-..         for w in word_pairs:
-..             matches = [
-..                 [m for m in re.finditer(w[0], text)],
-..                 [m for m in re.finditer(w[1], text)]
-..             ]
-..             if len(matches[0]) > 0 and len(matches[1]) > 0:
-..                 idx_minority = len(matches[0]) > len(matches[1])
-..                 for m in matches[idx_minority]:
-..                     errors.append((
-..                         m.start() + offset,
-..                         m.end() + offset,
-..                         err,
-..                         msg.format(w[~idx_minority], m.group(0)),
-..                         w[~idx_minority]))
-..         return errors
-
-
-..     def preferred_forms_check(text, list, err, msg,
-..                               ignore_case=True, offset=0,
-..                               max_errors=float("inf")):
-..         """Build a checker that suggests the preferred form."""
-..         if ignore_case: flags = re.IGNORECASE
-..         else: flags = 0
-..         msg = " ".join(msg.split())
-..         errors = []
-..         regex = u"[\W^]{}[\W$]"
-..         for p in list:
-..             for r in p[1]:
-..                 for m in re.finditer(regex.format(r), text, flags=flags):
-..                     txt = m.group(0).strip()
-..                     errors.append((
-..                         m.start() + 1 + offset,
-..                         m.end() + offset,
-..                         err,
-..                         msg.format(p[0], txt),
-..                         p[0]))
-..         errors = truncate_to_max(errors, max_errors)
-..         return errors
-
-
-..     def existence_check(text, list, err, msg, ignore_case=True,
-..                         str=False, max_errors=float("inf"), offset=0,
-..                         require_padding=True, dotall=False,
-..                         excluded_topics=None, join=False):
-..         """Build a checker that blacklists certain words."""
-..         flags = 0
-..         msg = " ".join(msg.split())
-..         if ignore_case: flags = flags | re.IGNORECASE
-..         if str: flags = flags | re.UNICODE
-..         if dotall: flags = flags | re.DOTALL
-..         if require_padding: regex = u"(?:^|\W){}[\W$]"
-..         else: regex = u"{}"
-..         errors = []
-..         if excluded_topics:
-..             tps = topics(text)
-..             if any([t in excluded_topics for t in tps]):
-..                 return errors
-..         rx = "|".join(regex.format(w) for w in list)
-..         for m in re.finditer(rx, text, flags=flags):
-..             txt = m.group(0).strip()
-..             errors.append((
-..                 m.start() + 1 + offset,
-..                 m.end() + offset,
-..                 err,
-..                 msg.format(txt),
-..                 None))
-..         errors = truncate_to_max(errors, max_errors)
-..         return errors
-
-Code: memoization
------------------
-
-One of our goals is for Proselint to be efficient, able to run over a document in real time as an author writes it. To achieve this goal, it is helpful to avoid redundant computation by storing the results of expensive function calls from one run of the linter to the next, a technique called memoization. For example, consider that many of Proselint's checks can operate at the level of a paragraph, and most paragraphs do not change when a sizeable document is being edited. At the extreme, where the linter is run after each keystroke, this is true by definition. By running checks over paragraphs, and recomputing only when the paragraph has changed, otherwise returning the memoized result, it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 Concerns around normativity in prose styling
 ============================================
