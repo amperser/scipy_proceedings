@@ -619,7 +619,7 @@ Levels of difficulty
 
 .. possibly replace with image?
 
-In a loose analogy to the Chomskian hierarchy of formal grammars:cite:`chomsky1956three`, we have identified _[#] several levels of difficulty in the implementation of the detection and correction of usage errors:
+In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified _[#] several levels of difficulty in the implementation of the detection and correction of usage errors:
 
 #. AI-hard
 #. :sc:`nlp`, beyond state-of-the-art
@@ -668,7 +668,7 @@ The tools are varied in their approaches and coverage.
 Concerns around normativity in prose styling
 ============================================
 
-One of the most common critiques:cite:`hackernews2016` of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose. (There are nuances around how exactly the critique is stated, but this is its gist.)
+One of the most common critiques :cite:`hackernews2016` of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited in the set of things that are consistent with the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose. (There are nuances around how exactly the critique is stated, but this is its gist.)
 
 To this critique, there are several possible responses. The first few of these apply in general, while the latter apply in the case of technical and scientific writing:
 
@@ -726,7 +726,7 @@ In the sense that a riskier rule is one with a higher false-positive rate, conte
 
 We can silence rules that we detect as irrelevant due to context, we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced. 
 
-However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.  
+However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.    
 
 Improved self-evaluation procedure
 ----------------------------------
