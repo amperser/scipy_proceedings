@@ -726,7 +726,7 @@ In the sense that a riskier rule is one with a higher false-positive rate, conte
 
 We can silence rules that we detect as irrelevant due to context, we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced. 
 
-However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable even more efficient learning methods and presumably better context specific rules (as the contexts could be nested; :cite:`blei2010nested`).  
+However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.  
 
 Improved self-evaluation procedure
 ----------------------------------
@@ -763,12 +763,12 @@ On the other hand, someone who applies Proselint to their text may be able to es
 
 All of these techniques would have to be statistical in nature (unlike our current rules). Machine learning techniques for inferring identity with sparse data will be necessary. This partially stems from the relative rarity of the errors we find, which has posed a major difficultly for methods like those in :cite:`mosteller1963inference`. It is likely that this endeavor will benefit from an approach that considers the cross product of authors and topics (in the vein of :cite:`rosen2004author`).
 
-Subdocument analysis
---------------------
+.. Subdocument analysis
+.. --------------------
 
-Currently rule scope needs to be done at a word, sentence, paragraph or document level.  Some rules may be better applied over different subdocument sections.  For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic. Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
+.. Currently rule scope needs to be done at a word, sentence, paragraph or document level.  Some rules may be better applied over different subdocument sections.  For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic. Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
 
-The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
+.. The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
 
 An unsolved problem: foreign languages
 ======================================
