@@ -59,7 +59,7 @@ Our collective knowledge about best practices in writing is thus essentially tra
 The solution
 ============
 
-To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it, identifying problems with its syntax or style. Many linters are only used long after the fact, staying silent during the course of writing. Our goal with Proselint is to not merely to improve writing, but to improve writers. The best opportunity to elicit long-term changes in behavior is to intervene just after the behavior occurs :cite:`ferster1957schedules`. But to decide what behaviors to change, requires normative judgments. For those judgments we defer to language usage experts and make their aggregate knowledge accessible. Thus, Proselint identifies violations of expert-endorsed style and usage guidelines and alerts you of those violations as you commit them. It is as though the experts were sitting on your shoulder nudging you with gentle reminders in the form of a linter for prose.[#]_ 
+To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyses it, identifying problems with its syntax or style. Many linters are only used long after the fact, staying silent during the course of writing. Our goal with Proselint is to not merely to improve writing, but to improve writers. The best opportunity to elicit long-term changes in behavior is to intervene just after the behavior occurs :cite:`ferster1957schedules`. But to decide what behaviors to change, requires normative judgments. For those judgments we defer to language usage experts and make their aggregate knowledge accessible. Thus, Proselint identifies violations of expert-endorsed style and usage guidelines and alerts you of those violations as you commit them. It is as though the experts were sitting on your shoulder nudging you with gentle reminders in the form of a linter for prose. [#]_ 
 
 .. [#] That is not to say that iteration and editing many drafts of a work are not worthwhile. Deliberative editing will surely improve a piece of writing; Proselint is not ideal for that purpose. It is for establishing new (and correcting old) "built-in" linguistic habits that Proselint *is* ideal. 
 
@@ -196,7 +196,7 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 
 Our standard for including a new rule is that it be accompanied by an appropriate citation from a recognised expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritisation and preference. Our guiding preference is make Proselint as generally applicable "out-of-the-box" as possible.
 
-But[#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customised by making its rule-set extensible. It can be negatively customised by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
+But [#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customised by making its rule-set extensible. It can be negatively customised by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
 
 Tables 1 and 2 list many of the rule modules that Proselint currently implements.
 
@@ -399,18 +399,25 @@ Science and writing are fast friends --- science as we know it would be impossib
 
 Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology and typography; concision; and redundancy. For example, Proselint checks for use of the multiplication symbol × when giving screen dimensions (e.g. 1440 × 900), mispecifications of *p* values commonly caused by software package's truncation of small numbers (*p* = 0.00), and colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
 
+Proselint differs from a spellchecker in that it's recommendations are not specifically countering errors of in which is word is spelled incorrectly, but errors of style and usage. [#]_ 
+
+.. [#] For a case where spelling and proselint are similar, consider malapropisms. It is not that "attacking your voracity" is incorrectly spelled, but that the appropriate word (in most contexts) is "veracity". 
+
+
 As a tool for language science
 ------------------------------
 
+Though it has not been used in any extensive linguistic studies to date, Proselint is a tool that fits the formal structure expected by many language science techniques but with a feature set that emphasises different information. 
+
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
-One application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevelance of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry.
+One potential application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevelance of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry.
 
-Another application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse. 
+Another potential application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse. 
 
-This second application enables further extensions and generalizations, including for example the obfuscation of identity or coding of messages by selective introduction or removal of usage choices. Though we have emphasized cases where the goal is to recommend best practices in usage, the Proselint infrastructure can alternatively be used to identify cases where there is more than one acceptable choice. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted. One could then create a modified version of the document that uses these usage choices to encode a message, without the document demonstrating itself to contain an encoded message. With moderate modifications, then, Proselint could be a system for designing content-aware steganographic systems, conveying hidden messages in their choice of words and styles :cite:`bergmair2006content`.
+This second potential application enables further extensions and generalizations, including for example the obfuscation of identity or coding of messages by selective introduction or removal of usage choices. Though we have emphasized cases where the goal is to recommend best practices in usage, the Proselint infrastructure can alternatively be used to identify cases where there is more than one acceptable choice. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted. One could then create a modified version of the document that uses these usage choices to encode a message, without the document demonstrating itself to contain an encoded message. With moderate modifications, then, Proselint could be a system for designing content-aware steganographic systems, conveying hidden messages in their choice of words and styles :cite:`bergmair2006content`.
 
-In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that can provide stylistic false-positive rates. The theoretical work analyzing lintscores and the problem of error detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. The Proselint testing framework is an excellent opportunity to develop such a corpus.
+In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that can provide stylistic false-positive rates. Without such a corpus the natural language processing (:sc:`nlp`) community cannot proceed in working on topics like this. The theoretical work analyzing lintscores and the problem of error detection from a framework inspired by signal detection theory would be difficult to fathom without first postulating the existence of such a corpus. The Proselint testing framework is an excellent opportunity to develop such a corpus.
 
 
 Results
@@ -612,14 +619,16 @@ Levels of difficulty
 
 .. possibly replace with image?
 
-In a loose analogy to the Chomskian hierarchy of formal grammars, we have identified several levels of difficulty in the implementation of the detection and correction of usage errors:
+In a loose analogy to the Chomskian hierarchy of formal grammars:cite:`chomsky1956three`, we have identified _[#] several levels of difficulty in the implementation of the detection and correction of usage errors:
 
 #. AI-hard
-#. NLP, beyond state-of-the-art
-#. NLP, state-of-the-art
-#. Syntax processing
+#. :sc:`nlp`, beyond state-of-the-art
+#. :sc:`nlp`, state-of-the-art
+#. Syntax dependent rules
 #. Regular expressions
 #. One-to-one replacement rules. 
+
+.. [#] To our knowledge, no one has posed a hierarchy of this sort for organising the difficulty of identifying different style and usage violations.  
 
 Our development of Proselint begins at the lowest levels of the hierarchy, building upwards. At one extreme are usage errors detectable and correctable through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other extreme are errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case (if such a solution is possible at all). Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). Usage errors at this highest hierarchical level, are harder to successfully identify without introducing many false positives into the mix. Correcting them poses an additional problem as there will often not be a unique solution that can be recommended above all other. The intermediate cases vary along these dimensions, where as you move up the hierarchy, you introduce more false positives and unique correction becomes less and less possible.
 
