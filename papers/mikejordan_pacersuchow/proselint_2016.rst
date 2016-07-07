@@ -613,8 +613,8 @@ In contrast, grammar is too hard in the sense that, in its most general form, de
 
 Instead of focussing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-Published expertise as primary source
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:sc:`Published expertise as primary source`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence is a common measure in linguistics – style and usage inspires a variety of intuitions. But, the authors of respected expert language guides have honed their skills at identifying well and poorly styled prose. 
 
