@@ -194,7 +194,7 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 
 .. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
 
-One central design principle is to make Proselint as generally applicable "out-of-the-box" as possible. Our standard including a new rule is that it be accompanied by an appropriate citation. While we have no explicit criteria on what makes a citation appropriate, we have given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. The choice of which rules to implement, is ultimately a question of prioritisation and preference.
+One central design principle is to make Proselint as generally applicable "out-of-the-box" as possible. Our standard including a new rule is that it be accompanied by an appropriate citation from a recognised expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritisation and preference.
 
 But[#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customised by making its rule-set extensible. It can be negatively customised by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
 
@@ -590,8 +590,6 @@ suggests that, at column 10 of line 0, the check ``uncomporables.misc`` detected
 Text editor plugins
 -------------------
 An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
-
-
 
 
 Proselint's approach
