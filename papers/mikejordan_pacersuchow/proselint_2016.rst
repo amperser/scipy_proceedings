@@ -726,9 +726,7 @@ In the sense that a riskier rule is one with a higher false-positive rate, conte
 
 We can silence rules that we detect as irrelevant due to context, we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced. 
 
-However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising to non-parametric topic models  
-
-
+However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable even more efficient learning methods and presumably better context specific rules (as the contexts could be nested; :cite:`blei2010nested`).  
 
 Improved self-evaluation procedure
 ----------------------------------
