@@ -602,17 +602,23 @@ An effective way to promote adoption of best practices in writing through linter
 Proselint's approach
 ====================
 
-Check usage, not grammar
-------------------------
+What to check: usage, not grammar
+---------------------------------
 
 Proselint does not focus on grammar, which is at once too easy and too hard:
 
-Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors such as disagreement in number across long ranges can go undetected even by native speakers [sic].
+Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors such as disagreement in number across a long range escapes even native speakers' notice [sic].
 
-In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring human-level intelligence and the expertise of a native speaker to get things right. Even then, it might not be enough.
+In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that matches human-level intelligence and native-speaker-level to identify that an error has been made. Correcting those errors is just as challenging a problem. In addition to introducing false-positive risks, detecting grammatical errors requires processing syntax, which would mean each linting loop would take long, potentially weakening Proselint's real-time response speed.
 
 Instead of focussing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
+Published expertise as primary source
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence is a common measure in linguistics – style and usage inspires a variety of intuitions. But, the authors of respected expert language guides have honed their skills at identifying well and poorly styled prose. 
+
+Proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing with style.
 
 Levels of difficulty
 --------------------
@@ -649,12 +655,7 @@ To acheive this, we limit the number of false positives :math:`F` by measuring t
 
 where :math:`k` is a free parameter that controls the strictness of the penalty imposed by :math:`1-\alpha`.
 
-Published expertise as primary source
--------------------------------------
 
-This is one part of the motivation for using only expert language guides — they are human prose crafters who have honed their skills at identifying well and poorly styled prose.
-
-Proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing.
 
 
 Existing tools
