@@ -757,6 +757,13 @@ Currently rule scope needs to be done at a word, sentence, paragraph or document
 
 The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
 
+An unsolved problem: foreign languages
+======================================
+
+We currently do *not* have plans on extending Proselint to other languages, though we will do our best to aid those who wish to do so. Addressing the problem of linting prose for style and usage in English (of both American and British varieties) is challenging on its own. Attempting to build rule-sets for languages in which we lack fluency would seem to be an exercise in folly. Attempting to manage a community around the correct use of a language we do not speak would be simply inappropriate.
+
+That said, it is likely that we have learned lessons that would aid someone who wanted to extend Proselint to other languages (or anything else, for that matter). Our hope is that some of those lessons have been successfully conveyed above, but there are likely many more that will only reveal themselves in discussion. We invite anyone who wishes to discuss Proselint as a model for any other endeavor to reach out to us. If we have gained any knowledge, the last thing we want is for it to be trapped inside our heads. 
+
 .. Including rules set to be off by default. One reason to have rules off by default but included might be because of their effect on the false positive rate.
 
 .. Prosewash
