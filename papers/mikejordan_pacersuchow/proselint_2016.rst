@@ -619,7 +619,9 @@ Levels of difficulty
 
 .. possibly replace with image?
 
-In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified _[#] several levels of difficulty in the implementation of the detection and correction of usage errors:
+In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified [#]_ several levels of difficulty in the implementation of the detection and correction of usage errors:
+
+.. [#] To our knowledge, no one has posed a hierarchy of this sort for organising the difficulty of identifying different style and usage violations.  
 
 #. AI-hard
 #. :sc:`nlp`, beyond state-of-the-art
@@ -628,7 +630,6 @@ In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1
 #. Regular expressions
 #. One-to-one replacement rules. 
 
-.. [#] To our knowledge, no one has posed a hierarchy of this sort for organising the difficulty of identifying different style and usage violations.  
 
 Our development of Proselint begins at the lowest levels of the hierarchy, building upwards. At one extreme are usage errors detectable and correctable through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other extreme are errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case (if such a solution is possible at all). Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). Usage errors at this highest hierarchical level, are harder to successfully identify without introducing many false positives into the mix. Correcting them poses an additional problem as there will often not be a unique solution that can be recommended above all other. The intermediate cases vary along these dimensions, where as you move up the hierarchy, you introduce more false positives and unique correction becomes less and less possible.
 
@@ -740,7 +741,7 @@ We currently only have a single corpus for analyzing Proselint's performance. It
 
 A corpus of relatively green documents are more likely to have true positives and (consequently) will improve our estimates of Proselint's positive utility. 
 
-Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields.  Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.
+Corpora of documents drawn from different content-based categories (technical papers, scientific articles, software documentation, fiction, journalism, &c.) will allow us to distinguish between Proselint's performance in evaluating these different subfields.  Given that certain rules could systematically be relevant to different fields or differentially successful on certain document types, this would allow us to ensure that Proselint can be used by the widest possible group of individuals. This also will allow us to know how to assign rulesets to different contexts.  
 
 Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
 
