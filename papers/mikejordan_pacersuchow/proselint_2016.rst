@@ -791,7 +791,7 @@ That said, it is likely that we have learned lessons that would aid someone who 
 
 .. Isolable 
 
-Acknowledgements
+Acknowledgments
 ================
 Work on Proselint was supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically as regards applying Proselint to the problem of improving governmental communications as laid out in the `Federal Plain Language Guidelines`__.
 
