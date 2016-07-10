@@ -52,7 +52,7 @@ Having amassed a pile of useful advice is not enough to make writing better. Thi
 
 Today, an author wishing to improve a piece of writing by applying the collective wisdom of experts must rely on indirect means. The most common approach, used extensively in publishing, is a division of labor whereby dedicated staff with deep knowledge of best practices in writing copyedit a piece to their satisfaction. This is the approach used, for example, by *The New Yorker*, whose editing team includes fact checkers, editors, grammarians, and more. A second approach, used extensively in desktop publishing, is to use software-based tools such as spelling and grammar checkers that mark unrecognized words and purported violations of grammatical rules.
 
-Neither approach fully solves the problem of adopting best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copyeditors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible.
+Neither approach fully solves the problem of adopting best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copy editors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible.
 
 Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge immediately accessible to all authors.
 
@@ -194,9 +194,9 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 
 .. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
 
-Our standard for including a new rule is that it be accompanied by an appropriate citation from a recognised expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritisation and preference. Our guiding preference is make Proselint as generally applicable "out-of-the-box" as possible.
+Our standard for including a new rule is that it be accompanied by an appropriate citation from a recognized expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritization and preference. Our guiding preference is make Proselint as generally applicable "out-of-the-box" as possible.
 
-But [#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customised by making its rule-set extensible. It can be negatively customised by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
+But [#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customized by making its rule-set extensible. It can be negatively customized by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
 
 Tables 1 and 2 list many of the rule modules that Proselint currently implements.
 
@@ -401,23 +401,23 @@ Proselint improves writing across a number of dimensions relevant to the communi
 
 Proselint differs from a spellchecker in that it's recommendations are not specifically countering errors of in which is word is spelled incorrectly, but errors of style and usage. [#]_ 
 
-.. [#] For a case where spelling and proselint are similar, consider malapropisms. It is not that "attacking your voracity" is incorrectly spelled, but that the appropriate word (in most contexts) is "veracity". 
+.. [#] For a case where spelling and Proselint are similar, consider malapropisms. It is not that "attacking your voracity" is incorrectly spelled, but that the appropriate word (in most contexts) is "veracity". 
 
 
 As a tool for language science
 ------------------------------
 
-Though it has not been used in any extensive linguistic studies to date, Proselint is a tool that fits the formal structure expected by many language science techniques but with a feature set that emphasises different information. Additionally, Proselint's rule generation techniques have followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
+Though it has not been used in any extensive linguistic studies to date, Proselint is a tool that fits the formal structure expected by many language science techniques but with a feature set that emphasizes different information. Additionally, Proselint's rule generation techniques have followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
 
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
-.. One potential application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevelance of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry.
+.. One potential application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as the Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevalence of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry.
 
-In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that provide false-positive rates for style and usage violations. Without such a corpus the :sc:`nlp` community cannot proceed in working on topics like those we discuss. Given the descriptivist bias, this may not be surprising. Nonetheless, without first postulating the existence of such a corpus, it is difficult to fathom how our theoretical work analyzing lintscores or analysing linting as a signal detection theory problem could have occurred. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our corpus is from well-edited magazines with copyright on their work, this corpus cannot be released as part of open source software such as Proselint. Developing an open source corpus of style and usage errors will be necessary if these tools are to made available outside of our internal tests.
+In our testing of Proselint, we assembled a corpus of text from well-edited magazines containing low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that provide false-positive rates for style and usage violations. Without such a corpus the :sc:`nlp` community cannot proceed in working on topics like those we discuss. Given the descriptivist bias, this may not be surprising. Nonetheless, without first postulating the existence of such a corpus, it is difficult to fathom how our theoretical work analyzing lintscores or analyzing linting as a signal detection theory problem could have occurred. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our corpus is from well-edited magazines with copyright on their work, this corpus cannot be released as part of open source software such as Proselint. Developing an open source corpus of style and usage errors will be necessary if these tools are to made available outside of our internal tests.
 
 Results
 =======
-As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnotcied by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we acheived a lintscore of 98.8, reflecting detection of XX errors with XX false alarms (*k* = 2).
+As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we achieved a lintscore of 98.8, reflecting detection of XX errors with XX false alarms (*k* = 2).
 
 We have applied Proselint to the 2016 SciPy proceedings on the pull requests available on XX-XX-XXXX (date), XX-XX-XXXX (date), and XX-XX-XXXX (date). After removing (and noting) the number of false positives at these different dates, we have provided comments to the authors so they could change them. As you can see (Insert figure (once the analysis is complete)), the number of errors is [increasing/decreasing/stable] and our false-positive rate is [increasing/decreasing/stable]. 
 
@@ -463,7 +463,7 @@ The ability to identify authors, also enables inverting and generalizing that pr
 .. Desiderata for a linter
 .. -----------------------
 
-.. Desiderata are a set of desired criteria; these exist for almost all artefact classes, and usually stem from the aim for which the artefact is created. Like other designed systems, linters' ideal features stem from both the nature of the problem that they solve and the manner in which they attempt to solve the problem. 
+.. Desiderata are a set of desired criteria; these exist for almost all artifact classes, and usually stem from the aim for which the artifact is created. Like other designed systems, linters' ideal features stem from both the nature of the problem that they solve and the manner in which they attempt to solve the problem. 
 
 .. Linters (in a programming context) identify instances of code that either explicitly violates a set of stylistic rules (as in PEP8_) or is otherwise suspicious (as in cases where a variable is used before it has a value).
 
@@ -473,7 +473,7 @@ The ability to identify authors, also enables inverting and generalizing that pr
 
 .. *   scale to arbitrarily many rules,
 .. *   flag exactly those instances of code that are suspicious,
-.. *   and flag no nonsuspicious code spuriously.
+.. *   and flag no non-suspicious code spuriously.
 
 .. In most software linters, the perfect false positive rate and negative rate will be established by fiat; style rules that cannot be so implemented are simply not implemented. 
 .. In a linter for natural language one cannot count on the linter to be so accurate. 
@@ -487,7 +487,7 @@ The ability to identify authors, also enables inverting and generalizing that pr
 
 ..     * This limits how much processing can occur per rule.
 
-.. *   responses should be relatively monotonic (i.e., we should minimise the number of lints that are due to sentences that have not yet been completed)
+.. *   responses should be relatively monotonic (i.e., we should minimize the number of lints that are due to sentences that have not yet been completed)
 .. *   it needs to be able to be installed easily by the end-user
 .. *   it should be modifiable fairly easily (i.e., if a user does not like a particular rule set it should be able to be turned off)
 .. *   it needs to explain why it raising the flags it raises
@@ -521,7 +521,7 @@ Proselint is available on the Python Package Index and can be installed using pi
 
    pip install Proselint
 
-Alternatively, those wishing to develop Proselint can retrive the Git reposity from https://github.com/amperser/Proselint and then install the software using setuptools: 
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
 
 .. code-block:: bash
 
@@ -612,7 +612,7 @@ Grammar is too easy in the sense that, for most native speakers, grammatical err
 
 In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that matches human-level intelligence and native-speaker-level to identify that an error has been made. Correcting those errors is just as challenging a problem. In addition to introducing false-positive risks, detecting grammatical errors requires processing syntax, which would mean each linting loop would take long, potentially weakening Proselint's real-time response speed.
 
-Instead of focussing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
+Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
 :sc:`Published expertise as primary source`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -628,7 +628,7 @@ Levels of difficulty
 
 In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified [#]_ several levels of difficulty in the implementation of the detection and correction of usage errors:
 
-.. [#] To our knowledge, no one has posed a hierarchy of this sort for organising the difficulty of identifying different style and usage violations.  
+.. [#] To our knowledge, no one has posed a hierarchy of this sort for organizing the difficulty of identifying different style and usage violations.  
 
 #. AI-hard
 #. :sc:`nlp`, beyond state-of-the-art
@@ -645,7 +645,7 @@ Rapiers, cudgels, and the lintscore
 
 Any new tool (for language, or otherwise) faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the marginal utility it provides. Pen & ink, paper, and the computer each facilitated language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage: they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
 
-Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately injures large areas of flesh. Each time a language tool flags an issue, it might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, finding as many errors as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, even errors that Proselint would not detect. However, their emphasis on maxizing :math:`T` is to their detriment because these tools raise so many false alarms that their advice cannot be trusted. The writer must carefully consider whether to accept or reject each change. 
+Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately injures large areas of flesh. Each time a language tool flags an issue, it might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, finding as many errors as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, even errors that Proselint would not detect. However, their emphasis on maximizing :math:`T` is to their detriment because these tools raise so many false alarms that their advice cannot be trusted. The writer must carefully consider whether to accept or reject each change. 
 
 Proselint aims to be not a cudgel, but a rapier, a tool that pinpoints weak spots and strikes where it will make the most impact. With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. 
 
@@ -689,7 +689,7 @@ And, as a final point, we can do little better than to give a modified quote fro
 
     -- Robert Bringhurst :cite:`bringhurst2004elements`
 
-.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labelled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
+.. [#] Only because we are on the topic of historical traditions and stylistic guides, it should be mentioned that a foreword – according to book design tradition – would be written by an individual other than the author about the author, the book, and usually the relation between them. In this case, the section in Bringhurst's masterpiece labeled "Foreword" would likely be better described as "Preface" or "Introduction". Given his knowledge of book design, I shall assume that this was a conscious departure from the road of tradition, even if I cannot appreciate the new view that it offers.
 
 Future
 ======
@@ -704,7 +704,7 @@ To address dynamic documents, it would be useful to have the ability to detect w
 
 We are investigating mechanisms for allowing for scalable dynamic false positive detection. One mechanism is to divide this task into independent isolable chunks. This combined with a process for rapidly evaluating those chunks will make checking for false positives much easier even on an individual level. It also would open the door to load distribution mechanisms (such as crowd sourcing) as a way to take the burden of evaluation off of the author.
 
-This would require solving some decision theoretic problems in order to efficiently sample the false positive rate as it applies particular linting flags or even entire rules. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or a corpus. More generally, we could build even richer versions of the generalised lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
+This would require solving some decision theoretic problems in order to efficiently sample the false positive rate as it applies particular linting flags or even entire rules. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or a corpus. More generally, we could build even richer versions of the generalized lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
 
 .. Prosewash: False positive elimination as a service
 .. --------------------------------------------------
@@ -713,7 +713,7 @@ This would require solving some decision theoretic problems in order to efficien
 
 .. We will provide individuals the ability to reduce false positive rates by connecting them to other individuals who will evaluate their prose. To pay for the costs of development, maintenance, and the crowd's time this will necessarily be a paid service, especially so for any solution that is intended to scale up to larger cases. A traditional clothing "linter" relies on the static properties of the linter to extract lint making the clothes cleaner. In analogy to this active evaluation process in contrast to the static linting process, we call the service Prosewash.
 
-.. One advantage of this kind of business model is that it avoids some of the pitfalls that can face an open source project's attempt to support itself. One pitfall is to take open source software and close off future development in order to extract rent from those advances. This approach respects the extant contributors to the project and the Proselint community by keeping the tool and its source open. Another pitfall is to develop features in software that could be given to everyone for free (in terms of the actual cost of distributing the feature), but are withheld from users who do not pay. Our approach respects the users and contributors by not building a premium programme and then hiding its capabilities from users. This would be a service not a feature; every time we recruit a crowd to solve a problem it will cost money.
+.. One advantage of this kind of business model is that it avoids some of the pitfalls that can face an open source project's attempt to support itself. One pitfall is to take open source software and close off future development in order to extract rent from those advances. This approach respects the extant contributors to the project and the Proselint community by keeping the tool and its source open. Another pitfall is to develop features in software that could be given to everyone for free (in terms of the actual cost of distributing the feature), but are withheld from users who do not pay. Our approach respects the users and contributors by not building a premium program and then hiding its capabilities from users. This would be a service not a feature; every time we recruit a crowd to solve a problem it will cost money.
 .. There is no way to provide that service without incurring costs, so we are not withholding any capabilities from users of Proselint.
 
 .. This also offers the advantage that in the course of running the service, we are collecting more and more data about Proselint in the wild. We can learn the base-rates at which different rules are invoked as well as their specific false positive rates. As we introduce more contextual information (and thus riskier rules), this data will be invaluable to effectively tune our rule-set.
@@ -723,13 +723,13 @@ This would require solving some decision theoretic problems in order to efficien
 Context-sensitive rule application and machine learning
 -------------------------------------------------------
 
-Many rules may apply better to some kinds of documents than others. For example, in most cases "extendible" will be conventionally preferable to "extensible"; in software development the opposite is likely to be the case. Applying these rules without consideration of the document context will introduce false positives in a systematic fashion. We have often avoided those rules, as they guarantee an increase in the number of false positives. 
+Many rules may apply better to some kinds of documents than others. For example, in most cases "extendable" will be conventionally preferable to "extensible"; in software development the opposite is likely to be the case. Applying these rules without consideration of the document context will introduce false positives in a systematic fashion. We have often avoided those rules, as they guarantee an increase in the number of false positives. 
 
 In the sense that a riskier rule is one with a higher false-positive rate, context sensitive rules are necessarily riskier than non-context sensitive rules. To see why, consider that if a rule introduced many false positives across all contexts it would not be included in Proselint. For rules that do not produce many false positives across contexts, there is no reason to make them context specific. The only reason to include context specific rule applications is if there are some contexts in which a rule produces higher false-positive rates than in other contexts. If those false-positive rates were low enough to not be excluded by the context insensitive version, their net false positive rate would only be lower, meaning it would certainly be included in the basic Proselint rule set (excluding it from candidacy as a context sensitive rule). Accordingly, introducing a rule that *should* be context sensitive, but without the appropriate context sensitivity, will guarantee an increased false positive rate.
 
 We can silence rules that we detect as irrelevant due to context, we can predict whether a rule should be silenced. This allows including a greater variety of rules without introducing false positives. One example of this in practice is our "50's" detector, which identifies whether a document's topic includes the artist "50 cent". Were the topic not detected we would identify "50's" as a improperly giving a decade an apostrophe, if the "50 cent" topic is detected the rule is silenced. 
 
-However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalising this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.    
+However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalizing this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.    
 
 Improved self-evaluation procedure
 ----------------------------------
@@ -771,7 +771,7 @@ All of these techniques would have to be statistical in nature (unlike our curre
 
 .. Currently rule scope needs to be done at a word, sentence, paragraph or document level.  Some rules may be better applied over different subdocument sections.  For example, while an author may not overuse a sentential construction throughout a document, if a particular construction was used repeatedly throughout one section it would still be problematic. Without subdocument level analyses, it would not be possible to detect stylistic errors of that sort.
 
-.. The central challenges to this are the combinatoric issues that this problem introduces if approached naïvely and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
+.. The central challenges to this are the combinatoric issues that this problem introduces if approached naively and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
 
 An unsolved problem: foreign languages
 ======================================
