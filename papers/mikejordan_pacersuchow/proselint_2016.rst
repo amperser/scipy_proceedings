@@ -52,9 +52,9 @@ Having amassed a pile of useful advice is not enough to make writing better. Thi
 
 Today, an author wishing to improve a piece of writing by applying the collective wisdom of experts must rely on indirect means. The most common approach, used extensively in publishing, is a division of labor whereby dedicated staff with deep knowledge of best practices in writing copyedit a piece to their satisfaction. This is the approach used, for example, by *The New Yorker*, whose editing team includes fact checkers, editors, grammarians, and more :cite:`Norris2009`. A second approach, used extensively in desktop publishing, is to use software-based tools such as spelling and grammar checkers that mark unrecognized words and purported violations of grammatical rules.
 
-Neither approach fully solves the problem of adopting best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copy editors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible.
+Neither approach fully solves the problem of successful adoption of best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copy editors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Existing software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible (see Existing Tools, below).
 
-Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge immediately accessible to all authors.
+Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge  accessible to all authors.
 
 The solution
 ============
