@@ -533,7 +533,7 @@ At its core, Proselint is a command-line utility that reads in a text file:
 
 .. code-block:: bash
 
-   Proselint text.md
+   proselint text.md
 
 Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
 
@@ -548,7 +548,7 @@ For example,
   text.md:0:10: uncomparables.misc Comparison of ... 
   an uncomparable: 'unique' can not be compared.
 
-suggests that, at column 10 of line 0, the check ``uncomporables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
 
 .. code-block:: javascript
 
@@ -598,26 +598,24 @@ Text editor plugins
 An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
 
 
-Proselint's approach
-====================
+The Proselintian approach
+=========================
 
 What to check: usage, not grammar
 ---------------------------------
 
 Proselint does not focus on grammar, which is at once too easy and too hard:
 
-Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors such as disagreement in number across a long range escapes even native speakers' notice [sic].
+Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
 
-In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that matches human-level intelligence and native-speaker-level to identify that an error has been made. Correcting those errors is just as challenging a problem. In addition to introducing false-positive risks, detecting grammatical errors requires processing syntax, which would mean each linting loop would take long, potentially weakening Proselint's real-time response speed.
+In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that matches human-level intelligence and the ear of native speaker to identify that an error has been made. And correcting those errors is as challenging a problem as detecting them.
 
 Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-:sc:`Published expertise as primary source`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Published expertise as primary source
+-------------------------------------
 
-Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence is a common measure in linguistics – style and usage inspires a variety of intuitions. But, the authors of respected expert language guides have honed their skills at identifying well and poorly styled prose. 
-
-Proselint defers to the world’s greatest writers and editors. We didn’t make up this advice on our own. Instead, we aggregated their expertise, giving you direct access to humanity’s collective understanding about the craft of writing with style.
+Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence as measured by the intuitions of native speakers is a common experimental measure in linguistics – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice. Proselint thus defers to the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing with style.
 
 Levels of difficulty
 --------------------
@@ -634,7 +632,6 @@ In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1
 #. Syntax dependent rules
 #. Regular expressions
 #. One-to-one replacement rules. 
-
 
 Our development of Proselint begins at the lowest levels of the hierarchy, building upwards. At one extreme are usage errors detectable and correctable through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other extreme are errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case (if such a solution is possible at all). Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). Usage errors at this highest hierarchical level, are harder to successfully identify without introducing many false positives into the mix. Correcting them poses an additional problem as there will often not be a unique solution that can be recommended above all other. The intermediate cases vary along these dimensions, where as you move up the hierarchy, you introduce more false positives and unique correction becomes less and less possible.
 
