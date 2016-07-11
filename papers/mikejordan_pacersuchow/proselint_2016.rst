@@ -59,13 +59,16 @@ Our collective knowledge about best practices in writing is thus essentially tra
 The solution
 ============
 
-To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it, identifying problems with its syntax or style. Many linters are used only long after the fact, staying silent during the course of creating a document. Our goal with Proselint is not merely to improve writing, but to improve writers. The best opportunity to elicit long-term changes in behavior is to intervene just after the behavior occurs :cite:`ferster1957schedules`. To decide what behaviors to change requires normative judgments. For those judgments, we defer to language usage experts and make their aggregate knowledge accessible. Thus, Proselint identifies violations of expert-endorsed style and usage guidelines and alerts the writer of those violations as they are committed. It is as though the experts sit by the writer's side, whispering gentle reminders. [#]_ 
+To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it, identifying problems with its syntax or style. Many linters are used only long after the fact, staying silent during the course of creating a document. Our goal with Proselint is not merely to improve writing, but to improve writers. The best opportunity to elicit long-term changes in behavior is to intervene just after the behavior occurs :cite:`ferster1957schedules`. To decide what behaviors to change requires normative judgments. For those judgments, we defer to language usage experts and make their aggregate knowledge accessible. Thus, Proselint identifies violations of expert-endorsed style and usage guidelines and alerts the writer of those violations as they are committed. [#]_ It is as though the experts sit by the writer's side, whispering gentle reminders. [#]_ 
 
-.. [#] This is not to say that iterative editing over many drafts of a work is not worthwhile — deliberative editing  improves writing. Proselint is not ideal for that purpose. Rather, it is ideal for establishing new (and correcting old) "built-in" linguistic habits.
+.. [#] Proselint differs from a spell-checker in that its recommendations do not specifically counter errors in which a word is spelled incorrectly, but rather errors of style and usage, which can occasionally be described as a spelling error. For example, consider the malapropism "attacking your voracity", where it is not that "voracity" is spelled incorrectly per se but that the appropriate word (in most contexts) is the nearby word "veracity". 
+
+.. [#] This is not to say that iterative editing over many drafts of a work is not worthwhile — deliberative editing of this kind improves writing in many settings. Proselint is not ideal for that purpose. Rather, it is ideal for establishing new (and correcting old) "built-in" linguistic habits.
 
 .. from Implement this strategy and dispense style and usage advice as you are writing. Proselint identifies violations of style and usage aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to authors in the form of a linter for prose. Proselint thus identifies violations of the style and usage guidelines that have been endorsed by experts.
 
 Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats, including JSON, allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
+
 
 Contributing to Proselint
 -------------------------
@@ -393,12 +396,7 @@ As a language tool for scientists
 
 Science and writing are fast friends --- science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science. 
 
-Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology and typography; concision; and redundancy. For example, Proselint checks for use of the multiplication symbol × when giving screen dimensions (e.g. 1440 × 900), mispecifications of *p* values commonly caused by software package's truncation of small numbers (*p* = 0.00), and colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
-
-Proselint differs from a spellchecker in that it's recommendations are not specifically countering errors of in which is word is spelled incorrectly, but errors of style and usage. [#]_ 
-
-.. [#] For a case where spelling and Proselint are similar, consider malapropisms. It is not that "attacking your voracity" is incorrectly spelled, but that the appropriate word (in most contexts) is "veracity". 
-
+Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology & typography, concision, and redundancy. For example, Proselint checks for use of the multiplication symbol × when giving screen dimensions (e.g. 1440 × 900), for misspecifications of *p* values commonly caused by software package's truncation of small numbers (*p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
 
 As a tool for language science
 ------------------------------
