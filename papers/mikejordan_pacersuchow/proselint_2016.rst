@@ -185,8 +185,8 @@ Code Structure: memoization
 One of our goals is for Proselint to be efficient enough for use as real-time linter while an author writes. Efficiency is increased by avoiding redundant computation, storing the results of expensive function calls from one run of the linter to the next, a technique called *memoization*. Consider, for example, that many of Proselint's checks can operate at the level of a paragraph and that most paragraphs do not change from moment to moment when a sizeable document is being edited. At the extreme, when a linter is run after each keystroke, this is true by definition. By running checks over paragraphs, recomputing only when the paragraph has changed (and otherwise returning the memoized result), it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 
-Whence advice: sources and examples
-===================================
+Sources of advice
+=================
 
 Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. 
 
