@@ -417,8 +417,9 @@ The ability to identify authors also enables inverting and generalizing that pro
 
 ..In following expert advice, we have emphasized cases where the goal is to recommend *best* practices in usage. To allow for encryption, the Proselint infrastructure would need modification to identify cases where more than one acceptable choice exists. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted (e.g., "instances" :math:`\to` "cases", "multiple" :math:`\to` "numerous"). One could then create a modified version of the document that encodes a second message while appearing to contain only the top layer of meaning. 
 
-Results
-=======
+Results and potential applications
+==================================
+
 As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we achieved a lintscore of 98.8 (*k* = 2).
 
 .. We have applied Proselint to the 2016 SciPy proceedings on the pull requests available on XX-XX-XXXX (date), XX-XX-XXXX (date), and XX-XX-XXXX (date). After removing (and noting) the number of false positives at these different dates, we have provided comments to the authors so they could change them. As you can see (Insert figure (once the analysis is complete)), the number of errors is [increasing/decreasing/stable] and our false-positive rate is [increasing/decreasing/stable]. 
