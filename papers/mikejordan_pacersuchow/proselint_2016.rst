@@ -84,11 +84,11 @@ Organizing rules into modules is useful for two reasons. First, it allows for a 
 Code Structure: rule templates
 ------------------------------
 
-In general, a rule needs simply to take in a string of text, apply logic identifying whether a rule has been violated, and then return a value in the correct format.
+In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format.
 
-To ease the implementation of new rules, we have written functions that help to follow the protocol. These include checking whether a given word, phrase, or pattern exists (``existence_check()``), for cross-document consistency in usage (``consistency_check()``), and for preferred forms of usage (``preferred_forms_check()``). 
+To ease the implementation of new rules, we have written functions that help to follow the protocol. These include checking whether a given word, phrase, or pattern exists in a document (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
 
-Here is an example of a rule as implemented by the ``existence check`` rule template. 
+For example, the following code implements a rule regarding the formatting of times using the ``existence check`` rule template. 
 
 .. code-block:: python
 
@@ -100,9 +100,7 @@ Here is an example of a rule as implemented by the ``existence check`` rule temp
         regex = "12 ?[ap]\.?m\.?"
         return existence_check(text, [regex], err, msg)
 
-This checks whether someone has used either 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place [#]_. 
-
-.. [#] Note, we could not used a preferred forms template because it is not clear which of these the author used due to the ambiguity of the terms that the rule is trying to alleviate.
+This function detects use of 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place.
 
 .. A simplified version of ``existence_check()`` ``consistency_check()`` and ``preferred_forms_check()`` follow.
 
