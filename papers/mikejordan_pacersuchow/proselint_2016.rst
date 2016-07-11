@@ -188,26 +188,26 @@ One of our goals is for Proselint to be efficient enough for use as real-time li
 Sources of advice
 =================
 
-Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. Our goal is to aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to all authors in the form of a linter for prose. 
+Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others.
 
-.. [#] Proselint has not been endorsed by these individuals; we have merely taken their words and implemented them in code. 
+.. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
 
-Our standard for including a new rule is that it be accompanied by an appropriate citation from a recognized expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritization and preference. Our guiding preference is make Proselint as generally applicable "out-of-the-box" as possible.
+Our standard for inclusion of a new rule is that it be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and works widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint as widely useful as possible with the minimum amount of customization. 
 
-We aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customized by making its rule-set extensible. It can be negatively customized by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
+Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default would be to exclude all forms of the advice. 
 
-Tables 1 and 2 list many of the rule modules that Proselint currently implements.
+We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding news rules or by excluding existing rules through a ``.proselintrc`` file.
 
 Examples of some rules
 ----------------------
 
-The following are examples of rules meant to give a taste of the range of advice that Proselint can give:
+Tables 1 and 2 list many of the rule modules that Proselint currently implements. The following examples are meant to give a taste of the range of advice that Proselint can give:
 
 #. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
 
-#. In response to "In recent years, an increasing number of psychologists have", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
+#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
 
-#. In response to "A group of starlings", Proselint notes "The venery terms is 'murmuration'"". :cite:`garner2016garner`
+#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
 
 
 .. One Issues are on github repo. 
