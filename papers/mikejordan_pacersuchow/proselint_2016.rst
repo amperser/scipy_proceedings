@@ -403,7 +403,15 @@ As a tool for language science
 
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
-The nature of a linter runs against a descriptivist approach --- one needs a norms to be able to detect norm violations. 
+The nature of a linter runs against an exclusively descriptivist approach to language use --- one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality:cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
+
+.. tools playing a small role in linguistic analyses of usage and style (but see, :cite:`kuhl1995chapter`).  
+
+
+
+.. Notions from signal detection theory (such as false-positive rates) have been powerful analytical tools for guiding and evaluating Proselint's development and performance, despite these tools playing a small role in linguistic analyses of usage and style[#]_. 
+
+.. .. [#] One case in which linguistics uses signal detection theory is to map sounds to phonemes to explain the "perceptual magnet effect" :cite:`kuhl1995chapter`. But note, sound-to-syllable mapping is one of the cases where linguists tend to assume that there is some underlying true linguistic event (the intended syllable). 
 
 Though it has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques, but with a feature set that emphasizes different kinds of information --- usage and style choices rather than word frequencies and syntax trees. Because of this Proselint has extensive applications as an input to other more standard linguistic techniques. 
 
@@ -665,6 +673,11 @@ To achieve this, we limit the number of false positives :math:`F` by measuring t
     l(T,F;k) = T(1-\alpha)^k,
 
 where :math:`k` is a free parameter that controls the strictness of the penalty imposed by :math:`1-\alpha`.
+
+:sc:`Generalised lintscores`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We can also develop a lintscore for documents with unknown empirical false positive rates. We can accomplish this by asking about the expected best case lintscore, but penalising the result by a false positive rate estimated from a related corpus of documents. This is sufficient to built a probabilsitic model of the problem as a collection of iid Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best case number of true positives (i.e., :math:`T\equiv N`) gives :math: `N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the best case number of successes (:math:`k\equiv N`).
 
 Existing tools
 ==============
