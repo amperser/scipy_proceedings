@@ -194,11 +194,9 @@ Proselint is built around advice [#]_ derived from works by Bryan Garner, David 
 
 Our standard for including a new rule is that it be accompanied by an appropriate citation from a recognized expert. While we have no explicit criteria on what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and those that are widely cited as sources of style advice. Though it has not arisen, our default in the case of conflicting advice would be to include neither pieces of advice. The choice of which rules to implement, is ultimately a question of prioritization and preference. Our guiding preference is make Proselint as generally applicable "out-of-the-box" as possible.
 
-But [#]_, we aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customized by making its rule-set extensible. It can be negatively customized by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
+We aim to have excellent defaults without hampering adaptability to user's personal preferences. We have designed Proselint to be positively customized by making its rule-set extensible. It can be negatively customized by using the ``.proselintrc`` file that allows selectively turning off different rule modules. 
 
 Tables 1 and 2 list many of the rule modules that Proselint currently implements.
-
-.. [#] You might notice that Proselint advises against beginning paragraphs with 'But', saying "No paragraph should start with a 'But'." We partially include this 'But' and this footnote to illustrate that the advice is only advice and that it can be appropriate to deviate from advice. In this case, 'But' allows attaching to the meaning of previous paragraph while introducing a new topic. The alternative (merging the paragraphs) would leave a paragraph with a muddled, unfocused topic.
 
 Examples of some rules
 ----------------------
