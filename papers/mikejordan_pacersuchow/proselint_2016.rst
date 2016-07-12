@@ -53,9 +53,9 @@ Having amassed a pile of useful advice is not enough to make writing better. Thi
 
 Today, an author wishing to improve a piece of writing by applying the collective wisdom of experts must rely on indirect means. The most common approach, used extensively in publishing, is a division of labor whereby dedicated staff with deep knowledge of best practices in writing copyedit a piece to their satisfaction. This is the approach used, for example, by *The New Yorker*, whose editing team includes fact checkers, editors, grammarians, and more :cite:`Norris2009`. A second approach, used extensively in desktop publishing, is to use software-based tools such as spelling and grammar checkers that mark unrecognized words and purported violations of grammatical rules.
 
-Neither approach fully solves the problem of successful adoption of best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copy editors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Existing software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible (see Existing Tools, below).
+Neither approach fully solves the problem of successful adoption of best practices in writing. Few people have the resources to outsource editing to expert staff, and even if they did, getting that advice inevitably takes time because copy editors do not look over one's shoulder and whisper advice during the act of writing. By the time an editor's notes are received, the best opportunity to strengthen the writer's craft has passed. Existing software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible (see Existing Tools, below). 
 
-Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge  accessible to all authors.
+Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge accessible to all authors.
 
 The solution
 ============
@@ -69,7 +69,6 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 .. from Implement this strategy and dispense style and usage advice as you are writing. Proselint identifies violations of style and usage aggregate knowledge about best practices in writing and to make that knowledge immediately accessible to authors in the form of a linter for prose. Proselint thus identifies violations of the style and usage guidelines that have been endorsed by experts.
 
 Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats, including JSON, allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
-
 
 Contributing to Proselint
 -------------------------
