@@ -662,9 +662,7 @@ Our development of Proselint begins at the lowest levels of the hierarchy, build
 Rapiers, cudgels, and the lintscore
 -----------------------------------
 
-Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the marginal utility it provides. Pen & ink, paper, and the computer each facilitated language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage because they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. 
-
-.. When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
+Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the utility it provides. Pen & ink, paper, and the computer each eased language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage because they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. 
 
 Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately injures large areas of flesh. Each time a language tool flags an issue, it might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, finding as many errors as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, errors that Proselint might not yet detect. However, their emphasis on maximizing :math:`T` is to their detriment because these tools raise so many false alarms that their advice cannot be trusted: the writer must carefully consider whether to accept or reject each change. 
 
@@ -690,10 +688,10 @@ We have collected a list of existing tools for automated language checkers. They
 
 The tools are varied in their approaches and coverage. Proselint differs from each tool in a variety of ways (e.g., focusing on grammar versus style, being open versus closed source, or extensible versus static). The greatest difference from all arises from our willingness to sacrifice coverage to maintain user trust via low false positive rates. Furthermore, the theoretical analyses comparable to those have arisen from this work have not stemmed from these other efforts; prior to this the theory of linting does not seem to be widely studied or discussed as an independent academic topic.
 
-Concerns around normativity in prose styling
-============================================
+Critique: normativity in prose styling
+======================================
 
-One of the most common critiques :cite:`hackernews2016` of Proselint is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited by the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose.
+One critique of Proselint :cite:`hackernews2016` is a concern that introducing any kind of linter-like process to the act of writing prose would in some way diminish the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited by the linter's rules, and as a result that this will have a shaping or homogenizing effect on prose.
 
 To this critique, there are several possible responses. The first few of these apply in general, while the latter apply in the case of technical and scientific writing:
 
