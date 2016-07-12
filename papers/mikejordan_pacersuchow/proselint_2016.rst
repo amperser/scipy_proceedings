@@ -713,7 +713,7 @@ And, as a final point, we can do little better than to give a modified quote fro
 
 Future
 ======
-We see a number of directions for future development of Proselint.
+We see a number of directions for future development of Proselint. 
 
 Scalable, dynamic false-positive detection
 ------------------------------------------
