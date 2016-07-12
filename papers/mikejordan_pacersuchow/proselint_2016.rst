@@ -231,6 +231,87 @@ Tables 1 and 2 list many of the rule modules that Proselint currently implements
 .. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
 .. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customization to adapt to your personal "style".
 
+
+Using Proselint
+===============
+
+Installation
+------------
+Proselint is available on the Python Package Index and can be installed using pip:
+
+.. code-block:: bash
+
+   pip install Proselint
+
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
+
+.. code-block:: bash
+
+   python setup.py develop
+
+
+Command-line utility
+--------------------
+
+At its core, Proselint is a command-line utility that reads in a text file:
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: uncomparables.misc Comparison of ... 
+  an uncomparable: 'unique' can not be compared.
+
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
+
+.. code-block:: javascript
+
+  {
+      // The check originating this suggestion
+      "check": "uncomparables.misc", 
+      
+      // The line where the error starts
+      "line": 1, 
+
+      //The column where the error starts
+      "column": 1, 
+      
+      // Index in the text where the error starts
+      "start": 1,
+
+      // the index in the text where the error ends
+      "end": 18, 
+      
+      // start - end
+      "extent": 17, 
+      
+      // Message describing the advice
+      "message": "Comparison of an uncomparable: ...
+      'very unique\n' is not comparable.",
+      
+      // Possible replacements
+      "replacements": null, 
+
+      // Importance("suggestion", "warning", "error")
+      "severity": "warning"
+  }
+
+
+Text editor plugins
+-------------------
+An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
+
+
 .. table:: What Proselint checks. :label:`checks`
 
    +---------------------------------+---------------------------------------------+
@@ -389,85 +470,6 @@ Tables 1 and 2 list many of the rule modules that Proselint currently implements
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
-Using Proselint
-===============
-
-Installation
-------------
-Proselint is available on the Python Package Index and can be installed using pip:
-
-.. code-block:: bash
-
-   pip install Proselint
-
-Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
-
-.. code-block:: bash
-
-   python setup.py develop
-
-
-Command-line utility
---------------------
-
-At its core, Proselint is a command-line utility that reads in a text file:
-
-.. code-block:: bash
-
-   proselint text.md
-
-Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
-
-.. code-block:: bash
-
-   text.md:<line>:<column>: <check_name> <message>
-
-For example,
-
-.. code-block:: bash
-
-  text.md:0:10: uncomparables.misc Comparison of ... 
-  an uncomparable: 'unique' can not be compared.
-
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
-
-.. code-block:: javascript
-
-  {
-      // The check originating this suggestion
-      "check": "uncomparables.misc", 
-      
-      // The line where the error starts
-      "line": 1, 
-
-      //The column where the error starts
-      "column": 1, 
-      
-      // Index in the text where the error starts
-      "start": 1,
-
-      // the index in the text where the error ends
-      "end": 18, 
-      
-      // start - end
-      "extent": 17, 
-      
-      // Message describing the advice
-      "message": "Comparison of an uncomparable: ...
-      'very unique\n' is not comparable.",
-      
-      // Possible replacements
-      "replacements": null, 
-
-      // Importance("suggestion", "warning", "error")
-      "severity": "warning"
-  }
-
-
-Text editor plugins
--------------------
-An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
-
 
 Two views on Proselint
 ======================
@@ -478,16 +480,16 @@ Proselint can be seen as both a language tool for scientists and a tool for lang
 As a language tool for scientists
 ----------------------------------
 
-Science and writing are fast friends --- science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science. 
+Science and writing are fast friends — science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science. 
 
-Proselint improves writing across a number of dimensions relevant to the communication of science, including consistency in terminology & typography, concision, and redundancy. For example, Proselint checks for use of the multiplication symbol × when giving screen dimensions (e.g. 1440 × 900), for misspecifications of *p* values commonly caused by software package's truncation of small numbers (*p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
+Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and redundancy. For example, Proselint checks for the multiplication symbol × when giving screen dimensions (e.g., 1440 × 900), for misspecified *p* values that result from software packages' truncating small numbers (e.g., *p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
 
 As a tool for language science
 ------------------------------
 
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
-The nature of a linter runs against an exclusively descriptivist approach to language use --- one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality:cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
+The nature of a linter runs against an exclusively descriptivist approach to language use --- one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
 
 .. tools playing a small role in linguistic analyses of usage and style (but see, :cite:`kuhl1995chapter`).  
 
@@ -497,11 +499,11 @@ The nature of a linter runs against an exclusively descriptivist approach to lan
 
 .. .. [#] One case in which linguistics uses signal detection theory is to map sounds to phonemes to explain the "perceptual magnet effect" :cite:`kuhl1995chapter`. But note, sound-to-syllable mapping is one of the cases where linguists tend to assume that there is some underlying true linguistic event (the intended syllable). 
 
-Despite our impliict prescriptivism, Proselint can be of use to standard descriptivist :sc:`nlp` techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphaises different kinds of information in the feature sets it generates --- usage and style choices rather than word frequencies and syntax trees. Because of this Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
+Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist :sc:`nlp` techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates --- usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
 
 .. Additionally, Proselint's rule-generation techniques have more closely followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
 
-To evaluate proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora --- there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
+To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora --- there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
 
 .. [#] Editor :cite:`editor_compare` has built a corpus which they use to compare the performance of various grammar checkers (not including Proselint) their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". Their corpus is made of errors, which succeeds at maximising true positives, but makes it difficult to assess false positive rates in real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
@@ -673,7 +675,7 @@ where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` 
 :sc:`Generalised lintscores`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We can also develop a lintscore for documents with unknown empirical false positive rates. We can accomplish this by asking about the expected best case lintscore, but penalising the result by a false positive rate estimated from a related corpus of documents. This is sufficient to built a probabilsitic model of the problem as a collection of iid Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best case number of true positives (i.e., :math:`T\equiv N`) gives :math: `N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the best case number of successes (:math:`k\equiv N`).
+We can also develop a lintscore for documents with unknown empirical false positive rates. We can accomplish this by asking about the expected best case lintscore, but penalising the result by a false positive rate estimated from a related corpus of documents. This is sufficient to built a probabilistic model of the problem as a collection of independent identically distributed Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best case number of true positives (i.e., :math:`T\equiv N`) gives :math: `N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the best case number of successes (:math:`k\equiv N`).
 
 Existing tools
 ==============
@@ -681,7 +683,7 @@ Existing tools
 We have collected a list of existing tools for automated language checkers. They include:
 `1Checker <http://www.1checker.com/>`_, `AbiWord's grammar checker <http://www.abisource.com/>`_, `After the Deadline <https://openatd.wordpress.com/>`_, `Alex <http://alexjs.com/>`_, `Autocrit <https://www.autocrit.com/editor/>`_, `ClearEdits <http://www.clearwriter.com/clearedits.html>`_, `CorrectEnglish <http://www.correctenglish.com/>`_, `CKEditor <http://www.webspellchecker.net/>`_, `Editor <http://www.serenity-software.com/>`_, `The Editorium <http://www.editorium.com/ETKPlus2014.htm>`_, `EditorSoftware <http://www.editorsoftware.com/>`_, `Edminton <http://editminion.com/>`_, `Expresso <http://expresso-app.org/>`_, `Ghotit <http://www.ghotit.com/>`_, `Ginger <http://www.gingersoftware.com/>`_, `GNU Diction <https://www.gnu.org/software/diction/>`_, `GNU Style <http://archive09.linux.com/feature/56833>`_, `Grac <http://grac.sourceforge.net/>`_, `GrammarBase <http://www.grammarbase.com/>`_, `GrammarCheck <http://www.grammarcheck.net/>`_, `Grammar Check Anywhere <https://www.spellcheckanywhere.com/grammar_check/>`_, `Grammar Expert Plus <http://www.wintertree-software.com/app/gramxp/>`_, `GrammarianPro <http://linguisoft.com/gramerrorfeatures.html>`_, `Grammark <https://github.com/markfullmer/grammark>`_, `Grammarly <https://www.grammarly.com/>`_, `Grammar Slammer <http://englishplus.com/grammar/>`_, `Grammatica <http://grammatica-english.soft32.com/>`_, `Grammatik <https://en.wikipedia.org/wiki/Grammatik>`_, `Graviax <http://graviax-grammar-checker.soft112.com/>`_, `Hemmingway <http://www.hemingwayapp.com/desktop.html>`_, `ivanistheone's scripts <https://github.com/ivanistheone/writing_scripts>`_, `Language Tool <https://www.languagetool.org/>`_, `Matt Might's shell scripts <http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/>`_, `Microsoft Word's grammar check <https://support.office.com/en-us/article/Check-spelling-and-grammar-cab319e8-17df-4b08-8c6b-b868dd2228d1>`_, `OnlineCorrection.com <http://www.onlinecorrection.com/>`_, `PaperRater <https://www.paperrater.com/>`_, `PerfectIt <http://www.intelligentediting.com/>`_, `ProWritingAid <https://prowritingaid.com/>`_, `Reverso <http://www.reverso.net/>`_, `RightWriter <http://www.right-writer.com/>`_, `Rousseau <https://github.com/GitbookIO/rousseau>`_, `SpellCheckPlus <http://spellcheckplus.com/>`_, `Stilus <http://www.mystilus.com/Main>`_, `Textanz <http://www.textanz.com/>`_, `Virtual Writing Tutor <http://virtualwritingtutor.com/>`_, `Wave <https://en.wikipedia.org/wiki/Apache_Wave>`_, `WhiteSmoke <http://www.whitesmoke.com/>`_, `WordPerfect <http://www.wordperfect.com/us/>`_, `WinProof <http://www.franklinhu.com/winproof.htm>`_, `WordRake <http://www.wordrake.com/>`_, `write-good <https://github.com/btford/write-good>`_, and `Writer's Workbench <http://www.emo.com/>`_.
 
-The tools are varied in their approaches and coverage. Proselint differs from each tool in a variety of ways (e.g., focusing on grammar versus style, being open versus closed source, or extensible versus static). The greatest difference from all arises from our willingness to sacrifice coverage to maintain user trust via low false positive rates. Furthermore, the theoretical analyses that have arisen from this work do not seem to have stemmed from these other efforts (or any for that matter); prior to this the theory of linting does not seem to be widely studied or discussed as an academic topic. 
+The tools are varied in their approaches and coverage. Proselint differs from each tool in a variety of ways (e.g., focusing on grammar versus style, being open versus closed source, or extensible versus static). The greatest difference from all arises from our willingness to sacrifice coverage to maintain user trust via low false positive rates. Furthermore, the theoretical analyses comparable to those have arisen from this work have not stemmed from these other efforts; prior to this the theory of linting does not seem to be widely studied or discussed as an independent academic topic.
 
 Concerns around normativity in prose styling
 ============================================
@@ -713,7 +715,7 @@ We see a number of directions for future development of Proselint.
 Scalable, dynamic false-positive detection
 ------------------------------------------
 
-Computing false-positive rates means identifing whether a flag is a false or true positive. Currently, detecting false positives requires manually evaluation. This does not scale well. Worse, each time the linter is run, the process must be repeated. To address dynamic documents, it would be useful to detect which errors have already been flagged. With little modification, this ability would also allow people to turn off flag instances in a persistent manner.
+Computing false-positive rates means identifying whether flags are false or true positives. Currently, detecting false positives requires manually evaluation; this scales poorly. Worse, each time the linter is run, the process must be repeated. To address dynamic documents, it would be useful to detect which errors have already been flagged. With little modification, this ability would also allow people to turn off flag instances in a persistent manner.
 
 One approach to scaling false-positive detection divides the task into isolable chunks. Combined with a process for rapidly evaluating those chunks makes checking for false positives easier across-the-board. It also would open the door to load-distribution mechanisms (such as crowdsourcing). This requires solving decision-theoretic problems for sampling false-positive rate sampling. This can be applied at various levels of organisation: corpora, documents, and even rules across documents.
 .. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or corpus. 
