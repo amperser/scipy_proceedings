@@ -775,7 +775,7 @@ Stylometrics has extensively studied the problem of identifying the true authors
 Several applications follow from authorship identification. One uses its ability to detect ghost-written documents (assuming you have a ground corpus to identify stylometric patterns in the author's writing). This could have applications to identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). On the other hand, someone who applies Proselint to their text may be able to *escape* identification by avoiding features that distinguish the author's writings. 
 .. In cases where anonymity is desired, Proselint can act as a tool to erase the author of a text.
 
-All of these techniques would have to be statistical in nature (unlike our current rules). Machine learning techniques for inferring identity with sparse data will be necessary. This partially stems from the relative rarity of the errors we find, which has posed a major difficultly for methods like those in :cite:`mosteller1963inference`. It is likely that this endeavor will benefit from an approach that considers the cross product of authors and topics (in the vein of :cite:`rosen2004author`).
+Unlike our current rules, these techniques are fundamentally statistical. Machine learning techniques for inferring identity from sparse data will be particularly applicable. The errors Proselint finds are rare, and sparse measures pose difficultly for methods like those in :cite:`mosteller1963inference`. Furthermore, this endeavor will benefit from an approach that considers the cross product of authors and topics (in the vein of :cite:`rosen2004author`).
 
 .. Subdocument analysis
 .. --------------------
