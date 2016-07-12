@@ -722,7 +722,7 @@ To identify the false-positive rate, we first must identify whether a flag is a 
 
 To address dynamic documents, it would be useful to detect when an error has already been flagged. Until this is addressed, a false-positive analysis will only be efficient when performed over static corpora of documents. Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
 
-We are investigating mechanisms for allowing for scalable dynamic false-positive detection. One mechanism is to divide this task into independent isolable chunks. This combined with a process for rapidly evaluating those chunks will make checking for false positives much easier even on an individual level. It also would open the door to load-distribution mechanisms (such as crowdsourcing) as a way to remove the burden of evaluation from the author.
+We are investigating scalable dynamic false-positive detection. One approach divides tasks into isolable chunks. Combined with a process for rapidly evaluating those chunks makes checking for false positives easier across-the-board. It also would open the door to load-distribution mechanisms (such as crowdsourcing).
 
 This would require solving some decision-theoretic problems to efficiently sample the false-positive rate as it applies particular linting flags or even entire rules. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or corpus. More generally, we could build even richer versions of the generalized lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
 
