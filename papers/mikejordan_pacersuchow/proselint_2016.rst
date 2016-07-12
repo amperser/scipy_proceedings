@@ -751,13 +751,13 @@ We can silence rules that we detect as irrelevant due to context, we can predict
 
 However, the "50 cent" topic detector was developed using the rest of Proselint, developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint error coverage. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be have to be incorporated. Once incorporated, generalizing this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a type of context :cite:`blei2010nested`.    
 
-Improved self-evaluation procedure
-----------------------------------
+Improved self-evaluation procedure with multiple corpora
+--------------------------------------------------------
 
-We currently calculate our lintscore manually on a static corpus of professionally edited documents. This process can be improved in a number of ways that will lead to different kinds of improvement in Proselint.  
+We currently calculate our lintscore manually on a static corpus of professionally edited documents. This process can be improved in a number of ways that will lead to different kinds of improvement in Proselint. In addition to boons from making evaluation less effortful, one major improvement would be to identify multiple corpora with different features.
 
-:sc:`Multiple corpora with different features`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. :sc:`Multiple corpora with different features`
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We currently only have a single corpus for analyzing Proselint's performance. It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. This efficiently alerts us to false-alarms that are introduced by the inclusion of new rules. However, it does a poor job of estimating performance on a variety of other metrics.
 
