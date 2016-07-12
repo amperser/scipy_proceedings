@@ -3,3 +3,5 @@ _build
 *.pyc
 *~
 add amperser
+test.txt
+proselint_out.txt
