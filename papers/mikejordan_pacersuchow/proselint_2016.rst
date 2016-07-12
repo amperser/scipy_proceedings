@@ -710,9 +710,7 @@ We see a number of directions for future development of Proselint.
 Scalable, dynamic false-positive detection
 ------------------------------------------
 
-Computing false-positive rates means identifing whether a flag is a false or true positive. Currently, detecting false positives requires manually evaluation. This does not scale well. Worse, each time the linter is run, the process must be repeated. 
-
-To address dynamic documents, it would be useful to detect when an error has already been flagged. Until this is addressed, a false-positive analysis can only be efficient on static corpora. This ability would also allow people to turn off flag instances in a persistent manner.
+Computing false-positive rates means identifing whether a flag is a false or true positive. Currently, detecting false positives requires manually evaluation. This does not scale well. Worse, each time the linter is run, the process must be repeated. To address dynamic documents, it would be useful to detect which errors have already been flagged. With little modification, this ability would also allow people to turn off flag instances in a persistent manner.
 
 One approach to scaling false-positive detection divides the task into isolable chunks. Combined with a process for rapidly evaluating those chunks makes checking for false positives easier across-the-board. It also would open the door to load-distribution mechanisms (such as crowdsourcing). This requires solving decision-theoretic problems for sampling false-positive rate sampling. This can be applied at various levels of organisation: corpora, documents, and even rules across documents.
 .. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or corpus. 
