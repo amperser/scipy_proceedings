@@ -630,8 +630,7 @@ Grammar is too easy in the sense that, for most native speakers, grammatical err
 In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
 Extant :sc:`nlp` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives. 
 Furthermore, standard :sc:`nlp` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended.
-Grammar relies on analysing sentences and even paragraphs in their entirety, and if one assumes that errors are made there will almost always be non-unique solutions, meaning processing times will be greater and the diagnosis may be indeterminate.
-Even when a rule is well prescribed indeterminacy can result in cases where which correctness hinges on knowing the intended meaning: e.g., where some possessive clauses' apostrophes are grammatically well-placed, while some possessive clauses' apostrophe is misplaced.
+If one assumes that errors are made there will almost always be more than one nearby grammatical sentence that requires knowing the intended meaning: e.g., where some possessive clauses' apostrophes place well, while some possessive clause's apostrophes' place poorly depending on your interpretation.
 Correcting grammatical errors can be as challenging as detecting them. 
 
 Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
