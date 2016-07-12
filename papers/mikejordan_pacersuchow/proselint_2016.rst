@@ -767,13 +767,13 @@ Corpora of documents drawn from different content-based categories (technical pa
 
 Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) often rely on syntactical conventions that Proselint systematically, falsely identifies as errors. Similar concerns arise for documentation written as docstrings or code comments in a variety of programming languages. Corpora focusing on individual formats and languages will aid in identifying these errors and allow targeted development to address these problems.
 
-:sc:`Automating the evaluation process`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. :sc:`Automating the evaluation process`
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Currently the analysis procedure requires a particular individual evaluating the proposed errors and determining whether they are true or false positives.
-Using some kind of load distribution mechanism (e.g., crowd sourcing) would make this easier. 
+.. Currently the analysis procedure requires a particular individual evaluating the proposed errors and determining whether they are true or false positives.
+.. Using some kind of load distribution mechanism (e.g., crowd sourcing) would make this easier. 
 
-Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities. There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalyzing the entirety of a document every time it changes. While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
+.. Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities. There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalyzing the entirety of a document every time it changes. While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
 
 Authorship attribution, ghost-writing, and anonymisation
 --------------------------------------------------------
