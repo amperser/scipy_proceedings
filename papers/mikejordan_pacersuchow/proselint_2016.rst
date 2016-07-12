@@ -775,14 +775,13 @@ Different document formats (e.g, ``.rst``, ``.tex``, ``.md``, ``.html``, &c.) of
 
 .. Additionally, there is no extant format for annotating the output of Proselint with true and false positive identities. There are straightforward ways of doing this (e.g., adding a field to the ``json`` structure) but doing that will require reanalyzing the entirety of a document every time it changes. While such a solution is workable, it would be good to have a way to track particular errors if the text has not changed (even if the line-number has) so that evaluations can transfer between different instances of the same living document.
 
-Authorship attribution, ghost-writing, and anonymisation
---------------------------------------------------------
+Stylometrics and machine learning
+---------------------------------
 
 Stylometrics has extensively studied the problem of identifying the true authors of documents. Many of these studies focus on the relative frequencies with which individual words are used (especially function words). For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*. Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
 
-One application that follows from improved authorship identification is the ability to detect ghost-written documents (assuming you have a ground corpus to identify stylometric patterns in the author's writing). This could have applications to identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). 
-
-On the other hand, someone who applies Proselint to their text may be able to escape identification even by a group who has access to that a ground corpus by the author. In cases where anonymity is desired, Proselint can act as a tool to erase the author of a text.
+Several applications follow from authorship identification. One uses its ability to detect ghost-written documents (assuming you have a ground corpus to identify stylometric patterns in the author's writing). This could have applications to identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). On the other hand, someone who applies Proselint to their text may be able to *escape* identification by avoiding features that distinguish the author's writings. 
+.. In cases where anonymity is desired, Proselint can act as a tool to erase the author of a text.
 
 All of these techniques would have to be statistical in nature (unlike our current rules). Machine learning techniques for inferring identity with sparse data will be necessary. This partially stems from the relative rarity of the errors we find, which has posed a major difficultly for methods like those in :cite:`mosteller1963inference`. It is likely that this endeavor will benefit from an approach that considers the cross product of authors and topics (in the vein of :cite:`rosen2004author`).
 
