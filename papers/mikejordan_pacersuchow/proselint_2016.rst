@@ -628,7 +628,6 @@ Proselint does not focus on grammar, which is at once too easy and too hard:
 Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
 
 In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
-.. Grammatical dependencies can be arbitrarily distant, but nonetheless can require inferring exact syntactic structure from the words' order to even be well-defined. 
 Extant :sc:`nlp` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives. 
 Grammar relies on analysing sentences and even paragraphs in their entirety, and it returns non-unique solutions, meaning processing times will be greater and the diagnosis may be indeterminant.
 Correcting grammatical errors can be as challenging as detecting them. 
