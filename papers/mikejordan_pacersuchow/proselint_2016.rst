@@ -187,6 +187,47 @@ Code Structure: memoization
 
 One of our goals is for Proselint to be efficient enough for use as real-time linter while an author writes. Efficiency is increased by avoiding redundant computation, storing the results of expensive function calls from one run of the linter to the next, a technique called *memoization*. Consider, for example, that many of Proselint's checks can operate at the level of a paragraph and that most paragraphs do not change from moment to moment when a sizeable document is being edited. At the extreme, when a linter is run after each keystroke, this is true by definition. By running checks over paragraphs, recomputing only when the paragraph has changed (and otherwise returning the memoized result), it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
+
+Sources of advice
+=================
+
+Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others.
+
+.. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
+
+Our standard for inclusion of a new rule is that it be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and works widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint as widely useful as possible with the minimum amount of customization. 
+
+Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default would be to exclude all forms of the advice. 
+
+We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding news rules or by excluding existing rules through a ``.proselintrc`` file.
+
+
+
+Examples of some rules
+----------------------
+
+Tables 1 and 2 list many of the rule modules that Proselint currently implements. The following examples are meant to give a taste of the range of advice that Proselint can give:
+
+#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
+
+#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
+
+#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
+
+
+.. One Issues are on github repo. 
+
+.. Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
+
+.. Final decision of whether to include it in the default set of rules is up to us.
+
+.. We have not included rule modules that are by default left off but can be turned on. 
+.. Though we are not opposed to this in principle, it is difficult to see why we should do so. 
+.. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
+.. We want to make that process simple. 
+.. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
+.. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customization to adapt to your personal "style".
+
 .. table:: What Proselint checks. :label:`checks`
 
    +---------------------------------+---------------------------------------------+
@@ -344,47 +385,6 @@ One of our goals is for Proselint to be efficient enough for use as real-time li
    +---------------------------------+---------------------------------------------+
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
-
-
-Sources of advice
-=================
-
-Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others.
-
-.. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
-
-Our standard for inclusion of a new rule is that it be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and works widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint as widely useful as possible with the minimum amount of customization. 
-
-Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default would be to exclude all forms of the advice. 
-
-We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding news rules or by excluding existing rules through a ``.proselintrc`` file.
-
-
-
-Examples of some rules
-----------------------
-
-Tables 1 and 2 list many of the rule modules that Proselint currently implements. The following examples are meant to give a taste of the range of advice that Proselint can give:
-
-#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
-
-#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
-
-#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
-
-
-.. One Issues are on github repo. 
-
-.. Any new rules need to be accompanied by an expert source meriting the inclusion of the rule. 
-
-.. Final decision of whether to include it in the default set of rules is up to us.
-
-.. We have not included rule modules that are by default left off but can be turned on. 
-.. Though we are not opposed to this in principle, it is difficult to see why we should do so. 
-.. If someone wants to include rules that are not properly attributed, they are welcome to add the module to their own linter. 
-.. We want to make that process simple. 
-.. If someone wants to include rules that are properly attributed it is unclear why we would ever want to turn them off by default.
-.. Furthermore, doing so would weaken our emphasis on encouraging contributions while leaving open the door for extensive customization to adapt to your personal "style".
 
 
 
