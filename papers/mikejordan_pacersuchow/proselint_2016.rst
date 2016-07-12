@@ -4,6 +4,7 @@
 
 :author: Jordan W. Suchow
 :email: suchow@berkeley.edu
+:institution: suchow@berkeley.edu
 :institution: University of California, Berkeley
 
 :video: http://www.youtube.com/
@@ -435,6 +436,8 @@ As a proof of concept, we used Proselint to make contributions to several docume
 An analysis of potential applications
 -------------------------------------
 
+The most straightforward potential application is to build rule-sets and modules that enforce specific standards for various venues. This could include following a house style guide or an academic publisher's journal requirements.
+
 One possible application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevalence of airlinese (e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry. 
 
 .. This type of research can also be used to trace the development of linguistic convention as they spread along networks (allowing inferring social networks as the inverse of this process) :cite:` `. 
@@ -622,7 +625,7 @@ Proselint does not focus on grammar, which is at once too easy and too hard:
 
 Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
 
-In contrast, grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that matches human-level intelligence and the ear of native speaker to identify that an error has been made. And correcting those errors is as challenging a problem as detecting them.
+In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. Correcting those errors is as challenging a problem as detecting them.
 
 Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
