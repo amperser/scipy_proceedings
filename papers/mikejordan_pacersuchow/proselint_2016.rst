@@ -574,45 +574,35 @@ suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected
 .. code-block:: javascript
 
   {
-      // The check originating this suggestion.
-      "check": "uncomparables.misc",
+      // The check originating this suggestion
+      "check": "uncomparables.misc", 
+      
+      // The line where the error starts
+      "line": 1, 
 
-      // Message describing the suggestion.
-      "message": "Comparison of an uncomparable: ...
-      'unique' can not be compared.",
+      //The column where the error starts
+      "column": 1, 
+      
+      // Index in the text where the error starts
+      "start": 1,
 
-      // The source of the suggestion.
-      "source": "David Foster Wallace"
-
-      // URL pointing to source material.
-      "source_url": "http://www.telegraph.co.uk ...
-      /a/9715551"
-
-      // Line where the error starts.
-      "line": 0,
-
-      // Column where the error starts.
-      "column": 10,
-
-      // Index in the text where the error starts.
-      "start": 10,
-
-      // Index in the text where the error ends.
-      "end": 21,
-
+      // the index in the text where the error ends
+      "end": 18, 
+      
       // start - end
-      "extent": 11,
+      "extent": 17, 
+      
+      // Message describing the advice
+      "message": "Comparison of an uncomparable: ...
+      'very unique\n' is not comparable.",
+      
+      // Possible replacements
+      "replacements": null, 
 
-      // Importance ("suggestion", "warning", "error")
-      "severity": "warning",
-
-      // Possible replacements.
-      "replacements": [
-          {
-              "value": "unique"
-          }
-      ]
+      // Importance("suggestion", "warning", "error")
+      "severity": "warning"
   }
+
 
 Text editor plugins
 -------------------
