@@ -628,10 +628,11 @@ Proselint does not focus on grammar, which is at once too easy and too hard:
 Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
 
 In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
-Extant :sc:`nlp` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives. 
+Extant :sc:`nlp` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives(meaning increased uncertainty). 
 Furthermore, standard :sc:`nlp` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended.
-If one assumes that errors are made there will almost always be more than one nearby grammatical sentence that requires knowing the intended meaning: e.g., where some possessive clauses' apostrophes place well, while some possessive clause's apostrophes have been placed with a grammarian's care.
-Correcting grammatical errors can be as challenging as detecting them. 
+If one assumes that errors are made there will almost always be more than one nearby grammatical sentence (meaning greater processing time), and which sentence suggested hinges on the intended meaning(meaning more complicated implementations). 
+There can even be cases where the intended meaning changes *whether* a grammatical error is present: e.g., "Some possessive clause's apostrophes are placed with a grammarian's care" is correct if it refers to the existence of a single clause and incorrect if it refers to multiple clauses.
+Correcting grammatical errors can be as challenging as detecting them. Compared to usage and style, grammar checking is a uncertain, slow, and complicated enterprise.
 
 Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
