@@ -718,13 +718,13 @@ We see a number of directions for future development of Proselint.
 Scalable, dynamic false-positive detection
 ------------------------------------------
 
-To identify the false-positive rate, we first must identify whether a flag is a false or true positive. Currently, detecting false positives requires a person to manually evaluate the output of each linting flag. This does not scale to even small document sets. The problem is made worse when you consider that, each time the linter is run, the process must be repeated. 
+Computing false-positive rates means identifing whether a flag is a false or true positive. Currently, detecting false positives requires manually evaluation. This does not scale well. Worse, each time the linter is run, the process must be repeated. 
 
-To address dynamic documents, it would be useful to detect when an error has already been flagged. Until this is addressed, a false-positive analysis will only be efficient when performed over static corpora of documents. Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
+To address dynamic documents, it would be useful to detect when an error has already been flagged. Until this is addressed, a false-positive analysis can only be efficient on static corpora. Adding this ability would also allow people to turn off an instance of a flag in a persistent manner.
 
-We are investigating scalable dynamic false-positive detection. One approach divides tasks into isolable chunks. Combined with a process for rapidly evaluating those chunks makes checking for false positives easier across-the-board. It also would open the door to load-distribution mechanisms (such as crowdsourcing).
-
-This would require solving some decision-theoretic problems to efficiently sample the false-positive rate as it applies particular linting flags or even entire rules. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or corpus. More generally, we could build even richer versions of the generalized lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
+We are investigating scalable dynamic false-positive detection. One approach divides tasks into isolable chunks. Combined with a process for rapidly evaluating those chunks makes checking for false positives easier across-the-board. It also would open the door to load-distribution mechanisms (such as crowdsourcing). This requires solving decision-theoretic problems for sampling false-positive rate sampling. This can be applied at various levels of organisation: corpora, documents, and even rules across documents.
+.. If this can be accomplished and automated, we could easily estimate the false positives found in a paper or corpus. 
+.. we could build even richer versions of the generalized lintscore metric based not only on the similarity of a document to a corpus, but on the identity of the rules themselves.
 
 .. Prosewash: False positive elimination as a service
 .. --------------------------------------------------
