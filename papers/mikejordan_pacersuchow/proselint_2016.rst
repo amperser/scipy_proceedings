@@ -654,18 +654,18 @@ Rapiers, cudgels, and the lintscore
 
 Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the marginal utility it provides. Pen & ink, paper, and the computer each facilitated language production by enabling new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage because they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. 
 
-..When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
+.. When the use of the tool requires modifying existing workflows, greater utility must be demonstrated to offset the additional cost.
 
 Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately injures large areas of flesh. Each time a language tool flags an issue, it might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, finding as many errors as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, errors that Proselint might not yet detect. However, their emphasis on maximizing :math:`T` is to their detriment because these tools raise so many false alarms that their advice cannot be trusted: the writer must carefully consider whether to accept or reject each change. 
 
 Proselint aims to be not a cudgel, but a rapier, a tool that pinpoints weak spots and strikes where it will make the most impact. With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. 
 
-To achieve this, we limit the number of false positives :math:`F` by measuring the performance of Proselint through its *lintscore*. The lintscore gives one point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate (:math:`\alpha = \frac{F}{T+F}`). The lintscore is given by
+To achieve this, we penalise false positives :math:`F` by evaluating Proselint in terms of its *lintscore*. The lintscore gives a point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate (:math:`\alpha = \frac{F}{T+F}`). The lintscore is given by
 
 .. math::
     l(T,F;k) = T(1-\alpha)^k,
 
-where :math:`k` is a free parameter that controls the strictness of the penalty imposed by :math:`1-\alpha`.
+where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty.
 
 :sc:`Generalised lintscores`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
