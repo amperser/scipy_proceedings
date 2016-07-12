@@ -189,6 +189,8 @@ Code Structure: memoization
 One of our goals is for Proselint to be efficient enough for use as real-time linter while an author writes. Efficiency is increased by avoiding redundant computation, storing the results of expensive function calls from one run of the linter to the next, a technique called *memoization*. Consider, for example, that many of Proselint's checks can operate at the level of a paragraph and that most paragraphs do not change from moment to moment when a sizeable document is being edited. At the extreme, when a linter is run after each keystroke, this is true by definition. By running checks over paragraphs, recomputing only when the paragraph has changed (and otherwise returning the memoized result), it is possible to reduce the total amount of computation and thus improve the linter's running time.
 
 
+
+
 Sources of advice
 =================
 
@@ -387,6 +389,84 @@ Tables 1 and 2 list many of the rule modules that Proselint currently implements
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
+Using Proselint
+===============
+
+Installation
+------------
+Proselint is available on the Python Package Index and can be installed using pip:
+
+.. code-block:: bash
+
+   pip install Proselint
+
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
+
+.. code-block:: bash
+
+   python setup.py develop
+
+
+Command-line utility
+--------------------
+
+At its core, Proselint is a command-line utility that reads in a text file:
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: uncomparables.misc Comparison of ... 
+  an uncomparable: 'unique' can not be compared.
+
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
+
+.. code-block:: javascript
+
+  {
+      // The check originating this suggestion
+      "check": "uncomparables.misc", 
+      
+      // The line where the error starts
+      "line": 1, 
+
+      //The column where the error starts
+      "column": 1, 
+      
+      // Index in the text where the error starts
+      "start": 1,
+
+      // the index in the text where the error ends
+      "end": 18, 
+      
+      // start - end
+      "extent": 17, 
+      
+      // Message describing the advice
+      "message": "Comparison of an uncomparable: ...
+      'very unique\n' is not comparable.",
+      
+      // Possible replacements
+      "replacements": null, 
+
+      // Importance("suggestion", "warning", "error")
+      "severity": "warning"
+  }
+
+
+Text editor plugins
+-------------------
+An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
 
 
 Two views on Proselint
@@ -421,11 +501,9 @@ Despite our impliict prescriptivism, Proselint can be of use to standard descrip
 
 .. Additionally, Proselint's rule-generation techniques have more closely followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
 
-We identified that Proselint can provide a different look at existing corpora in the course of assembling a corpus of text from well-edited magazines believed to contain low rates of usage errors. When doing so, we noticed that there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our corpus is from magazines with copyright on their work, it cannot be released as part of open-source software such as Proselint. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available outside of our internal tests and made generally available for :sc:`nlp` research.
+To evaluate proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora --- there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
 
 .. [#] Editor :cite:`editor_compare` has built a corpus which they use to compare the performance of various grammar checkers (not including Proselint) their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". Their corpus is made of errors, which succeeds at maximising true positives, but makes it difficult to assess false positive rates in real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
-
-..In following expert advice, we have emphasized cases where the goal is to recommend *best* practices in usage. To allow for encryption, the Proselint infrastructure would need modification to identify cases where more than one acceptable choice exists. One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted (e.g., "instances" :math:`\to` "cases", "multiple" :math:`\to` "numerous"). One could then create a modified version of the document that encodes a second message while appearing to contain only the top layer of meaning. 
 
 Results and potential applications
 ==================================
@@ -444,9 +522,9 @@ One possible application of Proselint as a tool for language science is in track
 
 Another potential application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse. 
 
-The ability to identify authors also enables inverting and generalizing that process, allowing Proselint's output to be used for identity obfuscation or for encryption of messages by selectively introducing, changing, or removing usage choices. With moderate modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`.
+The ability to identify authors also enables inverting and generalizing that process, allowing Proselint's output to be used for identity obfuscation or for encryption of messages by selectively introducing, changing, or removing usage choices. With moderate modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify cases where more than one acceptable choice exists.
 
-
+.. In following expert advice, we have emphasize cases where the goal is to recommend *best* practices in usage.  One could, for example, take a document and identify instances where multiple phrases could be reasonably substituted (e.g., "instances" :math:`\to` "cases", "multiple" :math:`\to` "numerous"). One could create a modified versions that encode a second message while appearing to contain only the top layer of meaning.
 
 .. We have applied Proselint to the 2016 SciPy proceedings on the pull requests available on XX-XX-XXXX (date), XX-XX-XXXX (date), and XX-XX-XXXX (date). After removing (and noting) the number of false positives at these different dates, we have provided comments to the authors so they could change them. As you can see (Insert figure (once the analysis is complete)), the number of errors is [increasing/decreasing/stable] and our false-positive rate is [increasing/decreasing/stable]. 
 
@@ -535,84 +613,6 @@ The ability to identify authors also enables inverting and generalizing that pro
 .. how our tool address or uses each of those principles
 .. -----------------------------------------------------
 
-Using Proselint
-===============
-
-Installation
-------------
-Proselint is available on the Python Package Index and can be installed using pip:
-
-.. code-block:: bash
-
-   pip install Proselint
-
-Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
-
-.. code-block:: bash
-
-   python setup.py develop
-
-
-Command-line utility
---------------------
-
-At its core, Proselint is a command-line utility that reads in a text file:
-
-.. code-block:: bash
-
-   proselint text.md
-
-Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
-
-.. code-block:: bash
-
-   text.md:<line>:<column>: <check_name> <message>
-
-For example,
-
-.. code-block:: bash
-
-  text.md:0:10: uncomparables.misc Comparison of ... 
-  an uncomparable: 'unique' can not be compared.
-
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
-
-.. code-block:: javascript
-
-  {
-      // The check originating this suggestion
-      "check": "uncomparables.misc", 
-      
-      // The line where the error starts
-      "line": 1, 
-
-      //The column where the error starts
-      "column": 1, 
-      
-      // Index in the text where the error starts
-      "start": 1,
-
-      // the index in the text where the error ends
-      "end": 18, 
-      
-      // start - end
-      "extent": 17, 
-      
-      // Message describing the advice
-      "message": "Comparison of an uncomparable: ...
-      'very unique\n' is not comparable.",
-      
-      // Possible replacements
-      "replacements": null, 
-
-      // Importance("suggestion", "warning", "error")
-      "severity": "warning"
-  }
-
-
-Text editor plugins
--------------------
-An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom, some created by us, some contributed by others.
 
 
 The Proselintian approach
@@ -629,10 +629,10 @@ In contrast, grammar is too hard in that, in its most general form, detecting gr
 
 Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
 
-Published expertise as primary source
--------------------------------------
+Published expertise as primary sources
+--------------------------------------
 
-Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence as measured by the intuitions of native speakers is a common experimental measure in linguistics – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice. Proselint thus defers to the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing with style.
+Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence as measured by the intuitions of native speakers is a common experimental measure in linguistics – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice. Proselint thus defers to the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing with style. This conflict avoidance motivates our policy of defaulting to silence were authors to provide conflicting advice.
 
 Levels of difficulty
 --------------------
