@@ -315,7 +315,7 @@ Organizing rules into modules is useful for two reasons. First, it allows for a 
 Rule templates
 --------------
 
-In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with the expressibility of Python, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
+In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
 
 To ease the implementation of new rules, we have written functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
 
