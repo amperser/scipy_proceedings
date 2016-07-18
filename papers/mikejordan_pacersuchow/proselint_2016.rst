@@ -454,8 +454,6 @@ We have collected a list of known tools for automated language checking. They in
 
 These tools are varied in their approaches and coverage. Proselint differs from each tool in a variety of ways (e.g., focusing on grammar versus style, being open versus closed source, or extensible versus static). The greatest difference arises from our willingness to sacrifice coverage to maintain user trust via low false-positive rates as measured through the lintscore. 
 
-..Furthermore, the theoretical analyses comparable to those have arisen from this work have not stemmed from these other efforts; prior to this 
-
 Critique: normativity in prose styling
 ======================================
 
