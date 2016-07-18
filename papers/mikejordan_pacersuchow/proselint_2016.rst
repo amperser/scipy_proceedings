@@ -64,7 +64,6 @@ Linguistics as a science is largely a descriptivist enterprise, seeking to descr
 
 Despite our implicit prescriptivism, Proselint can be of use to descriptivists, both as an input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques and as a method for detecting patterns of usage and style in existing corpora without making normative claims (see Applications, Realized and Potential). Though Proselint has not yet been used in extensive linguistic studies, its output fits the formal structure expected by many language-science techniques while emphasizing a different kinds of features: usage and style choices rather than word frequencies and syntactic structures.
 
-To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :math:`\textsc{nlp}` research (outside of our internal testing and research).
 
 
 The advice
