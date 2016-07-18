@@ -6,7 +6,6 @@
 :email: suchow@berkeley.edu
 :institution: University of California, Berkeley
 
-:video: http://www.youtube.com/
 :bibliography: mybib
 
 .. raw:: latex
