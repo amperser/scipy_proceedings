@@ -4,7 +4,6 @@
 
 :author: Jordan W. Suchow
 :email: suchow@berkeley.edu
-:institution: suchow@berkeley.edu
 :institution: University of California, Berkeley
 
 :video: http://www.youtube.com/
