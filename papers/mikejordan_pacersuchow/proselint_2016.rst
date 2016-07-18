@@ -64,7 +64,60 @@ Linguistics as a science is largely a descriptivist enterprise, seeking to descr
 
 Despite our implicit prescriptivism, Proselint can be of use to descriptivists, both as an input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques and as a method for detecting patterns of usage and style in existing corpora without making normative claims (see Applications, Realized and Potential). Though Proselint has not yet been used in extensive linguistic studies, its output fits the formal structure expected by many language-science techniques while emphasizing a different kinds of features: usage and style choices rather than word frequencies and syntactic structures.
 
+The Proselintian theoretical approach
+=====================================
 
+What to check: usage, not grammar
+---------------------------------
+
+Proselint avoids detection of grammatical errors, which is both too easy and too hard:
+
+Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. (On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.)
+
+Grammar is too hard in the sense that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
+
+Modern :math:`\textsc{nlp}` techniques that detect grammar errors are unavoidably statistical :cite:`Bird:2009:NLP` :cite:`leacock2010automated` and lead to many false positives. Furthermore, standard :math:`\textsc{nlp}` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended, and thus struggle with malformed text, particularly writing who second language is English :cite:`leacock2010automated`. If one assumes that errors are made, there will almost always be more than one nearby grammatical sentence, and which of these is the correct replacement hinges on the intended meaning. There are even cases where the intended meaning will determine *whether* a grammatical error is present: e.g., is "Man bites dog" a headline stating that a man bit a dog, or is there a grammatical error where the subject and object have been swapped? Correcting grammatical errors can be as challenging as detecting them. Compared to usage and style, grammar checking is an uncertain, slow, and complicated enterprise.
+
+Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
+
+Published expertise as primary sources
+--------------------------------------
+
+Unlike grammar, for which many people have strong shared intuitions – so much so that a common experimental measure in linguistics is the grammaticality of a sentence as measured by the intuitions of native speakers :cite:`keller2000gradience` – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice :cite:`garner2016garner`. Proselint thus defers to some of the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing English with style. (This conflict avoidance also motivates our policy of defaulting to silence when there are unresolved conflicts between experts, as described below.)
+
+Levels of difficulty
+--------------------
+
+In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified several levels of difficulty in the implementation of the detection and correction of usage errors [#]_:
+
+.. [#] To our knowledge, no one has posed a hierarchy of this sort for organizing the difficulty of identifying different style and usage violations.  
+
+#. AI-hard
+#. :math:`\textsc{nlp}`, beyond state-of-the-art
+#. :math:`\textsc{nlp}`, state-of-the-art
+#. Syntax-dependent rules
+#. Regular expressions
+#. One-to-one replacement rules. 
+
+Our development of Proselint begins at the lowest levels of the hierarchy, building upwards. At one extreme are usage errors detectable and correctable through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other extreme are errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case, if a solution is possible at all. Consider, for example, usage errors pertaining to the word "only", the correct placement of which depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). Usage errors at this highest level of the hierarchy are hard to successfully identify without introducing many false positives into the mix. Correcting them poses an additional problem because there will often not be a unique solution that can be recommended above all the others. The intermediate cases vary along these dimensions, where, moving up the hierarchy, more false positives are introduced and unique correction becomes less feasible.
+
+Rapiers, cudgels, and the lintscore
+-----------------------------------
+
+Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the utility it provides. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage because they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. 
+
+Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately affects large areas of flesh. Each issue flagged might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, flagging as much as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, errors that Proselint might not yet detect. However, their emphasis on maximizing :math:`T` at the expense of :math:`F` is to their detriment. These tools raise so many false alarms that their advice cannot be trusted: writers must weigh each proposed error.
+
+Proselint aims to be not a cudgel, but a rapier, a tool that pinpoints weak spots and strikes where it will make the most impact. With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. 
+
+To achieve this, we penalize false positives :math:`F` by evaluating Proselint in terms of its *lintscore*. The lintscore gives a point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate :math:`\alpha = \frac{F}{T+F}`. The lintscore is given by
+
+.. math::
+    l(T,F;k) = T(1-\alpha)^k,
+
+where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty. Note that our lintscore is not a readability metric, but rather a metric by which prose linters can be evaluated, using notions from signal detection theory (false positives) as an indirect measure of trustworthiness.
+
+We can also develop a lintscore for documents with unknown empirical false-positive rates. We can accomplish this by asking about the expected best-case lintscore, but penalizing the result by a false-positive rate estimated from a related corpus of documents. This is sufficient to build a probabilistic model of the problem as a collection of independent identically distributed Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best-case number of true positives (i.e., :math:`T\equiv N`) gives :math:`N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` as the best-case number of successes (:math:`k\equiv N`).
 
 The advice
 ==========
@@ -384,66 +437,11 @@ The ability to identify authors also enables inverting and generalizing that pro
 
 Finally, standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. 
 
-The Proselintian theoretical approach
-=====================================
+Another potential application of Proselint as a tool for language science is in stylometry and authorship identification; instead of using standard stylometric measures, which include word frequencies and syntactic structures, we can consider Proselint's rules as a feature set that can be used to identify authors. In a sense, this would allow us to identify authors based not on their language use, but on their language misuse.
 
-What to check: usage, not grammar
----------------------------------
+The ability to identify authors also enables inverting and generalizing that process, using Proselint's output to obfuscate or encrypt messages by selectively introducing, changing, or removing usage choices. With moderate modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify cases where more than one acceptable choice exists.
 
-Proselint avoids grammar, which is both too easy and too hard:
-
-Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
-
-In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
-Extant :math:`\textsc{nlp}` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives(meaning increased uncertainty). 
-Furthermore, standard :math:`\textsc{nlp}` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended.
-If one assumes that errors are made there will almost always be more than one nearby grammatical sentence (meaning greater processing time), and which sentence suggested hinges on the intended meaning(meaning more complicated implementations). 
-There can even be cases where the intended meaning changes *whether* a grammatical error is present: e.g., "Some possessive clause's apostrophes are placed with a grammarian's care" is correct if it refers to the existence of a single clause and incorrect if it refers to multiple clauses.
-Correcting grammatical errors can be as challenging as detecting them. Compared to usage and style, grammar checking is an uncertain, slow, and complicated enterprise.
-
-Instead of focusing on grammar, we consider errors of usage and style: redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
-
-Published expertise as primary sources
---------------------------------------
-
-Unlike grammar, for which many people have strong intuitions – so much so that grammaticality of a sentence as measured by the intuitions of native speakers is a common experimental measure in linguistics – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice. Proselint thus defers to the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing with style. This conflict avoidance motivates our policy of defaulting to silence were authors to provide conflicting advice.
-
-Levels of difficulty
---------------------
-
-In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, we have identified [#]_ several levels of difficulty in the implementation of the detection and correction of usage errors:
-
-.. [#] To our knowledge, no one has posed a hierarchy of this sort for organizing the difficulty of identifying different style and usage violations.  
-
-#. AI-hard
-#. :math:`\textsc{nlp}`, beyond state-of-the-art
-#. :math:`\textsc{nlp}`, state-of-the-art
-#. Syntax dependent rules
-#. Regular expressions
-#. One-to-one replacement rules. 
-
-Our development of Proselint begins at the lowest levels of the hierarchy, building upwards. At one extreme are usage errors detectable and correctable through one-to-one replacement rules, detecting the presence of a specific word or phrase and suggesting another in its place. At the other extreme are errors whose detection and correction are such hard computational problems that it would require human-level intelligence to solve in the general case (if such a solution is possible at all). Consider, for example, usage errors pertaining to the word "only", whose correct placement depends on the intended meaning (e.g., in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose?). Usage errors at this highest level of the hierarchy are hard to successfully identify without introducing many false positives into the mix. Correcting them poses an additional problem because there will often not be a unique solution that can be recommended above all the others. The intermediate cases vary along these dimensions, where, moving up the hierarchy, more false positives are introduced and unique correction becomes less feasible.
-
-Rapiers, cudgels, and the lintscore
------------------------------------
-
-Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the cost of learning to use the tool is outweighed by the utility it provides. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities are at a comparative disadvantage because they must demonstrate a substantial improvement over the status quo. This is the case for Proselint. 
-
-Because of this need to demonstrate utility, earlier language tools attempted to offer as much help as possible. In a sense, they wielded a cudgel, a tool that indiscriminately affects large areas of flesh. Each issue flagged might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms (thus making :math:`T+F` the total number of flags raised by the tool). The cudgel approach attempts to maximize :math:`T`, flagging as much as possible, without considering :math:`F`. Writers who use those tools would see many genuine errors, errors that Proselint might not yet detect. However, their emphasis on maximizing :math:`T` at the expense of :math:`F` is to their detriment. These tools raise so many false alarms that their advice cannot be trusted: writers must weigh each proposed error.
-
-Proselint aims to be not a cudgel, but a rapier, a tool that pinpoints weak spots and strikes where it will make the most impact. With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. 
-
-To achieve this, we penalise false positives :math:`F` by evaluating Proselint in terms of its *lintscore*. The lintscore gives a point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate (:math:`\alpha = \frac{F}{T+F}`). The lintscore is given by
-
-.. math::
-    l(T,F;k) = T(1-\alpha)^k,
-
-where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty. Note that our lintscore is not a readability metric, but rather a metric by which prose linters can be evaluated, using notions from signal detection theory (false positives) as an indirect measure of trustworthiness.
-
-Generalized lintscores
-^^^^^^^^^^^^^^^^^^^^^^
-
-We can also develop a lintscore for documents with unknown empirical false positive rates. We can accomplish this by asking about the expected best case lintscore, but penalising the result by a false positive rate estimated from a related corpus of documents. This is sufficient to built a probabilistic model of the problem as a collection of independent identically distributed Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best case number of true positives (i.e., :math:`T\equiv N`) gives :math: `N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the best case number of successes (:math:`k\equiv N`).
+Finally, standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Proselint could be used to create automated metrics for the readability, consistency, and stylishness of written language.
 
 Existing tools
 ==============
