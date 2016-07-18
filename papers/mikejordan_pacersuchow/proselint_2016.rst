@@ -448,8 +448,8 @@ To achieve this, we penalise false positives :math:`F` by evaluating Proselint i
 
 where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty.
 
-:sc:`Generalised lintscores`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generalized lintscores
+^^^^^^^^^^^^^^^^^^^^^^
 
 We can also develop a lintscore for documents with unknown empirical false positive rates. We can accomplish this by asking about the expected best case lintscore, but penalising the result by a false positive rate estimated from a related corpus of documents. This is sufficient to built a probabilistic model of the problem as a collection of independent identically distributed Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, then the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best case number of true positives (i.e., :math:`T\equiv N`) gives :math: `N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` is the best case number of successes (:math:`k\equiv N`).
 
@@ -503,9 +503,6 @@ Improved self-evaluation procedure with multiple corpora
 --------------------------------------------------------
 
 We currently calculate our lintscore manually on a static corpus of professionally edited documents. This process can be improved in a number of ways that will lead to different kinds of improvement in Proselint. In addition to boons from making evaluation less effortful, one major improvement would be to identify multiple corpora with different features.
-
-.. :sc:`Multiple corpora with different features`
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We currently only have a single corpus for analyzing Proselint's performance. It is composed of documents that have already been professionally edited, which we assume will have relatively few true errors. This efficiently alerts us to false-alarms that are introduced by the inclusion of new rules. However, it does a poor job of estimating performance on a variety of other metrics.
 
