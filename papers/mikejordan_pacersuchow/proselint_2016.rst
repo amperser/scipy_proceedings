@@ -66,7 +66,6 @@ As a tool for language science
 
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
 
-The nature of a linter runs against an exclusively descriptivist approach to language use — one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
 
 Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist Natural Language Processing (:math:`\textsc{nlp}`) techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates — usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
 
@@ -390,6 +389,8 @@ Another potential application of Proselint as a tool for language science is in 
 
 The ability to identify authors also enables inverting and generalizing that process, allowing Proselint's output to be used for identity obfuscation or for encryption of messages by selectively introducing, changing, or removing usage choices. With moderate modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify cases where more than one acceptable choice exists.
 
+Finally, standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. 
+
 The Proselintian theoretical approach
 =====================================
 
@@ -444,7 +445,7 @@ To achieve this, we penalise false positives :math:`F` by evaluating Proselint i
 .. math::
     l(T,F;k) = T(1-\alpha)^k,
 
-where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty.
+where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty. Note that our lintscore is not a readability metric, but rather a metric by which prose linters can be evaluated, using notions from signal detection theory (false positives) as an indirect measure of trustworthiness.
 
 Generalized lintscores
 ^^^^^^^^^^^^^^^^^^^^^^
