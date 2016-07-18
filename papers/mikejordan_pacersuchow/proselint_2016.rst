@@ -379,7 +379,7 @@ For example,
   text.md:0:10: uncomparables.misc Comparison of ... 
   an uncomparable: 'unique' can not be compared.
 
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
 
 .. code-block:: javascript
 
