@@ -41,7 +41,7 @@ Our collective knowledge about best practices in writing is thus essentially tra
 The solution
 ============
 
-To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it, identifying problems with its syntax or style. Proselint identifies violations of expert-endorsed style and usage guidelines [#]_  and alerts the writer of those violations as they are committed, an ideal opportunity to elicit long-term changes in behavior :cite:`ferster1957schedules`. It is as though the experts sit by the writer's side, whispering gentle reminders. [#]_ 
+To solve this problem, we built Proselint, a real-time linter for English prose. A linter is a computer program that, like a spell checker, scans through a document and analyzes it, identifying problems with its syntax or style :cite:`Johnson1977`. Proselint identifies violations of expert-endorsed style and usage guidelines [#]_  and alerts the writer of those violations as they are committed, an ideal opportunity to elicit long-term changes in behavior :cite:`ferster1957schedules`. It is as though the experts sit by the writer's side, whispering gentle reminders about best practices in writing.
 
 .. [#] Proselint differs from a spell-checker in that its recommendations do not specifically counter errors in which a word is spelled incorrectly, but rather errors of style and usage, which can occasionally be described as a spelling error. For example, consider the malapropism "attacking your voracity", where it is not that "voracity" is spelled incorrectly per se but that the appropriate word (in most contexts) is the phonetic neighbor "veracity". 
 
