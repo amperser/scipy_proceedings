@@ -135,7 +135,7 @@ We aim to have excellent defaults without hampering adaptability to user's perso
 Examples of some rules
 ----------------------
 
-Tables 1 and 2 list many of the rule modules that Proselint currently implements. The following examples are meant to give a taste of the range of advice that Proselint can give:
+Tables 1 and 2 list much of the advice that Proselint currently implements. The following examples are meant to give a taste of this advice:
 
 #. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
 
