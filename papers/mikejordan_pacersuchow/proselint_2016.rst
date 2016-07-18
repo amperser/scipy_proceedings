@@ -7,12 +7,6 @@
 
 :bibliography: mybib
 
-.. raw:: latex
-
-    \newcommand{\DUrolesc}{\textsc}
-    
-.. role:: sc
-
 ========================================================================
 Proselint: the linting of science prose and the science of linting prose
 ========================================================================
