@@ -3,7 +3,6 @@
 :institution: University of California, Berkeley
 
 :author: Jordan W. Suchow
-:email: suchow@berkeley.edu
 :institution: University of California, Berkeley
 
 :bibliography: mybib
