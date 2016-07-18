@@ -388,8 +388,8 @@ An effective way to promote adoption of best practices in writing through linter
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
-Results and potential applications
-==================================
+Applications, realized and potential
+====================================
 
 As a proof of concept, we used Proselint to make contributions to several documents, including the White House's Federal Source Code Policy; The Open Logic Project textbook on advanced logic; Infoactive's *Data + Design* book; and many of the other papers contributed to *SciPy 2016*. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* and measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on the finer points of usage, about which experts may disagree. When run over v0.1.0 of our corpus, we achieved a lintscore of 98.8 (*k* = 2).
 
