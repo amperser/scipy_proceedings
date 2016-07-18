@@ -119,7 +119,7 @@ where the parameter :math:`k` controls the strength of the :math:`1-\alpha` pena
 
 We can estimate a lintscore for documents with unknown empirical false-positive rates using a straightforward probabilistic model where we only receive credit in the best-case (where every error is a true positive). This probabilistic model treats each identified error as an independent identically distributed Bernoulli random variable. We suppose each flag produces a false positive with probability equal to the empirical false positive rate estimated from a known corpus of related documents (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If we receive 0 points in all but the best case (where we receive :math:`T\equiv N` points), the expected score is :math:`N(1-\hat{\alpha})^N`. This *generalised lintscore* has the same form as an empirical lintscore, but with :math:`\hat{\alpha}` as an estimated :math:`\alpha` and :math:`k` as the maximal number of successes (:math:`k\equiv N`). The choice of reference corpus is a free parameter.
 
-Note, lintscores are not readability metrics. Rather they use notions from signal detection theory to indirectly measure prose linters' trustworthiness.
+Note, lintscores are not readability metrics. They evaluate linters, not documents; given a set of documents, signal detection theory allows indirectly estimating prose linters' trustworthiness.
 
 The advice
 ==========
