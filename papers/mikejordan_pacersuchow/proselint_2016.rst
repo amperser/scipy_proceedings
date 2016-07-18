@@ -107,13 +107,6 @@ To evaluate Proselint's false positive rate, we built corpus of text from well-e
 
 .. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
-Contributing to Proselint
--------------------------
-
-The primary avenue for contributing to Proselint is by contributing code to its GitHub repository, used to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert who endorses the rule. This is not because language experts are the only arbiters of language usage, but because our goal is explicitly to aggregate best practices as put forth by the experts.
-
-A secondary avenue for contributing to Proselint is through discovery of false alarms: instances where Proselint flags well-formed idiomatic prose as containing a usage error. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
-
 Code Structure: rule modules
 ----------------------------
 
@@ -791,7 +784,7 @@ Unlike our current rules, these techniques are fundamentally statistical. Machin
 .. The central challenges to this are the combinatoric issues that this problem introduces if approached naively and the inferential problems that could allow proper scaling.  If one simply looked at all possible subsequences of characters, there is no way the method could scale appropriately with larger documents.  The number of potential subsections that would need to be analysed would grow faster than could be kept up with by even the fastest of today's computers. On the other hand inferring the structure of a document based on its content if that structure is not of a pre-specified variety is not a solved problem.
 
 An unsolved problem: foreign languages
-======================================
+--------------------------------------
 
 We currently do *not* have plans for extending Proselint to other languages, though we will do our best to aid those who wish to do so. Addressing the problem of linting prose for style and usage in English (of both American and British varieties) is challenging on its own. Attempting to build rule-sets for languages in which we lack fluency would seem to be an exercise in folly. Attempting to manage a community around the correct use of a language we do not speak would be inappropriate.
 
@@ -807,6 +800,13 @@ That said, we have learned lessons that would aid someone who wanted to extend P
 .. 
 
 .. Isolable 
+
+Contributing to Proselint
+=========================
+
+The primary avenue for contributing to Proselint is by contributing code to its GitHub repository, used to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert who endorses the rule. This is not because language experts are the only arbiters of language usage, but because our goal is explicitly to aggregate best practices as put forth by the experts.
+
+A secondary avenue for contributing to Proselint is through discovery of false alarms: instances where Proselint flags well-formed idiomatic prose as containing a usage error. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
 
 Acknowledgments
 ================
