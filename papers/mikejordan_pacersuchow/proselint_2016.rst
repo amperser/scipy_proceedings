@@ -11,14 +11,8 @@
 .. raw:: latex
 
     \newcommand{\DUrolesc}{\textsc}
-    \newcommand{\DUrolesf}{\textsf}
-    \newcommand{\DUroleprotect[1]}{\protect{#1}}
     
 .. role:: sc
-
-.. role:: sf
-
-.. role:: protect
 
 ========================================================================
 Proselint: the linting of science prose and the science of linting prose
@@ -83,9 +77,9 @@ Linguistics as a science is largely a descriptivist enterprise, seeking to descr
 
 The nature of a linter runs against an exclusively descriptivist approach to language use — one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
 
-Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist Natural Language Processing (:sc:`nlp`) techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates — usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
+Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist Natural Language Processing (:math:`\textsc{nlp}`) techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates — usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
 
-To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
+To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :math:`\textsc{nlp}` research (outside of our internal testing and research).
 
 .. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
@@ -416,8 +410,8 @@ Proselint avoids grammar, which is both too easy and too hard:
 Grammar is too easy in the sense that, for most native speakers, grammatical errors are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.
 
 In contrast, grammar is too hard in that, in its most general form, detecting grammatical errors is AI-hard, requiring artificial intelligence that at least matches human-level intelligence and a native speaker's ear to identify errors. 
-Extant :sc:`nlp` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives(meaning increased uncertainty). 
-Furthermore, standard :sc:`nlp` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended.
+Extant :math:`\textsc{nlp}` techniques that deal with grammar are unavoidably statistical :cite:`Bird:2009:NLP`, meaning grammar checks would guarantee some degree of false positives(meaning increased uncertainty). 
+Furthermore, standard :math:`\textsc{nlp}` techniques for syntax parsing are designed to extract accurate structures from correct text, not to identify the nearby structures that were likely to be intended.
 If one assumes that errors are made there will almost always be more than one nearby grammatical sentence (meaning greater processing time), and which sentence suggested hinges on the intended meaning(meaning more complicated implementations). 
 There can even be cases where the intended meaning changes *whether* a grammatical error is present: e.g., "Some possessive clause's apostrophes are placed with a grammarian's care" is correct if it refers to the existence of a single clause and incorrect if it refers to multiple clauses.
 Correcting grammatical errors can be as challenging as detecting them. Compared to usage and style, grammar checking is an uncertain, slow, and complicated enterprise.
@@ -437,8 +431,8 @@ In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1
 .. [#] To our knowledge, no one has posed a hierarchy of this sort for organizing the difficulty of identifying different style and usage violations.  
 
 #. AI-hard
-#. :sc:`nlp`, beyond state-of-the-art
-#. :sc:`nlp`, state-of-the-art
+#. :math:`\textsc{nlp}`, beyond state-of-the-art
+#. :math:`\textsc{nlp}`, state-of-the-art
 #. Syntax dependent rules
 #. Regular expressions
 #. One-to-one replacement rules. 
