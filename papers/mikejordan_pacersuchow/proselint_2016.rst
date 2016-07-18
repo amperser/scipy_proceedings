@@ -366,7 +366,7 @@ At its core, Proselint is a command-line utility that reads in a text file:
 
    proselint text.md
 
-Running this command prints a list of suggestions to stdout, one per line. Each suggestion has the form:
+Running this command prints a list of suggestions to stdout, one per line. The GNU Error Message Formatting standard :cite:`stallman2016gnu` provides the base format for displaying these suggestions. Like many other linters, we specify further that the source of the error (the ``check_name``) be included separately from the message describing the error. Because this form is used by many linters, we call this the Standard Linting Format (``slf``). Each ``slf`` formatted suggestion has the form:
 
 .. code-block:: bash
 
