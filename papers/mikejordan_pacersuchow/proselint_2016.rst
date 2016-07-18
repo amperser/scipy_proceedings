@@ -110,14 +110,16 @@ Because of this need to demonstrate utility, earlier language tools attempted to
 
 Proselint aims to be not a cudgel, but a rapier, a tool that pinpoints weak spots and strikes where it will make the most impact. With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead with stronger, tighter prose. Better to be quiet and authoritative than loud and unreliable. 
 
-To achieve this, we penalize false positives :math:`F` by evaluating Proselint in terms of its *lintscore*. The lintscore gives a point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate :math:`\alpha = \frac{F}{T+F}`. The lintscore is given by
+To achieve this, we penalize false positives :math:`F` by evaluating Proselint in terms of its *empirical lintscore*. The lintscore gives a point for every true positive (:math:`T`) and penalizes on the basis of the false-positive rate :math:`\alpha = \frac{F}{T+F}`. The lintscore is given by
 
 .. math::
     l(T,F;k) = T(1-\alpha)^k,
 
-where :math:`k` is a parameter controlling the strength of the :math:`1-\alpha` penalty. Note that our lintscore is not a readability metric, but rather a metric by which prose linters can be evaluated, using notions from signal detection theory (false positives) as an indirect measure of trustworthiness.
+where the parameter :math:`k` controls the strength of the :math:`1-\alpha` penalty.
 
-We can also develop a lintscore for documents with unknown empirical false-positive rates. We can accomplish this by asking about the expected best-case lintscore, but penalizing the result by a false-positive rate estimated from a related corpus of documents. This is sufficient to build a probabilistic model of the problem as a collection of independent identically distributed Bernoulli random variables. Suppose each flag produces a false positive with probability equal to the estimated false positive rate (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. Multipying this by the best-case number of true positives (i.e., :math:`T\equiv N`) gives :math:`N(1-\hat{\alpha})^N`. This has the same form as our standard lintscore, but with :math:`\hat{\alpha}` as the estimated :math:`\alpha` and :math:`k` as the best-case number of successes (:math:`k\equiv N`).
+We can estimate a lintscore for documents with unknown empirical false-positive rates using a straightforward probabilistic model where we only receive credit in the best-case (where every error is a true positive). This probabilistic model treats each identified error as an independent identically distributed Bernoulli random variable. We suppose each flag produces a false positive with probability equal to the empirical false positive rate estimated from a known corpus of related documents (:math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`). For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If we receive 0 points in all but the best case (where we receive :math:`T\equiv N` points), the expected score is :math:`N(1-\hat{\alpha})^N`. This *generalised lintscore* has the same form as an empirical lintscore, but with :math:`\hat{\alpha}` as an estimated :math:`\alpha` and :math:`k` as the maximal number of successes (:math:`k\equiv N`). The choice of reference corpus is a free parameter.
+
+Note, lintscores are not readability metrics. Rather they use notions from signal detection theory to indirectly measure prose linters' trustworthiness.
 
 The advice
 ==========
