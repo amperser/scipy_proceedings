@@ -70,6 +70,43 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 
 Proselint is open-source software released under the BSD license and compatible with Python 2 and 3. It runs efficiently as a command-line utility or editor plugin for SublimeText, Atom, Emacs, vim, &c. It outputs advice in standard formats, including JSON, allowing for integration with external services. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more. 
 
+
+Two views on Proselint
+======================
+
+Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
+
+
+As a language tool for scientists
+----------------------------------
+
+Science and writing are fast friends — science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science. 
+
+Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and redundancy. For example, Proselint checks for the multiplication symbol × when giving screen dimensions (e.g., 1440 × 900), for misspecified *p* values that result from software packages' truncating small numbers (e.g., *p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
+
+As a tool for language science
+------------------------------
+
+Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
+
+The nature of a linter runs against an exclusively descriptivist approach to language use — one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
+
+.. tools playing a small role in linguistic analyses of usage and style (but see, :cite:`kuhl1995chapter`).  
+
+
+
+.. Notions from signal detection theory (such as false-positive rates) have been powerful analytical tools for guiding and evaluating Proselint's development and performance, despite these tools playing a small role in linguistic analyses of usage and style[#]_. 
+
+.. .. [#] One case in which linguistics uses signal detection theory is to map sounds to phonemes to explain the "perceptual magnet effect" :cite:`kuhl1995chapter`. But note, sound-to-syllable mapping is one of the cases where linguists tend to assume that there is some underlying true linguistic event (the intended syllable). 
+
+Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist Natural Language Processing (:sc:`nlp`) techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates — usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
+
+.. Additionally, Proselint's rule-generation techniques have more closely followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
+
+To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
+
+.. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
+
 Contributing to Proselint
 -------------------------
 
@@ -468,43 +505,6 @@ An effective way to promote adoption of best practices in writing through linter
    +---------------------------------+---------------------------------------------+
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
-
-
-Two views on Proselint
-======================
-
-Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
-
-
-As a language tool for scientists
-----------------------------------
-
-Science and writing are fast friends — science as we know it would be impossible without the written word. But scientific research is, by necessity, hard to understand by all but those most acquainted with it, and harder still to communicate to other scientists and to the public. This leaves room for tools that assist in writing to further the aims of scientists and promote the public's understanding of science. 
-
-Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and redundancy. For example, Proselint checks for the multiplication symbol × when giving screen dimensions (e.g., 1440 × 900), for misspecified *p* values that result from software packages' truncating small numbers (e.g., *p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
-
-As a tool for language science
-------------------------------
-
-Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). A focus on identifying the stylistic errors in peoples' language use does not fit the descriptivist approach common to linguists.
-
-The nature of a linter runs against an exclusively descriptivist approach to language use — one needs a norms to be able to detect norm violations. Standard readability metrics are not defined in a way that would capture the kinds of suggestions that Proselint makes, focusing instead on reading ease rather than conventionality :cite:`flesch1948new`. Our lintscore is not a readability metric, but rather a metric by which our tool can itself be evaluated, using notions from signal detection theory (e.g., false positives) as an indirect measure of Proselint's trustworthiness. 
-
-.. tools playing a small role in linguistic analyses of usage and style (but see, :cite:`kuhl1995chapter`).  
-
-
-
-.. Notions from signal detection theory (such as false-positive rates) have been powerful analytical tools for guiding and evaluating Proselint's development and performance, despite these tools playing a small role in linguistic analyses of usage and style[#]_. 
-
-.. .. [#] One case in which linguistics uses signal detection theory is to map sounds to phonemes to explain the "perceptual magnet effect" :cite:`kuhl1995chapter`. But note, sound-to-syllable mapping is one of the cases where linguists tend to assume that there is some underlying true linguistic event (the intended syllable). 
-
-Despite our implicit prescriptivism, Proselint can be of use to standard descriptivist Natural Language Processing (:sc:`nlp`) techniques. Though Proselint has not been used in any extensive linguistic studies to date, Proselint fits the formal structure expected by many language-science techniques. Proselint emphasises different kinds of information in the feature sets it generates — usage and style choices rather than word frequencies and syntax trees. Due to this, Proselint has extensive applications as an input to other more standard linguistic techniques and as a means of drawing new insights about existing corpora.
-
-.. Additionally, Proselint's rule-generation techniques have more closely followed the path of expert knowledge systems than those used by modern :sc:`nlp` research. This approach is labor-intensive and does not scale well. Thus, integrating Proselint with :sc:`nlp` and machine learning techniques we expect will prove to be mutually beneficial (if only in providing a unique data set and ways to improve that data set).
-
-To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :sc:`nlp` research (outside of our internal testing and research).
-
-.. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
 Results and potential applications
 ==================================
