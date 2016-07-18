@@ -66,7 +66,6 @@ Despite our implicit prescriptivism, Proselint can be of use to descriptivists, 
 
 To evaluate Proselint's false positive rate, we built corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora — there are no available annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :math:`\textsc{nlp}` research (outside of our internal testing and research).
 
-.. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
 The advice
 ==========
@@ -522,6 +521,13 @@ An unsolved problem: foreign languages
 We currently do *not* have plans for extending Proselint to other languages, though we will do our best to aid those who wish to do so. Addressing the problem of linting prose for style and usage in English (of both American and British varieties) is challenging on its own. Attempting to build rule-sets for languages in which we lack fluency would seem to be an exercise in folly. Attempting to manage a community around the correct use of a language we do not speak would be inappropriate.
 
 That said, we have learned lessons that would aid someone who wanted to extend Proselint to other languages. Our hope is that some of those lessons have been successfully conveyed above, but there are likely many more that will only reveal themselves in discussion. We invite anyone who wishes to discuss Proselint as a model for any other endeavor to reach out to us. The last thing we want is for knowledge to be trapped inside our heads. 
+
+Missing corpora
+---------------
+
+To evaluate Proselint's false positive rate, we built a corpus of text from well-edited magazines likely to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lacuna in the available linguistic corpora: there are no annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :math:`\textsc{nlp}` research (outside of our internal testing and research).
+
+.. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers (not including Proselint). Their corpus consists of "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximise true positives, but mistestimates false positive rates in entire real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
 
 Contributing to Proselint
 =========================
