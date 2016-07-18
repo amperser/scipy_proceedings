@@ -122,15 +122,15 @@ We can also develop a lintscore for documents with unknown empirical false-posit
 The advice
 ==========
 
-Proselint is built around advice [#]_ derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others.
+Proselint is built around advice derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. [#]_ 
 
 .. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
 
-Our standard for inclusion of a new rule is that it be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works published by well-established publishers and works widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint as widely useful as possible with the minimum amount of customization. 
+Our standard for inclusion of a new rule is that it should be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works from well-established publishers and those widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint as widely useful as possible with the minimum amount of customization. 
 
-Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default would be to exclude all forms of the advice. 
+Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default is to exclude all forms of the advice, under the logic that it is unreasonable to hold users of Proselint to a higher standard than the experts, at least one of whom endorses the user's usage choice.
 
-We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding news rules or by excluding existing rules through a ``.proselintrc`` file.
+We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding new rules or by excluding existing rules through a configuration file.
 
 Examples of some rules
 ----------------------
