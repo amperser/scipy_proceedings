@@ -170,18 +170,18 @@ Tables 1 and 2 list many of the rule modules that Proselint currently implements
    +---------------------------------+---------------------------------------------+
    |``misc.pretension``              | Avoiding being pretentious                  |
    +---------------------------------+---------------------------------------------+
-   |``misc.professions``             | Calling jobs by the right name              |
-   +---------------------------------+---------------------------------------------+
-   |``misc.punctuation``             | Using punctuation assiduously               |
-   +---------------------------------+---------------------------------------------+
-   |``misc.scare_quotes``            | Using scare quotes only when needed         |
-   +---------------------------------+---------------------------------------------+
 
 .. table:: What Proselint checks (cont.). :label:`checkscont`
 
    +---------------------------------+---------------------------------------------+
    | ID                              | Description                                 |
    +=================================+=============================================+
+   |``misc.professions``             | Calling jobs by the right name              |
+   +---------------------------------+---------------------------------------------+
+   |``misc.punctuation``             | Using punctuation assiduously               |
+   +---------------------------------+---------------------------------------------+
+   |``misc.scare_quotes``            | Using scare quotes only when needed         |
+   +---------------------------------+---------------------------------------------+
    |``misc.suddenly``                | Avoiding the word suddenly                  |
    +---------------------------------+---------------------------------------------+
    |``misc.tense_present``           | Advice from Tense Present                   |
