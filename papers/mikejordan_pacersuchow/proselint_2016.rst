@@ -417,7 +417,7 @@ suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected
 
 Text editor plugins
 -------------------
-An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write; this removes a barrier to adoption. Towards that aim, available for Proselint are plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom. Some were created by us, some were contributed by others in the community.
+An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write; this removes a barrier to adoption. Towards that aim, plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom are available for Proselint. Some were created by us, some were contributed by others in the community.
 
 Applications, realized and potential
 ====================================
