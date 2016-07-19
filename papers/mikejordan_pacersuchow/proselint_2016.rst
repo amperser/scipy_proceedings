@@ -61,7 +61,7 @@ As a tool for language science
 
 Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used :cite:`garner2016garner`. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). The nature of a linter runs against an exclusively descriptivist approach to language use because detection of norm violations presupposes the existence of norms :cite:`garner2016garner`.
 
-Despite our implicit prescriptivism, Proselint can be of use to descriptivists, both as an input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques and as a method for detecting patterns of usage and style in existing corpora without making normative claims (see Applications, Realized and Potential). Though Proselint has not yet been used in extensive linguistic studies, its output fits the formal structure expected by many language-science techniques while emphasizing a different kinds of features: usage and style choices rather than word frequencies and syntactic structures.
+Despite our implicit prescriptivism, Proselint can be of use to descriptivists, both as an input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques and as a method for detecting patterns of usage and style in existing corpora without making normative claims (see Applications, Realized and Potential). Though Proselint has not yet been used in extensive linguistic studies, its output fits the formal structure expected by many language-science techniques while emphasizing a different kinds of features: usage and style choices rather than word frequencies and syntactic structures :cite:`Bird:2009:NLP`.
 
 The Proselintian theoretical approach
 =====================================
@@ -318,7 +318,7 @@ Rule templates
 
 In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
 
-To ease the implementation of new rules, we have written functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
+To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
 
 For example, the following code implements a rule regarding the formatting of times using the ``existence check`` rule template. 
 
