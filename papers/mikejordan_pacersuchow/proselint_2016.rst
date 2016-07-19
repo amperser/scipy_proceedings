@@ -522,7 +522,8 @@ The primary avenue for contributing to Proselint is by contributing code to its 
 A secondary avenue for contributing to Proselint is through discovery of false alarms: instances where Proselint flags well-formed idiomatic prose as containing a usage error. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
 
 Acknowledgments
-================
+===============
+
 Work on Proselint was supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically as regards applying Proselint to the problem of improving governmental communications as laid out in the `Federal Plain Language Guidelines`__.
 
 .. __: https://ctsp.berkeley.edu/
