@@ -349,7 +349,7 @@ Proselint is available on the Python Package Index and can be installed using pi
 
 .. code-block:: bash
 
-   pip install Proselint
+   pip install proselint
 
 Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
 
