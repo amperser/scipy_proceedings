@@ -13,7 +13,7 @@ Proselint: the linting of science prose and the science of linting prose
 
 .. class:: abstract
 
-   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But this knowledge is trapped, waiting to be extracted and transformed.
+   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But much of this knowledge is trapped, waiting to be extracted and transformed..
 
    We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and is compatible with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., for Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats, including JSON and standard linting format(``slf``). Proselint includes modules that address redundancy, jargon, illogic, clichés, unidiomatic vocabulary, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, and pretension. Furthermore, Proselint is extensible, enabling creation of domain-specific modules or implementation of house style guides.
 
@@ -36,7 +36,7 @@ Today, an author who wishes to improve a piece of writing by applying the collec
 
 Neither approach fully solves the problem of successful adoption of best practices in writing. Few people have the resources needed to outsource editing to expert staff, and even for those who do, editing by external experts is slow because copy editors must read the text carefully and are normally unavailable during the act of writing. By the time an editor's notes are received, then, a key opportunity to strengthen the writer's craft has passed. This problem is exacerbated for time-sensitive writing, where the delay introduced by an editor may diminish the communication's value. In contrast, existing software-based tools, though they are inexpensive and fast, are typically incomplete, imprecise, or inaccessible (see Existing Tools, below). 
 
-Our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge accessible to all authors.
+Much of our collective knowledge about best practices in writing is thus essentially trapped, waiting to be extracted and transformed into a medium that makes the knowledge accessible to all authors.
 
 The solution
 ============
