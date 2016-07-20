@@ -7,6 +7,7 @@
 
 :bibliography: mybib
 :video: https://www.youtube.com/watch?v=S55EFUOu4O0
+
 ========================================================================
 Proselint: the linting of science prose and the science of linting prose
 ========================================================================
