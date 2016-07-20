@@ -14,7 +14,7 @@ Proselint: the linting of science prose and the science of linting prose
 
 .. class:: abstract
 
-   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But much of this knowledge is trapped, waiting to be extracted and transformed..
+   Writing is notoriously hard, even for the best writers, and it's not for lack of good advice — a tremendous amount of knowledge about the craft is strewn across usage guides, dictionaries, technical manuals, essays, pamphlets, websites, and the hearts and minds of great authors and editors. But much of this knowledge is trapped, waiting to be extracted and transformed.
 
    We built Proselint, a Python-based linter for prose. Proselint identifies violations of expert style and usage guidelines. Proselint is open-source software released under the BSD license and is compatible with Python 2 and 3. It runs as a command-line utility or editor plugin (e.g., for Sublime Text, Atom, Vim, Emacs) and outputs advice in standard formats, including JSON and standard linting format(``slf``). Proselint includes modules that address redundancy, jargon, illogic, clichés, unidiomatic vocabulary, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, and pretension. Furthermore, Proselint is extensible, enabling creation of domain-specific modules or implementation of house style guides.
 
@@ -132,7 +132,7 @@ Our standard for inclusion of a new rule is that it should be accompanied by an 
 
 Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default is to exclude all forms of the advice, under the logic that it is unreasonable to hold users of Proselint to a higher standard than the experts, at least one of whom endorses the user's usage choice.
 
-We aim to have excellent defaults without hampering adaptability to user's personal preferences, and thus designed Proselint so that it can be customized either by adding new rules or by excluding existing rules through a configuration file.
+We aim to have excellent defaults without hampering customizability, and thus designed Proselint so that it can be extended by adding new rules or filtered by excluding existing rules through a configuration file.
 
 Examples of some rules
 ----------------------
