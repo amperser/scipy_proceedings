@@ -93,6 +93,86 @@ In the case of the agendize example, you want to ban a word altogether, so you w
         ]
         return existence_check(text, jargon, err, msg, join=True)
 
+Using Proselint
+===============
+
+Installation
+------------
+Proselint is available on the Python Package Index and can be installed using pip:
+
+.. code-block:: bash
+
+   pip install proselint
+
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools (implicitly ``python setup.py develop``): 
+
+.. code-block:: bash
+
+   pip install -e .
+
+
+Command-line utility
+--------------------
+
+At its core, Proselint is a command-line utility that reads in a text file:
+
+.. code-block:: bash
+
+   proselint text.md
+
+Running this command prints a list of suggestions to stdout, one per line. The GNU Error Message Formatting standard :cite:`stallman2016gnu` provides the base format for displaying these suggestions. Like many other linters, we specify further that the source of the error (the ``check_name``) be included separately from the message describing the error. Because this form is used by many linters, we call this the Standard Linting Format (``slf``). Each ``slf`` formatted suggestion has the form:
+
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: uncomparables.misc Comparison of ... 
+  an uncomparable: 'unique' can not be compared.
+
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
+
+.. code-block:: javascript
+
+  {
+      // The check originating this suggestion
+      "check": "uncomparables.misc", 
+      
+      // The line where the error starts
+      "line": 1, 
+
+      //The column where the error starts
+      "column": 1, 
+      
+      // Index in the text where the error starts
+      "start": 1,
+
+      // the index in the text where the error ends
+      "end": 18, 
+      
+      // start - end
+      "extent": 17, 
+      
+      // Message describing the advice
+      "message": "Comparison of an uncomparable: ...
+      'very unique\n' is not comparable.",
+      
+      // Possible replacements
+      "replacements": null, 
+
+      // Importance("suggestion", "warning", "error")
+      "severity": "warning"
+  }
+
+
+Text editor plugins
+-------------------
+An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write; this removes a barrier to adoption. Towards that aim, plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom are available for Proselint. Some were created by us, some were contributed by others in the community.
+
+
 Two views on Proselint
 ======================
 
@@ -348,91 +428,6 @@ We aim to have excellent defaults without hampering customizability, and thus de
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
-
-Code: Structure & Performance
-=============================
-
-
-
-
-Using Proselint
-===============
-
-Installation
-------------
-Proselint is available on the Python Package Index and can be installed using pip:
-
-.. code-block:: bash
-
-   pip install proselint
-
-Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools (implicitly ``python setup.py develop``): 
-
-.. code-block:: bash
-
-   pip install -e .
-
-
-Command-line utility
---------------------
-
-At its core, Proselint is a command-line utility that reads in a text file:
-
-.. code-block:: bash
-
-   proselint text.md
-
-Running this command prints a list of suggestions to stdout, one per line. The GNU Error Message Formatting standard :cite:`stallman2016gnu` provides the base format for displaying these suggestions. Like many other linters, we specify further that the source of the error (the ``check_name``) be included separately from the message describing the error. Because this form is used by many linters, we call this the Standard Linting Format (``slf``). Each ``slf`` formatted suggestion has the form:
-
-.. code-block:: bash
-
-   text.md:<line>:<column>: <check_name> <message>
-
-For example,
-
-.. code-block:: bash
-
-  text.md:0:10: uncomparables.misc Comparison of ... 
-  an uncomparable: 'unique' can not be compared.
-
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can also print the list of suggestions in JSON using the ``--json`` flag. In this case, the output is considerably richer:
-
-.. code-block:: javascript
-
-  {
-      // The check originating this suggestion
-      "check": "uncomparables.misc", 
-      
-      // The line where the error starts
-      "line": 1, 
-
-      //The column where the error starts
-      "column": 1, 
-      
-      // Index in the text where the error starts
-      "start": 1,
-
-      // the index in the text where the error ends
-      "end": 18, 
-      
-      // start - end
-      "extent": 17, 
-      
-      // Message describing the advice
-      "message": "Comparison of an uncomparable: ...
-      'very unique\n' is not comparable.",
-      
-      // Possible replacements
-      "replacements": null, 
-
-      // Importance("suggestion", "warning", "error")
-      "severity": "warning"
-  }
-
-
-Text editor plugins
--------------------
-An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write; this removes a barrier to adoption. Towards that aim, plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom are available for Proselint. Some were created by us, some were contributed by others in the community.
 
 Applications, realized and potential
 ====================================
