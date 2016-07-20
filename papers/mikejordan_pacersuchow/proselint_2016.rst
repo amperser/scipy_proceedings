@@ -315,7 +315,6 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. The 
 Code: Structure & Performance
 =============================
 
-
 Rule templates
 --------------
 
@@ -354,11 +353,11 @@ Proselint is available on the Python Package Index and can be installed using pi
 
    pip install proselint
 
-Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools(implicitly ``python setup.py develop``): 
 
 .. code-block:: bash
 
-   python setup.py develop
+   pip install -e .
 
 
 Command-line utility
