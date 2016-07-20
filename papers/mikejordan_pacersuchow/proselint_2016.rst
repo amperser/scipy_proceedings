@@ -67,13 +67,10 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. The 
 
 #. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
 
-Converting a rule to code
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Converting a rule to code: rule templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Suppose you wanted to convert "*agendize, an ugly bureaucratic :math:`\textsc{neologism}` meaning "to put on an agenda"… The word remains :math:`jargon` and should be voted down." :cite:`garner2016garner` into a rule. You would first look to the rule templates to see if one matches the form of your problem.
-
-Rule templates
-^^^^^^^^^^^^^^
 
 In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
 
