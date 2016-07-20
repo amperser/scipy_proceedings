@@ -50,6 +50,14 @@ Proselint is open-source software released under the BSD license and compatible 
 
 Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
 
+Rule modules
+------------
+
+Proselint rules are organized into modules that reflect the structure of language advice found in usage guides :cite:`garner2016garner`. For example, Proselint includes a module ``terms`` that encourages expressive vocabulary by flagging use of unidiomatic and generic terms, with submodules for categories of terms found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of animals of a particular species — a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place — *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+
+Organizing rules into modules is useful for two reasons. First, it allows for a logical grouping of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to include and exclude linting rules at a level more finely grained than the submodule, and it is an open challenge how best to allow this customization while minimizing the pain of navigating, modifying, and comprehending the format for customization.
+
+
 As a language tool for scientists
 ----------------------------------
 
@@ -307,12 +315,6 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. The 
 Code: Structure & Performance
 =============================
 
-Rule modules
-------------
-
-Proselint rules are organized into modules that reflect the structure of language advice found in usage guides :cite:`garner2016garner`. For example, Proselint includes a module ``terms`` that encourages expressive vocabulary by flagging use of unidiomatic and generic terms, with submodules for categories of terms found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of animals of a particular species — a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place — *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
-
-Organizing rules into modules is useful for two reasons. First, it allows for a logical grouping of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to include and exclude linting rules at a level more finely grained than the submodule, and it is an open challenge how best to allow this customization while minimizing the pain of navigating, modifying, and comprehending the format for customization.
 
 Rule templates
 --------------
