@@ -79,7 +79,7 @@ In general, a rule's implementation in code need only take in a string of text, 
 
 To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
 
-In the case of the agendize example, you want to ban a word altogether, so you want the ``existence check`` rule template. When you look under jargon.misc, you find that there are other examples of jargon that are banned by an existence check. You add it to the list.
+In the case of the agendize example, you want to ban a word altogether, so you want the ``existence_check`` rule template. When you look under ``jargon.misc``, you find that there are other examples of jargon that are banned by an existence check. You add ``agendize`` to the list.
 
 .. code-block:: python
     
