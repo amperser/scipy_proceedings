@@ -136,6 +136,13 @@ Published expertise as primary sources
 
 Unlike grammar, for which many people have strong shared intuitions – so much so that a common experimental measure in linguistics is the grammaticality of a sentence as measured by the intuitions of native speakers :cite:`keller2000gradience` – style and usage inspire a multitude of intuitions. Luckily, the authors of respected usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice :cite:`garner2016garner`. Proselint thus defers to some of the world’s greatest writers and editors, giving direct access to humanity’s collective understanding about the craft of writing English with style. (This conflict avoidance also motivates our policy of defaulting to silence when there are unresolved conflicts between experts, as described below.)
 
+
+Memoization
+-----------
+
+One of our goals is for Proselint to be efficient enough for use as a real-time linter while an author writes. Efficiency is increased by avoiding redundant computation, storing the results of expensive function calls from one run of the linter to the next, a technique called *memoization*. Consider, for example, that many of Proselint's checks can operate at the level of a paragraph and that most paragraphs do not change from moment to moment when a sizeable document is being edited. At the extreme, when a linter is run after each keystroke, this is true by definition. By running checks over paragraphs, recomputing only when the paragraph has changed (and otherwise returning the memoized result), it is possible to reduce the total amount of computation and thus improve the linter's running time. Proselint makes extensive use of memoization to improve its running time.
+
+
 Levels of difficulty
 --------------------
 
@@ -349,11 +356,6 @@ Code: Structure & Performance
 =============================
 
 
-
-Memoization
------------
-
-One of our goals is for Proselint to be efficient enough for use as a real-time linter while an author writes. Efficiency is increased by avoiding redundant computation, storing the results of expensive function calls from one run of the linter to the next, a technique called *memoization*. Consider, for example, that many of Proselint's checks can operate at the level of a paragraph and that most paragraphs do not change from moment to moment when a sizeable document is being edited. At the extreme, when a linter is run after each keystroke, this is true by definition. By running checks over paragraphs, recomputing only when the paragraph has changed (and otherwise returning the memoized result), it is possible to reduce the total amount of computation and thus improve the linter's running time. Proselint makes extensive use of memoization to improve its running time.
 
 
 Using Proselint
