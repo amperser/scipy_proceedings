@@ -48,7 +48,6 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 
 Proselint is open-source software released under the BSD license and compatible with Pythons 2 and 3. It runs efficiently as a command-line utility or editor plugin for Sublime Text, Atom, Emacs, vim, &c. It outputs advice in standard formats – including JSON and standard linting format (``slf``) – allowing for integration with external services and human readable output. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more (see Tables 1 and 2 for a fuller listing).
 
-Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
 
 Rule modules
 ------------
@@ -57,6 +56,50 @@ Proselint rules are organized into modules that reflect the structure of languag
 
 Organizing rules into modules is useful for two reasons. First, it allows for a logical grouping of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than that of an individual word or phrase. We note that people may wish to include and exclude linting rules at a level more finely grained than the submodule, and it is an open challenge how best to allow this customization while minimizing the pain of navigating, modifying, and comprehending the format for customization.
 
+Examples of some rules
+^^^^^^^^^^^^^^^^^^^^^^
+
+Tables 1 and 2 list much of the advice that Proselint currently implements. The following examples are meant to give a taste of this advice:
+
+#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
+
+#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
+
+#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
+
+Converting a rule to code
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Suppose you wanted to convert "*agendize, an ugly bureaucratic :math:`\textsc{neologism}` meaning "to put on an agenda"… The word remains :math:`jargon` and should be voted down." :cite:`garner2016garner` into a rule. You would first look to the rule templates to see if one matches the form of your problem.
+
+Rule templates
+^^^^^^^^^^^^^^
+
+In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
+
+To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
+
+In the case of the agendize example, you want to ban a word altogether, so you want the ``existence check`` rule template. When you look under jargon.misc, you find that there are other examples of jargon that are banned by an existence check. You add it to the list.
+
+.. code-block:: python
+    
+    def check(text):
+        err = "jargon.misc"
+        msg = u"'{}' is jargon. Can you replace it with something more standard?"
+        jargon = [
+            "in the affirmative",
+            "in the negative",
+            "per your order",
+            "per your request",
+            "disincentivize",
+            "agendize"
+        ]
+        return existence_check(text, jargon, err, msg, join=True)
+
+Two views on Proselint
+======================
+
+Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
 
 As a language tool for scientists
 ----------------------------------
@@ -142,16 +185,6 @@ Though it has not arisen, in the case of unresolved conflicts between advice fro
 
 We aim to have excellent defaults without hampering customizability, and thus designed Proselint so that it can be extended by adding new rules or filtered by excluding existing rules through a configuration file.
 
-Examples of some rules
-----------------------
-
-Tables 1 and 2 list much of the advice that Proselint currently implements. The following examples are meant to give a taste of this advice:
-
-#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
-
-#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
-
-#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -315,26 +348,7 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. The 
 Code: Structure & Performance
 =============================
 
-Rule templates
---------------
 
-In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. These weak requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when creating new rules, which often follow similar logic.
-
-To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for usage of preferred forms (``preferred_forms_check()``). 
-
-For example, the following code implements a rule regarding the formatting of times using the ``existence check`` rule template. 
-
-.. code-block:: python
-
-    def check_midnight_noon(text):
-        """Check the text."""
-        err = "dates_times.am_pm.midnight_noon"
-        msg = (u"12 a.m. and 12 p.m. are wrong and "
-        "confusing. Use 'midnight' or 'noon'.")
-        regex = "12 ?[ap]\.?m\.?"
-        return existence_check(text, [regex], err, msg)
-
-This function detects use of 12am or 12pm (or many other variants, including 12AM, 12 P.M, and 12aM) and suggests that the author use noon or midnight in its place.
 
 Memoization
 -----------
@@ -353,7 +367,7 @@ Proselint is available on the Python Package Index and can be installed using pi
 
    pip install proselint
 
-Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools(implicitly ``python setup.py develop``): 
+Alternatively, those wishing to develop Proselint can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools (implicitly ``python setup.py develop``): 
 
 .. code-block:: bash
 
