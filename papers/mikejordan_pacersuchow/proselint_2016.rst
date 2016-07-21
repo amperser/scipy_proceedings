@@ -48,6 +48,17 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 
 Proselint is open-source software released under the BSD license and compatible with Pythons 2 and 3. It runs efficiently as a command-line utility or editor plugin for Sublime Text, Atom, Emacs, vim, &c. It outputs advice in standard formats – including JSON and standard linting format (``SLF``) – allowing for integration with external services and human readable output. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more (see Tables 1 and 2 for a fuller listing).
 
+Proselint is both a language tool for scientists and a tool for language science. On the one hand, it can help scientists communicate their ideas to each other and to the public by promoting clear and consistent prose. On the other hand, scientists can use Proselint to studying language and linting.
+
+As a language tool for scientists
+----------------------------------
+
+The written word enables scientists to share science with eachother and with the public, and without it science would be impossible. Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and elimination of redundancy. For example, Proselint detects the letter x used in place of the multiplication symbol × (e.g., 1440 x 900), misspecified *p* values resulting from data-analysis software that truncates small numbers (e.g., *p* = 0.00), and colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
+
+As a tool for language science
+------------------------------
+
+Linguistics is largely descriptivist, describing language as it is used rather than prescribing how it ought to be used :cite:`garner2016garner`. Errors are considered mostly in the context of language learning (especially children's) because the errors reveal the structure of the language learning mechanism (see, e.g., overregularization by young English speakers :cite:`marcus1992overregularization`). Though linting prose is implicitly prescriptivist because its detection of norm violations presupposes the existence of norms :cite:`garner2016garner`, even so, language science can benefit from Proselint's advice without making normative claims. For example, linguists can use Proselint to detect patterns of usage and style in corpora of written text, for authorship identification, and as input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques in place of the more typical word frequencies and syntactic structures :cite:`Bird:2009:NLP`.
 
 Rule modules
 ------------
@@ -171,26 +182,6 @@ suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected
 Text editor plugins
 -------------------
 An effective way to promote adoption of best practices in writing through linters is to embed linters within the tools that people already use to write; this removes a barrier to adoption. Towards that aim, plugins for popular text editors, including Emacs, vim, Sublime Text, and Atom are available for Proselint. Some were created by us, some were contributed by others in the community.
-
-
-Two views on Proselint
-======================
-
-Proselint can be seen as both a language tool for scientists and a tool for language science. On the one hand, it can be used to improve writing, and it includes modules that promote clear and consistent prose in science writing. On the other, it can be used to measure language usage and to consider the factors relevant to a linter's usefulness.
-
-As a language tool for scientists
-----------------------------------
-
-Science would be impossible without the written word: the reproducibility of written language allows it to spread throughout the world and the regularity of usage allows scientists to replicate research using standard methods and tools. But reproducibility does not solve the problem that communicating scientific research is difficult within and between fields. The situation is worse with the broader public, who lack the relevant vocabulary to understand scientific reports. Writing tools ease this communication burden by enforcing standards and warning of language that could hamper the public's understanding of science. 
-
-Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and removal of redundancy. For example, Proselint detects whether the lowercase letter x is used in place of the multiplication symbol × when giving screen dimensions (e.g., 1440 x 900), for misspecified *p* values that result from software packages that truncate small numbers (e.g., *p* = 0.00), and for colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
-
-As a tool for language science
-------------------------------
-
-Linguistics as a science is largely a descriptivist enterprise, seeking to describe language as it is used rather than prescribe how it ought to be used :cite:`garner2016garner`. Errors are considered in the context of how people successfully learn language and how their errors in doing so (especially children's) reveal the underlying structure of the language learning mechanism (see, e.g.,  overregularization by young English speakers :cite:`marcus1992overregularization`). The nature of a linter runs against an exclusively descriptivist approach to language use because detection of norm violations presupposes the existence of norms :cite:`garner2016garner`.
-
-Despite our implicit prescriptivism, Proselint can be of use to descriptivists, both as an input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques and as a method for detecting patterns of usage and style in existing corpora without making normative claims (see Applications, Realized and Potential). Though Proselint has not yet been used in extensive linguistic studies, its output fits the formal structure expected by many language-science techniques while emphasizing a different kinds of features: usage and style choices rather than word frequencies and syntactic structures :cite:`Bird:2009:NLP`.
 
 The Proselintian theoretical approach
 =====================================
