@@ -73,3 +73,14 @@ It is this corpus that we use to measure Proselint's lintscore.
 
 One of the biggest hindrances for adding new rules (at all) and more complicated and nuanced rules (in particular) stems from the difficulty of efficiently measuring how they affect our lintscore.
 A key feature in growing Proselint's capabilities will be establishing some mechanism for more efficiently inferring false positives.
+
+In the sense that a riskier rule is one with a higher false-positive rate, context-sensitive rules are necessarily riskier than non-context-sensitive rules. To see why, consider that if a rule were to introduce many false positives across all contexts, it would not be included in Proselint. For rules that do not produce many false positives across contexts, there is no reason to make them context specific. The only reason to include context-specific rule applications is if there are some contexts in which a rule produces higher false-positive rates than in other contexts. If those false-positive rates were low enough to not be excluded by the context insensitive version, their net false-positive rate would only be lower, meaning it would certainly be included in the basic Proselint rule set, excluding it from candidacy as a context-sensitive rule. Accordingly, introducing a rule that *should* be context sensitive, but without the appropriate context sensitivity, will guarantee an increased false-positive rate.
+
+
+Scalable, dynamic false-positive detection
+------------------------------------------
+
+Computing false-positive rates means identifying whether flags are hits or false alarms. Currently, detecting false positives requires manual evaluation, which scales poorly. Worse, one must repeat the process each time the linter is run. To address dynamic documents, it is useful to detect which errors have already been flagged. With little modification, this would also allow users to persistently silence instances of flags identified as false alarms.
+
+One approach to scaling false-positive detection divides the task into isolable chunks. Combining this with a process for rapidly evaluating those chunks makes checking for false positives easier across the board and would open the door to load-distribution mechanisms such as crowdsourcing, though it would require solving decision-theoretic problems for false-positive-rate sampling. This can be applied at various levels of organization: corpora, documents, and even rules across documents.
+
