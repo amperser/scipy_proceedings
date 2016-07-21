@@ -347,6 +347,11 @@ Text editor plugins
 -------------------
 Proselint is available as a plugin for popular text editors, including Emacs, vim, Sublime Text, and Atom. Embedding linters within the tools that people already use to write removes a barrier to adoption the linter and thereby promotes adoption of best practices in writing.
 
+A proof of concept
+==================
+
+As a proof of concept, we used Proselint to make contributions to several documents. These include the White House's `Federal Source Code Policy <https://github.com/WhiteHouse/source-code-policy>`_; `The Open Logic Project <https://github.com/OpenLogicProject/OpenLogic>`_, a textbook on advanced logic; Infoactive's `Data + Design book <https://github.com/infoactive/data-design>`_; and many of the other papers that were submitted for potential contribution to `SciPy 2016 <https://github.com/scipy-conference/scipy_proceedings/tree/2016>`_. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* (`full list <https://github.com/amperser/proselint/tree/master/corpora>`_). We then measured the lintscore, defined above. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on finer points of usage, about which the experts sometimes disagree. When run over v0.1.0 of our corpus, we achieved a lintscore (*k* = 2) of 98.8.
+
 The theory behind Proselint
 ===========================
 
@@ -404,11 +409,6 @@ Speed via Memoization
 ---------------------
 
 Proselint must be efficient for use as a real-time linter. Avoiding redundant computation by storing the results of expensive function calls ("memoization") improves efficiency. Consider, for example, that most paragraphs do not change from moment to moment during editing of a sizable document. Memoizing Proselint's output over paragraphs and recomputing only when a paragraph has changed (otherwise returning the memoized result) reduces the total amount of computation and thus improves the running time.
-
-A proof of concept
-==================
-
-As a proof of concept, we used Proselint to make contributions to several documents. These include the White House's `Federal Source Code Policy <https://github.com/WhiteHouse/source-code-policy>`_; `The Open Logic Project <https://github.com/OpenLogicProject/OpenLogic>`_, a textbook on advanced logic; Infoactive's `Data + Design book <https://github.com/infoactive/data-design>`_; and many of the other papers that were submitted for potential contribution to `SciPy 2016 <https://github.com/scipy-conference/scipy_proceedings/tree/2016>`_. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* (`full list <https://github.com/amperser/proselint/tree/master/corpora>`_). We then measured the lintscore, defined above. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on finer points of usage, about which the experts sometimes disagree. When run over v0.1.0 of our corpus, we achieved a lintscore (*k* = 2) of 98.8.
 
 Existing tools
 ==============
