@@ -49,25 +49,24 @@ Proselint is open-source software released under the BSD license and compatible 
 
 Proselint is both a language tool for scientists and a tool for language science. On the one hand, it can help scientists communicate their ideas to each other and to the public by promoting clear and consistent prose. On the other hand, scientists can use Proselint to studying language and linting.
 
-As a language tool for scientists
-----------------------------------
+A language tool for scientists
+------------------------------
 
 Scientists use the written word to communicate science to each other and to the public. Proselint improves writing across a number of dimensions relevant to science communication, including consistency in terminology & typography, concision, and elimination of redundancy. For example, Proselint detects the letter x used in place of the multiplication symbol × (e.g., 1440 x 900), misspecified *p* values resulting from data-analysis software that truncates small numbers (e.g., *p* = 0.00), and colloquialisms that obscure the mechanisms of science-based technology (e.g., "lie detector test" for the polygraph machine, which measures arousal, not lying per se).
 
-As a tool for language science
-------------------------------
+A tool for language science
+---------------------------
 
 Linguistics is largely descriptivist, tending to describe language as it is used rather than prescribe how it ought to be used :cite:`garner2016garner`. Errors are considered mostly in the context of language learning (especially children's) because those errors reveal the structure of the language learning mechanism (see, e.g., overregularization by young English speakers :cite:`marcus1992overregularization`). Though linting prose is implicitly prescriptivist because its detection of norm violations presupposes the existence of norms :cite:`garner2016garner`, even so, language science can benefit from Proselint's advice without making normative claims. For example, linguists can use Proselint to detect patterns of usage and style in corpora of written text, for authorship identification, and as input to standard Natural Language Processing (:math:`\textsc{nlp}`) techniques in place of the more typical word frequencies and syntactic structures :cite:`Bird:2009:NLP`.
 
-Rule modules
-------------
+The advice
+==========
 
-Proselint rules are organized into modules that reflect the structure of usage guides :cite:`garner2016garner`. For example, Proselint includes a module ``terms`` that encourages expressive vocabulary by flagging use of unidiomatic and generic terms, with submodules for categories of terms found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of animals of a particular species — a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place — *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
+Proselint is built around advice derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others. [#]_ 
 
-Organizing rules into modules is useful for two reasons. First, it allows for a logical grouping of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase.
+.. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
 
-Examples of some rules
-^^^^^^^^^^^^^^^^^^^^^^
+Our standard for including a new rule is that it should be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works from well-established publishers and those widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint widely useful by default. Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default is to exclude all forms of the advice, under the logic that it is unreasonable to hold users to a higher standard than we do the experts, at least one of whom has endorsed the user's choice. Because we aim to have excellent defaults without hampering customizability, Proselint can be extended by adding new rules or filtered by excluding existing rules through a configuration file.
 
 Tables 1 and 2 list much of the advice that Proselint currently implements. Examples include:
 
@@ -76,179 +75,6 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. Exam
 #. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
 
 #. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
-
-Converting a rule to code: rule templates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Suppose you wanted to convert "\*agendize, an ugly bureaucratic :math:`\textsc{neologism}` meaning "to put on an agenda"… The word remains :math:`jargon` and should be voted down." :cite:`garner2016garner` into a rule. You would first look to the rule templates to see if one matches the form of your problem.
-
-In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. The weakness of these requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when implementing new rules.
-
-To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for use of a word's preferred form (``preferred_forms_check()``).
-
-The agendize rule bans a word, and so can be implemented using the ``existence_check`` template. The module ``jargon.misc`` has other examples of jargon banned using an existence check. You add ``agendize`` to the list.
-
-.. code-block:: python
-    
-    def check(text):
-        err = "jargon.misc"
-        msg = u"'{}' is jargon. Can you replace it with something more standard?"
-        jargon = [
-            "in the affirmative",
-            "in the negative",
-            "per your order",
-            "per your request",
-            "disincentivize",
-            "agendize"
-        ]
-        return existence_check(text, jargon, err, msg, join=True)
-
-Using Proselint
-===============
-
-Installation
-------------
-Proselint is available on the Python Package Index and can be installed using pip:
-
-.. code-block:: bash
-
-   pip install proselint
-
-Alternatively, developers can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
-
-.. code-block:: bash
-
-   pip install --editable
-
-
-Command-line utility
---------------------
-
-Proselint is a command-line utility that reads in a text file:
-
-.. code-block:: bash
-
-   proselint text.md
-
-Running this command prints a list of suggestions to stdout, one per line. The GNU Error Message Formatting standard :cite:`stallman2016gnu` is the basis  for the format of displaying these suggestions. Like many other linters, we  further require that the error code (here, the ``check_name``) should be separated from the error message by a space. Because this format is used by many linters, we call it the Standard Linting Format (:math:`\textsc{slf}`). An :math:`\textsc{SLF}`-formatted suggestion has the form:
-
-.. code-block:: bash
-
-   text.md:<line>:<column>: <check_name> <message>
-
-For example,
-
-.. code-block:: bash
-
-  text.md:0:10: uncomparables.misc Comparison of ... 
-  an uncomparable: 'unique' can not be compared.
-
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can instead print the list of suggestions in JSON through the ``--json`` flag. In this case, the output is considerably richer:
-
-.. code-block:: javascript
-
-  {
-      // The check originating this suggestion
-      "check": "uncomparables.misc", 
-      
-      // The line where the error starts
-      "line": 1, 
-
-      //The column where the error starts
-      "column": 1, 
-      
-      // Index in the text where the error starts
-      "start": 1,
-
-      // the index in the text where the error ends
-      "end": 18, 
-      
-      // start - end
-      "extent": 17, 
-      
-      // Message describing the advice
-      "message": "Comparison of an uncomparable: ...
-      'very unique\n' is not comparable.",
-      
-      // Possible replacements
-      "replacements": null, 
-
-      // Importance("suggestion", "warning", "error")
-      "severity": "warning"
-  }
-
-
-Text editor plugins
--------------------
-Proselint is available as a plugin for popular text editors, including Emacs, vim, Sublime Text, and Atom. Embedding linters within the tools that people already use to write removes a barrier to adoption the linter and thereby promotes adoption of best practices in writing.
-
-The Proselintian theoretical approach
-=====================================
-
-What to check: usage, not grammar
----------------------------------
-
-Proselint does not detect grammatical errors, which is both too easy and too hard:
-
-Detecting grammatical errors is too easy in the sense that, for most native speakers, they are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. (On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.)
-
-Detecting grammatical errors is too hard in the sense that, in its most general form, it is AI-hard, requiring at least human-level artificial intelligence and a native speaker's ear. 
-
-Modern :math:`\textsc{nlp}` techniques that detect grammatical errors are unavoidably statistical :cite:`Bird:2009:NLP` :cite:`leacock2010automated` and produce many false positives. This is in part because syntax parsers used in grammatical error detection must tolerate grammatical errors, a problem that is compounded in writing by English-language learners :cite:`leacock2010automated`. Once a grammatical error has been detected, determining the correct replacement hinges on the intended meaning. Occasionally, the intended meaning will determine even *whether* a grammatical error is present: e.g., is "Man bites dog" a headline about canine aggression, or are the subject and object swapped in error?
-
-Instead of focusing on grammatical errors, Proselint addresses errors of usage and style, including redundancy, jargon, illogic, clichés, sexism, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
-
-Published expertise as primary sources
---------------------------------------
-
-People have strong shared intuitions about grammar – so much so that a common experimental measure in linguistics is the grammaticality of a sentence as measured by the intuitions of native speakers :cite:`keller2000gradience`. But style and usage inspire a multitude of intuitions. Authors of usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice :cite:`garner2016garner`. Proselint thus defers to them, and in doing so provides access to our collective understanding about the craft of writing with style.
-
-Speed via Memoization
----------------------
-
-Proselint must be efficient for use as a real-time linter. Avoiding redundant computation by storing the results of expensive function calls ("memoization") improves efficiency. Consider, for example, that most paragraphs do not change from moment to moment during editing of a sizable document. Memoizing Proselint's output over paragraphs and recomputing only when a paragraph has changed (otherwise returning the memoized result) reduces the total amount of computation and thus improves the running time.
-
-Levels of difficulty
---------------------
-
-In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, usage errors differ in the level of difficulty in detecting and correcting them:
-
-#. AI-hard
-#. :math:`\textsc{nlp}`, beyond state-of-the-art
-#. :math:`\textsc{nlp}`, state-of-the-art
-#. Syntax-dependent rules
-#. Regular expressions
-#. One-to-one replacement rules. 
-
-At the lowest levels of the hierarchy are usage errors that a linter can reliably detect and correct through one-to-one replacement rules. At the highest levels are usage errors whose detection and correction are such hard computational problems that it would require at least human-level intelligence to solve in the general case, if a solution is possible at all. Consider, for example, usage errors pertaining to placement of the word "only", which depends on the intended meaning. For example, in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose? Usage errors at this highest level of the hierarchy are hard to identify without introducing false positives and determining the correct replacement requires understanding the intended meaning. Development of Proselint begins at the lowest levels of the hierarchy and builds upwards.
-
-Signal detection theory and the lintscore
------------------------------------------
-
-Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the utility provided by the tool outweighs the cost of learning to use it. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities must demonstrate a substantial improvement over the status quo.
-
-Because of their need to demonstrate utility, earlier language tools attempted to offer as much help as possible. Each issue flagged might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms, thus making :math:`T+F` the total number of flags raised by the tool. Their approach attempts to maximize :math:`T` by flagging as many errors as possible, without considering :math:`F`. The tools identify many genuine errors but raise so many false alarms that their advice cannot be trusted because writers must evaluate each proposed error.
-
-With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead, reasoning that it is better to be quiet and authoritative than loud and unreliable. To achieve this, we penalize the number of false positives :math:`F` by evaluating Proselint in terms of its *empirical lintscore*. The lintscore gives one point for every true positive :math:`T` and penalizes on the basis of the false-positive rate :math:`\alpha = \frac{F}{T+F}`. The lintscore is given by
-
-.. math::
-    l(T,F;k) = T(1-\alpha)^k,
-
-where the parameter :math:`k` controls the strength of the :math:`1-\alpha` penalty.
-
-We can estimate a lintscore for documents with unknown empirical false-positive rates using a straightforward probabilistic model that assigns credit only in the best-case scenario, where every error is a true positive. This probabilistic model treats each identified error as an independent identically distributed Bernoulli random variable. We suppose that each flag produces a false positive with probability equal to the empirical false-positive rate estimated from a known corpus of related documents, :math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`. For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If we receive 0 points in all but the best case (where we receive :math:`T\equiv N` points), the expected score is :math:`N(1-\hat{\alpha})^N`. This *generalized lintscore* has the same form as an empirical lintscore, but with :math:`\hat{\alpha}` as an estimated :math:`\alpha` and :math:`k` as the maximal number of successes :math:`k\equiv N`. The choice of reference corpus is a free parameter.
-
-Note that the lintscore is not a readability metrics because it evaluates linters, not prose. Given a set of documents, signal detection theory makes it possible to estimate a linters' trustworthiness through the lintscore.
-
-The advice
-==========
-
-Proselint is built around advice derived from works by Bryan Garner, David Foster Wallace, Chuck Palahniuk, Steve Pinker, Mary Norris, Mark Twain, Elmore Leonard, George Orwell, Matthew Butterick, William Strunk, E.B. White, Philip Corbett, Ernest Gowers, and the editorial staff of the world’s finest literary magazines and newspapers, among others (Tables 1 and 2). [#]_ 
-
-.. [#] Proselint has not been endorsed by these individuals; we have merely implemented their words in code.
-
-Our standard for including a new rule is that it should be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works from well-established publishers and those widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint widely useful by default. Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default is to exclude all forms of the advice, under the logic that it is unreasonable to hold users to a higher standard than we do the experts, at least one of whom has endorsed the user's choice. Because we aim to have excellent defaults without hampering customizability, Proselint can be extended by adding new rules or filtered by excluding existing rules through a configuration file.
-
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -408,46 +234,191 @@ Our standard for including a new rule is that it should be accompanied by an app
    |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
+Rule modules
+------------
 
-Applications, realized and potential
-====================================
+Proselint rules are organized into modules that reflect the structure of usage guides :cite:`garner2016garner`. For example, Proselint includes a module ``terms`` that encourages expressive vocabulary by flagging use of unidiomatic and generic terms, with submodules for categories of terms found as entries in usage guides. For example, one such submodule, ``terms.venery``, pertains to *venery terms*, which arose from hunting tradition and describe groups of animals of a particular species — a "pride" of lions or an "unkindness" of ravens. Another such submodule, ``terms.denizen_labels``, pertains to *demonyms*, which are used to describe people from a particular place — *New Yorkers* (New York), *Mancunians* (Manchester), or *Novocastrians* (Newcastle).
 
-As a proof of concept, we used Proselint to make contributions to several documents. This includes the White House's `Federal Source Code Policy <https://github.com/WhiteHouse/source-code-policy>`_; `The Open Logic Project <https://github.com/OpenLogicProject/OpenLogic>`_, a textbook on advanced logic; Infoactive's `Data + Design book <https://github.com/infoactive/data-design>`_; and many of the other papers that were submitted for potential contribution to `SciPy 2016 <https://github.com/scipy-conference/scipy_proceedings/tree/2016>`_. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* (`full list <https://github.com/amperser/proselint/tree/master/corpora>`_). We then measured the lintscore, defined above. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on finer points of usage, about which the experts sometimes disagree. When run over v0.1.0 of our corpus, we achieved a lintscore (*k* = 2) of 98.8 .
+Organizing rules into modules is useful for two reasons. First, it allows for a logical grouping of similar rules, which often require similar computational machinery to implement. Second, it allows users to include and exclude rules at a higher level of abstraction than an individual word or phrase.
+
+Converting a rule to code: rule templates
+-----------------------------------------
+
+Suppose you wanted to convert "\*agendize, an ugly bureaucratic :math:`\textsc{neologism}` meaning "to put on an agenda"… The word remains :math:`jargon` and should be voted down." :cite:`garner2016garner` into a rule. You would first look to the rule templates to see if one matches the form of your problem.
+
+In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. The weakness of these requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when implementing new rules.
+
+To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for use of a word's preferred form (``preferred_forms_check()``).
+
+The agendize rule bans a word, and so can be implemented using the ``existence_check`` template. The module ``jargon.misc`` has other examples of jargon banned using an existence check. You add ``agendize`` to the list.
+
+.. code-block:: python
+    
+    def check(text):
+        err = "jargon.misc"
+        msg = (u"'{}' is jargon. Can you replace it ...""
+        "with something more standard?")
+        jargon = [
+            "in the affirmative",
+            "in the negative",
+            "per your order",
+            "per your request",
+            "disincentivize",
+            "agendize"
+        ]
+        return existence_check(
+            text, jargon, err, msg, join=True)
+
+Using Proselint
+===============
+
+Installation
+------------
+Proselint is available on the Python Package Index and can be installed using pip:
+
+.. code-block:: bash
+
+   pip install proselint
+
+Alternatively, developers can retrieve the Git repository from https://github.com/amperser/Proselint and then install the software using setuptools: 
+
+.. code-block:: bash
+
+   pip install --editable
 
 
-An analysis of possible applications
--------------------------------------
+Command-line utility
+--------------------
 
-The most straightforward application of Proselint is for enforcement of usage and style guidelines in writing. This could include extending Proselint to enforce a house style guide or an academic publisher's journal requirements.
+Proselint is a command-line utility that reads in a text file:
 
-One application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevalence of airlinese (including, e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry. 
+.. code-block:: bash
 
-Another application of Proselint as a tool for language science is in stylometry and authorship identification :cite:`zheng2006framework`. Instead of using standard stylometric measures, which include word frequencies and syntactic structures, Proselint's rules can be used as a feature set, enabling authorship identification based on usage and style.
+   proselint text.md
 
-The process of identifying authors with Proselint can be inverted and generalized to obfuscate or encrypt messages by selectively introducing, changing, or removing usage choices. With some modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify when more than one acceptable choice exists.
+Running this command prints a list of suggestions to stdout, one per line. The GNU Error Message Formatting standard :cite:`stallman2016gnu` is the basis  for the format of displaying these suggestions. Like many other linters, we  further require that the error code (here, the ``check_name``) should be separated from the error message by a space. Because this format is used by many linters, we call it the Standard Linting Format (:math:`\textsc{slf}`). An :math:`\textsc{SLF}`-formatted suggestion has the form:
 
-Finally, standard readability metrics are not defined in a way that captures usage and style, focusing on reading ease rather than conventionality :cite:`flesch1948new`. Proselint could be used to create automated metrics for the readability, consistency, and stylishness of written language.
+.. code-block:: bash
+
+   text.md:<line>:<column>: <check_name> <message>
+
+For example,
+
+.. code-block:: bash
+
+  text.md:0:10: uncomparables.misc Comparison of ... 
+  an uncomparable: 'unique' can not be compared.
+
+suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can instead print the list of suggestions in JSON through the ``--json`` flag. In this case, the output is considerably richer:
+
+.. code-block:: javascript
+
+  {
+      // The check originating this suggestion
+      "check": "uncomparables.misc", 
+      
+      // The line where the error starts
+      "line": 1, 
+
+      //The column where the error starts
+      "column": 1, 
+      
+      // Index in the text where the error starts
+      "start": 1,
+
+      // the index in the text where the error ends
+      "end": 18, 
+      
+      // start - end
+      "extent": 17, 
+      
+      // Message describing the advice
+      "message": "Comparison of an uncomparable: ...
+      'very unique\n' is not comparable.",
+      
+      // Possible replacements
+      "replacements": null, 
+
+      // Importance("suggestion", "warning", "error")
+      "severity": "warning"
+  }
+
+Text editor plugins
+-------------------
+Proselint is available as a plugin for popular text editors, including Emacs, vim, Sublime Text, and Atom. Embedding linters within the tools that people already use to write removes a barrier to adoption the linter and thereby promotes adoption of best practices in writing.
+
+The theory behind Proselint
+===========================
+
+What to check: usage, not grammar
+---------------------------------
+
+Proselint does not detect grammatical errors, which is both too easy and too hard:
+
+Detecting grammatical errors is too easy in the sense that, for most native speakers, they are readily identified, if not easily fixed. The errors that leave the greatest negative impression in the reader's mind are often glaring to native speaker. (On the other hand, more subtle errors, such as a disagreement in number set apart by a long string of intermediary text, escapes even a native speaker's notice.)
+
+Detecting grammatical errors is too hard in the sense that, in its most general form, it is AI-hard, requiring at least human-level artificial intelligence and a native speaker's ear. 
+
+Modern :math:`\textsc{nlp}` techniques that detect grammatical errors are unavoidably statistical :cite:`Bird:2009:NLP` :cite:`leacock2010automated` and produce many false positives. This is in part because syntax parsers used in grammatical error detection must tolerate grammatical errors, a problem that is compounded in writing by English-language learners :cite:`leacock2010automated`. Once a grammatical error has been detected, determining the correct replacement hinges on the intended meaning. Occasionally, the intended meaning will determine even *whether* a grammatical error is present: e.g., is "Man bites dog" a headline about canine aggression, or are the subject and object swapped in error?
+
+Instead of focusing on grammatical errors, Proselint addresses errors of usage and style, including redundancy, jargon, illogic, clichés, sexism, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more.
+
+Published expertise as primary sources
+--------------------------------------
+
+People have strong shared intuitions about grammar – so much so that a common experimental measure in linguistics is the grammaticality of a sentence as measured by the intuitions of native speakers :cite:`keller2000gradience`. But style and usage inspire a multitude of intuitions. Authors of usage guides have done much of the work of hashing out these conflicting intuitions to arrive at sensible everyday advice :cite:`garner2016garner`. Proselint thus defers to them, and in doing so provides access to our collective understanding about the craft of writing with style.
+
+Levels of difficulty
+--------------------
+
+In a loose analogy to the Chomskian hierarchy of formal grammars :cite:`chomsky1956three`, usage errors differ in the level of difficulty in detecting and correcting them:
+
+#. AI-hard
+#. :math:`\textsc{nlp}`, beyond state-of-the-art
+#. :math:`\textsc{nlp}`, state-of-the-art
+#. Syntax-dependent rules
+#. Regular expressions
+#. One-to-one replacement rules. 
+
+At the lowest levels of the hierarchy are usage errors that a linter can reliably detect and correct through one-to-one replacement rules. At the highest levels are usage errors whose detection and correction are such hard computational problems that it would require at least human-level intelligence to solve in the general case, if a solution is possible at all. Consider, for example, usage errors pertaining to placement of the word "only", which depends on the intended meaning. For example, in "John hit Peter in his only nose", is the "only" misplaced or is it unusual that Peter has only one nose? Usage errors at this highest level of the hierarchy are hard to identify without introducing false positives and determining the correct replacement requires understanding the intended meaning. Development of Proselint begins at the lowest levels of the hierarchy and builds upwards.
+
+Signal detection theory and the lintscore
+-----------------------------------------
+
+Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the utility provided by the tool outweighs the cost of learning to use it. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities must demonstrate a substantial improvement over the status quo.
+
+Because of their need to demonstrate utility, earlier language tools attempted to offer as much help as possible. Each issue flagged might be an error, but it might instead be a false alarm. Let :math:`T` be the number of true errors, and :math:`F` be the number of false alarms, thus making :math:`T+F` the total number of flags raised by the tool. Their approach attempts to maximize :math:`T` by flagging as many errors as possible, without considering :math:`F`. The tools identify many genuine errors but raise so many false alarms that their advice cannot be trusted because writers must evaluate each proposed error.
+
+With Proselint, we aim for a tool so precise that it becomes possible to unquestioningly adopt its recommendations and still come out ahead, reasoning that it is better to be quiet and authoritative than loud and unreliable. To achieve this, we penalize the number of false positives :math:`F` by evaluating Proselint in terms of its *empirical lintscore*. The lintscore gives one point for every true positive :math:`T` and penalizes on the basis of the false-positive rate :math:`\alpha = \frac{F}{T+F}`. The lintscore is given by
+
+.. math::
+    l(T,F;k) = T(1-\alpha)^k,
+
+where the parameter :math:`k` controls the strength of the :math:`1-\alpha` penalty.
+
+We can estimate a lintscore for documents with unknown empirical false-positive rates using a straightforward probabilistic model that assigns credit only in the best-case scenario, where every error is a true positive. This probabilistic model treats each identified error as an independent identically distributed Bernoulli random variable. We suppose that each flag produces a false positive with probability equal to the empirical false-positive rate estimated from a known corpus of related documents, :math:`\hat{\alpha}=\frac{\hat{F}}{\hat{T}+\hat{F}}`. For :math:`N` flags, the probability that every flag is correct is :math:`(1-\hat{\alpha})^N`. If we receive 0 points in all but the best case (where we receive :math:`T\equiv N` points), the expected score is :math:`N(1-\hat{\alpha})^N`. This *generalized lintscore* has the same form as an empirical lintscore, but with :math:`\hat{\alpha}` as an estimated :math:`\alpha` and :math:`k` as the maximal number of successes :math:`k\equiv N`. The choice of reference corpus is a free parameter.
+
+Note that the lintscore is not a readability metrics because it evaluates linters, not prose. Given a set of documents, signal detection theory makes it possible to estimate a linters' trustworthiness through the lintscore.
+
+Speed via Memoization
+---------------------
+
+Proselint must be efficient for use as a real-time linter. Avoiding redundant computation by storing the results of expensive function calls ("memoization") improves efficiency. Consider, for example, that most paragraphs do not change from moment to moment during editing of a sizable document. Memoizing Proselint's output over paragraphs and recomputing only when a paragraph has changed (otherwise returning the memoized result) reduces the total amount of computation and thus improves the running time.
+
+A proof of concept
+==================
+
+As a proof of concept, we used Proselint to make contributions to several documents. These include the White House's `Federal Source Code Policy <https://github.com/WhiteHouse/source-code-policy>`_; `The Open Logic Project <https://github.com/OpenLogicProject/OpenLogic>`_, a textbook on advanced logic; Infoactive's `Data + Design book <https://github.com/infoactive/data-design>`_; and many of the other papers that were submitted for potential contribution to `SciPy 2016 <https://github.com/scipy-conference/scipy_proceedings/tree/2016>`_. In addition, to evaluate Proselint's false-alarm rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* (`full list <https://github.com/amperser/proselint/tree/master/corpora>`_). We then measured the lintscore, defined above. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on finer points of usage, about which the experts sometimes disagree. When run over v0.1.0 of our corpus, we achieved a lintscore (*k* = 2) of 98.8.
 
 Existing tools
 ==============
 
-We have curated a list of known tools for automated language checking, stored within the Proselint repository. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses `(link) <github.com/amperser/proselint>`_. The tools are varied in their approaches and coverage, but tend to focus on grammar versus usage and style, are often closed source, and rarely extensible. The greatest difference from Proselint arises from a willingness to sacrifice coverage to maintain user trust through low false-positive rates.
+We have curated a list of known tools for automated language checking, stored within the Proselint repository. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <github.com/amperser/proselint>`_). The tools are varied in their approaches and coverage, but tend to focus on grammar versus usage and style, are often closed source, and rarely extensible. The greatest difference from Proselint arises from a willingness to sacrifice coverage to maintain user trust through low false-positive rates.
 
-Critique: normativity in prose styling
-======================================
+Future development and possible applications
+============================================
 
-One critique of Proselint :cite:`hackernews2016` is a concern that introducing any kind of linter-like process to the act of writing diminishes the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited by the linter's rules and that, as a result, this will have a shaping or homogenizing effect on language.
-
-In response to this critique, we note that our goal is not to homogenize text for the sake of uniformity (though perhaps there is value there, too), but rather to detect instances of language use that have been identified by experts as problematic. Creative use of language is not flagged unless it has been previously identified as problematic.
-
-Furthermore, technical writing of all kinds is often characterized by consistent language use and precise terminology. Even an author who views all writing as inextricably creative must sometimes direct that creativity toward a particular aim :cite:`bringhurst2004elements`. Software documentation, technical manuals, and legal briefs, and pedagogical writing all feature this need and are improved when the author follows the conventions of a field.
-
-Lastly, science demands consistency to promote clarity and replication. At the same time, scientists are in the business of expressing ideas that challenge even the greatest of minds, and their success depends on conveying those ideas to people who then use the ideas in their own work. When an idea is hard to grasp, simplicity and clarity will further its proliferation.
-
-Future
-======
-
-We see a number of directions for future development of Proselint:
+We see a number of directions for future development of Proselint that improve the tool and its utility for science:
 
 Context-sensitive rule application and machine learning
 -------------------------------------------------------
@@ -458,8 +429,8 @@ We can silence rules that are predicted to be irrelevant due to context. This al
 
 The 50 Cent topic detector was developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint's coverage of usage errors. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be needed. Once incorporated, generalizing this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a form of context :cite:`blei2010nested`.
 
-Improved self-evaluation procedure with multiple corpora
---------------------------------------------------------
+Evaluating linters by testing on multiple corpora
+-------------------------------------------------
 
 In our internal evaluations of Proselint, we calculate the empirical lintscore manually on a static corpus of professionally edited documents, which we assume will have few errors. This efficiently alerts us to false alarms that are introduced by the inclusion of new rules. However, it does a poor job of estimating performance on other metrics. A major improvement would be to compute the lintscore on other corpora, such as student essays. 
 
@@ -472,11 +443,25 @@ File formats and markup languages for documents (e.g, reStructuredText, LaTeX, M
 Stylometrics and machine learning
 ---------------------------------
 
-The field of stylometrics has extensively studied the problem of identifying the true authors of documents. Many of these studies focus on the relative frequencies with which individual words are used, especially function words. For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*. Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
+The field of stylometrics has extensively studied the problem of identifying the true authors of documents :cite:`zheng2006framework`. Many of these studies focus on the relative frequencies with which individual words are used, especially function words. For example, on the basis of the frequency of function words such as "to" and "by", Mosteller and Wallace :cite:`mosteller1963inference` inferred the authorship of twelve essays in the *Federalist Papers*. Proselint provides new measures that could be used to improve this kind of stylometric analysis. 
 
-Several applications follow from authorship identification. One uses its ability to detect ghost-written documents, though this assumes that there is a ground-truth corpus with samples of the author's writing. This could have benefit for identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). On the other hand, someone who applies Proselint to their text may be able to *escape* identification by avoiding features that distinguish the author's writings. 
+Several applications follow from authorship identification: 
+
+One application uses its ability to detect ghost-written documents, though this assumes that there is a ground-truth corpus with samples of the author's writing. This could have benefit for identifying academic dishonesty (e.g., purchasing and selling of ghost-written essays). On the other hand, someone who applies Proselint to their text may be able to *escape* identification by avoiding features that distinguish the author's writings.
+
+A second application inverts and generalizes the process of identifying authors by selectively introducing, changing, or removing usage choices to obfuscate or encrypt messages. With some modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify when more than one acceptable choice exists.
 
 Unlike our current rules, these techniques are fundamentally statistical. Machine-learning techniques for inferring identity from sparse data will be particularly applicable. The errors Proselint finds are rare, and sparse measures pose difficultly for methods like those in :cite:`mosteller1963inference`. Furthermore, this endeavor will benefit from an approach that considers the cross product of authors and topics (in the vein of :cite:`rosen2004author`).
+
+Automated usage and style metrics
+---------------------------------
+
+Readability metrics such as the Flesch-Kincaid Grade Level and the Gunning fog index are not defined in a way that captures usage and style, measuring reading ease rather than conventionality :cite:`flesch1948new`. Proselint could be used to create automated metrics for the consistency and stylishness of written language. Such metrics may also find use as part of automated essay-grading tools :cite:`valenti2003overview`.
+
+Tracking historical trends in usage
+-----------------------------------
+
+One application of Proselint as a tool for language science is in tracking historical trends in usage. Corpora such as Google Books have been useful for measuring changes in the prevalence of words and phrases over several hundred years. Our tool, in providing a feature set for usage, can be used in a similar way. For example, one might study the prevalence of airlinese (including, e.g., use of "momentarily" to mean "in a moment", as in the phrase "we are taking off momentarily") and its alignment with the rise of that industry.
 
 An unsolved problem: foreign languages
 --------------------------------------
@@ -489,6 +474,17 @@ Missing corpora
 To evaluate Proselint's false-positive rate, we built a corpus of text from well-edited magazines believed to contain low rates of usage errors. In the course of assembling this corpus, we discovered a lack of annotated corpora that provide false-positive rates for style and usage violations [#]_. The Proselint testing framework is an excellent opportunity to develop such a corpus. Unfortunately, because our current corpus derives from copyrighted work, it cannot be released as part of open-source software. Developing an open-source corpus of style and usage errors will be necessary if these tools are to be made available for :math:`\textsc{nlp}` research outside internal testing of Proselint.
 
 .. [#] Editor :cite:`editor_compare` has built a corpus which compares the performance of various grammar checkers. Their corpus contains "real-world examples of grammatical mistakes and stylistic problems taken from published sources". A corpus made of errors will maximize true positives, but misestimates false-positive rates in real-world documents. Their corpus is not publicly available, and they do not provide a standard format for describing corpora annotated with false positives and negatives.
+
+A critique of normativity in prose styling, and a response
+==========================================================
+
+One critique of Proselint :cite:`hackernews2016` is a concern that introducing any kind of linter-like process to the act of writing diminishes the ability for authors to express themselves creatively. These arguments suggest that authors will find themselves limited by the linter's rules and that, as a result, this will have a shaping or homogenizing effect on language.
+
+In response to this critique, we note that our goal is not to homogenize text for the sake of uniformity (though perhaps there is value there, too), but rather to detect instances of language use that have been identified by experts as problematic. Creative use of language is not flagged unless it has been previously identified as problematic.
+
+Furthermore, technical writing of all kinds is often characterized by consistent language use and precise terminology. Even an author who views all writing as inextricably creative must sometimes direct that creativity toward a particular aim :cite:`bringhurst2004elements`. Software documentation, technical manuals, and legal briefs, and pedagogical writing all feature this need and are improved when the author follows the conventions of a field.
+
+Lastly, science demands consistency to promote clarity and replication. At the same time, scientists are in the business of expressing ideas that challenge even the greatest of minds, and their success depends on conveying those ideas to people who then use the ideas in their own work. When an idea is hard to grasp, simplicity and clarity will further its proliferation.
 
 Contributing to Proselint
 =========================
