@@ -344,8 +344,13 @@ A proof of concept
 
 As a proof of concept, we used Proselint to make contributions to several documents. These include the White House's `Federal Source Code Policy <https://github.com/WhiteHouse/source-code-policy>`_; `The Open Logic Project <https://github.com/OpenLogicProject/OpenLogic>`_, a textbook on advanced logic; Infoactive's `Data + Design book <https://github.com/infoactive/data-design>`_; and many of the other papers that were submitted for potential contribution to `SciPy 2016 <https://github.com/scipy-conference/scipy_proceedings/tree/2016>`_. In addition, to evaluate Proselint's false-positive rate, we developed a corpus of essays from well-edited magazines such as *Harper's Magazine*, *The New Yorker*, and *The Atlantic* (`full list <https://github.com/amperser/proselint/tree/master/corpora>`_). We then measured the lintscore, defined below. Because the essays included in our corpus were edited by a team of experts, we expect Proselint to remain mostly silent, commenting only on the rare error that slips through unnoticed by the editors or, more commonly, on finer points of usage, about which the experts sometimes disagree. When run over v0.1.0 of our corpus, we achieved a lintscore (*k* = 2) of 98.8.
 
-The theory behind Proselint
-===========================
+Existing tools
+==============
+
+We have curated a list of known tools for automated language checking, stored within the Proselint repository. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <github.com/amperser/proselint>`_). The tools are varied in their approaches and coverage, but tend to focus on grammar versus usage and style, are often closed source or abandonware, and have high false-positive rates.
+
+Proselint's approach
+====================
 
 What to check: usage, not grammar
 ---------------------------------
@@ -399,11 +404,6 @@ Speed via Memoization
 ---------------------
 
 Proselint must be efficient for use as a real-time linter. Avoiding redundant computation by storing the results of expensive function calls ("memoization") improves efficiency. Consider, for example, that most paragraphs do not change from moment to moment during editing of a sizable document. Memoizing Proselint's output over paragraphs and recomputing only when a paragraph has changed (otherwise returning the memoized result) reduces the total amount of computation and thus improves the running time.
-
-Existing tools
-==============
-
-We have curated a list of known tools for automated language checking, stored within the Proselint repository. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <github.com/amperser/proselint>`_). The tools are varied in their approaches and coverage, but tend to focus on grammar versus usage and style, are often closed source, and rarely extensible. The greatest difference from Proselint arises from a willingness to sacrifice coverage to maintain user trust through low false-positive rates.
 
 Future development and possible applications
 ============================================
