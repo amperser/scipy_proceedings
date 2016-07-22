@@ -382,7 +382,7 @@ At the lowest levels of the hierarchy are usage errors that a linter can reliabl
 Signal detection theory and the lintscore
 -----------------------------------------
 
-Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the utility provided by the tool outweighs the cost of learning to use it. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities must demonstrate a substantial improvement over the status quo.
+Any new tool, for language or otherwise, faces a challenge to its adoption: it must demonstrate that the utility provided by the tool outweighs the cost of learning to use it :cite:`wasserman1990tool`. Pen & ink, paper, and the computer each enabled new modes of communication and, in doing so, provided obvious value. In contrast, tools that merely improve existing capabilities must demonstrate a substantial improvement over the status quo.
 
 Because of their need to demonstrate utility, earlier language tools attempted to offer as much help as possible. Each issue flagged might be an error, but it might instead be a false positive. Let :math:`T` be the number of true errors, and :math:`F` be the number of false positives, thus making :math:`T+F` the total number of flags raised by the tool. Their approach attempts to maximize :math:`T` by flagging as many errors as possible, without considering :math:`F`. The tools identify many genuine errors but raise so many false positives that their advice cannot be trusted because writers must evaluate each proposed error.
 
