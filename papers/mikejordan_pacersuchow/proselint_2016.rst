@@ -68,13 +68,7 @@ Proselint is built around advice derived from works by Bryan Garner, David Foste
 
 Our standard for including a new rule is that it should be accompanied by an appropriate citation from a recognized expert on language usage. Though we have no explicit criteria for what makes a citation appropriate, we have, in practice, given greater weight to works from well-established publishers and those widely cited as reliable sources of advice. The choice of which rules to implement is ultimately a question of feasibility of implementation, utility, and preference, and our guiding preference is to make Proselint widely useful by default. Though it has not arisen, in the case of unresolved conflicts between advice from multiple sources, our default is to exclude all forms of the advice, under the logic that it is unreasonable to hold users to a higher standard than we do the experts, at least one of whom has endorsed the user's choice. Because we aim to have excellent defaults without hampering customizability, Proselint can be extended by adding new rules or filtered by excluding existing rules through a configuration file.
 
-Tables 1 and 2 list much of the advice that Proselint currently implements. Examples include:
-
-#. Detecting the word "agendize", Proselint notes, "agendize is jargon, could you replace it with something more standard?" :cite:`garner2016garner`
-
-#. In response to "In recent years, an increasing number of psychologists have...", Proselint notes, "Professional narcisissm. Talk about the subject, not its study." :cite:`pinker2015sense`
-
-#. In response to "A group of starlings...", Proselint notes "The venery term is 'murmuration'"". :cite:`garner2016garner`
+Tables 1 and 2 list much of the advice that Proselint currently implements; that advice is organized into modules.
 
 .. table:: What Proselint checks. :label:`checks`
 
@@ -244,30 +238,28 @@ Organizing rules into modules is useful for two reasons. First, it allows for a 
 Converting a rule to code: rule templates
 -----------------------------------------
 
-Suppose you wanted to convert "\*agendize, an ugly bureaucratic :math:`\textsc{neologism}` meaning "to put on an agenda"… The word remains :math:`jargon` and should be voted down." :cite:`garner2016garner` into a rule. You would first look to the rule templates to see if one matches the form of your problem.
+Suppose you wanted to implement the following usage-guide entry as a rule in Proselint:
 
-In general, a rule's implementation in code need only take in a string of text, apply logic identifying whether the rule has been violated, and then return a value identifying the violation in the correct format. The weakness of these requirements, paired with Python's expressibility, allow detectors to be built for all computable usage and style requirements. However, it provides little help when implementing new rules.
+  :math:`\footnotesize\textsc{DECIMATE}`. Originally this word meant “to kill one in every ten,” but this etymological sense, because it’s so uncommon, has been abandoned except in historical contexts. Now *decimate* generally means “to cause great loss of life; to destroy a large part of.” ... In fact, though, the word might justifiably be considered a :math:`\footnotesize\textsc{SKUNKED TERM}`. Whether you stick to the original one-in-ten meaning or use the extended sense, the word is infected with ambiguity. And some of your readers will probably be puzzled or bothered. :cite:`garner2016garner`. 
 
-To ease the implementation of new rules, we wrote functions that help to follow the protocol and provide the most common logical forms. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for use of a word's preferred form (``preferred_forms_check()``).
+In general, a rule's implementation need only be a function that takes in a string of text, applies logic identifying whether the rule has been violated, and then returns a value identifying the violation in the correct format. The weakness of these requirements, paired with Python's expressiveness, allows developers to build detectors for all computable usage and style requirements. However, it provides little guidance when implementing new rules.
 
-The agendize rule bans a word, and so can be implemented using the ``existence_check`` template. The module ``jargon.misc`` has other examples of jargon banned using an existence check. You add ``agendize`` to the list.
+To ease implementation of new rules, we wrote functions that help to follow the protocol and that provide common logical forms of rules. These include checking for the existence of a given word, phrase, or pattern (``existence_check()``), for intra-document consistency in usage (``consistency_check()``), and for use of a word's preferred form (``preferred_forms_check()``).
+
+The entry on *decimate* bans a word and so can be implemented using the ``existence_check`` template:
 
 .. code-block:: python
     
-    def check(text):
-        err = "jargon.misc"
-        msg = (u"'{}' is jargon. Can you replace it ...""
-        "with something more standard?")
-        jargon = [
-            "in the affirmative",
-            "in the negative",
-            "per your order",
-            "per your request",
-            "disincentivize",
-            "agendize"
-        ]
+    def check_for_decimate(text):
+        err = "skunked_terms.decimate"
+        msg = (u"'{}' is a skunked term — impossible to 
+               "use without someone taking issue. Find" 
+               "another way to say it")
+        regex = "decimat(?:e|es|ed|ing)?"
         return existence_check(
-            text, jargon, err, msg, join=True)
+            text, [regex], err, msg, join=True)
+
+The function first defines an error code, an error message, and a regualar expression that matches the word *decimate* in its various forms, then applies the existence check.
 
 Using Proselint
 ===============
@@ -306,10 +298,11 @@ For example,
 
 .. code-block:: bash
 
-  text.md:0:10: uncomparables.misc Comparison of ... 
-  an uncomparable: 'unique' can not be compared.
+  text.md:0:10: skunked_terms.misc 'decimate' is ...
+  a skunked term — impossible to use without ...
+  someone taking issue. Find another way to say it."
 
-suggests that, at column 10 of line 0, the check ``uncomparables.misc`` detected an issue where the uncomparable adjective "unique" was compared, as in "very unique". The command-line utility can instead print the list of suggestions in JSON through the ``--json`` flag. In this case, the output is considerably richer:
+This message suggests that, at column 10 of line 0, the module ``skunked_terms.misc`` detected the presence of the skunked term *decimate*. The command-line utility can instead print the list of suggestions in JSON through the ``--json`` flag. In this case, the output is considerably richer:
 
 .. code-block:: javascript
 
