@@ -81,21 +81,19 @@ Tables 1 and 2 list much of the advice that Proselint currently implements; that
    +---------------------------------+---------------------------------------------+
    |``archaism.misc``                | Avoiding archaic forms                      |
    +---------------------------------+---------------------------------------------+
-   |``cliches.hell``                 | Avoiding a common cliché                    |
-   +---------------------------------+---------------------------------------------+
    |``cliches.misc``                 | Avoiding clichés                            |
    +---------------------------------+---------------------------------------------+
    |``consistency.spacing``          | Consistent sentence spacing                 |
    +---------------------------------+---------------------------------------------+
    |``consistency.spelling``         | Consistent spelling                         |
    +---------------------------------+---------------------------------------------+
-   |``corporate_speak.misc``         | Avoiding corporate buzzwords`               |
+   |``corporate_speak.misc``         | Avoiding corporate buzzwords                |
    +---------------------------------+---------------------------------------------+
-   |``cursing.filth``                | Words to avoid                              |
+   |``cursing.filth``                | Avoiding cursing                            |
    +---------------------------------+---------------------------------------------+
    |``cursing.nfl``                  | Avoiding words banned by the NFL            |
    +---------------------------------+---------------------------------------------+
-   |``dates_times.am_pm``            | Using the right form for  time              |
+   |``dates_times.am_pm``            | Using the right form for time               |
    +---------------------------------+---------------------------------------------+
    |``dates_times.dates``            | Stylish formatting of dates                 |
    +---------------------------------+---------------------------------------------+
@@ -117,7 +115,7 @@ Tables 1 and 2 list much of the advice that Proselint currently implements; that
    +---------------------------------+---------------------------------------------+
    |``misc.bureaucratese``           | Avoiding bureaucratese                      |
    +---------------------------------+---------------------------------------------+
-   |``misc.but``                     | Avoid starting a paragraph with "But..."    |
+   |``misc.but``                     | Avoiding starting a paragraph with "But..." |
    +---------------------------------+---------------------------------------------+
    |``misc.capitalization``          | Capitalizing correctly                      |
    +---------------------------------+---------------------------------------------+
@@ -249,6 +247,7 @@ To ease implementation of new rules, we wrote functions that help to follow the 
 The entry on *decimate* bans a word and so can be implemented using the ``existence_check`` template:
 
 .. code-block:: python
+    :linenos:
     
     def check_for_decimate(text):
         err = "skunked_terms.decimate"
@@ -420,7 +419,7 @@ Many rules apply better to some kinds of documents than to others. For example, 
 
 We can silence rules that are predicted to be irrelevant due to context. This allows inclusion of a greater variety of rules without introducing false positives. For example, consider Proselint's rule that states that, when specifying a decade, an apostrophe is unecessary: Eisenhower was president in the 50s, not the 50's. However, not all instances of "50's" are problematic. Consider, for example, the posessive form of artist "50 Cent". One can validly write about "50's manager" when referring to his manager without having made a usage error about decades. Thus Proselint's detector identifies whether a document's topic is 50 Cent. When the topic is not detected, the tool identifies "50's" as a usage error, but when it is detected, the tool does not flag the usage as erroneous.
 
-The 50 Cent topic detector was developed by hand in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint's coverage of usage errors. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be needed. Once incorporated, generalizing this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a form of context :cite:`blei2010nested`.
+The 50 Cent topic detector was hand-crafted in the fashion of expert knowledge systems research :cite:`jackson1986introduction`. Generalizing this ability will be crucial to safely growing Proselint's coverage of usage errors. Machine learning techniques for identifying the topic (or mixture of topics) that apply at any point in a document (e.g., topic models :cite:`blei2009topic`) will be needed. Once incorporated, generalizing this to hierarchical, nonparametric topic models will enable taking document sub-structure into account as a form of context :cite:`blei2010nested`.
 
 Evaluating linters by testing on multiple corpora
 -------------------------------------------------
