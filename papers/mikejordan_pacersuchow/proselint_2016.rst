@@ -352,6 +352,8 @@ We have curated a list of known tools for automated language checking, stored wi
 Proselint's approach
 ====================
 
+In the following sections, we describe Proselint's approach and its points of departure from previous attempts at linting prose.
+
 What to check: usage, not grammar
 ---------------------------------
 
