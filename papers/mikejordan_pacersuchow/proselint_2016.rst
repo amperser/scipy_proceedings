@@ -47,7 +47,7 @@ To solve this problem, we built Proselint, a real-time linter for English prose.
 
 Proselint is open-source software released under the BSD license and compatible with Pythons 2 and 3. It runs as a command-line utility or editor plugin for Sublime Text, Atom, Emacs, vim, etc. It outputs advice in JSON and the standard linting format (:math:`\textsc{SLF}`), promoting integration with external services :cite:`wasserman1990tool` and providing human-readable output. Proselint includes modules on a variety of usage problems, including redundancy, jargon, illogic, clichés, sexism, misspelling, inconsistency, misuse of symbols, malapropisms, oxymorons, security gaffes, hedging, apologizing, pretension, and more (see Tables 1 and 2 for a fuller listing).
 
-Proselint is both a language tool for scientists and a tool for language science. On the one hand, it can help scientists communicate their ideas to each other and to the public by improving their writing. On the other hand, scientists can use Proselint to studying language and linting.
+Proselint is both a language tool for scientists and a tool for language science. On the one hand, it can help scientists communicate their ideas to each other and to the public by improving their writing. On the other hand, scientists can use Proselint to study language and linting.
 
 A language tool for scientists
 ------------------------------
@@ -258,7 +258,7 @@ The entry on *decimate* bans a word and so can be implemented using the ``existe
         return existence_check(
             text, [regex], err, msg, join=True)
 
-The function first defines an error code, an error message, and a regualar expression that matches the word *decimate* in its various forms, then applies the existence check.
+The function first defines an error code, an error message, and a regular expression that matches the word *decimate* in its various forms, then applies the existence check.
 
 Using Proselint
 ===============
@@ -341,7 +341,7 @@ Proselint is available as a plugin for popular text editors, including Emacs, vi
 
 Proselint's approach
 ====================
-
+.. link isn't working in the pdf on the build server
 In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts at linting prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <github.com/amperser/proselint>`_). The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, closed source or abandonware, and riddled with false positives.
 
 What to check: usage, not grammar
@@ -412,7 +412,7 @@ Context-sensitive rule application and machine learning
 
 Many rules apply better to some kinds of documents than to others. For example, in most cases "extendable" is preferable to "extensible", but in software development the opposite is true. Applying these rules without consideration of the context will systematically introduce false positives.
 
-Silencing rules that are predicted to be irrelevant because of the context allows a greater variety of rules to be included without introducing false positives. For example, consider the advice that, when specifying a decade, an apostrophe is unecessary: Eisenhower was president in the 50s, not the 50's. However, not all instances of *50's* are problematic. Consider, for example, the posessive form of the musical artist 50 Cent. One can validly write *50's manager* to refer to 50's manager without having made a usage error about decades. To account for this context sensitivity, Proselint detects whether a document's topic is 50 Cent, identifying *50's* as a usage error only when the topic is not detected.
+Silencing rules that are predicted to be irrelevant because of the context allows a greater variety of rules to be included without introducing false positives. For example, consider the advice that, when specifying a decade, an apostrophe is unnecessary: Eisenhower was president in the 50s, not the 50's. However, not all instances of *50's* are problematic. Consider, for example, the posessive form of the musical artist 50 Cent. One can validly write *50's manager* to refer to 50's manager without having made a usage error about decades. To account for this context sensitivity, Proselint detects whether a document's topic is 50 Cent, identifying *50's* as a usage error only when the topic is not detected.
 
 The 50 Cent topic detector was hand-crafted in the fashion of expert knowledge systems :cite:`jackson1986introduction`. Machine-learning techniques for identifying the topic of a document (e.g., topic models :cite:`blei2009topic`) can generalize this ability and will be crucial to safely growing Proselint's coverage of usage errors. Once incorporated, extending this to hierarchical nonparametric topic models will enable document sub-structure to be taken into account as a form of context :cite:`blei2010nested`.
 
@@ -476,7 +476,7 @@ Lastly, science demands consistency to promote clarity and replication. At the s
 Contributing to Proselint
 =========================
 
-The primary avenue for contributing to Proselint is by contributing code to its GitHub repository, used to organize work on the project. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert who endorses the rule. This is not because language experts are the only arbiters of language usage, but because our goal is explicitly to aggregate best practices as put forth by the experts.
+The primary avenue for contributing to Proselint is by contributing code to its GitHub repository. In particular, we have developed an extensive set of Issues that range from trivial-to-fix bugs to lofty features whose addition are entire research projects in their own right. To merit inclusion in Proselint, contributed rules must be accompanied by a citation of an expert who endorses the rule. This is not because language experts are the only arbiters of language usage, but because our goal is explicitly to aggregate best practices as put forth by the experts.
 
 A secondary avenue for contributing to Proselint is through discovery of false positives: instances where Proselint flags well-formed idiomatic prose as containing a usage error. In this way, people with expertise in editing, language, and quality assurance can make a valuable contribution that directly improves the metric we use to gauge success.
 
