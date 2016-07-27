@@ -342,7 +342,7 @@ Proselint is available as a plugin for popular text editors, including Emacs, vi
 Proselint's approach
 ====================
 
-In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts at linting prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint>`_). The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, closed source or abandonware, and riddled with false positives.
+In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts at linting prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint/blob/master/research/comparison/tools.csv>`_). The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, closed source or abandonware, and riddled with false positives.
 
 What to check: usage, not grammar
 ---------------------------------
