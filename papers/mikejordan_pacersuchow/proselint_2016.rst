@@ -236,7 +236,7 @@ Organizing rules into modules is useful for two reasons. First, it allows for a 
 Converting a rule to code: rule templates
 -----------------------------------------
 
-Suppose you wanted to implement the following entry from *Garner's Modern English Usage* as a rule in Proselint:
+Suppose a developer wanted to implement the following entry from *Garner's Modern English Usage* as a rule in Proselint:
 
   :math:`\footnotesize\textsc{DECIMATE}`. Originally this word meant “to kill one in every ten,” but this etymological sense, because it’s so uncommon, has been abandoned except in historical contexts. Now *decimate* generally means “to cause great loss of life; to destroy a large part of.” ... In fact, though, the word might justifiably be considered a :math:`\footnotesize\textsc{SKUNKED TERM}`. Whether you stick to the original one-in-ten meaning or use the extended sense, the word is infected with ambiguity. And some of your readers will probably be puzzled or bothered. :cite:`garner2016garner`. 
 
