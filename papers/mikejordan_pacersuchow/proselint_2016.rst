@@ -438,7 +438,7 @@ One application uses Proselint to detect ghost-written documents, which could al
 
 A second application inverts and generalizes the process of identifying authors by selectively introducing, changing, or removing usage choices to obfuscate or encrypt messages. With some modifications and a protocol for establishing usage-based keys, Proselint could become a system for designing content-aware steganographic systems, allowing users to convey hidden messages in their choice of words and styles :cite:`bergmair2006content`. Encryption would require modifying the Proselint infrastructure to identify when more than one acceptable choice exists.
 
-The errors Proselint finds are each relatively rare. Sparse measures pose difficultly for methods like those in Mosteller \& Wallace (1963) :cite:`mosteller1963inference`. Machine-learning techniques for inferring identity from sparse data will thus be particularly applicable. Furthermore, this endeavor will benefit from an approach that considers the cross product of authors and topics :cite:`rosen2004author`.
+The errors Proselint can find are each relatively rare in comparison to the linguistic features typically used in stylometry :cite:`zheng2006framework`, :cite:`mosteller1963inference`, :cite:`rudman1997state`. Sparse measures pose difficulty for methods like those in Mosteller \& Wallace (1963) :cite:`mosteller1963inference`. Machine-learning techniques for inferring identity from sparse data will thus be particularly applicable. Furthermore, this endeavor will benefit from an approach that considers the cross product of authors and topics :cite:`rosen2004author`.
 
 Automated usage and style metrics
 ---------------------------------
