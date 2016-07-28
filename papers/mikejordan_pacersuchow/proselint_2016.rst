@@ -342,7 +342,7 @@ Proselint's approach
 
 In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts to lint prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint/blob/master/research/comparison/tools.csv>`_). The tools are varied in their approaches and coverage, but typically focus on grammar versus usage and style; are unsystematic in choosing sources of advice; or have been abandoned. In general, we regard the tools as being imprecise, incomplete, and inaccessible:
 
-*Imprecise*. Even the best software-based tools for editing are riddled with false positives. Of the tools we evaluated on an earlier version of the corpus, Microsoft Word had the best false-discovery rate of 2 false positives to 1 true positive. This compares to Proselint, which had a false-discovery rate of 1 false positive to 10 true positives.
+*Imprecise*. Even the best software-based tools for editing are riddled with false positives. We evaluated many of the tools in our dataset on an earlier version of the corpus. Proselint's false discovery rate of 1 false positive to 10 true positives was 20× better than the next best tool, Microsoft Word, which had a false-discovery rate of 2 false positives to 1 true positive.
 
 *Incomplete*. All software-based tools for editing are incomplete; not one frees our collective knowledge about best practices in writing from its bindings. Completion is likely an unattainable goal, which inspires Proselint's open-source, community-participation model.
 
