@@ -352,9 +352,6 @@ The tools are varied in their approaches and coverage, but tend to be focused on
 
 *Inaccessible*. Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
 
-.. All other tools are riddled with false positives. Consequently, compared to Proselint, every tool suffers from the problem of imprecision as defined by lintscore on our corpus of professionally edited essays. All of the tools – including proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor. Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
-
-
 What to check: usage, not grammar
 ---------------------------------
 
