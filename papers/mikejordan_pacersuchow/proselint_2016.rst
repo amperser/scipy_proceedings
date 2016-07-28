@@ -344,15 +344,13 @@ Proselint's approach
 
 In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts at linting prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint/blob/master/research/comparison/tools.csv>`_). 
 
-The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, and many have been abandoned. In general, software based writing tools are imprecise, incomplete and inaccessible. 
+The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, and many have been abandoned. In general, software based writing tools are imprecise, incomplete and inaccessible:
 
-:math:`\textsc{Imprecise.} \enskip` Even the best tools are riddled with false positives. Of the tools we have evaluated on an earlier version of the corpus, Microsoft Word had the best false discovery rate of 2 false positives to 1 true positive. This compares to Proselint which had a false discovery rate of 1 false positive to 10 true positives.
+*Imprecise*. Even the best tools are riddled with false positives. Of the tools we have evaluated on an earlier version of the corpus, Microsoft Word had the best false discovery rate of 2 false positives to 1 true positive. This compares to Proselint which had a false discovery rate of 1 false positive to 10 true positives.
 
-:math:`\textsc{Incomplete.} \enskip` All of the tools – including Proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor.
+*Incomplete*. All of the tools – including Proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor.
 
-:math:`\textsc{Inaccessible.} \enskip` Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
-
-
+*Inaccessible*. Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
 
 .. All other tools are riddled with false positives. Consequently, compared to Proselint, every tool suffers from the problem of imprecision as defined by lintscore on our corpus of professionally edited essays. All of the tools – including proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor. Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
 
