@@ -397,7 +397,7 @@ With Proselint, we aim for a tool precise enough that users can adopt its recomm
 .. math::
     l(T,F;k) = T(1-\alpha)^k,
 
-where the parameter :math:`k` controls the strength of the :math:`1-\alpha` penalty. Notably, the lintscore does not reflect the number of true and false negatives; we reason that it is more important to be quiet and authoritative than to be loud and risk being untrustworthy (cf. the metrics discussed in :cite:`chodorow2012problems`).
+where the parameter :math:`k` (where :math:`k≥1`) controls the strength of the :math:`1-\alpha` penalty. Notably, the lintscore does not reflect the number of true and false negatives; we reason that it is more important to be quiet and authoritative than to be loud and risk being untrustworthy (cf. the metrics discussed in :cite:`chodorow2012problems`).
 
 The lintscore can be computed exactly if an evaluator can classify each error flagged by the linter as a true or false positive. However, many corpora are large enough to preclude this kind of exhaustive assessment. In these cases, the lintscore can be estimated from the total number of issues flagged and an estimate of the false-discovery rate.
 
