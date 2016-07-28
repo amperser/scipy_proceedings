@@ -340,13 +340,13 @@ Proselint is available as a plugin for popular text editors, including Emacs, vi
 Proselint's approach
 ====================
 
-In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts at linting prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint/blob/master/research/comparison/tools.csv>`_). The tools are varied in their approaches and coverage, but appear to be focused on grammar versus usage and style, unsystematic in choosing sources of advice, and many have been abandoned. In general, software-based writing tools are imprecise, incomplete, and inaccessible:
+In the following sections, we describe Proselint's approach and its greatest points of departure from previous attempts to lint prose. As part of this analysis, we curated a list of known tools for automated language checking. The dataset contains the name of each tool, a link to its website, and data about its basic features, including languages and licenses (`link <https://github.com/amperser/proselint/blob/master/research/comparison/tools.csv>`_). The tools are varied in their approaches and coverage, but typically focus on grammar versus usage and style; are unsystematic in choosing sources of advice; or have been abandoned. In general, we regard the tools as being imprecise, incomplete, and inaccessible:
 
-*Imprecise*. Even the best tools are riddled with false positives. Of the tools we have evaluated on an earlier version of the corpus, Microsoft Word had the best false discovery rate of 2 false positives to 1 true positive. This compares to Proselint, which had a false-discovery rate of 1 false positive to 10 true positives.
+*Imprecise*. Even the best software-based tools for ediding are riddled with false positives. Of the tools we evaluated on an earlier version of the corpus, Microsoft Word had the best false-discovery rate of 2 false positives to 1 true positive. This compares to Proselint, which had a false-discovery rate of 1 false positive to 10 true positives.
 
-*Incomplete*. All software-based tools for editing are incomplete; none frees our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community-participation model to the endeavor.
+*Incomplete*. All software-based tools for editing are incomplete; not one frees our collective knowledge about best practices in writing from its bindings. Completion is likely an unattainable goal, which inspires Proselint's open-source, community-participation model.
 
-*Inaccessible*. Many existing tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
+*Inaccessible*. Many existing tools are inaccessible because they cost money, are closed source, or are inextensible. Thus we designed Proselint to be free, open source, and extensible.
 
 What to check: usage, not grammar
 ---------------------------------
