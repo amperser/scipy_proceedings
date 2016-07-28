@@ -348,7 +348,7 @@ The tools are varied in their approaches and coverage, but tend to be focused on
 
 :math:`\textsc{Imprecise.} \enskip` Even the best tools are riddled with false positives. Of the tools we have evaluated on an earlier version of the corpus, Microsoft Word had the best false discovery rate of 2 false positives to 1 true positive. This compares to Proselint which had a false discovery rate of 1 false positive to 10 true positives.
 
-:math:`\textsc{Incomplete.} \enskip` All of the tools – including proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor.
+:math:`\textsc{Incomplete.} \enskip` All of the tools – including Proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor.
 
 :math:`\textsc{Inaccessible.} \enskip` Some tools are inaccessible in that they either cost money, are closed source, or are not extensible. Proselint has none of these limitations.
 
