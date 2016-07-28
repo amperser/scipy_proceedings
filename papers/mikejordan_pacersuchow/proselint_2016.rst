@@ -143,14 +143,14 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. That
    +---------------------------------+---------------------------------------------+
    |``misc.preferred_forms``         | Miscellaneous preferred forms               |
    +---------------------------------+---------------------------------------------+
-   |``misc.pretension``              | Avoiding being pretentious                  |
-   +---------------------------------+---------------------------------------------+
 
 .. table:: What Proselint checks (cont.). :label:`checkscont`
 
    +---------------------------------+---------------------------------------------+
    | ID                              | Description                                 |
    +=================================+=============================================+
+   |``misc.pretension``              | Avoiding being pretentious                  |
+   +---------------------------------+---------------------------------------------+
    |``misc.professions``             | Calling jobs by the right name              |
    +---------------------------------+---------------------------------------------+
    |``misc.punctuation``             | Using punctuation assiduously               |
@@ -159,15 +159,13 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. That
    +---------------------------------+---------------------------------------------+
    |``misc.suddenly``                | Avoiding the word suddenly                  |
    +---------------------------------+---------------------------------------------+
-   |``misc.tense_present``           | Advice from Tense Present                   |
-   +---------------------------------+---------------------------------------------+
    |``misc.waxed``                   | Waxing poetic                               |
    +---------------------------------+---------------------------------------------+
    |``misc.whence``                  | Using "whence"                              |
    +---------------------------------+---------------------------------------------+
    |``mixed_metaphors.misc``         | Not mixing metaphors                        |
    +---------------------------------+---------------------------------------------+
-   |``mondegreens.misc``             | Avoiding mondegreen                         |
+   |``mondegreens.misc``             | Avoiding mondegreens                        |
    +---------------------------------+---------------------------------------------+
    |``needless_variants.misc``       | Using the preferred form                    |
    +---------------------------------+---------------------------------------------+
@@ -220,8 +218,6 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. That
    |``uncomparables.misc``           | Not comparing uncomparables                 |
    +---------------------------------+---------------------------------------------+
    |``weasel_words.misc``            | Avoiding weasel words                       |
-   +---------------------------------+---------------------------------------------+
-   |``weasel_words.very``            | Avoiding the word "very"                    |
    +---------------------------------+---------------------------------------------+
 
 Rule modules
