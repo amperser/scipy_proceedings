@@ -483,7 +483,7 @@ A secondary avenue for contributing to Proselint is through discovery of false p
 Acknowledgments
 ===============
 
-Proselint is supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically for applying it to the problem of improving governmental communications as laid out in the `Federal Plain Language Guidelines`__. We thank several reviewers who gave feedback on the manuscript, including David Lippa, Scott Rostrup, and Dan Lewis. This work was presented as a talk at *SciPy* 2016 (`YouTube <https://www.youtube.com/watch?v=S55EFUOu4O0>`_).
+Proselint is supported in part by the `Berkeley Center for Technology, Society and Policy`__ through the CTSP Fellows program, specifically for applying it to the problem of improving governmental communications as laid out in the `Federal Plain Language Guidelines`__. We thank several reviewers who gave feedback on the manuscript, including Dan Lewis, David Lippa, Scott Rostrup, and Stéfan van der Walt. This work was presented as a talk at *SciPy* 2016 (`YouTube <https://www.youtube.com/watch?v=S55EFUOu4O0>`_).
 
 .. __: https://ctsp.berkeley.edu/
 
