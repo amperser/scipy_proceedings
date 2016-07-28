@@ -346,7 +346,7 @@ In the following sections, we describe Proselint's approach and its greatest poi
 
 The tools are varied in their approaches and coverage, but tend to be focused on grammar versus usage and style, indiscriminate in choosing sources of advice, and many have been abandoned. In general, software based writing tools are imprecise, incomplete and inaccessible. 
 
-:math:`\textsc{Imprecise.} \enskip` All other tools are riddled with false positives. Consequently, compared to Proselint, every tool suffers from the problem of imprecision as defined by lintscore on our corpus of professionally edited essays.
+:math:`\textsc{Imprecise.} \enskip` Even the best tools are riddled with false positives. Of the tools we have evaluated on an earlier version of the corpus, Microsoft Word had the best false discovery rate of 2 false positives to 1 true positive. This compares to Proselint which had a false discovery rate of 1 false positive to 10 true positives.
 
 :math:`\textsc{Incomplete.} \enskip` All of the tools – including proselint – are incomplete; no tool frees all of our collective knowledge about best practices in writing from its bindings. Completion may be an intractable goal, but that merely highlights the vitalness of Proselint's open-source, community participation model to the endeavor.
 
