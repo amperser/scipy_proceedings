@@ -8,7 +8,7 @@
 :bibliography: mybib
 
 ========================================================================
-Proselint: the linting of science prose and the science of linting prose
+Linting science prose and the science of prose linting
 ========================================================================
 
 .. class:: abstract
