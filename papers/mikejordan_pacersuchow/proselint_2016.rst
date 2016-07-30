@@ -113,7 +113,7 @@ Tables 1 and 2 list much of the advice that Proselint currently implements. That
    +---------------------------------+---------------------------------------------+
    |``misc.bureaucratese``           | Avoiding bureaucratese                      |
    +---------------------------------+---------------------------------------------+
-   |``misc.but``                     | Avoiding starting a paragraph with "But..." |
+   |``misc.but``                     | Avoiding starting a par. with "But..."      |
    +---------------------------------+---------------------------------------------+
    |``misc.capitalization``          | Capitalizing correctly                      |
    +---------------------------------+---------------------------------------------+
